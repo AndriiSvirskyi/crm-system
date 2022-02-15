@@ -1,0 +1,39 @@
+{
+  "users": {
+    "andrii.s@4irelabs.com": {
+      "email": "andrii.s@4irelabs.com",
+      "password": "1234",
+      "name": "Andrii",
+      "surname": "Svirskyi",
+      "role": "admin"
+    },
+    "viktor.m@4irelabs.com": {
+      "email": "viktor.m@4irelabs.com",
+      "password": "1234",
+      "name": "Viktor",
+      "surname": "Malinovskyi",
+      "role": "manager"
+    },
+    "anastasia.f@4irelabs.com": {
+      "email": "anastasia.f@4irelabs.com",
+      "password": "1234",
+      "name": "Anastasiia",
+      "surname": "Fedosyeyeva",
+      "role": "manager"
+    },
+    "user@4irelabs.com": {
+      "email": "user@4irelabs.com",
+      "password": "1234",
+      "name": "User",
+      "surname": "Surname",
+      "role": "user"
+    },
+    "user1@4irelabs.com": {
+      "email": "user1@4irelabs.com",
+      "password": "1234",
+      "name": "User1",
+      "surname": "Surname",
+      "role": "user"
+    }
+  }
+}
