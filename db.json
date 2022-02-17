@@ -21,19 +21,19 @@
       "surname": "Fedosyeyeva",
       "role": "manager"
     },
-    "user@4irelabs.com": {
-      "email": "user@4irelabs.com",
-      "password": "1234",
-      "name": "User",
-      "surname": "Surname",
-      "role": "user"
+    "fbsdhfgjh@ufhkdhsf.ck": {
+      "email": "fbsdhfgjh@ufhkdhsf.ck",
+      "password": "1",
+      "name": "1",
+      "surname": "1",
+      "role": "admin"
     },
     "user1@4irelabs.com": {
       "email": "user1@4irelabs.com",
-      "password": "1234",
-      "name": "User1",
-      "surname": "Surname",
-      "role": "user"
+      "password": "123",
+      "name": "asd",
+      "surname": "asd",
+      "role": "admin"
     }
   }
 }
