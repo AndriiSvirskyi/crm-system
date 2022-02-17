@@ -7,6 +7,11 @@ import { Button } from "components/Button";
 import { Form } from "components/form/Form";
 import { Message } from "components/Message";
 
+const SignUpPage = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100vh;
+`;
 const Fullname = styled.div`
   width: 105%;
   display: flex;
@@ -17,94 +22,156 @@ const Fullname = styled.div`
   }
 `;
 
+type Errors = {
+  [key: string]: string;
+};
+
 interface Users {
   users: object;
 }
 
 const SignUp: NextPage<Users> = ({ users }) => {
-  const [name, setName] = useState<string>("");
-  const [surname, setSurname] = useState<string>("");
-  const [userEmail, setUserEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
-  const [role, setRole] = useState<string>("");
-  const [userPassword, setUserPassword] = useState<string>("");
-  const [checkPassword, setCheckPassword] = useState<string>("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [role, setRole] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
 
-  const [isUserCreated, setIsUserCreated] = useState<boolean>(false);
-  const [isPasswordValid, setIsPasswordValid] = useState<boolean>(false);
-  const [isUserExists, setIsUserExists] = useState<boolean>(false);
-
+  const [errors, setErrors] = useState<Errors | null>(null);
   const workPositions = {
-    admin: 'admin',
-    manager: 'manager',
-    user: 'user'
-}   
-  useEffect(() => {
-    setTimeout(() => {
-      setIsUserCreated(false);
-    }, 3000);
-  }, [isUserCreated]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsPasswordValid(false);
-    }, 3000);
-  }, [isPasswordValid]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsUserExists(false);
-    }, 3000);
-  }, [isUserExists]);
+    admin: "admin",
+    manager: "manager",
+    user: "user",
+  };
 
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (users[userEmail]) {
-      setIsUserExists(true);
+      // setIsUserExists(true);
+      setErrors({ ...errors, userExist: "User exist" });
     } else {
-      if (userPassword !== checkPassword) {
-        setIsPasswordValid(false);
-        setIsUserExists(false);
-      } else {
-        await fetch(`http://localhost:4200/users`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...users,
-            [userEmail]: {
-              email: userEmail,
-              password: userPassword,
-              name: name,
-              surname: surname,
-              role: role,
-            },
-          }),
-        });
-        setIsUserCreated(true);
-        setIsPasswordValid(true);
-        setIsUserExists(false);
-        setName("");
-        setSurname("");
-        setUserEmail("");
-        setPhone("");
-        setRole("");
-        setUserPassword("");
-        setCheckPassword("");
-      }
+      await fetch(`http://localhost:4200/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...users,
+          [userEmail]: {
+            email: userEmail,
+            password: userPassword,
+            name: name,
+            surname: surname,
+            role: role,
+          },
+        }),
+      });
+      setName("");
+      setSurname("");
+      setUserEmail("");
+      setPhone("");
+      setRole("");
+      setUserPassword("");
+      setCheckPassword("");
     }
   };
-
-  const EmailInput: JSX.Element = useMemo(() => (<Input height={"40px"} value={userEmail} setValue={setUserEmail} type={"email"} placeholder={"Email"} />), [userEmail]);
-  const NameInput: JSX.Element = useMemo(() => (<Input mediaMargin={"0 10px 0 0"} margin={"0 25px 0 0"} height={"40px"} value={name} setValue={setName} type={"text"}placeholder={"Name"}/>), [name]);
-  const SurnameInput: JSX.Element = useMemo(() => (<Input height={"40px"} value={surname} setValue={setSurname} type={"text"} placeholder={"Surname"}/>), [surname]);
-  const PhoneInput: JSX.Element = useMemo(() => (<Input height={"40px"} value={phone} setValue={setPhone} type={"number"} placeholder={"Phone"} />), [phone]);
-  const RoleInput: JSX.Element = useMemo(() => (<Input list="roles" height={'40px'} margin={''} mediaMargin={'10px'} value={role} setValue={setRole} placeholder='Work position'/>), [role]);
-  const PasswordInput: JSX.Element = useMemo(() => (<Input height={"40px"} value={userPassword} setValue={setUserPassword} type={"password"} placeholder={"Password"} />), [userPassword]);
-  const CheckPasswordInput: JSX.Element = useMemo(() => (<Input height={"40px"} value={checkPassword} setValue={setCheckPassword} type={"password"} placeholder={"Repeat password"} />), [checkPassword]);
+  console.log(errors);
+  const EmailInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        height="40px"
+        value={userEmail}
+        setValue={setUserEmail}
+        type="email"
+        placeholder="Email"
+        error={errors?.userExist}
+      />
+    ),
+    [userEmail, errors?.userExist]
+  );
+  const NameInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        mediaMargin="0 10px 0 0"
+        margin="0 25px 0 0"
+        height="40px"
+        value={name}
+        setValue={setName}
+        type="text"
+        placeholder="Name"
+      />
+    ),
+    [name]
+  );
+  const SurnameInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        height="40px"
+        value={surname}
+        setValue={setSurname}
+        type="text"
+        placeholder="Surname"
+      />
+    ),
+    [surname]
+  );
+  const PhoneInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        height="40px"
+        value={phone}
+        setValue={setPhone}
+        type="number"
+        placeholder="Phone"
+      />
+    ),
+    [phone]
+  );
+  const RoleInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        list="roles"
+        height="40px"
+        mediaMargin="10px"
+        value={role}
+        setValue={setRole}
+        placeholder="Work position"
+      />
+    ),
+    [role]
+  );
+  const PasswordInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        height="40px"
+        value={userPassword}
+        setValue={setUserPassword}
+        type="password"
+        placeholder="Password"
+      />
+    ),
+    [userPassword]
+  );
+  const CheckPasswordInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        height="40px"
+        value={checkPassword}
+        setValue={setCheckPassword}
+        type="password"
+        placeholder="Repeat password"
+      />
+    ),
+    [checkPassword]
+  );
 
   return (
-    <>
-      <Form submit={getInformation} content={"Create admin account"} padding={"30px 57px 0 57px"} mediaPadding={"5px"}>
+    <SignUpPage>
+      <Form
+        submit={getInformation}
+        content="Create admin account"
+        mediaPadding="5px"
+      >
         <Fullname>
           {NameInput}
           {SurnameInput}
@@ -113,21 +180,18 @@ const SignUp: NextPage<Users> = ({ users }) => {
         {PhoneInput}
         {RoleInput}
         <datalist id="roles">
-            <option value={workPositions.admin}/>
-            <option value={workPositions.manager}/>
-            <option value={workPositions.user}/>
-        </datalist> 
+          {Object.values(workPositions).map((position) => (
+            <option key={position} value={position} />
+          ))}
+        </datalist>
         {PasswordInput}
         {CheckPasswordInput}
-        {<Button width={"30%"}>Create account</Button>}
-        {<Message color={'red'} visibility={isPasswordValid ? 'hidden' : 'visible'}>Invalid password</Message>}
-        {<Message color={'orange'} visibility={isUserExists ? 'visible' : 'hidden'}>User exists</Message>}
-        {<Message color={'green'} visibility={isUserCreated ? 'visible' : 'hidden'}>Account created</Message>}
-        <Link href={"/authorization/SignIn"}>
+        {<Button width="30%">Create account</Button>}
+        <Link href="/authorization/SignIn">
           <a>Sign In</a>
         </Link>
       </Form>
-    </>
+    </SignUpPage>
   );
 };
 

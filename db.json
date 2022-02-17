@@ -27,6 +27,13 @@
       "name": "1",
       "surname": "1",
       "role": "admin"
+    },
+    "user1@4irelabs.com": {
+      "email": "user1@4irelabs.com",
+      "password": "123",
+      "name": "asd",
+      "surname": "asd",
+      "role": "admin"
     }
   }
 }

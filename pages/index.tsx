@@ -1,10 +1,23 @@
-import Head from "next/head";
+import { useRouter } from "next/router";
+import MainLayout from "../Layouts/MainLayout";
 
 export default function Home() {
-    return ( <div>
-        <Head >
-        <title > NextJS Blog with Butter CMS </title> 
-        <link rel = "icon"href = "/favicon.ico" />
-        </Head> <h1 > NextJS Blog with Butter CMS </h1> </ div >
-    );
+  const router = useRouter();
+  console.log(router);
+  return (
+    <MainLayout>
+      <>
+        <div className="main-grid">
+          <div className="User-menu">User information</div>
+          <div className="User-content">
+            <div>1/4</div>
+            <div>2/4</div>
+            <div>3/4</div>
+            <div>4/4</div>
+          </div>
+        </div>
+        <h1>Main</h1>
+      </>
+    </MainLayout>
+  );
 }

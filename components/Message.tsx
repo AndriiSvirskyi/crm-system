@@ -1,22 +1,42 @@
-import styled from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-type Props = {
-    visibility: string,
-    color: string
-}
+type MessageProps = {
+  type: string;
+  text: string;
+};
+type ContainerProps = {
+  color: string;
+};
 
-const Container = styled.div<Props>`
-    position: absolute;
-    top: 10px;
-    padding: 10px 15px;
-    text-align: center;
-    color: ${({color}) => color};
-    background-color: #F5F5F5;
-    border-radius: 3px;
-    visibility: ${({visibility}) => visibility};
-    transition: all .3s cubic-bezier(0.53, 0.77, 0.58, 0.26);
+const colors = {
+  error: "red",
+  warning: "yellow",
+  success: "green",
+};
+
+const show = keyframes`
+  from {
+    top: -100px;
+  }
+
+  to {
+    top: 30px;
+  }
 `;
 
-export const Message = ({color, visibility, children}) => {
-    return(<Container color={color} visibility={visibility}>{children}</Container>)
-}
+const Container = styled.div<ContainerProps>`
+  position: absolute;
+  top: 30px;
+  padding: 10px 15px;
+  text-align: center;
+  color: ${({ color }) => color};
+  background-color: #f5f5f5;
+  animation-iteration-count: 1;
+  animation: ${show} 0.5s linear;
+  border-radius: 3px;
+`;
+
+export const Message = ({ type, text }: MessageProps) => {
+  console.log("2131233");
+  return <Container color={colors[type]}>{text}</Container>;
+};

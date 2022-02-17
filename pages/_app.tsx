@@ -1,10 +1,10 @@
 import { createGlobalStyle } from "styled-components";
-import type { AppProps  } from 'next/app'
+import type { AppProps } from "next/app";
 
-const GlobalStyle = createGlobalStyle `
+const GlobalStyle = createGlobalStyle`
 html{
   margin: 0;
-  padding: 0
+  padding: 0;
   width: 100%;
 
 }
@@ -23,9 +23,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <GlobalStyle />
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </>
   );
 }
- 
+
 export default MyApp;
