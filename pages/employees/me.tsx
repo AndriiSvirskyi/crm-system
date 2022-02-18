@@ -1,5 +1,4 @@
 import React from "react";
-import { MeStyles } from "components/Styled/meStyles";
 
 import MainLayout from "../../Layouts/MainLayout";
 
@@ -7,7 +6,6 @@ export default function me() {
   return (
     <>
       <MainLayout>
-        <MeStyles>
           <div className="container-user-window">
             <div className="logo">
               <div className="items">Logo</div>
@@ -19,7 +17,6 @@ export default function me() {
             <div className="tabs"></div>
             <div className="footer">footer</div>
           </div>
-        </MeStyles>
       </MainLayout>
     </>
   );

@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
-export const ButtonStyled = styled.div`
-  button {
-    background: #d0d0d0;
-    border-radius: 8px;
-    height: 50px;
-    width: 150px;
-    margin: 0 20px;
-    cursor: pointer;
-  }
-
-  .btn-logo {
-    margin: 20px 1em;
-  }
+const StyledButton = styled.button`
+border:none;
+cursor:pointer;
+padding: 10px 15px;
+margin: ${props => props.margin || ''};
+font-size:18px;
+border-radius: 8px;
+align-self: ${props => props.align || 'stretch'};
+color: ${props => props.color || props.theme.colors.text};
+background: ${props => props.background || props.theme.colors.primary};
 `;
+
+export const ButtonStyled = (props) =>{
+  return <StyledButton {...props}></StyledButton>
+}
+ 

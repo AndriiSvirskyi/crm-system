@@ -1,33 +1,13 @@
+import { ButtonStyled } from "components/Styled/ButtonStyled";
+import { TabComponent } from "components/Styled/TabComponent";
 import { useState } from "react";
-import Personal from "./Personal";
-import { Work } from "./Work";
-import styled from "styled-components";
 
-export const TabsStyled = styled.div`
-  .tabs-menu {
-    display: flex;
-    justify-content: space-around;
-    padding: 1em;
-  }
-  .tabs-menu div {
-    background: #d0d0d0;
-    padding: 1em;
-    border-radius: 8px;
-    font-size: 16px;
-    user-select: none;
-    cursor: pointer;
-  }
-  .tabs-menu .current-tab {
-    background: #9c9c9c;
-  }
-`;
 
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState("first");
-
   const tabContent = {
-    personal: <Personal />,
-    work: <Work />,
+    personal: 11,
+    work: 22,
     "pdp time": <>Third</>,
     weekend: (
       <>
@@ -42,25 +22,23 @@ export default function Tabs() {
   };
 
   return (
-    <TabsStyled>
-      <div className="tabs-menu">
+    <TabComponent>
         {["Personal", "Work", "PDP time", "Weekend", "Additional"].map(
           (tab) => {
             return (
-              <div
-                className={
-                  activeTab === tab.toLocaleLowerCase() ? "current-tab" : ""
+              <ButtonStyled
+                background={
+                  activeTab === tab.toLocaleLowerCase() ? "'#9C9C9C'" : '#D0D0D0'
                 }
                 key={tab}
                 onClick={(e) => clickInTabHanler(tab, e.target)}
               >
                 {tab}
-              </div>
+              </ButtonStyled>
             );
           }
         )}
-      </div>
       {tabContent[activeTab]}
-    </TabsStyled>
+      </TabComponent>
   );
 }

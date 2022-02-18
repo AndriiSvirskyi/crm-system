@@ -1,49 +1,19 @@
 import styled from 'styled-components';
 
-export type FlexProps = Pick<
-  React.CSSProperties,
-  | 'alignItems'
-  | 'justifyContent'
-  | 'flexShrink'
-  | 'flexGrow'
-  | 'gap'
-  | 'display'
-  | 'flexDirection'
-  | 'width'
-  | 'height'
-  | 'margin'
-  | 'overflow'
-  | 'flexWrap'
-> & {
-  display?: 'flex' | 'inline-flex';
-};
+const StyledFlex = styled.div`
+display:flex;
+flex-direction: ${props => props.direction || 'row'};
+flex-wrap: ${props => props.wrap || ''};
+align-items: ${props => props.align || ''};
+align-content:${props => props.content || ''} ;
+justify-content:${props => props.justify || ''} ;
+margin: ${({margin}) => margin || ''};
+padding: ${({padding}) => padding || ''};
+margin-right:${props => props.right || ''};
+margin-left:${props => props.left || ''};
+`
 
-export const Flex = styled.div<FlexProps>(
-  ({
-    alignItems,
-    justifyContent,
-    flexDirection,
-    flexShrink,
-    flexGrow,
-    gap,
-    display = 'flex',
-    width,
-    flexWrap,
-    height,
-    overflow,
-    margin,
-  }) => ({
-    display,
-    alignItems,
-    justifyContent,
-    flexDirection,
-    flexShrink,
-    flexGrow,
-    gap,
-    width,
-    height,
-    overflow,
-    flexWrap,
-    margin,
-  })
-);
+
+export const Flex = (props) => {
+  return <StyledFlex {...props} />
+}
