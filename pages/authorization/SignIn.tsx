@@ -1,12 +1,10 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { NextPage, NextApiResponse } from "next";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { Form } from "components/form/Form";
-import Link from "next/link";
-import styled from "styled-components";
 import { ErrorText } from "components/form/ErrorText";
-
 
 const SignInPage = styled.div`
   display: flex;
@@ -28,9 +26,6 @@ const SignIn: NextPage<Users> = ({ users }) => {
 
   const checkUser = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-
-    console.log(email, users[email]);
-
     if(users[email]){
      if((users[email].password !== password)){
       setErrors({invalidPassword: "Invalid password"})
@@ -71,9 +66,6 @@ const SignIn: NextPage<Users> = ({ users }) => {
         <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
         {/* <Button width="40%">Log in with Google</Button> */}
         <Button width={"30%"}>Log in</Button>
-        <Link href="/authorization/SignUp">
-          <a>Sign Up</a>
-        </Link>
       </Form>
     </SignInPage>
   );

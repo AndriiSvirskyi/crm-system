@@ -29,12 +29,6 @@ const StyledInput = styled.input<Props>`
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-
-  @media all and (max-width: 470px) {
-    width: 80%;
-    margin: 0 0 10px 0;
-    height: 35px;
-  }
 `;
 
 type InputProps = {

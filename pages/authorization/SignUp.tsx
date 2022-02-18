@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { NextPage, NextApiResponse } from "next";
@@ -12,17 +11,33 @@ const SignUpPage = styled.div`
   align-items: center;
   height: 100vh;
 `;
-
-
-
 const Fullname = styled.div`
-  width: 100%;
+  width: 102%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  @media all and (max-width: 470px) {
-    width: 87%;
+`;
+const RoleContainer = styled.div`
+  width:100%;
+  height:67px;
+  margin: 0;
+  padding:0;
+  :hover div{
+    transform:rotate(0);
   }
+`;
+const RoleArrow = styled.div`
+  margin 0;
+  width: 20px;
+  height: 40px;
+  background: #d0d0d0;
+  position: relative;
+  top:-41px;
+  left: 96%;
+  transform: rotate(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 type Users = {
   users: object;
@@ -51,12 +66,10 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (users[userEmail]) {
-      // setErrors({ ...errors, userExist: "User exist" });
       setErrors({userExist: "User exists" });
 
     } else {
       if(userPassword !== checkPassword){
-        // setErrors({ ...errors, invalidPassword: "Invalid password" });
         setErrors({invalidPassword: "Invalid password" });
 
       } else{
@@ -149,7 +162,6 @@ const SignUp: NextPage<Users> = ({ users }) => {
         placeholder="Work position"
         height="40px"
         list="roles"
-        marginBottom="25px"
       />
     ),
     [role]
@@ -189,24 +201,28 @@ const SignUp: NextPage<Users> = ({ users }) => {
         submit={getInformation}
         content="Create admin account"
       >
-        <Fullname>
-          {NameInput}
-          {SurnameInput}
-        </Fullname>
-        {EmailInput}
-        <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>{errors?.userExist}</ErrorText>
-        {PhoneInput}
-        {RoleInput}
-        <datalist id="roles">
-          {Object.values(workPositions).map((position) => (
-            <option key={position} value={position} />
-          ))}
-        </datalist>
-        {PasswordInput}
-        {CheckPasswordInput}
-        <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
+        <div>
+          <Fullname>
+            {NameInput}
+            {SurnameInput}
+          </Fullname>
+          {PhoneInput}
+          <RoleContainer>
+            {RoleInput}
+            <datalist id="roles">
+              {Object.values(workPositions).map((position) => (
+                <option key={position} value={position} />
+              ))}
+            </datalist>
+            <RoleArrow><span>▲</span></RoleArrow>
+          </RoleContainer>
+          {EmailInput}
+          <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>{errors?.userExist}</ErrorText>
+          {PasswordInput}
+          {CheckPasswordInput}
+          <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
+        </div>
         <Button width="30%">Create account</Button>
-        <Link href="/authorization/SignIn"><a>Sign In</a></Link>
       </Form>
     </SignUpPage>
   );
