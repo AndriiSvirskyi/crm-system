@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 type Props = {
   height: string;
-  margin: string;
-  mediaMargin: string;
-  marginBottom: string;
-  list?: string;
   error?: string;
+  marginBottom: string;
+  margin: string;
 };
+
 const StyledInput = styled.input<Props>`
   outline: none;
   height: ${({ height }) => height};
@@ -26,7 +25,6 @@ const StyledInput = styled.input<Props>`
     margin: ${({ margin }) => margin};
   }
 
-
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -40,16 +38,15 @@ const StyledInput = styled.input<Props>`
 `;
 
 type InputProps = {
-  error?: string;
-  list?: string;
-  height: string;
   value: string;
   setValue: (value: string) => void;
   type?: string;
   placeholder: string;
-  mediaMargin?: string;
+  height: string;
+  list?: string;
+  error?: string;
   margin?: string;
-  marginBottom?: string
+  marginBottom?: string;
 };
 
 export const Input = ({
@@ -60,22 +57,20 @@ export const Input = ({
   height,
   list,
   error,
-  mediaMargin,
   margin,
   marginBottom,
 }: InputProps) => {
   return (
     <StyledInput
-      marginBottom={marginBottom}
-      list={list}
-      mediaMargin={mediaMargin}
-      margin={margin}
-      error={error}
-      height={height}
-      type={type}
-      placeholder={placeholder}
       value={value}
       onChange={(e: { target: { value: string } }) => setValue(e.target.value)}
+      type={type}
+      placeholder={placeholder}
+      height={height}
+      list={list}
+      error={error}
+      margin={margin}
+      marginBottom={marginBottom}
       required
     />
   );

@@ -1,109 +1,25 @@
 {
-  "users": {
-    "andrii.s@4irelabs.com": {
-      "email": "andrii.s@4irelabs.com",
-      "password": "1234",
-      "name": "Andrii",
-      "surname": "Svirskyi",
-      "role": "admin"
-    },
-    "viktor.m@4irelabs.com": {
-      "email": "viktor.m@4irelabs.com",
-      "password": "1234",
-      "name": "Viktor",
-      "surname": "Malinovskyi",
-      "role": "manager"
-    },
-    "anastasia.f@4irelabs.com": {
-      "email": "anastasia.f@4irelabs.com",
-      "password": "1234",
-      "name": "Anastasiia",
-      "surname": "Fedosyeyeva",
-      "role": "manager"
-    },
-    "fbsdhfgjh@ufhkdhsf.ck": {
-      "email": "fbsdhfgjh@ufhkdhsf.ck",
-      "password": "1",
-      "name": "1",
-      "surname": "1",
-      "role": "admin"
-    },
-    "user1@4irelabs.com": {
-      "email": "user1@4irelabs.com",
-      "password": "123",
-      "name": "asd",
-      "surname": "asd",
-      "role": "admin"
-    },
-    "name@gmail.com": {
-      "email": "name@gmail.com",
-      "password": "1",
-      "name": "name",
-      "surname": "name",
-      "role": "work"
-    },
-    "erwer@ffsd.com": {
-      "email": "erwer@ffsd.com",
-      "password": "111",
-      "name": "12",
-      "surname": "12",
-      "role": "admin"
-    },
-    "test@gmail.commm": {
-      "email": "test@gmail.commm",
-      "password": "1",
-      "name": "1",
-      "surname": "1",
-      "role": "admin"
-    },
-    "anasasia.f@4irelabs.com": {
-      "email": "anasasia.f@4irelabs.com",
-      "password": "1",
-      "name": "1",
-      "surname": "1",
-      "role": "manager"
-    },
-    "ania.f@4irelabs.com": {
-      "email": "ania.f@4irelabs.com",
-      "password": "1",
-      "name": "1",
-      "surname": "1",
-      "role": "manager"
-    },
-    "anast.f@4irelabs.com": {
-      "email": "anast.f@4irelabs.com",
-      "password": "1",
-      "name": "qwewqe",
-      "surname": "qwewqe",
-      "role": "manager"
-    },
-    "rii.s@4irelabs.com": {
-      "email": "rii.s@4irelabs.com",
-      "password": "1",
-      "name": "1",
-      "surname": "1",
-      "role": "manager"
-    },
-    "nastyabarabakh@gmail.com": {
-      "email": "nastyabarabakh@gmail.com",
-      "password": "1",
-      "name": "nastya",
-      "surname": "barabakh",
-      "role": "manager"
-    },
-    "la@gmail.com": {
-      "email": "la@gmail.com",
-      "password": "111",
-      "name": "1",
-      "surname": "1",
-      "role": "1"
-    },
-    "a@gmail.com": {
-      "email": "a@gmail.com",
-      "password": "1",
-      "name": "1",
-      "surname": "1",
-      "role": "manager"
+    "users": {
+        "andrii.s@4irelabs.com": {
+            "email": "andrii.s@4irelabs.com",
+            "password": "1234",
+            "name": "Andrii",
+            "surname": "Svirskyi",
+            "role": "admin"
+        },
+        "viktor.m@4irelabs.com": {
+            "email": "viktor.m@4irelabs.com",
+            "password": "1234",
+            "name": "Viktor",
+            "surname": "Malinovskyi",
+            "role": "manager"
+        },
+        "anastasia.f@4irelabs.com": {
+            "email": "anastasia.f@4irelabs.com",
+            "password": "1234",
+            "name": "Anastasiia",
+            "surname": "Fedosyeyeva",
+            "role": "manager"
+        }
     }
-  }
 }

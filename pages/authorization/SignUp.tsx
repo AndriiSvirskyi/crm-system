@@ -2,9 +2,10 @@ import Link from "next/link";
 import styled from "styled-components";
 import { useMemo, useState } from "react";
 import { NextPage, NextApiResponse } from "next";
+import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
-import { Form } from "components/form/Form";
+import { ErrorText } from "components/form/ErrorText";
 
 const SignUpPage = styled.div`
   display: flex;
@@ -12,16 +13,7 @@ const SignUpPage = styled.div`
   height: 100vh;
 `;
 
-const ErrorText = styled.p`
-  width: 100%;
-  height: 19px;
-  margin:  0 0 1px;
-  padding: 4px 0 0 10px;
-  font-size: 12px;
-  border-radius: 3px;
-  color: red;
-  background: ${(props: {background: string}) => props.background}
-`;
+
 
 const Fullname = styled.div`
   width: 100%;
@@ -32,14 +24,13 @@ const Fullname = styled.div`
     width: 87%;
   }
 `;
+type Users = {
+  users: object;
+};
 
 type Errors = {
   [key: string]: string;
 };
-
-type Users = {
-  users: object;
-}
 
 const SignUp: NextPage<Users> = ({ users }) => {
   const [name, setName] = useState("");
@@ -94,16 +85,16 @@ const SignUp: NextPage<Users> = ({ users }) => {
       }
     }
   };
-  console.log(errors);
+
   const EmailInput: JSX.Element = useMemo(
     () => (
       <Input
-        marginBottom="0"
-        height="40px"
         value={userEmail}
         setValue={setUserEmail}
         type="email"
         placeholder="Email"
+        height="40px"
+        marginBottom="0"
         error={errors?.userExist}
       />
     ),
@@ -112,14 +103,13 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const NameInput: JSX.Element = useMemo(
     () => (
       <Input
-        marginBottom="25px"
-        mediaMargin="0 10px 0 0"
-        margin="0 25px 0 0"
-        height="40px"
         value={name}
         setValue={setName}
         type="text"
         placeholder="Name"
+        height="40px"
+        margin="0 25px 0 0"
+        marginBottom="25px"
       />
     ),
     [name]
@@ -127,12 +117,12 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const SurnameInput: JSX.Element = useMemo(
     () => (
       <Input
-        marginBottom="25px"
-        height="40px"
         value={surname}
         setValue={setSurname}
         type="text"
         placeholder="Surname"
+        height="40px"
+        marginBottom="25px"
       />
     ),
     [surname]
@@ -140,12 +130,12 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PhoneInput: JSX.Element = useMemo(
     () => (
       <Input
-        marginBottom="25px"
-        height="40px"
         value={phone}
         setValue={setPhone}
         type="number"
         placeholder="Phone"
+        height="40px"
+        marginBottom="25px"
       />
     ),
     [phone]
@@ -153,14 +143,13 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const RoleInput: JSX.Element = useMemo(
     () => (
       <Input
-        marginBottom="25px"
-        list="roles"
-        type="text"
-        height="40px"
-        mediaMargin="10px"
         value={role}
         setValue={setRole}
+        type="text"
         placeholder="Work position"
+        height="40px"
+        list="roles"
+        marginBottom="25px"
       />
     ),
     [role]
@@ -168,26 +157,27 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PasswordInput: JSX.Element = useMemo(
     () => (
       <Input
-      marginBottom="25px"
-        height="40px"
         value={userPassword}
         setValue={setUserPassword}
         type="password"
         placeholder="Password"
+        height="40px"
+        marginBottom="25px"
       />
     ),
     [userPassword]
   );
+
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
       <Input
-        marginBottom="0"
-        height="40px"
         value={checkPassword}
         setValue={setCheckPassword}
         type="password"
         placeholder="Repeat password"
+        height="40px"
         error={errors?.invalidPassword}
+        marginBottom="0"
       />
     ),
     [checkPassword, errors?.invalidPassword]
@@ -214,11 +204,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
         </datalist>
         {PasswordInput}
         {CheckPasswordInput}
-        <ErrorText  background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
+        <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
         <Button width="30%">Create account</Button>
-        <Link href="/authorization/SignIn">
-          <a>Sign In</a>
-        </Link>
+        <Link href="/authorization/SignIn"><a>Sign In</a></Link>
       </Form>
     </SignUpPage>
   );
