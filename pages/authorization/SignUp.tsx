@@ -1,19 +1,30 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { NextPage, NextApiResponse } from "next";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { Form } from "components/form/Form";
-import { Message } from "components/Message";
 
 const SignUpPage = styled.div`
   display: flex;
   align-items: center;
   height: 100vh;
 `;
+
+const ErrorText = styled.p`
+  width: 100%;
+  height: 19px;
+  margin:  0 0 1px;
+  padding: 4px 0 0 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  color: red;
+  background: ${(props: {background: string}) => props.background}
+`;
+
 const Fullname = styled.div`
-  width: 105%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,7 +37,7 @@ type Errors = {
   [key: string]: string;
 };
 
-interface Users {
+type Users = {
   users: object;
 }
 
@@ -38,8 +49,8 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const [role, setRole] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
-
   const [errors, setErrors] = useState<Errors | null>(null);
+
   const workPositions = {
     admin: "admin",
     manager: "manager",
@@ -49,9 +60,15 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (users[userEmail]) {
-      // setIsUserExists(true);
-      setErrors({ ...errors, userExist: "User exist" });
+      // setErrors({ ...errors, userExist: "User exist" });
+      setErrors({userExist: "User exists" });
+
     } else {
+      if(userPassword !== checkPassword){
+        // setErrors({ ...errors, invalidPassword: "Invalid password" });
+        setErrors({invalidPassword: "Invalid password" });
+
+      } else{
       await fetch(`http://localhost:4200/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -73,12 +90,15 @@ const SignUp: NextPage<Users> = ({ users }) => {
       setRole("");
       setUserPassword("");
       setCheckPassword("");
+      setErrors(null);
+      }
     }
   };
   console.log(errors);
   const EmailInput: JSX.Element = useMemo(
     () => (
       <Input
+        marginBottom="0"
         height="40px"
         value={userEmail}
         setValue={setUserEmail}
@@ -92,6 +112,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const NameInput: JSX.Element = useMemo(
     () => (
       <Input
+        marginBottom="25px"
         mediaMargin="0 10px 0 0"
         margin="0 25px 0 0"
         height="40px"
@@ -106,6 +127,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const SurnameInput: JSX.Element = useMemo(
     () => (
       <Input
+        marginBottom="25px"
         height="40px"
         value={surname}
         setValue={setSurname}
@@ -118,6 +140,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PhoneInput: JSX.Element = useMemo(
     () => (
       <Input
+        marginBottom="25px"
         height="40px"
         value={phone}
         setValue={setPhone}
@@ -130,7 +153,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const RoleInput: JSX.Element = useMemo(
     () => (
       <Input
+        marginBottom="25px"
         list="roles"
+        type="text"
         height="40px"
         mediaMargin="10px"
         value={role}
@@ -143,6 +168,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PasswordInput: JSX.Element = useMemo(
     () => (
       <Input
+      marginBottom="25px"
         height="40px"
         value={userPassword}
         setValue={setUserPassword}
@@ -155,14 +181,16 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
       <Input
+        marginBottom="0"
         height="40px"
         value={checkPassword}
         setValue={setCheckPassword}
         type="password"
         placeholder="Repeat password"
+        error={errors?.invalidPassword}
       />
     ),
-    [checkPassword]
+    [checkPassword, errors?.invalidPassword]
   );
 
   return (
@@ -170,13 +198,13 @@ const SignUp: NextPage<Users> = ({ users }) => {
       <Form
         submit={getInformation}
         content="Create admin account"
-        mediaPadding="5px"
       >
         <Fullname>
           {NameInput}
           {SurnameInput}
         </Fullname>
         {EmailInput}
+        <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>{errors?.userExist}</ErrorText>
         {PhoneInput}
         {RoleInput}
         <datalist id="roles">
@@ -186,7 +214,8 @@ const SignUp: NextPage<Users> = ({ users }) => {
         </datalist>
         {PasswordInput}
         {CheckPasswordInput}
-        {<Button width="30%">Create account</Button>}
+        <ErrorText  background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
+        <Button width="30%">Create account</Button>
         <Link href="/authorization/SignIn">
           <a>Sign In</a>
         </Link>

@@ -43,14 +43,13 @@ const InputsForm = styled.form`
 
 export const Form = ({
   submit,
-  mediaPadding,
   children,
   content,
-}): JSX.Element => {
+}) => {
   return (
     <Container>
       <Logo>
-        <Link href={"/"}>
+        <Link href="/">
           <a>
             <Image src={logo} alt="Logo" />
           </a>

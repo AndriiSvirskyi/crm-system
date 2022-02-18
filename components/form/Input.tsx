@@ -4,6 +4,7 @@ type Props = {
   height: string;
   margin: string;
   mediaMargin: string;
+  marginBottom: string;
   list?: string;
   error?: string;
 };
@@ -13,8 +14,8 @@ const StyledInput = styled.input<Props>`
   background: #d0d0d0;
   border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
   border-radius: 8px;
-  width: 100%;
-  margin-bottom: 20px;
+  width: 95%;
+  margin-bottom: ${({marginBottom}) => marginBottom};
   padding: 0 0 0 25px;
 
   ::placeholder {
@@ -23,6 +24,12 @@ const StyledInput = styled.input<Props>`
 
   :nth-child(1) {
     margin: ${({ margin }) => margin};
+  }
+
+
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 
   @media all and (max-width: 470px) {
@@ -42,6 +49,7 @@ type InputProps = {
   placeholder: string;
   mediaMargin?: string;
   margin?: string;
+  marginBottom?: string
 };
 
 export const Input = ({
@@ -54,9 +62,11 @@ export const Input = ({
   error,
   mediaMargin,
   margin,
+  marginBottom,
 }: InputProps) => {
   return (
     <StyledInput
+      marginBottom={marginBottom}
       list={list}
       mediaMargin={mediaMargin}
       margin={margin}

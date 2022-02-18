@@ -11,7 +11,8 @@ const SignInPage = styled.div`
   align-items: center;
   height: 100vh;
 `;
-interface Users {
+
+type Users = {
   users: object;
 }
 
@@ -34,28 +35,27 @@ const SignIn: NextPage<Users> = ({ users }) => {
     <SignInPage>
       <Form
         submit={checkUser}
-        content={"Log in"}
-        mediaPadding={"15px"}
+        content="Log in"
       >
         <Input
-          height={"50px"}
-          mediaMargin={"0 0 10px 0"}
-          margin={"0 0 20px 0"}
+          height="50px"
+          mediaMargin="0 0 10px 0"
+          margin="0 0 20px 0"
           value={email}
           setValue={setEmail}
           type="email"
           placeholder="Email"
         />
         <Input
-          height={"50px"}
+          height="50px"
           value={password}
           setValue={setPassword}
           type="password"
           placeholder="Password"
         />
-        {/* <Button width={'40%'}>Log in with Google</Button> */}
+        {/* <Button width="40%">Log in with Google</Button> */}
         <Button width={"30%"}>Log in</Button>
-        <Link href={"/authorization/SignUp"}>
+        <Link href="/authorization/SignUp">
           <a>Sign Up</a>
         </Link>
       </Form>
