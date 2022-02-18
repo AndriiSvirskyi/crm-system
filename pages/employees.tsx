@@ -1,11 +1,12 @@
+import { UserTitle } from "components/User/UserForm";
 import Link from "next/link";
-import MainLayout from "../Layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 
 export default function users({ users }) {
   return (
     <MainLayout>
-      <div>
-        <h1>Список співробітників</h1>
+      
+        <UserTitle margin='100px' size='30px'>Список співробітників</UserTitle>
         <ul>
           {users.map((user) => (
             <li key={user.id + user.name}>
@@ -15,7 +16,7 @@ export default function users({ users }) {
             </li>
           ))}
         </ul>
-      </div>
+      
     </MainLayout>
   );
 }

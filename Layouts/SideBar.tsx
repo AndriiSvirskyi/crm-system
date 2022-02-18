@@ -1,64 +1,47 @@
+import { ButtonStyled } from "components/ButtonStyled";
+import { Flex } from "components/User/Flex";
+import { UserTitle } from "components/User/UserForm";
 import Link from "next/link";
 
 import styled from "styled-components";
 
-export const SideBarStyles = styled.div`
-.sidebar {
+type PropsSideBar = {
+  background:string;
+}
+export const SideBarStyles = styled.div<PropsSideBar>`
     position: fixed;
     left: 0;
     top: 0;
     margin: 0;
-    padding: 0;
-    background-color: #f1f1f1;
-  
+    background-color: ${props => props.background || props.theme.colors.primary};
     width: 280px;
     height: 100%;
     overflow: auto;
-  }
-  .sidebar a {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em;
-    text-decoration: none;
-    color: #000000;
+    color: ${props => props.background || props.theme.colors.text};
     font-size: 20px;
-  }
-  .sidebar p{
-  font-weight: 300;
-  }
-  .additional-sidebar-menu,
-  .main-sidebar-menu {
-    margin-top: 40px;
-  }
-  @media(max-width: 768px){
-    .sidebar {
-      display:none;
-    }
-  
   `
 
-export default function SideBar() {
+
+export default function SideBar(props) {
     return (
-        <>
-        <SideBarStyles>
-      <aside className="sidebar">
-        <button> Burger</button>
-        <div className='main-sidebar-menu'>
-          <Link href={'/employees/me'}><a> Me </a></Link>
-          <Link href={'/'}><a> Main page </a></Link>
-          <Link href={'/tasks'}><a> Tasks </a></Link>
-          <Link href={'/time-tracker'}><a> Time tracker </a></Link>
-          </div>
-        <div className='additional-sidebar-menu'>
-          <h4> Company </h4>
-          <Link href={'/calendar'}><a> Calendar </a></Link>
-          <Link href={'/projects'}><a> Projects </a></Link>
-          <Link href={'/employees'}><a> Employees </a></Link>
-          <Link href={'/knowledge'}><a> Knowledge base </a></Link>
-          <Link href={'/reports'}><a> Reports </a></Link>
-          </div>
+        <SideBarStyles {...props}>
+      <aside>
+        <ButtonStyled background='white'> Burger</ButtonStyled>
+        <Flex direction='column' margin='20px 0 0 0'>
+          <Link href={'/employees/me'}><ButtonStyled> Me </ButtonStyled></Link>
+          <Link href={'/'}><ButtonStyled> Main page </ButtonStyled></Link>
+          <Link href={'/tasks'}><ButtonStyled> Tasks </ButtonStyled></Link>
+          <Link href={'/time-tracker'}><ButtonStyled> Time tracker </ButtonStyled></Link>
+          </Flex >
+          <UserTitle size='16px' margin='15px 0 10px 90px'> Company </UserTitle>
+          <Flex direction='column' content='start'>
+          <Link href={'/calendar'}><ButtonStyled> Calendar </ButtonStyled></Link>
+          <Link href={'/projects'}><ButtonStyled> Projects </ButtonStyled></Link>
+          <Link href={'/employees'}><ButtonStyled> Employees </ButtonStyled></Link>
+          <Link href={'/knowledge'}><ButtonStyled> Knowledge base </ButtonStyled></Link>
+          <Link href={'/reports'}><ButtonStyled> Reports </ButtonStyled></Link>
+          </Flex>
       </aside>
           </SideBarStyles>
-      </>
     );
   }
