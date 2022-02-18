@@ -20,12 +20,7 @@ export const SideBarStyles = styled.div<PropsSideBar>`
     color: ${props => props.background || props.theme.colors.text};
     font-size: 20px;
   `
-  const Links = styled.a`
-  text-decoration: none;
-  padding: 10px;
-  user-select: none;
-  cursor:pointer;
-  `
+
 
 export default function SideBar(props) {
     return (

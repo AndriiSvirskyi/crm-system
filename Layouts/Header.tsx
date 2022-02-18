@@ -9,8 +9,8 @@ import { InputComponent } from "components/InputComponent";
 import { UserText } from "components/User/UserForm";
 
 type PropsHeader = {
-  background:string;
-}
+  background: string;
+};
 export const HeaderStyles = styled.div<PropsHeader>`
   position: fixed;
   max-width: 100%;
@@ -28,7 +28,7 @@ export default function Header() {
   const openModal = () => {
     setBellModalVisible("visible");
   };
-  const closeModal = (event) => {
+  const closeModal = () => {
     setBellModalVisible("hidden");
   };
   return (
@@ -36,11 +36,18 @@ export default function Header() {
       <Flex justify="end" margin="15px">
         <Link href={"/employees/me"}>
           <Flex right="auto">
-            <ButtonStyled width='187px' height='66px' margin="">Logo</ButtonStyled>
+            <ButtonStyled width="187px" height="66px" margin="">
+              Logo
+            </ButtonStyled>
           </Flex>
         </Link>
         <Flex>
-          <ButtonStyled height='40px' width='40px' margin="10px" onClick={openModal}>
+          <ButtonStyled
+            height="40px"
+            width="40px"
+            margin="10px"
+            onClick={openModal}
+          >
             +
           </ButtonStyled>
         </Flex>
