@@ -10,6 +10,7 @@ import {
 } from "./UserForm";
 
 export default function UserProfile({ user }) {
+  console.log("asda", user);
   return (
     <UserWindow>
       <MainUserInformationMenu>
@@ -85,8 +86,7 @@ export default function UserProfile({ user }) {
         <UserBlockItem>
           <UserTitle width="">Skills</UserTitle>
         </UserBlockItem>
-      <UserBlockItem>
-      </UserBlockItem>
+        <UserBlockItem></UserBlockItem>
         <ButtonStyled>Look at organizational structure</ButtonStyled>
       </Flex>
     </UserWindow>

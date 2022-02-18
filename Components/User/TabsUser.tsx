@@ -15,7 +15,7 @@ export default function Tabs() {
   };
 
   return (
-    <Flex justify="space-around" width='100%'>
+    <Flex justify="space-around" width="100%">
       <TabComponent
         array={tabsButtons}
         state={activeTab}

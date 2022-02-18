@@ -34,7 +34,7 @@ export default function Header() {
   return (
     <HeaderStyles>
       <Flex justify="end" margin="15px">
-        <Link href={"/employees/me"}>
+        <Link href={"/employees/profile"}>
           <Flex right="auto">
             <ButtonStyled width="187px" height="66px" margin="">
               Logo
@@ -64,7 +64,7 @@ export default function Header() {
           <ButtonStyled onClick={(e) => closeModal(e)}> Close</ButtonStyled>
           <UserText>Нових сповіщень немає!</UserText>
         </Modal>
-        <Link href={"/employees/me"}>
+        <Link href={"/employees/profile"}>
           <ButtonStyled margin="10px">Icon Profille</ButtonStyled>
         </Link>
       </Flex>
