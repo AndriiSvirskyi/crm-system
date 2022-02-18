@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-const ModalContainer = styled.div`
+type ModalProps = {
+top: string;
+right: string;
+left: string;
+bottom: string;
+visibility:string;
+}
+
+const ModalContainer = styled.div<ModalProps>`
   position: absolute;
   width: 25%;
   min-height: 50%;
@@ -16,7 +24,7 @@ const ModalContainer = styled.div`
   background-color: #ffffff;
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  visibility: ${(props: { visibility: string }) => props.visibility};
+  visibility: ${({visibility}) => visibility};
  
 `;
 

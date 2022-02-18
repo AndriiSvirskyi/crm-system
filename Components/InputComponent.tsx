@@ -14,7 +14,7 @@ const StyledInput = styled.input<Props>`
   background: #d0d0d0;
   border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
   border-radius: 8px;
-  margin-top: 10px;
+  margin-top:;
   padding: 0 0 0 25px;
 
 `;
@@ -37,13 +37,11 @@ export const InputComponent = ({
   width,
   list,
   error,
-  mediaMargin,
   margin,
 }: InputProps) => {
   return (
     <StyledInput
       list={list}
-      mediaMargin={mediaMargin}
       margin={margin}
       error={error}
       height={height}

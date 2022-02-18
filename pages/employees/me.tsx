@@ -1,23 +1,11 @@
-import React from "react";
 
-import MainLayout from "../../Layouts/MainLayout";
+import { UserTitle } from "components/User/UserForm";
+import MainLayout from "../../layouts/MainLayout";
 
 export default function me() {
   return (
-    <>
       <MainLayout>
-          <div className="container-user-window">
-            <div className="logo">
-              <div className="items">Logo</div>
-              <div className="items">Company</div>
-              <div className="items">Est 2020</div>
-            </div>
-            <div className="user-information-menu">Header</div>
-            <div className="about-user">nav</div>
-            <div className="tabs"></div>
-            <div className="footer">footer</div>
-          </div>
+          <UserTitle margin='100px 0 0 0' size='50px' color='green'> Hello Its ME...</UserTitle>
       </MainLayout>
-    </>
   );
 }

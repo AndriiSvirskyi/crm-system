@@ -1,13 +1,11 @@
 import React from "react";
-import MainLayout from "Layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
 import UserProfile from "components/User/UserProfile";
 
 export default function User({ user }) {
   return (
     <MainLayout>
-     
       <UserProfile user={user}></UserProfile>
-    
     </MainLayout>
   );
 }

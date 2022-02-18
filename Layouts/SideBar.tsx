@@ -1,10 +1,14 @@
-import { ButtonStyled } from "components/Styled/ButtonStyled";
-import { Flex } from "components/Styled/Flex";
+import { ButtonStyled } from "components/ButtonStyled";
+import { Flex } from "components/User/Flex";
+import { UserTitle } from "components/User/UserForm";
 import Link from "next/link";
 
 import styled from "styled-components";
 
-export const SideBarStyles = styled.div`
+type PropsSideBar = {
+  background:string;
+}
+export const SideBarStyles = styled.div<PropsSideBar>`
     position: fixed;
     left: 0;
     top: 0;
@@ -21,8 +25,6 @@ export const SideBarStyles = styled.div`
   padding: 10px;
   user-select: none;
   cursor:pointer;
-  
-  
   `
 
 export default function SideBar(props) {
@@ -30,19 +32,19 @@ export default function SideBar(props) {
         <SideBarStyles {...props}>
       <aside>
         <ButtonStyled background='white'> Burger</ButtonStyled>
-        <Flex direction='column' >
-          <Link href={'/employees/me'}><Links> Me </Links></Link>
-          <Link href={'/'}><Links> Main page </Links></Link>
-          <Link href={'/tasks'}><Links> Tasks </Links></Link>
-          <Link href={'/time-tracker'}><Links> Time tracker </Links></Link>
+        <Flex direction='column' margin='20px 0 0 0'>
+          <Link href={'/employees/me'}><ButtonStyled> Me </ButtonStyled></Link>
+          <Link href={'/'}><ButtonStyled> Main page </ButtonStyled></Link>
+          <Link href={'/tasks'}><ButtonStyled> Tasks </ButtonStyled></Link>
+          <Link href={'/time-tracker'}><ButtonStyled> Time tracker </ButtonStyled></Link>
           </Flex >
-          <h4> Company </h4>
-          <Flex direction='column'>
-          <Link href={'/calendar'}><Links> Calendar </Links></Link>
-          <Link href={'/projects'}><Links> Projects </Links></Link>
-          <Link href={'/employees'}><Links> Employees </Links></Link>
-          <Link href={'/knowledge'}><Links> Knowledge base </Links></Link>
-          <Link href={'/reports'}><Links> Reports </Links></Link>
+          <UserTitle size='16px' margin='15px 0 10px 90px'> Company </UserTitle>
+          <Flex direction='column' content='start'>
+          <Link href={'/calendar'}><ButtonStyled> Calendar </ButtonStyled></Link>
+          <Link href={'/projects'}><ButtonStyled> Projects </ButtonStyled></Link>
+          <Link href={'/employees'}><ButtonStyled> Employees </ButtonStyled></Link>
+          <Link href={'/knowledge'}><ButtonStyled> Knowledge base </ButtonStyled></Link>
+          <Link href={'/reports'}><ButtonStyled> Reports </ButtonStyled></Link>
           </Flex>
       </aside>
           </SideBarStyles>

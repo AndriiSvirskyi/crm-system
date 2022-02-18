@@ -1,6 +1,19 @@
 import styled from 'styled-components';
 
-const StyledFlex = styled.div`
+type FlexStyle = {
+  direction:string;
+  wrap: string;
+  align: string;
+  content: string;
+  justify:string;
+  margin:string;
+  padding:string;
+  rigth:string;
+  width:string;
+  right:string;
+  left:string;
+}
+const StyledFlex = styled.div<FlexStyle>`
 display:flex;
 flex-direction: ${props => props.direction || 'row'};
 flex-wrap: ${props => props.wrap || ''};

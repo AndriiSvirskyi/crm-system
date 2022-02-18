@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { useState } from "react";
-import { ButtonStyled } from "components/Styled/ButtonStyled";
+import { ButtonStyled } from "components/ButtonStyled";
 
 import styled from "styled-components";
-import Modal from "./Modal";
-import { Flex } from "components/Styled/Flex";
-import { InputComponent } from "components/Styled/InputComponent";
+import Modal from "../components/Modal/Modal";
+import { Flex } from "components/User/Flex";
+import { InputComponent } from "components/InputComponent";
+import { UserText } from "components/User/UserForm";
 
-export const HeaderStyles = styled.div`
+type PropsHeader = {
+  background:string;
+}
+export const HeaderStyles = styled.div<PropsHeader>`
   position: fixed;
   max-width: 100%;
   height: 100px;
@@ -29,29 +33,29 @@ export default function Header() {
   };
   return (
     <HeaderStyles>
-      <Flex justify="end" margin="30px">
+      <Flex justify="end" margin="15px">
         <Link href={"/employees/me"}>
           <Flex right="auto">
-            <ButtonStyled margin="10px">Logo</ButtonStyled>
+            <ButtonStyled width='187px' height='66px' margin="">Logo</ButtonStyled>
           </Flex>
         </Link>
         <Flex>
-          <ButtonStyled margin="10px" onClick={openModal}>
-            Plus
+          <ButtonStyled height='40px' width='40px' margin="10px" onClick={openModal}>
+            +
           </ButtonStyled>
         </Flex>
         <InputComponent
           type={"text"}
           placeholder={"Search"}
-          width="400px"
-          height="40px"
+          width="405px;"
+          height="60px"
         ></InputComponent>
         <ButtonStyled margin="10px" onClick={openModal}>
           Bells
         </ButtonStyled>
         <Modal top="90px" visibility={bellModalVisible}>
           <ButtonStyled onClick={(e) => closeModal(e)}> Close</ButtonStyled>
-          <p>Нових сповіщень немає!</p>
+          <UserText>Нових сповіщень немає!</UserText>
         </Modal>
         <Link href={"/employees/me"}>
           <ButtonStyled margin="10px">Icon Profille</ButtonStyled>
