@@ -57,6 +57,7 @@ const SignIn: NextPage<Users> = ({ users }) => {
           type="email"
           placeholder="Email"
           height="50px"
+          error={errors?.invalidEmail}
         />
         <ErrorText background={errors?.invalidEmail? "#ffe7e6" : "transparent"}>{errors?.invalidEmail}</ErrorText>
         <Input
@@ -65,6 +66,7 @@ const SignIn: NextPage<Users> = ({ users }) => {
           type="password"
           placeholder="Password"
           height="50px"
+          error={errors?.invalidPassword}
         />
         <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
         {/* <Button width="40%">Log in with Google</Button> */}
