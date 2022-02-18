@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { NextPage, NextApiResponse } from "next";
 import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { ErrorText } from "components/form/ErrorText";
+import Router from "next/router";
 
 const SignUpPage = styled.div`
   display: flex;
@@ -18,12 +19,12 @@ const Fullname = styled.div`
   justify-content: space-between;
 `;
 const RoleContainer = styled.div`
-  width:100%;
-  height:67px;
+  width: 100%;
+  height: 67px;
   margin: 0;
-  padding:0;
-  :hover div{
-    transform:rotate(0);
+  padding: 0;
+  :hover div {
+    transform: rotate(0);
   }
 `;
 const RoleArrow = styled.div`
@@ -63,38 +64,42 @@ const SignUp: NextPage<Users> = ({ users }) => {
     user: "user",
   };
 
+  useEffect(() => {
+    if (!localStorage.user) {
+      Router.push("/forbidden");
+    }
+  }, []);
+
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (users[userEmail]) {
-      setErrors({userExist: "User exists" });
-
+      setErrors({ userExist: "User exists" });
     } else {
-      if(userPassword !== checkPassword){
-        setErrors({invalidPassword: "Invalid password" });
-
-      } else{
-      await fetch(`http://localhost:4200/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...users,
-          [userEmail]: {
-            email: userEmail,
-            password: userPassword,
-            name: name,
-            surname: surname,
-            role: role,
-          },
-        }),
-      });
-      setName("");
-      setSurname("");
-      setUserEmail("");
-      setPhone("");
-      setRole("");
-      setUserPassword("");
-      setCheckPassword("");
-      setErrors(null);
+      if (userPassword !== checkPassword) {
+        setErrors({ invalidPassword: "Invalid password" });
+      } else {
+        await fetch(`http://localhost:4200/users`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...users,
+            [userEmail]: {
+              email: userEmail,
+              password: userPassword,
+              name: name,
+              surname: surname,
+              role: role,
+            },
+          }),
+        });
+        setName("");
+        setSurname("");
+        setUserEmail("");
+        setPhone("");
+        setRole("");
+        setUserPassword("");
+        setCheckPassword("");
+        setErrors(null);
       }
     }
   };
@@ -197,10 +202,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
 
   return (
     <SignUpPage>
-      <Form
-        submit={getInformation}
-        content="Create admin account"
-      >
+      <Form submit={getInformation} content="Create admin account">
         <div>
           <Fullname>
             {NameInput}
@@ -214,13 +216,21 @@ const SignUp: NextPage<Users> = ({ users }) => {
                 <option key={position} value={position} />
               ))}
             </datalist>
-            <RoleArrow><span>▲</span></RoleArrow>
+            <RoleArrow>
+              <span>▲</span>
+            </RoleArrow>
           </RoleContainer>
           {EmailInput}
-          <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>{errors?.userExist}</ErrorText>
+          <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>
+            {errors?.userExist}
+          </ErrorText>
           {PasswordInput}
           {CheckPasswordInput}
-          <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
+          <ErrorText
+            background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}
+          >
+            {errors?.invalidPassword}
+          </ErrorText>
         </div>
         <Button width="30%">Create account</Button>
       </Form>

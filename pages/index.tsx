@@ -3,7 +3,6 @@ import MainLayout from "../layouts/MainLayout";
 
 export default function Home() {
   const router = useRouter();
-  console.log(router);
   return (
     <MainLayout>
       <>
