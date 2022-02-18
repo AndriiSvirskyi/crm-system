@@ -1,44 +1,56 @@
 import { ButtonStyled } from "components/Styled/ButtonStyled";
-import { TabComponent } from "components/Styled/TabComponent";
+import { Flex } from "components/Styled/Flex";
+import { TabComponent } from "components/Tabs/TabComponent";
 import { useState } from "react";
-
 
 export default function Tabs() {
   const [activeTab, setActiveTab] = useState("first");
   const tabContent = {
-    personal: 11,
-    work: 22,
-    "pdp time": <>Third</>,
+    personal:  <>
+    <p>First</p>
+  </>,
+    work:  <>
+    <p>Second</p>
+  </>,
+    "pdp time": (
+      <>
+        <p>Third</p>
+      </>
+    ),
     weekend: (
       <>
         <p>Four</p>
       </>
     ),
-    additional: <>Five</>,
+    additional: (
+      <>
+        <p>Five</p>
+      </>
+    ),
   };
   const clickInTabHanler = (tabs, event) => {
     setActiveTab(tabs.toLocaleLowerCase());
-    console.log(tabs, event);
   };
 
   return (
+    <Flex justify='space-around'>
     <TabComponent>
-        {["Personal", "Work", "PDP time", "Weekend", "Additional"].map(
-          (tab) => {
-            return (
-              <ButtonStyled
-                background={
-                  activeTab === tab.toLocaleLowerCase() ? "'#9C9C9C'" : '#D0D0D0'
-                }
-                key={tab}
-                onClick={(e) => clickInTabHanler(tab, e.target)}
-              >
-                {tab}
-              </ButtonStyled>
-            );
-          }
-        )}
+      {["Personal", "Work", "PDP time", "Weekend", "Additional"].map((tab) => {
+        return (
+          <ButtonStyled
+            margin="10px"
+            background={
+              activeTab === tab.toLocaleLowerCase() ? "#9C9C9C" : "#D0D0D0"
+            }
+            key={tab}
+            onClick={(e) => clickInTabHanler(tab, e.target)}
+          >
+            {tab}
+          </ButtonStyled>
+        );
+      })}
       {tabContent[activeTab]}
-      </TabComponent>
+    </TabComponent>
+    </Flex>
   );
 }

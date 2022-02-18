@@ -28,16 +28,16 @@ margin:1em;
 export default function UserProfile({ user }) {
   return (
     <UserWindow>
-      <Flex >
       <MainUserInformationMenu>
+      <Flex wrap='wrap' justify='space-around' width='100%'>
         <h1>{user.name}</h1>
         <button>Edit Profile</button>
         <p>Work position:{user.company.bs}</p>
         <p>Location{user.address.city}</p>
         <p>Email{user.email}</p>
         <p>Phone{user.phone}</p>
-        </MainUserInformationMenu>
       </Flex>
+        </MainUserInformationMenu>
 
       <Flex >
       <UserItemMenu>

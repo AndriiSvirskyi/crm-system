@@ -9,6 +9,7 @@ align-content:${props => props.content || ''} ;
 justify-content:${props => props.justify || ''} ;
 margin: ${({margin}) => margin || ''};
 padding: ${({padding}) => padding || ''};
+width:${({width}) => width || ''};
 margin-right:${props => props.right || ''};
 margin-left:${props => props.left || ''};
 `
