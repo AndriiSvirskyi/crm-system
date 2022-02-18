@@ -4,6 +4,7 @@ type MessageProps = {
   type: string;
   text: string;
 };
+
 type ContainerProps = {
   color: string;
 };
@@ -37,6 +38,5 @@ const Container = styled.div<ContainerProps>`
 `;
 
 export const Message = ({ type, text }: MessageProps) => {
-  console.log("2131233");
   return <Container color={colors[type]}>{text}</Container>;
 };

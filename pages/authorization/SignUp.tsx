@@ -1,11 +1,10 @@
-import Link from "next/link";
 import styled from "styled-components";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { NextPage, NextApiResponse } from "next";
+import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
-import { Form } from "components/form/Form";
-import { Message } from "components/Message";
+import { ErrorText } from "components/form/ErrorText";
 
 const SignUpPage = styled.div`
   display: flex;
@@ -13,22 +12,40 @@ const SignUpPage = styled.div`
   height: 100vh;
 `;
 const Fullname = styled.div`
-  width: 105%;
+  width: 102%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  @media all and (max-width: 470px) {
-    width: 87%;
+`;
+const RoleContainer = styled.div`
+  width:100%;
+  height:67px;
+  margin: 0;
+  padding:0;
+  :hover div{
+    transform:rotate(0);
   }
 `;
+const RoleArrow = styled.div`
+  margin 0;
+  width: 20px;
+  height: 40px;
+  background: #d0d0d0;
+  position: relative;
+  top:-41px;
+  left: 96%;
+  transform: rotate(180deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+type Users = {
+  users: object;
+};
 
 type Errors = {
   [key: string]: string;
 };
-
-interface Users {
-  users: object;
-}
 
 const SignUp: NextPage<Users> = ({ users }) => {
   const [name, setName] = useState("");
@@ -38,8 +55,8 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const [role, setRole] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
-
   const [errors, setErrors] = useState<Errors | null>(null);
+
   const workPositions = {
     admin: "admin",
     manager: "manager",
@@ -49,9 +66,13 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (users[userEmail]) {
-      // setIsUserExists(true);
-      setErrors({ ...errors, userExist: "User exist" });
+      setErrors({userExist: "User exists" });
+
     } else {
+      if(userPassword !== checkPassword){
+        setErrors({invalidPassword: "Invalid password" });
+
+      } else{
       await fetch(`http://localhost:4200/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -73,17 +94,20 @@ const SignUp: NextPage<Users> = ({ users }) => {
       setRole("");
       setUserPassword("");
       setCheckPassword("");
+      setErrors(null);
+      }
     }
   };
-  console.log(errors);
+
   const EmailInput: JSX.Element = useMemo(
     () => (
       <Input
-        height="40px"
         value={userEmail}
         setValue={setUserEmail}
         type="email"
         placeholder="Email"
+        height="40px"
+        marginBottom="0"
         error={errors?.userExist}
       />
     ),
@@ -92,13 +116,13 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const NameInput: JSX.Element = useMemo(
     () => (
       <Input
-        mediaMargin="0 10px 0 0"
-        margin="0 25px 0 0"
-        height="40px"
         value={name}
         setValue={setName}
         type="text"
         placeholder="Name"
+        height="40px"
+        margin="0 25px 0 0"
+        marginBottom="25px"
       />
     ),
     [name]
@@ -106,11 +130,12 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const SurnameInput: JSX.Element = useMemo(
     () => (
       <Input
-        height="40px"
         value={surname}
         setValue={setSurname}
         type="text"
         placeholder="Surname"
+        height="40px"
+        marginBottom="25px"
       />
     ),
     [surname]
@@ -118,11 +143,12 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PhoneInput: JSX.Element = useMemo(
     () => (
       <Input
-        height="40px"
         value={phone}
         setValue={setPhone}
         type="number"
         placeholder="Phone"
+        height="40px"
+        marginBottom="25px"
       />
     ),
     [phone]
@@ -130,12 +156,12 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const RoleInput: JSX.Element = useMemo(
     () => (
       <Input
-        list="roles"
-        height="40px"
-        mediaMargin="10px"
         value={role}
         setValue={setRole}
+        type="text"
         placeholder="Work position"
+        height="40px"
+        list="roles"
       />
     ),
     [role]
@@ -143,26 +169,30 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PasswordInput: JSX.Element = useMemo(
     () => (
       <Input
-        height="40px"
         value={userPassword}
         setValue={setUserPassword}
         type="password"
         placeholder="Password"
+        height="40px"
+        marginBottom="25px"
       />
     ),
     [userPassword]
   );
+
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
       <Input
-        height="40px"
         value={checkPassword}
         setValue={setCheckPassword}
         type="password"
         placeholder="Repeat password"
+        height="40px"
+        error={errors?.invalidPassword}
+        marginBottom="0"
       />
     ),
-    [checkPassword]
+    [checkPassword, errors?.invalidPassword]
   );
 
   return (
@@ -170,26 +200,29 @@ const SignUp: NextPage<Users> = ({ users }) => {
       <Form
         submit={getInformation}
         content="Create admin account"
-        mediaPadding="5px"
       >
-        <Fullname>
-          {NameInput}
-          {SurnameInput}
-        </Fullname>
-        {EmailInput}
-        {PhoneInput}
-        {RoleInput}
-        <datalist id="roles">
-          {Object.values(workPositions).map((position) => (
-            <option key={position} value={position} />
-          ))}
-        </datalist>
-        {PasswordInput}
-        {CheckPasswordInput}
-        {<Button width="30%">Create account</Button>}
-        <Link href="/authorization/SignIn">
-          <a>Sign In</a>
-        </Link>
+        <div>
+          <Fullname>
+            {NameInput}
+            {SurnameInput}
+          </Fullname>
+          {PhoneInput}
+          <RoleContainer>
+            {RoleInput}
+            <datalist id="roles">
+              {Object.values(workPositions).map((position) => (
+                <option key={position} value={position} />
+              ))}
+            </datalist>
+            <RoleArrow><span>▲</span></RoleArrow>
+          </RoleContainer>
+          {EmailInput}
+          <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>{errors?.userExist}</ErrorText>
+          {PasswordInput}
+          {CheckPasswordInput}
+          <ErrorText background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}>{errors?.invalidPassword}</ErrorText>
+        </div>
+        <Button width="30%">Create account</Button>
       </Form>
     </SignUpPage>
   );

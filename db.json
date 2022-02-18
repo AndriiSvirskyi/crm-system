@@ -21,18 +21,18 @@
       "surname": "Fedosyeyeva",
       "role": "manager"
     },
-    "fbsdhfgjh@ufhkdhsf.ck": {
-      "email": "fbsdhfgjh@ufhkdhsf.ck",
+    "nastasia.f@4irelabs.com": {
+      "email": "nastasia.f@4irelabs.com",
       "password": "1",
-      "name": "1",
-      "surname": "1",
+      "name": "anastasia.f@4irelabs.com",
+      "surname": "anastasia.f@4irelabs.com",
       "role": "admin"
     },
-    "user1@4irelabs.com": {
-      "email": "user1@4irelabs.com",
-      "password": "123",
-      "name": "asd",
-      "surname": "asd",
+    "s@4irelabs.com": {
+      "email": "s@4irelabs.com",
+      "password": "1",
+      "name": "Name",
+      "surname": "Surname",
       "role": "admin"
     }
   }
