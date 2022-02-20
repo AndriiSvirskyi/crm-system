@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { NextPage, NextApiResponse } from "next";
 import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { ErrorText } from "components/form/ErrorText";
+import { useRouter } from "next/router";
 
 const SignUpPage = styled.div`
   display: flex;
@@ -27,7 +28,7 @@ const RoleContainer = styled.div`
   }
 `;
 const RoleArrow = styled.div`
-  margin 0;
+  margin: 0;
   width: 20px;
   height: 40px;
   background: #d0d0d0;
@@ -48,6 +49,13 @@ type Errors = {
 };
 
 const SignUp: NextPage<Users> = ({ users }) => {
+  
+  useEffect(() => {
+    if (!localStorage.user) {
+      router.push("/forbidden");
+    }
+  }, []);
+
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -56,12 +64,14 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [errors, setErrors] = useState<Errors | null>(null);
-
+  const router = useRouter();
   const workPositions = {
     admin: "admin",
     manager: "manager",
     user: "user",
   };
+
+
 
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();

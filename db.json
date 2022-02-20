@@ -34,6 +34,13 @@
       "name": "Name",
       "surname": "Surname",
       "role": "admin"
+    },
+    "ss@4irelabs.com": {
+      "email": "ss@4irelabs.com",
+      "password": "1",
+      "name": "Nastya",
+      "surname": "Fedosieieva",
+      "role": "manager"
     }
   }
 }

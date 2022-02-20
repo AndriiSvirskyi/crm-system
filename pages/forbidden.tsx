@@ -7,17 +7,18 @@ const ForbiddenContainer = styled.div`
     padding: 0;
     width: 1440px;
     height: 100vh;
-    background:  #ffcfcf;
+    background:  #b6b6b66f;
+    font-size: 18px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     a{
-        background:#dd4d4d28 ;
+        background:#54cbf028 ;
         padding: 3px 10px;
         border-radius: 4px;
         text-decoration: none;
-        color: #b42727;
+        color: #4d5be0;
         &:hover{
             color: black;
         }
