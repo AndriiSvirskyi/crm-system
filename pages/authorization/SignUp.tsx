@@ -49,13 +49,6 @@ type Errors = {
 };
 
 const SignUp: NextPage<Users> = ({ users }) => {
-  
-  useEffect(() => {
-    if (!localStorage.user) {
-      router.push("/forbidden");
-    }
-  }, []);
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -71,7 +64,11 @@ const SignUp: NextPage<Users> = ({ users }) => {
     user: "user",
   };
 
-
+  useEffect(() => {
+    if (!localStorage.user) {
+      router.push("/forbidden");
+    }
+  }, [router]);
 
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
