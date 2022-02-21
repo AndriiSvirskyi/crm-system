@@ -28,7 +28,7 @@ const RoleContainer = styled.div`
   }
 `;
 const RoleArrow = styled.div`
-  margin 0;
+  margin: 0;
   width: 20px;
   height: 40px;
   background: #d0d0d0;
