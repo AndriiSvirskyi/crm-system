@@ -12,7 +12,7 @@ export default function User({ user }) {
 
 export async function getServerSideProps({ query }) {
   const responce = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${query.id}`
+    `https://jsonplaceholder.typicode.com/users/${query}`
   );
   const user = await responce.json();
 

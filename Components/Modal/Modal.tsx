@@ -9,7 +9,7 @@ visibility:string;
 }
 
 const ModalContainer = styled.div<ModalProps>`
-  position: absolute;
+  position: fixed;
   width: 25%;
   min-height: 50%;
   top: ${props => props.top || ''};

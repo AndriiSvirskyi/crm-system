@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 type Props = {
+  value?: string;
   height: string;
   margin: string;
   width: string;
@@ -14,12 +15,13 @@ const StyledInput = styled.input<Props>`
   background: #d0d0d0;
   border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
   border-radius: 8px;
-  margin-top:;
+  margin-top:'';
   padding: 0 0 0 25px;
 
 `;
 
 type InputProps = {
+  value?: string;
   error?: string;
   list?: string;
   height: string;
@@ -28,6 +30,7 @@ type InputProps = {
   placeholder: string;
   mediaMargin?: string;
   margin?: string;
+  onChange?: any;
 };
 
 export const InputComponent = ({

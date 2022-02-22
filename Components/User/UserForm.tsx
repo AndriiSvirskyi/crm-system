@@ -30,7 +30,7 @@ const TextInformation = styled.p<PropsUser>`
 
 const UserItemMenu = styled.div<PropsUser>`
   background: #ffffff;
-  width: ${(props) => props.width || ""};
+  width: ${(props) => props.width || "100px"};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   margin: 1em;

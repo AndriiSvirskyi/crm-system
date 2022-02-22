@@ -9,7 +9,7 @@ import { InputComponent } from "components/InputComponent";
 import { UserText } from "components/User/UserForm";
 
 type PropsHeader = {
-  background: string;
+  background?: string;
 };
 export const HeaderStyles = styled.div<PropsHeader>`
   position: fixed;
@@ -23,7 +23,6 @@ export const HeaderStyles = styled.div<PropsHeader>`
 `;
 
 export default function Header() {
-  const [searchUser, setSearchUser] = useState("");
   const [bellModalVisible, setBellModalVisible] = useState("hidden");
   const openModal = () => {
     setBellModalVisible("visible");
@@ -34,7 +33,7 @@ export default function Header() {
   return (
     <HeaderStyles>
       <Flex justify="end" margin="15px">
-        <Link href={"/employees/profile"}>
+        <Link href={"/employees/profile"} passHref>
           <Flex right="auto">
             <ButtonStyled width="187px" height="66px" margin="">
               Logo
@@ -61,10 +60,10 @@ export default function Header() {
           Bells
         </ButtonStyled>
         <Modal top="90px" visibility={bellModalVisible}>
-          <ButtonStyled onClick={(e) => closeModal(e)}> Close</ButtonStyled>
+        <ButtonStyled margin='0 0 0 80%' onClick={closeModal}>x</ButtonStyled>
           <UserText>Нових сповіщень немає!</UserText>
         </Modal>
-        <Link href={"/employees/profile"}>
+        <Link href={"/employees/profile"} passHref>
           <ButtonStyled margin="10px">Icon Profille</ButtonStyled>
         </Link>
       </Flex>

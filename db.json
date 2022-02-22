@@ -1,39 +1,59 @@
 {
   "users": {
     "andrii.s@4irelabs.com": {
+      "id": "1",
       "email": "andrii.s@4irelabs.com",
       "password": "1234",
       "name": "Andrii",
       "surname": "Svirskyi",
-      "role": "admin"
+      "role": "admin",
+      "company": "4ire",
+      "department": "Tech",
+      "city": "Hawaii"
     },
     "viktor.m@4irelabs.com": {
+      "id": "2",
       "email": "viktor.m@4irelabs.com",
       "password": "1234",
       "name": "Viktor",
       "surname": "Malinovskyi",
-      "role": "manager"
+      "role": "manager",
+      "company": "4ire",
+      "department": "UI",
+      "city": "Monako"
     },
     "anastasia.f@4irelabs.com": {
+      "id": "3",
       "email": "anastasia.f@4irelabs.com",
       "password": "1234",
       "name": "Anastasiia",
       "surname": "Fedosyeyeva",
-      "role": "manager"
+      "role": "manager",
+      "company": "4ire",
+      "department": "UI",
+      "city": "Bali"
     },
     "nastasia.f@4irelabs.com": {
+      "id": "4",
       "email": "nastasia.f@4irelabs.com",
       "password": "1",
       "name": "anastasia.f@4irelabs.com",
       "surname": "anastasia.f@4irelabs.com",
-      "role": "admin"
+      "role": "admin",
+      "company": "4ire",
+      "department": "Tech",
+      "city": "Odesa"
     },
     "s@4irelabs.com": {
+      "id": "5",
       "email": "s@4irelabs.com",
       "password": "1",
       "name": "Name",
       "surname": "Surname",
-      "role": "admin"
+      "role": "admin",
+      "company": "4ire",
+      "department": "Hr",
+      "city": "Lviv"
     }
   }
 }
