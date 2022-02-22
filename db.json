@@ -1,39 +1,114 @@
 {
-  "users": {
-    "andrii.s@4irelabs.com": {
+  "users": [
+    {
+      "id": "1",
       "email": "andrii.s@4irelabs.com",
       "password": "1234",
       "name": "Andrii",
       "surname": "Svirskyi",
-      "role": "admin"
+      "role": "admin",
+      "company": "4ire",
+      "department": "Tech",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "24 Mar",
+      "gender": "man",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Hawaii , USA",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
     },
-    "viktor.m@4irelabs.com": {
+    {
+      "id": "2",
       "email": "viktor.m@4irelabs.com",
       "password": "1234",
       "name": "Viktor",
       "surname": "Malinovskyi",
-      "role": "manager"
+      "role": "manager",
+      "company": "4ire",
+      "department": "UI",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "24 Mar",
+      "gender": "man",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Monako , Monako",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
     },
-    "anastasia.f@4irelabs.com": {
+    {
+      "id": "3",
       "email": "anastasia.f@4irelabs.com",
       "password": "1234",
-      "name": "Anastasiia",
+      "name": "Anastasiia1231wag",
       "surname": "Fedosyeyeva",
-      "role": "manager"
+      "role": "manager",
+      "company": "4ire",
+      "department": "UI",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "24 Mar",
+      "gender": "female",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Monako , Monako",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
     },
-    "nastasia.f@4irelabs.com": {
+    {
+      "id": "4",
       "email": "nastasia.f@4irelabs.com",
       "password": "1",
       "name": "anastasia.f@4irelabs.com",
       "surname": "anastasia.f@4irelabs.com",
-      "role": "admin"
+      "role": "admin",
+      "company": "4ire",
+      "department": "Tech",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "24 Mar",
+      "gender": "female",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Lviv , Ukraine",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
     },
-    "s@4irelabs.com": {
+    {
+      "id": "5",
       "email": "s@4irelabs.com",
       "password": "1",
       "name": "Name",
       "surname": "Surname",
-      "role": "admin"
+      "role": "admin",
+      "company": "4ire",
+      "department": "Hr",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "24 Mar",
+      "gender": "female",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Lviv , Ukraine",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
     }
-  }
+  ]
 }

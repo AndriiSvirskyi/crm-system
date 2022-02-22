@@ -41,11 +41,7 @@ const InputsForm = styled.form`
   align-items: center;
 `;
 
-export const Form = ({
-  submit,
-  children,
-  content,
-}) => {
+export const Form = ({ submit, children, content }) => {
   return (
     <Container>
       <Logo>

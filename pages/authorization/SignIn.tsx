@@ -20,18 +20,24 @@ type Errors = {
   [key: string]: string;
 };
 
-const SignIn: NextPage<Users> = ({ users }) => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+const SignIn = ({ users }) => {
+  const [emailInput, setEmailInput] = useState<string>("");
+  const [passwordInput, setPasswordInput] = useState<string>("");
   const [errors, setErrors] = useState<Errors | null>(null);
 
   const checkUser = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (users[email]) {
-      if (users[email].password !== password) {
+    if (users.find(({ email }) => email === emailInput)) {
+      if (
+        users.find(({ email }) => email === emailInput).password !==
+        passwordInput
+      ) {
         setErrors({ invalidPassword: "Invalid password" });
       } else {
-        localStorage.setItem("user", JSON.stringify(users[email]));
+        localStorage.setItem(
+          "user",
+          JSON.stringify(users.find(({ email }) => email === emailInput))
+        );
         Router.push("/employees/profile");
       }
     } else {
@@ -43,8 +49,9 @@ const SignIn: NextPage<Users> = ({ users }) => {
     <SignInPage>
       <Form submit={checkUser} content="Log in">
         <Input
-          value={email}
-          setValue={setEmail}
+          outline="none"
+          value={emailInput}
+          setValue={(e) => setEmailInput(e.target.value)}
           type="email"
           placeholder="Email"
           height="50px"
@@ -56,8 +63,9 @@ const SignIn: NextPage<Users> = ({ users }) => {
           {errors?.invalidEmail}
         </ErrorText>
         <Input
-          value={password}
-          setValue={setPassword}
+          outline="none"
+          value={passwordInput}
+          setValue={(e) => setPasswordInput(e.target.value)}
           type="password"
           placeholder="Password"
           height="50px"
@@ -69,7 +77,9 @@ const SignIn: NextPage<Users> = ({ users }) => {
           {errors?.invalidPassword}
         </ErrorText>
         {/* <Button width="40%">Log in with Google</Button> */}
-        <Button width={"30%"}>Log in</Button>
+        <Button width={"30%"} margin=" 0 0 35px 0" height="50px">
+          Log in
+        </Button>
       </Form>
     </SignInPage>
   );

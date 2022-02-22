@@ -9,27 +9,7 @@ import {
   UserWindow,
 } from "./UserForm";
 
-export default function UserProfile({ user }) {
-  // {
-  //   "id": 2,
-  //   "name": "Ervin Howell",
-  //   "username": "Antonette",
-  //   "email": "Shanna@melissa.tv",
-  //   "address": {
-  //     "street": "Victor Plains",
-  //     "suite": "Suite 879",
-  //     "city": "Wisokyburgh",
-  //     "zipcode": "90566-7771",
-  //     "geo": { "lat": "-43.9509", "lng": "-34.4618" }
-  //   },
-  //   "phone": "010-692-6593 x09125",
-  //   "website": "anastasia.net",
-  //   "company": {
-  //     "name": "Deckow-Crist",
-  //     "catchPhrase": "Proactive didactic contingency",
-  //     "bs": "synergize scalable supply-chains"
-  //   }
-  // }
+export default function UserProfile({ user, users }) {
   return (
     <UserWindow>
       <MainUserInformationMenu>
@@ -47,8 +27,8 @@ export default function UserProfile({ user }) {
             content="space-around"
             width="100%"
           >
-            <UserText>Work position: {user.company.bs}</UserText>
-            <UserText>Location: {user.address.city}</UserText>
+            <UserText>Work position: {user.company}</UserText>
+            <UserText>Location: {user.address}</UserText>
           </Flex>
           <Flex
             wrap="wrap"
@@ -57,53 +37,35 @@ export default function UserProfile({ user }) {
             width="100%"
           >
             <UserText>Email: {user.email}</UserText>
-            <UserText>Phone: {user.phone}</UserText>
+            <UserText>Phone: {user.mobile}</UserText>
           </Flex>
         </Flex>
       </MainUserInformationMenu>
-
       <Flex>
         <UserBlockItem width="50%">
           <UserTitle padding="10px">Info about User</UserTitle>
           <UserText>Username:{user.username}</UserText>
-          <UserText>Address: {user.address.street}</UserText>
+          <UserText>Address: {user.address}</UserText>
           <UserText>
-            {user.address.suite}
-            {user.address.city}
+            {user.address}
+            {user.address}
           </UserText>
         </UserBlockItem>
-
-        <UserBlockItem width="100%">
-          <Tabs />
-        </UserBlockItem>
+        <Tabs user={user} users={users}/>
       </Flex>
       <Flex>
         <UserBlockItem width="40%">
           <UserTitle>Employee manager</UserTitle>
-        </UserBlockItem>
-        <UserBlockItem width="80%">
-          <UserTitle>Contact</UserTitle>
-          <UserText>Phone: {user.phone}</UserText>
-          <UserText>Adress:</UserText>
-          <UserText>street:{user.address.street}</UserText>
-          <UserText>suite: {user.address.suite}</UserText>
-          <UserText>city: {user.address.city}</UserText>
         </UserBlockItem>
       </Flex>
       <Flex>
         <UserBlockItem width="20%">
           <UserTitle>Employee subordinate</UserTitle>
         </UserBlockItem>
-        <UserBlockItem width="80%">
-          <UserTitle>Social</UserTitle>
-        </UserBlockItem>
       </Flex>
       <Flex>
         <UserBlockItem>
           <UserTitle width="100%">Teams</UserTitle>
-        </UserBlockItem>
-        <UserBlockItem>
-          <UserTitle width="">Skills</UserTitle>
         </UserBlockItem>
         <UserBlockItem></UserBlockItem>
         <ButtonStyled>Look at organizational structure</ButtonStyled>

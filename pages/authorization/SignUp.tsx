@@ -41,14 +41,14 @@ const RoleArrow = styled.div`
   align-items: center;
 `;
 type Users = {
-  users: object;
+  users: [];
 };
 
 type Errors = {
   [key: string]: string;
 };
 
-const SignUp: NextPage<Users> = ({ users }) => {
+const SignUp= ({ users }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -57,7 +57,6 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [errors, setErrors] = useState<Errors | null>(null);
-
   const workPositions = {
     admin: "admin",
     manager: "manager",
@@ -69,10 +68,10 @@ const SignUp: NextPage<Users> = ({ users }) => {
       Router.push("/forbidden");
     }
   }, []);
-
+  
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (users[userEmail]) {
+    if (users.find(({email})=> email === userEmail)) {
       setErrors({ userExist: "User exists" });
     } else {
       if (userPassword !== checkPassword) {
@@ -81,15 +80,27 @@ const SignUp: NextPage<Users> = ({ users }) => {
         await fetch(`http://localhost:4200/users`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...users,
-            [userEmail]: {
+          body: JSON.stringify({ 
+              id: "",
               email: userEmail,
               password: userPassword,
               name: name,
               surname: surname,
               role: role,
-            },
+              company: "",
+              department: "",
+              unit: "",
+              team: "",
+              birth: "",
+              gender: "",
+              mobile: phone,
+              username: "",
+              address: "",
+              links: {
+                facebook: "",
+                linkedin: "",
+                twitter: ""
+              }
           }),
         });
         setName("");
@@ -107,8 +118,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const EmailInput: JSX.Element = useMemo(
     () => (
       <Input
+        outline="none"
         value={userEmail}
-        setValue={setUserEmail}
+        setValue={(e) => setUserEmail(e.target.value)}
         type="email"
         placeholder="Email"
         height="40px"
@@ -121,8 +133,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const NameInput: JSX.Element = useMemo(
     () => (
       <Input
+        outline="none"
         value={name}
-        setValue={setName}
+        setValue={(e) => setName(e.target.value)}
         type="text"
         placeholder="Name"
         height="40px"
@@ -135,8 +148,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const SurnameInput: JSX.Element = useMemo(
     () => (
       <Input
+        outline="none"
         value={surname}
-        setValue={setSurname}
+        setValue={(e) => setSurname(e.target.value)}
         type="text"
         placeholder="Surname"
         height="40px"
@@ -148,8 +162,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PhoneInput: JSX.Element = useMemo(
     () => (
       <Input
+        outline="none"
         value={phone}
-        setValue={setPhone}
+        setValue={(e) => setPhone(e.target.value)}
         type="number"
         placeholder="Phone"
         height="40px"
@@ -161,8 +176,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const RoleInput: JSX.Element = useMemo(
     () => (
       <Input
+        outline="none"
         value={role}
-        setValue={setRole}
+        setValue={(e) => setRole(e.target.value)}
         type="text"
         placeholder="Work position"
         height="40px"
@@ -174,8 +190,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const PasswordInput: JSX.Element = useMemo(
     () => (
       <Input
+      outline="none"
         value={userPassword}
-        setValue={setUserPassword}
+        setValue={(e) => setUserPassword(e.target.value)}
         type="password"
         placeholder="Password"
         height="40px"
@@ -188,8 +205,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
       <Input
+      outline="none"
         value={checkPassword}
-        setValue={setCheckPassword}
+        setValue={(e) => setCheckPassword(e.target.value)}
         type="password"
         placeholder="Repeat password"
         height="40px"
@@ -232,7 +250,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
             {errors?.invalidPassword}
           </ErrorText>
         </div>
-        <Button width="30%">Create account</Button>
+        <Button width="30%" margin=" 0 0 35px 0" height="50px">Create account</Button>
       </Form>
     </SignUpPage>
   );

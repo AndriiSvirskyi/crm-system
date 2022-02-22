@@ -2,27 +2,33 @@ import styled from "styled-components";
 
 type Props = {
   height: string;
+  width?: string;
   error?: string;
   marginBottom: string;
-  margin: string;
+  marginFirstChild: string;
+  background?: string;
+  margin?: string;
+  outline?: string;
+  readonly?: boolean;
 };
 
 const StyledInput = styled.input<Props>`
-  outline: none;
+  outline: ${({ outline }) => outline};
   height: ${({ height }) => height};
-  background: #d0d0d0;
+  background: ${({ background }) => background || "#d0d0d0"};
   border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
   border-radius: 8px;
-  width: 95%;
-  margin-bottom: ${({marginBottom}) => marginBottom};
+  width: ${({ width }) => width || "95%"};
+  margin-bottom: ${({ marginBottom }) => marginBottom};
   padding: 0 0 0 25px;
+  margin: ${({ margin }) => margin};
 
   ::placeholder {
     color: #000000;
   }
 
   :nth-child(1) {
-    margin: ${({ margin }) => margin};
+    margin: ${({ marginFirstChild }) => marginFirstChild};
   }
 
   ::-webkit-outer-spin-button,
@@ -32,39 +38,60 @@ const StyledInput = styled.input<Props>`
 `;
 
 type InputProps = {
-  value: string;
-  setValue: (value: string) => void;
+  value?: string;
+  setValue?: any;
   type?: string;
-  placeholder: string;
-  height: string;
+  placeholder?: string;
+  height?: string;
   list?: string;
   error?: string;
-  margin?: string;
+  marginFirstChild?: string;
   marginBottom?: string;
+  id?: string;
+  background?: string;
+  width?: string;
+  margin?: string;
+  defaultValue?: string;
+  outline?: string;
+  readonly?: boolean;
 };
 
 export const Input = ({
   value,
   setValue,
-  type = "",
+  type,
   placeholder,
   height,
   list,
   error,
-  margin,
+  marginFirstChild,
   marginBottom,
+  background,
+  width,
+  margin,
+  id,
+  defaultValue,
+  readonly,
+  outline,
 }: InputProps) => {
   return (
     <StyledInput
       value={value}
-      onChange={(e: { target: { value: string } }) => setValue(e.target.value)}
+      onChange={setValue}
       type={type}
       placeholder={placeholder}
       height={height}
       list={list}
       error={error}
-      margin={margin}
+      marginFirstChild={marginFirstChild}
       marginBottom={marginBottom}
+      background={background}
+      width={width}
+      margin={margin}
+      id={id}
+      defaultValue={defaultValue}
+      outline={outline}
+      readOnly={readonly}
       required
     />
   );
