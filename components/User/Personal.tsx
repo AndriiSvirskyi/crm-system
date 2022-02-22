@@ -3,13 +3,18 @@ import { Button } from "components/Button";
 import { PersonalInfo, FlexContainer } from "./personalTab/PersonalInfo";
 import { ContactsInfo } from "./personalTab/ContactsInfo";
 import { SocialInfo } from "./personalTab/SocialInfo";
+import { useMemo } from "react";
 
-export const Personal = ({ user, users }) => {
+export const Personal = ({ user }) => {
+  const PersonalInfoMemo = useMemo(() => <PersonalInfo user={user}/>, [user]);
+  const ContactsInfoMemo = useMemo(() => <ContactsInfo user={user}/>, [user]);
+  const SocialInfoMemo = useMemo(() => <SocialInfo user={user}/>, [user]);
+
   return (
     <>
-      <PersonalInfo user={user} users={users}/>
-      <ContactsInfo user={user} />
-      <SocialInfo user={user} />
+      {PersonalInfoMemo}
+      {ContactsInfoMemo}
+      {SocialInfoMemo}
       <UserBlockItem>
         <FlexContainer justify="space-between">
           <UserTitle>Skills</UserTitle>

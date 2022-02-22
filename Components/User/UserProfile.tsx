@@ -9,7 +9,7 @@ import {
   UserWindow,
 } from "./UserForm";
 
-export default function UserProfile({ user, users }) {
+export default function UserProfile({ user }) {
   return (
     <UserWindow>
       <MainUserInformationMenu>
@@ -51,7 +51,7 @@ export default function UserProfile({ user, users }) {
             {user.address}
           </UserText>
         </UserBlockItem>
-        <Tabs user={user} users={users}/>
+        <Tabs user={user} />
       </Flex>
       <Flex>
         <UserBlockItem width="40%">

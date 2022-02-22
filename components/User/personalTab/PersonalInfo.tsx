@@ -25,7 +25,7 @@ export const Label = styled.label`
   display: inline-block;
 `;
 
-export const PersonalInfo = ({ user, users }) => {
+export const PersonalInfo = ({ user }) => {
   const {
     name: nameUser,
     surname: surnameUser,
@@ -38,9 +38,6 @@ export const PersonalInfo = ({ user, users }) => {
   const [email, setEmail] = useState(emailUser);
   const [birth, setBirth] = useState(birthUser);
   const [gender, setGender] = useState(genderUser);
-  const newUsers = [...users.filter(el=>el.id!==user.id)];
-  console.log(user.id)
-  console.log(newUsers)
   const [personalInfoEdit, setPersonalInfoEdit] = useState<any>();
   const updatePersonal = async () => {
     setPersonalInfoEdit(false);
