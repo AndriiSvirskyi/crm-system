@@ -11,10 +11,11 @@ export default function User({ user }) {
 }
 
 export async function getServerSideProps({ query }) {
+  
   const responce = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${query}`
-  );
-  const user = await responce.json();
+    `http://localhost:4200/users/${query.id}`
+    );
+    const user = await responce.json();
 
   return {
     props: { user },

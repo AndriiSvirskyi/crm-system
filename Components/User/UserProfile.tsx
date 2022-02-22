@@ -18,7 +18,7 @@ export default function UserProfile({ user }) {
         </Flex>
         <ButtonStyled margin="10px">Icon Image</ButtonStyled>
         <UserTitle size="37px" margin="0 0 0 5em">
-          {user.name}
+          {user.name} {user.surname}
         </UserTitle>
         <Flex>
           <Flex
@@ -28,7 +28,7 @@ export default function UserProfile({ user }) {
             width="100%"
           >
             <UserText>Work position: {user.company}</UserText>
-            <UserText>Location: {user.city}</UserText>
+            <UserText>Location: {user.address}</UserText>
           </Flex>
           <Flex
             wrap="wrap"

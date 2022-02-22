@@ -12,6 +12,7 @@ type FlexStyle = {
   width:string;
   right:string;
   left:string;
+  height: string;
 }
 const StyledFlex = styled.div<FlexStyle>`
 display:flex;
@@ -25,6 +26,8 @@ padding: ${({padding}) => padding || ''};
 width:${({width}) => width || ''};
 margin-right:${props => props.right || ''};
 margin-left:${props => props.left || ''};
+height:${props => props.height || ''};
+
 `
 
 
