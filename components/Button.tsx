@@ -1,28 +1,41 @@
 import styled from "styled-components";
 
-const ButtonComponent = styled.button`
+type ButtonProps = {
+  height?: string;
+  width?: string;
+  margin?: string;
+}
+const ButtonComponent= styled.button<ButtonProps>`
+  padding: 5px 10px;
   user-select: none;
-  height: 50px;
+  height: ${({height}) => height};
   background: #d0d0d0;
   border: none;
   border-radius: 8px;
-  margin: 0 0 35px 0;
+  margin: ${({margin}) => margin} ;
   cursor: pointer;
-  width: ${(props: { width: string }) => props.width};
-  @media all and (max-width: 960px) {
-    width: 90%;
-  }
+  width: ${({width}) => width};
   @media all and (max-width: 470px) {
     height: 35px;
     margin: 0 0 10px 0;
   }
 `;
 
-type ButtonProps = {
-  width: string;
-  children: Element;
-};
+type ComponentProps = {
+  children?: string;
+  height?: string;
+  width?: string;
+  margin?: string;
+  onClick?: () => void;
+}
 
-export const Button = ({ width, children }) => {
-  return <ButtonComponent width={width}>{children}</ButtonComponent>;
+export const Button = ({ width, children, height, margin, onClick }: ComponentProps) => {
+  return <ButtonComponent 
+    onClick={onClick} 
+    height={height} 
+    width={width} 
+    margin={margin}
+      >
+        {children}
+      </ButtonComponent>;
 };

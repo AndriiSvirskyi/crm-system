@@ -7,8 +7,6 @@ type PropsUser = {
   width: string;
 };
 export const UserWindow = styled.div`
-  margin: 100px 0 0 270px;
-  width: 1620px;
 `;
 export const MainUserInformationMenu = styled.div`
   width: 100%;

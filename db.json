@@ -55,7 +55,7 @@
       "department": "UI",
       "unit": "Frontend",
       "team": "Andriy",
-      "birth": "24 Mar",
+      "birth": "24.07",
       "gender": "female",
       "mobile": "380931234567",
       "username": "fedosieievaa",
@@ -90,11 +90,10 @@
     },
     {
       "id": "5",
-      "email": "s@4irelabs.com",
+      "email": "user@4irelabs.com",
       "password": "1",
-      "name": "Name",
-      "surname": "Surname",
-
+      "name": "User",
+      "surname": "User",
       "role": "admin",
       "company": "4ire",
       "department": "Hr",
@@ -108,8 +107,31 @@
       "links": {
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
-        "twitter": "https://twitter.com/?lang=en"
+        "twitter": "https://twitter.com/"
+      }
+    },
+    {
+      "id": "KbuRw5O",
+      "email": "test@gmail.com",
+      "password": "11",
+      "name": "Test",
+      "surname": "Test",
+      "role": "user",
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "",
+      "gender": "",
+      "mobile": "12345",
+      "username": "",
+      "address": "",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
       }
     }
   ]
 }
+

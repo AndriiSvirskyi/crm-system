@@ -37,53 +37,35 @@ export default function UserProfile({ user }) {
             width="100%"
           >
             <UserText>Email: {user.email}</UserText>
-            <UserText>Phone: {user.phone}</UserText>
+            <UserText>Phone: {user.mobile}</UserText>
           </Flex>
         </Flex>
       </MainUserInformationMenu>
-
       <Flex>
         <UserBlockItem width="50%">
           <UserTitle padding="10px">Info about User</UserTitle>
           <UserText>Username:{user.username}</UserText>
-          <UserText>Address: </UserText>
+          <UserText>Address: {user.address}</UserText>
           <UserText>
-            
-            {user.city}
+            {user.address}
+            {user.address}
           </UserText>
         </UserBlockItem>
-
-        <UserBlockItem width="100%">
-          <Tabs />
-        </UserBlockItem>
+        <Tabs user={user} />
       </Flex>
       <Flex>
         <UserBlockItem width="40%">
           <UserTitle>Employee manager</UserTitle>
-        </UserBlockItem>
-        <UserBlockItem width="80%">
-          <UserTitle>Contact</UserTitle>
-          <UserText>Phone:</UserText>
-          <UserText>Adress:</UserText>
-          <UserText>street:</UserText>
-          <UserText>suite: </UserText>
-          <UserText>city: {user.city}</UserText>
         </UserBlockItem>
       </Flex>
       <Flex>
         <UserBlockItem width="20%">
           <UserTitle>Employee subordinate</UserTitle>
         </UserBlockItem>
-        <UserBlockItem width="80%">
-          <UserTitle>Social</UserTitle>
-        </UserBlockItem>
       </Flex>
       <Flex>
         <UserBlockItem>
           <UserTitle width="100%">Teams</UserTitle>
-        </UserBlockItem>
-        <UserBlockItem>
-          <UserTitle width="">Skills</UserTitle>
         </UserBlockItem>
         <UserBlockItem></UserBlockItem>
         <ButtonStyled>Look at organizational structure</ButtonStyled>
