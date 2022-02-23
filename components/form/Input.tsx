@@ -39,7 +39,7 @@ const StyledInput = styled.input<Props>`
 
 type InputProps = {
   value: string;
-  setValue?: (value: string) => void;
+  setValue?: (value: string | React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   placeholder?: string;
   height?: string;

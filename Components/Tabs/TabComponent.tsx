@@ -9,7 +9,7 @@ type Tab = {
 };
 
 const TabsStyled = styled.div`
-    background: ${(props) => props.color || props.theme.colors.primary}
+    /* background: ${(props) => props.color || props.theme.colors.primary}; */
     border-radius: 8px;
     font-size: 16px;
     user-select: none;

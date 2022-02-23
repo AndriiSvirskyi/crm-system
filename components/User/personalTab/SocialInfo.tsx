@@ -84,7 +84,7 @@ export const SocialInfo = ({ user }) => {
           <Input
             id="facebook"
             outline={socialInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e) => setFacebook(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setFacebook(e.target.value)}
             value={facebook}
             type="text"
             background="transparent"
@@ -105,7 +105,7 @@ export const SocialInfo = ({ user }) => {
           <Input
             id="linkedin"
             outline={socialInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e) => setLinkedin(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setLinkedin(e.target.value)}
             value={linkedin}
             type="text"
             background="transparent"
@@ -126,7 +126,7 @@ export const SocialInfo = ({ user }) => {
           <Input
             id="twitter"
             outline={socialInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e) => setTwitter(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setTwitter(e.target.value)}
             value={twitter}
             type="text"
             background="transparent"

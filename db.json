@@ -14,7 +14,7 @@
       "birth": "24 Mar",
       "gender": "man",
       "mobile": "380931234567",
-      "username": "fedosieievaa",
+      "username": "user",
       "address": "Hawaii , USA",
       "links": {
         "facebook": "https://www.google.com",
@@ -131,7 +131,28 @@
         "linkedin": "",
         "twitter": ""
       }
+    },
+    {
+      "id": "l4S7LNQ",
+      "email": "nemocat@gmail.com",
+      "password": "cat",
+      "name": "Nemo",
+      "surname": "Cat",
+      "role": "user",
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "",
+      "gender": "",
+      "mobile": "01010110",
+      "username": "",
+      "address": "",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     }
   ]
 }
-

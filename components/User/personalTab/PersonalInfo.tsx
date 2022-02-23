@@ -71,6 +71,7 @@ export const PersonalInfo = ({ user }) => {
       <FlexContainer justify="space-between">
         <Label htmlFor="employee_id">Employee ID</Label>
         <Input
+          value=""
           outline={personalInfoEdit ? "1px solid grey" : "none"}
           type="text"
           id="employee_id"
@@ -84,7 +85,7 @@ export const PersonalInfo = ({ user }) => {
           <Label htmlFor="last_name">First name</Label>
           <Input
             outline={personalInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e) => setName(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
             value={name}
             type="text"
             id="last_name"
@@ -99,7 +100,7 @@ export const PersonalInfo = ({ user }) => {
           <Label htmlFor="first_name">Last name</Label>
           <Input
             outline={personalInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e) => setSurname(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setSurname(e.target.value)}
             value={surname}
             type="text"
             id="first_name"
@@ -114,7 +115,7 @@ export const PersonalInfo = ({ user }) => {
         <Label htmlFor="email">Email</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setEmail(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
           value={email}
           type="text"
           id="email"
@@ -127,7 +128,7 @@ export const PersonalInfo = ({ user }) => {
         <Label htmlFor="birthday">Date of birth</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setBirth(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setBirth(e.target.value)}
           value={birth}
           type="text"
           id="birthday"
@@ -140,7 +141,7 @@ export const PersonalInfo = ({ user }) => {
         <Label htmlFor="gender">Gender</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setGender(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
           value={gender}
           type="text"
           id="gender"
