@@ -94,6 +94,7 @@
       "password": "1",
       "name": "Name",
       "surname": "Surname",
+
       "role": "admin",
       "company": "4ire",
       "department": "Hr",

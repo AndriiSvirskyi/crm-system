@@ -5,7 +5,8 @@ import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { ErrorText } from "components/form/ErrorText";
-import Router from "next/router";
+
+import { useRouter } from "next/router";
 
 const SignUpPage = styled.div`
   display: flex;
@@ -57,7 +58,7 @@ const SignUp: NextPage<Users> = ({ users }) => {
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [errors, setErrors] = useState<Errors | null>(null);
-
+  const router = useRouter();
   const workPositions = {
     admin: "admin",
     manager: "manager",
@@ -66,9 +67,9 @@ const SignUp: NextPage<Users> = ({ users }) => {
 
   useEffect(() => {
     if (!localStorage.user) {
-      Router.push("/forbidden");
+      router.push("/forbidden");
     }
-  }, []);
+  }, [router]);
 
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
