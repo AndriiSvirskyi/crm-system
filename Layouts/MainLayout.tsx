@@ -7,10 +7,8 @@ export default function MainLayout({ children }) {
   return (
     <>
       <Header />
-      <Flex>
-        <SideBar />
-        {children}
-      </Flex>
+      <SideBar />
+      {children}
     </>
   );
 }

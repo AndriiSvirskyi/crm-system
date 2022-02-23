@@ -33,7 +33,7 @@ export default function Header() {
       <Flex>
         <Flex width="350px" padding="10px 5px 0 15px">
           <ButtonStyled height="50px">
-            <FiAlignJustify size="20" color="#9C9C9C" />
+            <FiAlignJustify size="20"/>
           </ButtonStyled>
         </Flex>
         <Flex
@@ -44,11 +44,11 @@ export default function Header() {
         >
           <Link href={`/employees/`} passHref>
             <ButtonStyled height="50px">
-              <VscAccount size="20" color="#9C9C9C" />
+              <VscAccount size="20"/>
             </ButtonStyled>
           </Link>
           <Flex margin="0 10px">
-            <CgAddR size="40" color="#9C9C9C" onClick={openCloseModalBells} />
+            <CgAddR size="40" onClick={openCloseModalBells} />
             <InputComponent
               type="text"
               placeholder="Search"
@@ -56,7 +56,7 @@ export default function Header() {
               height="40px"
               margin="0 30px"
             />
-            <AiFillBell size="40" color="#9C9C9C" onClick={openCloseModalBells}/>
+            <AiFillBell size="40" onClick={openCloseModalBells}/>
           </Flex>
           <Modal
             top="90px"

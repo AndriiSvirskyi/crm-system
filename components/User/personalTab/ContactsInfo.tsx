@@ -46,7 +46,7 @@ export const ContactsInfo = ({ user }) => {
     });
   };
   return (
-    <UserBlockItem>
+    <UserBlockItem margin="1em 0">
       <FlexContainer justify="space-between">
         <UserTitle>Contact</UserTitle>
         <Button

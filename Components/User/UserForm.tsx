@@ -5,6 +5,7 @@ type PropsUser = {
   color: string;
   margin: string;
   width: string;
+  textAlign?: string;
 };
 export const UserWindow = styled.div`
   margin: 100px 0 0 280px;
@@ -18,6 +19,7 @@ const Title = styled.h3<PropsUser>`
   font-size: ${(props) => props.size || "20px"};
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
+  text-align: ${(props) => props.textAlign || ""};
 `;
 const TextInformation = styled.p<PropsUser>`
   padding: 10px;
@@ -33,6 +35,7 @@ const UserItemMenu = styled.div<PropsUser>`
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   margin: ${(props) => props.margin || "1em"};
+  box-sizing: border-box;
   padding: ${(props) => props.padding || "10px"};
 `;
 export const UserTitle = (props) => {

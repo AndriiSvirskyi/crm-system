@@ -1,22 +1,21 @@
+import { UserWindow } from "components/User/UserForm";
 import { useRouter } from "next/router";
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../Layouts/MainLayout";
 
 export default function Home() {
   const router = useRouter();
   return (
     <MainLayout>
-      <>
-        <div className="main-grid">
-          <div className="User-menu">User information</div>
-          <div className="User-content">
+      <UserWindow>
+        <div>User information</div>
+          <div>
             <div>1/4</div>
             <div>2/4</div>
             <div>3/4</div>
             <div>4/4</div>
           </div>
-        </div>
-        <h1>Main</h1>
-      </>
+          <h1>Main</h1>
+      </UserWindow>
     </MainLayout>
   );
 }

@@ -11,7 +11,7 @@ import {
 
 export default function UserProfile({ user }) {
   return (
-    <UserWindow>
+    <>
       <MainUserInformationMenu>
         <Flex justify="end" padding="10px" wrap="wrap">
           <ButtonStyled>Edit Profile</ButtonStyled>
@@ -70,6 +70,6 @@ export default function UserProfile({ user }) {
         <UserBlockItem></UserBlockItem>
         <ButtonStyled>Look at organizational structure</ButtonStyled>
       </Flex>
-    </UserWindow>
+    </>
   );
 }
