@@ -1,9 +1,11 @@
-import { UserBlockItem, UserTitle } from "./UserForm";
-import { Button } from "components/Button";
-import { PersonalInfo, FlexContainer } from "./personalTab/PersonalInfo";
-import { ContactsInfo } from "./personalTab/ContactsInfo";
-import { SocialInfo } from "./personalTab/SocialInfo";
 import { useMemo } from "react";
+import { UserBlockItem, UserTitle } from "../UserForm";
+import { Button } from "components/Button";
+import { FlexContainer } from "./Label&FlexContainer";
+import { ContactsInfo } from "./ContactsInfo";
+import { SocialInfo } from "./SocialInfo";
+import { PersonalInfo } from "./PersonalInfo";
+
 
 export const Personal = ({ user }) => {
   const PersonalInfoMemo = useMemo(() => <PersonalInfo user={user}/>, [user]);

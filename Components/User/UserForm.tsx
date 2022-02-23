@@ -7,8 +7,6 @@ type PropsUser = {
   width: string;
 };
 export const UserWindow = styled.div`
-  margin: 100px 0 0 270px;
-  width: 1100px;
 `;
 export const MainUserInformationMenu = styled.div`
   width: 100%;
@@ -30,6 +28,7 @@ const TextInformation = styled.p<PropsUser>`
 
 const UserItemMenu = styled.div<PropsUser>`
   background: #ffffff;
+  padding: 15px;
   width: ${(props) => props.width || ""};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
   border-radius: 8px;

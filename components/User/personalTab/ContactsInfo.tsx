@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "components/Button";
-import { FlexContainer, Label } from "./PersonalInfo";
+import { Label, FlexContainer } from "./Label&FlexContainer";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Input } from "components/form/Input";
 
@@ -63,8 +63,8 @@ export const ContactsInfo = ({ user }) => {
           EDIT
         </Button>
       </FlexContainer>
-      <div>
-        <Label htmlFor="number" width="20%">
+      <FlexContainer>
+        <Label htmlFor="number">
           Mobile number
         </Label>
         <Input
@@ -74,13 +74,12 @@ export const ContactsInfo = ({ user }) => {
           value={mobile}
           type="text"
           background="transparent"
-          width="60%"
           height="30px"
           readonly={contactsInfoEdit ? false : true}
         />
-      </div>
-      <div>
-        <Label htmlFor="username" width="20%">
+      </FlexContainer>
+      <FlexContainer>
+        <Label htmlFor="username">
           Slack Username
         </Label>
         <Input
@@ -90,13 +89,12 @@ export const ContactsInfo = ({ user }) => {
           value={username}
           type="text"
           background="transparent"
-          width="60%"
           height="30px"
           readonly={contactsInfoEdit ? false : true}
         />
-      </div>
-      <div>
-        <Label htmlFor="address" width="20%">
+      </FlexContainer>
+      <FlexContainer margin="0 0 40px 0">
+        <Label htmlFor="address">
           Address
         </Label>
         <Input
@@ -106,12 +104,10 @@ export const ContactsInfo = ({ user }) => {
           value={address}
           type="text"
           background="transparent"
-          width="60%"
           height="30px"
-          marginBottom="40px"
           readonly={contactsInfoEdit ? false : true}
         />
-      </div>
+      </FlexContainer>
       {contactsInfoEdit ? (
         <FlexContainer padding="0 0 10px 0" justify="end">
           <Button

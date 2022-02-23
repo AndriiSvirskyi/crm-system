@@ -15,9 +15,6 @@ const ButtonComponent= styled.button<ButtonProps>`
   margin: ${({margin}) => margin} ;
   cursor: pointer;
   width: ${({width}) => width};
-  @media all and (max-width: 960px) {
-    width: 90%;
-  }
   @media all and (max-width: 470px) {
     height: 35px;
     margin: 0 0 10px 0;

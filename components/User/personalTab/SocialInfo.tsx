@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Input } from "components/form/Input";
-import { FlexContainer, Label } from "./PersonalInfo";
+import { Label, FlexContainer } from "./Label&FlexContainer";
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -76,8 +76,8 @@ export const SocialInfo = ({ user }) => {
           ADD
         </Button>
       </FlexContainer>
-      <div>
-        <Label htmlFor="facebook" width="20%">
+      <FlexContainer>
+        <Label htmlFor="facebook">
           Facebook URL
         </Label>
         {socialInfoEdit ? (
@@ -88,7 +88,6 @@ export const SocialInfo = ({ user }) => {
             value={facebook}
             type="text"
             background="transparent"
-            width="60%"
             height="30px"
             readonly={false}
           />
@@ -97,9 +96,9 @@ export const SocialInfo = ({ user }) => {
             <Anchor target="_blank">{facebook}</Anchor>
           </Link>
         )}
-      </div>
-      <div>
-        <Label htmlFor="linkedin" width="20%">
+      </FlexContainer>
+      <FlexContainer>
+        <Label htmlFor="linkedin">
           LinkedIn URL
         </Label>
         {socialInfoEdit ? (
@@ -110,7 +109,6 @@ export const SocialInfo = ({ user }) => {
             value={linkedin}
             type="text"
             background="transparent"
-            width="60%"
             height="30px"
             readonly={false}
           />
@@ -119,9 +117,9 @@ export const SocialInfo = ({ user }) => {
             <Anchor target="_blank">{linkedin}</Anchor>
           </Link>
         )}
-      </div>
-      <div>
-        <Label htmlFor="twitter" width="20%">
+      </FlexContainer>
+      <FlexContainer margin="0 0 40px 0">
+        <Label htmlFor="twitter">
           Twitter Username
         </Label>
         {socialInfoEdit ? (
@@ -132,9 +130,7 @@ export const SocialInfo = ({ user }) => {
             value={twitter}
             type="text"
             background="transparent"
-            width="60%"
             height="30px"
-            marginBottom="40px"
             readonly={false}
           />
         ) : (
@@ -142,7 +138,7 @@ export const SocialInfo = ({ user }) => {
             <Anchor target="_blank">{twitter}</Anchor>
           </Link>
         )}
-      </div>
+      </FlexContainer>
       {socialInfoEdit ? (
         <FlexContainer padding="0 0 10px 0" justify="end">
           <Button

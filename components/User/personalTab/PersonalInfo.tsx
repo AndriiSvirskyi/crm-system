@@ -1,29 +1,8 @@
 import { useState } from "react";
-import styled from "styled-components";
 import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Input } from "components/form/Input";
-
-type FlexContainerProps = {
-  padding?: string;
-  justify: string;
-};
-export const FlexContainer = styled.div<FlexContainerProps>`
-  padding: ${({ padding }) => padding};
-  display: inline-block;
-  width: 100%;
-  display: flex;
-  justify-content: ${({ justify }) => justify};
-  align-items: center;
-`;
-export const Label = styled.label`
-  cursor: pointer;
-  width: ${(props: { width?: string }) => props.width};
-  padding: 10px;
-  margin: 0 5px 1px 10px;
-  color: #6b7280;
-  display: inline-block;
-`;
+import { Label, FlexContainer } from "./Label&FlexContainer";
 
 export const PersonalInfo = ({ user }) => {
   const {
@@ -39,6 +18,7 @@ export const PersonalInfo = ({ user }) => {
   const [birth, setBirth] = useState(birthUser);
   const [gender, setGender] = useState(genderUser);
   const [personalInfoEdit, setPersonalInfoEdit] = useState<any>();
+
   const updatePersonal = async () => {
     setPersonalInfoEdit(false);
     await fetch(`http://localhost:4200/users/${user.id}`, {
@@ -65,8 +45,7 @@ export const PersonalInfo = ({ user }) => {
           linkedin: user.links.linkedin,
           twitter: user.links.twitter,
         },
-      }
-    ),
+      }),
     });
   };
 
@@ -76,7 +55,6 @@ export const PersonalInfo = ({ user }) => {
         <UserTitle>Personal</UserTitle>
         <Button
           height="25px"
-          margin=" 0 20px 0 0"
           onClick={() => {
             setPersonalInfoEdit({
               name,
@@ -90,56 +68,50 @@ export const PersonalInfo = ({ user }) => {
           EDIT
         </Button>
       </FlexContainer>
-      <div>
-        <Label htmlFor="id" width="15%">
-          Employee ID
-        </Label>
-        <Input
-          outline={personalInfoEdit ? "1px solid grey" : "none"}
-          type="text"
-          id="id"
-          background="transparent"
-          width="70%"
-          height="30px"
-          readonly={personalInfoEdit ? false : true}
-        />
-      </div>
       <FlexContainer justify="space-between">
-        <Label htmlFor="last_name" width="14%">
-          First name
-        </Label>
+        <Label htmlFor="employee_id">Employee ID</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setName(e.target.value)}
-          value={name}
           type="text"
-          id="last_name"
+          id="employee_id"
           background="transparent"
-          width="auto"
-          height="30px"
-          margin="0 20px 0 0"
-          readonly={personalInfoEdit ? false : true}
-        />
-        <Label htmlFor="first_name" width="15%">
-          Last name
-        </Label>
-        <Input
-          outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setSurname(e.target.value)}
-          value={surname}
-          type="text"
-          id="first_name"
-          background="transparent"
-          margin="0 40px 0 0"
-          width="auto"
           height="30px"
           readonly={personalInfoEdit ? false : true}
         />
       </FlexContainer>
-      <div>
-        <Label htmlFor="email" width="15%">
-          Email
-        </Label>
+      <FlexContainer justify="space-between">
+        <FlexContainer>
+          <Label htmlFor="last_name">First name</Label>
+          <Input
+            outline={personalInfoEdit ? "1px solid grey" : "none"}
+            setValue={(e) => setName(e.target.value)}
+            value={name}
+            type="text"
+            id="last_name"
+            background="transparent"
+            margin="0 30px 0 0"
+            width="auto"
+            height="30px"
+            readonly={personalInfoEdit ? false : true}
+          />
+        </FlexContainer>
+        <FlexContainer>
+          <Label htmlFor="first_name">Last name</Label>
+          <Input
+            outline={personalInfoEdit ? "1px solid grey" : "none"}
+            setValue={(e) => setSurname(e.target.value)}
+            value={surname}
+            type="text"
+            id="first_name"
+            background="transparent"
+            width="auto"
+            height="30px"
+            readonly={personalInfoEdit ? false : true}
+          />
+        </FlexContainer>
+      </FlexContainer>
+      <FlexContainer justify="space-between">
+        <Label htmlFor="email">Email</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
           setValue={(e) => setEmail(e.target.value)}
@@ -147,15 +119,12 @@ export const PersonalInfo = ({ user }) => {
           type="text"
           id="email"
           background="transparent"
-          width="70%"
           height="30px"
           readonly={personalInfoEdit ? false : true}
         />
-      </div>
-      <div>
-        <Label htmlFor="birthday" width="15%">
-          Date of birth
-        </Label>
+      </FlexContainer>
+      <FlexContainer justify="space-between">
+        <Label htmlFor="birthday">Date of birth</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
           setValue={(e) => setBirth(e.target.value)}
@@ -163,15 +132,12 @@ export const PersonalInfo = ({ user }) => {
           type="text"
           id="birthday"
           background="transparent"
-          width="70%"
           height="30px"
           readonly={personalInfoEdit ? false : true}
         />
-      </div>
-      <div>
-        <Label htmlFor="gender" width="15%">
-          Gender
-        </Label>
+      </FlexContainer>
+      <FlexContainer justify="space-between" margin="0 0 40px 0">
+        <Label htmlFor="gender">Gender</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
           setValue={(e) => setGender(e.target.value)}
@@ -179,12 +145,10 @@ export const PersonalInfo = ({ user }) => {
           type="text"
           id="gender"
           background="transparent"
-          width="70%"
           height="30px"
-          marginBottom="40px"
           readonly={personalInfoEdit ? false : true}
         />
-      </div>
+      </FlexContainer>
       {personalInfoEdit ? (
         <FlexContainer padding="0 0 10px 0" justify="end">
           <Button

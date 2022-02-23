@@ -2,7 +2,7 @@ import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
 import { TabComponent } from "components/Tabs/TabComponent";
 import { useState } from "react";
-import { Personal } from "./Personal";
+import { Personal } from "./personalTab";
 
 export default function Tabs({ user }) {
   const [activeTab, setActiveTab] = useState("first");
