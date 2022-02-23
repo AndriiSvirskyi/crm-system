@@ -31,7 +31,7 @@ export const SocialInfo = ({ user }) => {
   const updateSocial = async () => {
     setSocialInfoEdit(false);
     await fetch(`http://localhost:4200/users/${user.id}`, {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         id: user.id,

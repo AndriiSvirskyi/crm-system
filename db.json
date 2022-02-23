@@ -90,24 +90,24 @@
     },
     {
       "id": "5",
-      "email": "s@4irelabs.com",
+      "email": "user@4irelabs.com",
       "password": "1",
-      "name": "Name",
-      "surname": "Surname",
+      "name": "User",
+      "surname": "User",
       "role": "admin",
       "company": "4ire",
       "department": "Hr",
       "unit": "Frontend",
       "team": "Andriy",
-      "birth": "24 Mar",
-      "gender": "female",
+      "birth": "12.06",
+      "gender": "male",
       "mobile": "380931234567",
       "username": "fedosieievaa",
       "address": "Lviv , Ukraine",
       "links": {
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
-        "twitter": "https://twitter.com/?lang=en"
+        "twitter": "https://twitter.com/"
       }
     },
     {
