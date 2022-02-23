@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 type Props = {
+  value?: string;
   height: string;
   margin: string;
   width: string;
@@ -9,25 +10,27 @@ type Props = {
 };
 const StyledInput = styled.input<Props>`
   outline: none;
-  height: ${({ height }) => height};
-  width: ${({ width }) => width};
+  height: ${({ height }) => height || ''};
+  width: ${({ width }) => width || ''};
   background: #d0d0d0;
   border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
   border-radius: 8px;
-  margin-top:;
+  margin:${({ margin }) =>margin || ''};
   padding: 0 0 0 25px;
 
 `;
 
 type InputProps = {
+  value?: string;
   error?: string;
   list?: string;
-  height: string;
-  width: string;
+  height?: string;
+  width?: string;
   type?: string;
-  placeholder: string;
+  placeholder?: string;
   mediaMargin?: string;
   margin?: string;
+  onChange?: any;
 };
 
 export const InputComponent = ({
@@ -38,6 +41,8 @@ export const InputComponent = ({
   list,
   error,
   margin,
+  onChange,
+  value,
 }: InputProps) => {
   return (
     <StyledInput
@@ -48,7 +53,9 @@ export const InputComponent = ({
       width={width}
       type={type}
       placeholder={placeholder}
-      required
+      onChange={onChange}
+      value={value}
+      
     />
   );
 };

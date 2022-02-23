@@ -10,26 +10,6 @@ import {
 } from "./UserForm";
 
 export default function UserProfile({ user }) {
-  // {
-  //   "id": 2,
-  //   "name": "Ervin Howell",
-  //   "username": "Antonette",
-  //   "email": "Shanna@melissa.tv",
-  //   "address": {
-  //     "street": "Victor Plains",
-  //     "suite": "Suite 879",
-  //     "city": "Wisokyburgh",
-  //     "zipcode": "90566-7771",
-  //     "geo": { "lat": "-43.9509", "lng": "-34.4618" }
-  //   },
-  //   "phone": "010-692-6593 x09125",
-  //   "website": "anastasia.net",
-  //   "company": {
-  //     "name": "Deckow-Crist",
-  //     "catchPhrase": "Proactive didactic contingency",
-  //     "bs": "synergize scalable supply-chains"
-  //   }
-  // }
   return (
     <UserWindow>
       <MainUserInformationMenu>
@@ -38,7 +18,7 @@ export default function UserProfile({ user }) {
         </Flex>
         <ButtonStyled margin="10px">Icon Image</ButtonStyled>
         <UserTitle size="37px" margin="0 0 0 5em">
-          {user.name}
+          {user.name} {user.surname}
         </UserTitle>
         <Flex>
           <Flex
@@ -47,8 +27,8 @@ export default function UserProfile({ user }) {
             content="space-around"
             width="100%"
           >
-            <UserText>Work position: {user.company.bs}</UserText>
-            <UserText>Location: {user.address.city}</UserText>
+            <UserText>Work position: {user.company}</UserText>
+            <UserText>Location: {user.address}</UserText>
           </Flex>
           <Flex
             wrap="wrap"
@@ -66,10 +46,10 @@ export default function UserProfile({ user }) {
         <UserBlockItem width="50%">
           <UserTitle padding="10px">Info about User</UserTitle>
           <UserText>Username:{user.username}</UserText>
-          <UserText>Address: {user.address.street}</UserText>
+          <UserText>Address: </UserText>
           <UserText>
-            {user.address.suite}
-            {user.address.city}
+            
+            {user.city}
           </UserText>
         </UserBlockItem>
 
@@ -83,11 +63,11 @@ export default function UserProfile({ user }) {
         </UserBlockItem>
         <UserBlockItem width="80%">
           <UserTitle>Contact</UserTitle>
-          <UserText>Phone: {user.phone}</UserText>
+          <UserText>Phone:</UserText>
           <UserText>Adress:</UserText>
-          <UserText>street:{user.address.street}</UserText>
-          <UserText>suite: {user.address.suite}</UserText>
-          <UserText>city: {user.address.city}</UserText>
+          <UserText>street:</UserText>
+          <UserText>suite: </UserText>
+          <UserText>city: {user.city}</UserText>
         </UserBlockItem>
       </Flex>
       <Flex>
