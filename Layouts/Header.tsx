@@ -1,79 +1,63 @@
 import Link from "next/link";
 import { useState } from "react";
-import { ButtonStyled } from "components/Styled/ButtonStyled";
-import Modal from "./Modal";
-
+import { ButtonStyled } from "components/ButtonStyled";
 import styled from "styled-components";
+import Modal from "../components/Modal/Modal";
+import { Flex } from "components/User/Flex";
+import { InputComponent } from "components/InputComponent";
+import { UserText } from "components/User/UserForm";
+import { AiFillBell  } from "react-icons/ai";
+import { CgAddR } from "react-icons/cg";
+import { IconContext } from "react-icons";
+import { VscAccount } from "react-icons/vsc";
 
-export const HeaderStyles = styled.div`
-  nav {
-    position: fixed;
-    max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    height: 100px;
-    left: 280px;
-    top: 0;
-    right: 0;
-    background: #ffffff;
-    box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-  }
-  nav input {
-    width: 405px;
-    height: 50px;
-    left: 1149px;
-    top: 17px;
-
-    background: #eeeeee;
-    border-radius: 8px;
-  }
-
-  .right-nav {
-    margin: 1em;
-  }
+type PropsHeader = {
+  background?: string;
+};
+const HeaderStyles = styled.div<PropsHeader>`
+  position: fixed;
+  max-width: 100%;
+  height: 100px;
+  left: 280px;
+  top: 0;
+  right: 0;
+  background: ${(props) => props.background || props.theme.colors.background};
+  box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
 `;
 
+
 export default function Header() {
-  const [searchUser, setSearchUser] = useState("");
-  const [bellModalVisible, setBellModalVisible] = useState("hidden");
-  const [plusModalVisible, setPlusModalVisible] = useState("hidden");
-  const openModal = () => {
-    setBellModalVisible("visible");
-  };
-  const closeModal = (event) => {
-    console.log(event);
-    setBellModalVisible("hidden");
+
+  const [bellModalVisible, setBellModalVisible] = useState(false);
+  const openCloseModalBells = () => {
+    setBellModalVisible(!bellModalVisible);
   };
   return (
-    <>
-      <HeaderStyles>
-        <ButtonStyled>
-          <nav>
-            <Link href={"/employees/me"}>
-              <button className="btn-logo">Logo</button>
-            </Link>
-            <div className="right-nav">
-              <button>Plus</button>
-
-              <input
-                type={"text"}
-                placeholder={"Search"}
-                value={searchUser}
-                onChange={(e) => setSearchUser(e.target.value)}
-              ></input>
-              <button onClick={openModal}>Bells</button>
-              <Modal visibility={bellModalVisible}>
-                <button onClick={(e) => closeModal(e)}> Close</button>
-                <p>Нових сповіщень немає!</p>
-              </Modal>
-              <Link href={"/employees/me"}>
-                <button>Icon Profille</button>
-              </Link>
-            </div>
-          </nav>
-        </ButtonStyled>
-      </HeaderStyles>
-    </>
+    <HeaderStyles>
+      <IconContext.Provider value={{color:"#9C9C9C", size:'38px' }}>
+      <Flex justify="end" margin="15px 15px 0 15px">
+        <Link href={`/employees/`} passHref>
+          <Flex right="auto">
+            <ButtonStyled><VscAccount size='60' /></ButtonStyled>
+          </Flex>
+        </Link>
+          <CgAddR  onClick={openCloseModalBells} />
+        <InputComponent
+          type={"text"}
+          placeholder={"Search"}
+          width="405px"
+          height="60px"
+        ></InputComponent>
+        <AiFillBell  onClick={openCloseModalBells} />
+        <Modal top="90px" visibility={bellModalVisible} close={openCloseModalBells}>
+          <UserText>Нових сповіщень немає!</UserText>
+        </Modal>
+        <Link href={"/employees/profile"} passHref>
+          <ButtonStyled margin="10px">Icon Profille</ButtonStyled>
+        </Link>
+      </Flex>
+      </IconContext.Provider>
+    </HeaderStyles>
   );
 }
+ 

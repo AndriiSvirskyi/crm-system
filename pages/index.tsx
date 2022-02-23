@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
-import MainLayout from "../Layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 
 export default function Home() {
   const router = useRouter();
-  console.log(router);
   return (
     <MainLayout>
       <>
