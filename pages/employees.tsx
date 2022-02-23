@@ -17,10 +17,13 @@ export default function Employee({ users }) {
   const [allEmployees, setAllEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const currentUser = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const [userRole, setUserRole] = useState();
 
   useEffect(() => {
     setAllEmployees(Object.values(users));
     setFilteredEmployees(Object.values(users));
+    setUserRole(JSON.parse(currentUser).role)
   }, []);
 
   return (
@@ -50,16 +53,22 @@ export default function Employee({ users }) {
           ))}
         </Flex>
       </UserWindow>
-      <Button
-        position="fixed"
-        right="0"
-        bottom="0"
-        margin="0 20px 20px 0"
-        onClick={() => setShowModal(!showModal)}
-      >
-        <FaUserPlus size={30}></FaUserPlus>
-      </Button>
-      <SignUpModal users={users} display={showModal ? "initial" : "none"} />
+      {userRole === "admin" ? (
+        <>
+          <Button
+            position="fixed"
+            right="0"
+            bottom="0"
+            margin="0 20px 20px 0"
+            onClick={() => setShowModal(!showModal)}
+          >
+            <FaUserPlus size={30}></FaUserPlus>
+          </Button>
+          <SignUpModal users={users} display={showModal ? "initial" : "none"} />
+        </>
+      ) : (
+        ""
+      )}
     </MainLayout>
   );
 }

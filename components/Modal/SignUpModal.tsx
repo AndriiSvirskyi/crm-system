@@ -4,8 +4,8 @@ import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { ErrorText } from "components/form/ErrorText";
-
 import { useRouter } from "next/router";
+
 const SignUpAnimation = keyframes`
   from {
     left: -100px;

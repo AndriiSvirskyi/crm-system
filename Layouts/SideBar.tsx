@@ -12,9 +12,9 @@ export const SideBarStyles = styled.div<PropsSideBar>`
   position: fixed;
   left: 0;
   top: 0;
-  margin: 0;
+  margin: 70px 0 0 0;
   background-color: ${(props) =>
-    props.background || props.theme.colors.primary};
+  props.background || props.theme.colors.primary};
   width: 280px;
   height: 100%;
   overflow: auto;
@@ -26,7 +26,6 @@ export default function SideBar(props) {
   return (
     <SideBarStyles {...props}>
       <aside>
-        <ButtonStyled background="white"> Burger</ButtonStyled>
         <Flex direction="column" margin="20px 0 0 0">
           <Link passHref href={"/employees/profile"}>
             <ButtonStyled> Me </ButtonStyled>

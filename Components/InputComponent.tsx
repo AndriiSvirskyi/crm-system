@@ -10,14 +10,14 @@ type Props = {
 };
 const StyledInput = styled.input<Props>`
   outline: none;
-  height: ${({ height }) => height || ''};
-  width: ${({ width }) => width || ''};
+  height: ${({ height }) => height || ""};
+  min-width: 300px;
+  width: ${({ width }) => width || ""};
   background: #d0d0d0;
   border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
   border-radius: 8px;
-  margin:${({ margin }) =>margin || ''};
+  margin: ${({ margin }) => margin || ""};
   padding: 0 0 0 25px;
-
 `;
 
 type InputProps = {
@@ -55,7 +55,6 @@ export const InputComponent = ({
       placeholder={placeholder}
       onChange={onChange}
       value={value}
-      
     />
   );
 };
