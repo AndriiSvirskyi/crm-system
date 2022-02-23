@@ -18,7 +18,7 @@ export default function UserProfile({ user }) {
         </Flex>
         <ButtonStyled margin="10px">Icon Image</ButtonStyled>
         <UserTitle size="37px" margin="0 0 0 5em">
-          {user.name}
+          {user.name} {user.surname}
         </UserTitle>
         <Flex>
           <Flex

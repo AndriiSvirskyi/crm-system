@@ -38,8 +38,8 @@ const StyledInput = styled.input<Props>`
 `;
 
 type InputProps = {
-  value?: string;
-  setValue?: any;
+  value: string;
+  setValue?: (value: string) => void;
   type?: string;
   placeholder?: string;
   height?: string;

@@ -99,8 +99,8 @@
       "department": "Hr",
       "unit": "Frontend",
       "team": "Andriy",
-      "birth": "12.06",
-      "gender": "male",
+      "birth": "24 Mar",
+      "gender": "female",
       "mobile": "380931234567",
       "username": "fedosieievaa",
       "address": "Lviv , Ukraine",
@@ -134,3 +134,4 @@
     }
   ]
 }
+

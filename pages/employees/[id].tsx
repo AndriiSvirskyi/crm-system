@@ -11,10 +11,12 @@ export default function User({ user }) {
 }
 
 export async function getServerSideProps({ query }) {
+  
   const responce = await fetch(
     `http://localhost:4200/users/${query.id}`
     );
   const user = await responce.json();
+
   return {
     props: { user },
   };
