@@ -23,7 +23,7 @@ const HeaderStyles = styled.div<PropsHeader>`
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
 `;
 
-export default function Header() {
+export default function Header({ collapsed, setCollapsed }) {
   const [bellModalVisible, setBellModalVisible] = useState(false);
   const openCloseModalBells = () => {
     setBellModalVisible(!bellModalVisible);
@@ -32,8 +32,13 @@ export default function Header() {
     <HeaderStyles>
       <Flex>
         <Flex width="350px" padding="10px 5px 0 15px">
-          <ButtonStyled height="50px">
-            <FiAlignJustify size="20"/>
+          <ButtonStyled
+            onClick={() => {
+              setCollapsed(!collapsed);
+            }}
+            height="50px"
+          >
+            <FiAlignJustify size="20" />
           </ButtonStyled>
         </Flex>
         <Flex
@@ -44,7 +49,7 @@ export default function Header() {
         >
           <Link href={`/employees/`} passHref>
             <ButtonStyled height="50px">
-              <VscAccount size="20"/>
+              <VscAccount size="20" />
             </ButtonStyled>
           </Link>
           <Flex margin="0 10px">
@@ -56,7 +61,7 @@ export default function Header() {
               height="40px"
               margin="0 30px"
             />
-            <AiFillBell size="40" onClick={openCloseModalBells}/>
+            <AiFillBell size="40" onClick={openCloseModalBells} />
           </Flex>
           <Modal
             top="90px"

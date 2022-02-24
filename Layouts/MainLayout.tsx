@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
+import { useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
-import { Flex } from "components/User/Flex";
 
 export default function MainLayout({ children }) {
+  const [collapsedSidebar, setCollapsedSidebar] = useState(false);
   return (
     <>
-      <Header />
-      <SideBar />
+      <Header collapsed={collapsedSidebar} setCollapsed={setCollapsedSidebar} />
+      <SideBar collapsed={collapsedSidebar}/>
       {children}
     </>
   );
