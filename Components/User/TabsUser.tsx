@@ -3,6 +3,7 @@ import { Flex } from "components/User/Flex";
 import { TabComponent } from "components/Tabs/TabComponent";
 import { useState } from "react";
 import { Personal } from "./personalTab";
+import PDPTime from "./pdpTimeTab.tsx/PDPTime";
 
 export default function Tabs({ user }) {
   const [activeTab, setActiveTab] = useState("first");
@@ -10,7 +11,7 @@ export default function Tabs({ user }) {
   const tabContent = {
     personal: <Personal user={user} />,
     work: <p>Second</p>,
-    "pdp time": <p>Third</p>,
+    "pdp time": <PDPTime />,
     weekend: <p>Four</p>,
     additional: <p>Five</p>,
   };
