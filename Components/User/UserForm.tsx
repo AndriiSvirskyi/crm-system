@@ -9,6 +9,7 @@ type PropsUser = {
   margin: string;
   width: string;
   textAlign?: string;
+
 };
 type UserWindowProps = {
   collapsed: boolean;
@@ -28,7 +29,6 @@ const Title = styled.h3<PropsUser>`
   text-align: ${(props) => props.textAlign || ""};
 `;
 const TextInformation = styled.p<PropsUser>`
-  padding: 10px;
   padding: ${(props) => props.padding || ""};
   font-size: ${(props) => props.size || "20px"};
   color: ${(props) => props.color || props.theme.colors.text};

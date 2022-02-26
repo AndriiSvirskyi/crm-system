@@ -20,6 +20,47 @@
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
         "twitter": "https://twitter.com/?lang=en"
+      },
+      "timeoff": {
+        "type": {
+          "vacation": { "days": 2 },
+          "paid": { "days": 2 },
+          "hospital": { "days": 3 }
+        },
+        "requests": [
+          {
+            "id": "h1",
+            "type": "hospital",
+            "number": 2,
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Vitya", "status": "accept" }
+            ]
+          },
+          {
+            "id": "h2",
+            "type": "hospital",
+            "number": 2,
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Anastasia", "status": "reject" }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "h3",
+            "type": "hospital",
+            "startTime": "",
+            "description": "some text",
+            "availableDays": 15,
+            "number": 2
+          }
+        ]
       }
     },
     {
