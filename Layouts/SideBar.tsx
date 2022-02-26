@@ -13,27 +13,31 @@ import {
 } from "react-icons/fa";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
+import { useRecoilValue } from "recoil";
+import { hamburgerState } from "state/atoms";
 
 type PropsSideBar = {
   background: string;
+  collapsed: boolean;
 };
 export const SideBarStyles = styled.div<PropsSideBar>`
   position: fixed;
   left: 0;
   top: 0;
-  margin: 70px 0 0 0;
-  background-color: ${(props) =>
-    props.background || props.theme.colors.primary};
-  width: 280px;
+  padding-top: 70px;
+  background-color: ${(props) => props.theme.colors.primary};
+  width: ${(props) => (props.collapsed ? "60px" : "280px")};
   height: 100%;
   overflow: auto;
-  color: ${(props) => props.background || props.theme.colors.text};
+  color: ${(props) => props.theme.colors.text};
   font-size: 20px;
 `;
+
 type SidebarLinkProps = {
   background?: string;
   color?: string;
 };
+
 const SidebarLink = styled.li<SidebarLinkProps>`
   display: flex;
   align-items: center;
@@ -51,68 +55,72 @@ const SidebarLink = styled.li<SidebarLinkProps>`
     margin: 0 0 0 20px;
   }
 `;
-export default function SideBar({ collapsed }, props) {
+
+export default function SideBar(props) {
+  const hamburger = useRecoilValue(hamburgerState);
   return (
-    <SideBarStyles {...props}>
+    <SideBarStyles {...props} collapsed={hamburger}>
       <aside>
-        <Flex direction="column" margin="40px 0 0 0">
+        <Flex direction="column" margin="10px 0 0 0">
           <Link passHref href={"/employees/profile"}>
             <SidebarLink>
               <FaRegUserCircle size="25" />
-              {collapsed ? "" : <span>Me</span>}
+              {!hamburger && <span>Me</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/"}>
             <SidebarLink>
-              <FaHome size="25" />{collapsed ? "" : 
-              <span>Main page</span>}
+              <FaHome size="25" />
+              {!hamburger && <span>Main page</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/tasks"}>
             <SidebarLink>
-              <FaRegCheckCircle size="25" />{collapsed ? "" : 
-              <span>Tasks</span>}
+              <FaRegCheckCircle size="25" />
+              {!hamburger && <span>Tasks</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/time-tracker"}>
             <SidebarLink>
-              <FaCalendarCheck size="25" />{collapsed ? "" : 
-              <span>Time tracker</span>}
+              <FaCalendarCheck size="25" />
+              {!hamburger && <span>Time tracker</span>}
             </SidebarLink>
           </Link>
         </Flex>
-        <UserTitle size="16px" margin="40px 0 15px 6px">
-          Company
-        </UserTitle>
+        {!hamburger && (
+          <UserTitle size="16px" margin="40px 0 15px 6px">
+            Company
+          </UserTitle>
+        )}
         <Flex direction="column">
           <Link passHref href={"/calendar"}>
             <SidebarLink>
-              <FaRegCalendar size="25" />{collapsed ? "" : 
-              <span>Calendar</span>}
+              <FaRegCalendar size="25" />
+              {!hamburger && <span>Calendar</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/projects"}>
             <SidebarLink>
-              <FaListOl size="25" />{collapsed ? "" : 
-              <span>Projects</span>}
+              <FaListOl size="25" />
+              {!hamburger && <span>Projects</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/employees"}>
             <SidebarLink>
-              <FaAddressBook size="25" />{collapsed ? "" : 
-              <span>Employees</span>}
+              <FaAddressBook size="25" />
+              {!hamburger && <span>Employees</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/knowledge"}>
             <SidebarLink>
-              <FaBook size="25" />{collapsed ? "" : 
-              <span>Knowledge base</span>}
+              <FaBook size="25" />
+              {!hamburger && <span>Knowledge base</span>}
             </SidebarLink>
           </Link>
           <Link passHref href={"/reports"}>
             <SidebarLink>
-              <FaRegChartBar size="25" />{collapsed ? "" : 
-              <span>Reports</span>}
+              <FaRegChartBar size="25" />
+              {!hamburger && <span>Reports</span>}
             </SidebarLink>
           </Link>
         </Flex>

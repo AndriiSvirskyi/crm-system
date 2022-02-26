@@ -7,7 +7,7 @@ import {
 } from "components/User/UserForm";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import MainLayout from "../Layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
 import { SignUpModal } from "components/Modal/SignUpModal";
 import { Button } from "components/Button";
@@ -17,13 +17,14 @@ export default function Employee({ users }) {
   const [allEmployees, setAllEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const currentUser = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const currentUser =
+    typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
 
   useEffect(() => {
     setAllEmployees(Object.values(users));
     setFilteredEmployees(Object.values(users));
-    setUserRole(JSON.parse(currentUser).role)
+    setUserRole(JSON.parse(currentUser).role);
   }, []);
 
   return (
@@ -53,7 +54,7 @@ export default function Employee({ users }) {
           ))}
         </Flex>
       </UserWindow>
-      {userRole === "admin" ? (
+      {userRole === "admin" && (
         <>
           <Button
             position="fixed"
@@ -66,8 +67,6 @@ export default function Employee({ users }) {
           </Button>
           <SignUpModal users={users} display={showModal ? "initial" : "none"} />
         </>
-      ) : (
-        ""
       )}
     </MainLayout>
   );

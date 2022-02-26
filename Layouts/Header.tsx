@@ -11,30 +11,39 @@ import { CgAddR } from "react-icons/cg";
 import { VscAccount } from "react-icons/vsc";
 import { FiAlignJustify } from "react-icons/fi";
 
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { hamburgerState } from "state/atoms";
+
 type PropsHeader = {
   background?: string;
 };
+
 const HeaderStyles = styled.div<PropsHeader>`
   position: fixed;
   left: 0;
+  z-index: 1;
   width: 100%;
   height: 70px;
   background: ${(props) => props.background || props.theme.colors.background};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
 `;
 
-export default function Header({ collapsed, setCollapsed }) {
+export default function Header() {
   const [bellModalVisible, setBellModalVisible] = useState(false);
   const openCloseModalBells = () => {
     setBellModalVisible(!bellModalVisible);
   };
+  const hamburger = useRecoilValue(hamburgerState);
+  const setHamburger = useSetRecoilState(hamburgerState);
+  console.log("hamburger", hamburger);
   return (
     <HeaderStyles>
       <Flex>
         <Flex width="350px" padding="10px 5px 0 15px">
           <ButtonStyled
             onClick={() => {
-              setCollapsed(!collapsed);
+              // setCollapsed(!collapsed);
+              setHamburger((oldHamburger) => !oldHamburger);
             }}
             height="50px"
           >
