@@ -7,7 +7,7 @@ import {
 } from "components/User/UserForm";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import MainLayout from "Layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
 import { SignUpModal } from "components/Modal/SignUpModal";
 import { Button } from "components/Button";
