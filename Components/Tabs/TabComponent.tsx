@@ -9,11 +9,10 @@ type Tab = {
 };
 
 const TabsStyled = styled.div`
-    background: ${(props) => props.color || props.theme.colors.primary}
-    border-radius: 8px;
-    font-size: 16px;
-    user-select: none;
-    cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  user-select: none;
+  cursor: pointer;
 `;
 const TabsContent = styled.div`
   width: 100%;
@@ -30,8 +29,8 @@ export const TabComponent = (props) => {
       {props.array.map((tab) => {
         return (
           <ButtonStyled
-            width='160px'
-            height='60px'
+            width="160px"
+            height="60px"
             margin="10px"
             background={
               props.state === tab.toLocaleLowerCase() ? "#9C9C9C" : "#D0D0D0"

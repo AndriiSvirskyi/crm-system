@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import type { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
 html{
@@ -18,25 +19,28 @@ body{
     font-family: 'Roboto', sans-serif;
   }
 `;
+
 const theme = {
   colors: {
-    text:'#000000',
-    background:'#FFFFFF',
-    primary:'#D0D0D0',
-    secondary: '#9C9C9C'
+    text: "#000000",
+    background: "#FFFFFF",
+    primary: "#D0D0D0",
+    secondary: "#9C9C9C",
   },
   media: {
-    phone: '(max-width:425px)',
-    tablet: '(max-width:768px) and (min-width: 425px)',
-  }
-}
+    phone: "(max-width:425px)",
+    tablet: "(max-width:768px) and (min-width: 425px)",
+  },
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <RecoilRoot>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

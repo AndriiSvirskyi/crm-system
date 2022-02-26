@@ -1,22 +1,31 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { useEffect, useMemo, useState } from "react";
-import { NextPage, NextApiResponse } from "next";
 import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { ErrorText } from "components/form/ErrorText";
-
 import { useRouter } from "next/router";
 
+const SignUpAnimation = keyframes`
+  from {
+    left: -100px;
+  }
+
+  to {
+    left: 50%;
+  }
+`
 const SignUpPage = styled.div`
-  display: flex;
-  align-items: center;
-  height: 100vh;
+  display: ${(props: {display: string}) => props.display};
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ${SignUpAnimation}  0.6s ease-in-out ;
 `;
 const Fullname = styled.div`
   width: 102%;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 `;
 const RoleContainer = styled.div`
@@ -34,22 +43,19 @@ const RoleArrow = styled.div`
   height: 40px;
   background: #d0d0d0;
   position: relative;
-  top:-41px;
+  top: -41px;
   left: 96%;
   transform: rotate(180deg);
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-type Users = {
-  users: [];
-};
 
 type Errors = {
   [key: string]: string;
 };
 
-const SignUp= ({ users }) => {
+export const SignUpModal = ({ users, display }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -73,7 +79,7 @@ const SignUp= ({ users }) => {
 
   const getInformation = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    if (users.find(({email})=> email === userEmail)) {
+    if (users.find(({ email }) => email === userEmail)) {
       setErrors({ userExist: "User exists" });
     } else {
       if (userPassword !== checkPassword) {
@@ -82,27 +88,27 @@ const SignUp= ({ users }) => {
         await fetch(`http://localhost:4200/users`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ 
-              id: "",
-              email: userEmail,
-              password: userPassword,
-              name: name,
-              surname: surname,
-              role: role,
-              company: "",
-              department: "",
-              unit: "",
-              team: "",
-              birth: "",
-              gender: "",
-              mobile: phone,
-              username: "",
-              address: "",
-              links: {
-                facebook: "",
-                linkedin: "",
-                twitter: ""
-              }
+          body: JSON.stringify({
+            id: "",
+            email: userEmail,
+            password: userPassword,
+            name: name,
+            surname: surname,
+            role: role,
+            company: "",
+            department: "",
+            unit: "",
+            team: "",
+            birth: "",
+            gender: "",
+            mobile: phone,
+            username: "",
+            address: "",
+            links: {
+              facebook: "",
+              linkedin: "",
+              twitter: "",
+            },
           }),
         });
         setName("");
@@ -122,7 +128,9 @@ const SignUp= ({ users }) => {
       <Input
         outline="none"
         value={userEmail}
-        setValue={(e) => setUserEmail(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setUserEmail(e.target.value)
+        }
         type="email"
         placeholder="Email"
         height="40px"
@@ -137,7 +145,9 @@ const SignUp= ({ users }) => {
       <Input
         outline="none"
         value={name}
-        setValue={(e) => setName(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setName(e.target.value)
+        }
         type="text"
         placeholder="Name"
         height="40px"
@@ -152,7 +162,9 @@ const SignUp= ({ users }) => {
       <Input
         outline="none"
         value={surname}
-        setValue={(e) => setSurname(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setSurname(e.target.value)
+        }
         type="text"
         placeholder="Surname"
         height="40px"
@@ -166,7 +178,9 @@ const SignUp= ({ users }) => {
       <Input
         outline="none"
         value={phone}
-        setValue={(e) => setPhone(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setPhone(e.target.value)
+        }
         type="number"
         placeholder="Phone"
         height="40px"
@@ -180,7 +194,9 @@ const SignUp= ({ users }) => {
       <Input
         outline="none"
         value={role}
-        setValue={(e) => setRole(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setRole(e.target.value)
+        }
         type="text"
         placeholder="Work position"
         height="40px"
@@ -192,9 +208,11 @@ const SignUp= ({ users }) => {
   const PasswordInput: JSX.Element = useMemo(
     () => (
       <Input
-      outline="none"
+        outline="none"
         value={userPassword}
-        setValue={(e) => setUserPassword(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setUserPassword(e.target.value)
+        }
         type="password"
         placeholder="Password"
         height="40px"
@@ -207,9 +225,11 @@ const SignUp= ({ users }) => {
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
       <Input
-      outline="none"
+        outline="none"
         value={checkPassword}
-        setValue={(e) => setCheckPassword(e.target.value)}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setCheckPassword(e.target.value)
+        }
         type="password"
         placeholder="Repeat password"
         height="40px"
@@ -221,7 +241,7 @@ const SignUp= ({ users }) => {
   );
 
   return (
-    <SignUpPage>
+    <SignUpPage display={display}>
       <Form submit={getInformation} content="Create admin account">
         <div>
           <Fullname>
@@ -252,18 +272,10 @@ const SignUp= ({ users }) => {
             {errors?.invalidPassword}
           </ErrorText>
         </div>
-        <Button width="30%" margin=" 0 0 35px 0" height="50px">Create account</Button>
+        <Button width="30%" margin=" 0 0 35px 0" height="50px">
+          Create account
+        </Button>
       </Form>
     </SignUpPage>
   );
 };
-
-SignUp.getInitialProps = async () => {
-  const response = await fetch(`http://localhost:4200/users`);
-  const users: NextApiResponse<Users> = await response.json();
-  return {
-    users,
-  };
-};
-
-export default SignUp;

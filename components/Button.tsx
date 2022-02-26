@@ -4,8 +4,14 @@ type ButtonProps = {
   height?: string;
   width?: string;
   margin?: string;
+  position?: string;
+  right?: string;
+  bottom?: string;
 }
 const ButtonComponent= styled.button<ButtonProps>`
+  position: ${({position}) => position};
+  right: ${({right}) =>  right};
+  bottom: ${({bottom}) =>  bottom};
   padding: 5px 10px;
   user-select: none;
   height: ${({height}) => height};
@@ -22,19 +28,25 @@ const ButtonComponent= styled.button<ButtonProps>`
 `;
 
 type ComponentProps = {
-  children?: string;
+  children?: string | JSX.Element;
   height?: string;
   width?: string;
   margin?: string;
   onClick?: () => void;
+  position?: string;
+  right?: string;
+  bottom?: string;
 }
 
-export const Button = ({ width, children, height, margin, onClick }: ComponentProps) => {
+export const Button = ({ width, children, height, margin, onClick , position, right, bottom }: ComponentProps) => {
   return <ButtonComponent 
     onClick={onClick} 
     height={height} 
     width={width} 
     margin={margin}
+    position={position}
+    right={right}
+    bottom={bottom}
       >
         {children}
       </ButtonComponent>;

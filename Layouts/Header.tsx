@@ -6,58 +6,84 @@ import Modal from "../components/Modal/Modal";
 import { Flex } from "components/User/Flex";
 import { InputComponent } from "components/InputComponent";
 import { UserText } from "components/User/UserForm";
-import { AiFillBell  } from "react-icons/ai";
+import { AiFillBell } from "react-icons/ai";
 import { CgAddR } from "react-icons/cg";
-import { IconContext } from "react-icons";
 import { VscAccount } from "react-icons/vsc";
+import { FiAlignJustify } from "react-icons/fi";
+
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { hamburgerState } from "state/atoms";
 
 type PropsHeader = {
   background?: string;
 };
+
 const HeaderStyles = styled.div<PropsHeader>`
   position: fixed;
-  max-width: 100%;
-  height: 100px;
-  left: 280px;
-  top: 0;
-  right: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 70px;
   background: ${(props) => props.background || props.theme.colors.background};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
 `;
 
-
 export default function Header() {
-
   const [bellModalVisible, setBellModalVisible] = useState(false);
   const openCloseModalBells = () => {
     setBellModalVisible(!bellModalVisible);
   };
+  const hamburger = useRecoilValue(hamburgerState);
+  const setHamburger = useSetRecoilState(hamburgerState);
+  console.log("hamburger", hamburger);
   return (
     <HeaderStyles>
-      <IconContext.Provider value={{color:"#9C9C9C", size:'38px' }}>
-      <Flex justify="end" margin="15px 15px 0 15px">
-        <Link href={`/employees/`} passHref>
-          <Flex right="auto">
-            <ButtonStyled><VscAccount size='60' /></ButtonStyled>
+      <Flex>
+        <Flex width="350px" padding="10px 5px 0 15px">
+          <ButtonStyled
+            onClick={() => {
+              // setCollapsed(!collapsed);
+              setHamburger((oldHamburger) => !oldHamburger);
+            }}
+            height="50px"
+          >
+            <FiAlignJustify size="20" />
+          </ButtonStyled>
+        </Flex>
+        <Flex
+          width="100%"
+          justify="space-between"
+          align-items="center"
+          padding="10px 15px 0 0"
+        >
+          <Link href={`/employees/`} passHref>
+            <ButtonStyled height="50px">
+              <VscAccount size="20" />
+            </ButtonStyled>
+          </Link>
+          <Flex margin="0 10px">
+            <CgAddR size="40" onClick={openCloseModalBells} />
+            <InputComponent
+              type="text"
+              placeholder="Search"
+              width="100%"
+              height="40px"
+              margin="0 30px"
+            />
+            <AiFillBell size="40" onClick={openCloseModalBells} />
           </Flex>
-        </Link>
-          <CgAddR  onClick={openCloseModalBells} />
-        <InputComponent
-          type={"text"}
-          placeholder={"Search"}
-          width="405px"
-          height="60px"
-        ></InputComponent>
-        <AiFillBell  onClick={openCloseModalBells} />
-        <Modal top="90px" visibility={bellModalVisible} close={openCloseModalBells}>
-          <UserText>Нових сповіщень немає!</UserText>
-        </Modal>
-        <Link href={"/employees/profile"} passHref>
-          <ButtonStyled margin="10px">Icon Profille</ButtonStyled>
-        </Link>
+          <Modal
+            top="90px"
+            visibility={bellModalVisible}
+            close={openCloseModalBells}
+          >
+            <UserText>Нових сповіщень немає!</UserText>
+          </Modal>
+          <Link href={"/employees/profile"} passHref>
+            <ButtonStyled>Icon Profille</ButtonStyled>
+          </Link>
+        </Flex>
       </Flex>
-      </IconContext.Provider>
     </HeaderStyles>
   );
 }
- 

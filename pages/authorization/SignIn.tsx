@@ -51,7 +51,7 @@ const SignIn = ({ users }) => {
         <Input
           outline="none"
           value={emailInput}
-          setValue={(e) => setEmailInput(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setEmailInput(e.target.value)}
           type="email"
           placeholder="Email"
           height="50px"
@@ -65,7 +65,7 @@ const SignIn = ({ users }) => {
         <Input
           outline="none"
           value={passwordInput}
-          setValue={(e) => setPasswordInput(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordInput(e.target.value)}
           type="password"
           placeholder="Password"
           height="50px"

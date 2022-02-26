@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
+import { useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 
 export default function MainLayout({ children }) {
   return (
     <>
-      <Header />
-      {children}
+      <Header  />
       <SideBar />
+      {children}
     </>
   );
 }

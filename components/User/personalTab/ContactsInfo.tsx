@@ -46,7 +46,7 @@ export const ContactsInfo = ({ user }) => {
     });
   };
   return (
-    <UserBlockItem>
+    <UserBlockItem margin="1em 0">
       <FlexContainer justify="space-between">
         <UserTitle>Contact</UserTitle>
         <Button
@@ -70,7 +70,7 @@ export const ContactsInfo = ({ user }) => {
         <Input
           id="number"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setMobile(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setMobile(e.target.value)}
           value={mobile}
           type="text"
           background="transparent"
@@ -85,7 +85,7 @@ export const ContactsInfo = ({ user }) => {
         <Input
           id="username"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setUsername(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
           value={username}
           type="text"
           background="transparent"
@@ -100,7 +100,7 @@ export const ContactsInfo = ({ user }) => {
         <Input
           id="address"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e) => setAddress(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)}
           value={address}
           type="text"
           background="transparent"

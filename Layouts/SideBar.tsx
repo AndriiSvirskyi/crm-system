@@ -1,65 +1,127 @@
-import { ButtonStyled } from "components/ButtonStyled";
+import Link from "next/link";
+import styled from "styled-components";
+import {
+  FaHome,
+  FaRegUserCircle,
+  FaRegCheckCircle,
+  FaRegCalendar,
+  FaAddressBook,
+  FaCalendarCheck,
+  FaBook,
+  FaRegChartBar,
+  FaListOl,
+} from "react-icons/fa";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
-import Link from "next/link";
-
-import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { hamburgerState } from "state/atoms";
 
 type PropsSideBar = {
   background: string;
+  collapsed: boolean;
 };
 export const SideBarStyles = styled.div<PropsSideBar>`
   position: fixed;
   left: 0;
   top: 0;
-  margin: 0;
-  background-color: ${(props) =>
-    props.background || props.theme.colors.primary};
-  width: 280px;
+  padding-top: 70px;
+  background-color: ${(props) => props.theme.colors.primary};
+  width: ${(props) => (props.collapsed ? "60px" : "280px")};
   height: 100%;
   overflow: auto;
-  color: ${(props) => props.background || props.theme.colors.text};
+  color: ${(props) => props.theme.colors.text};
   font-size: 20px;
 `;
 
+type SidebarLinkProps = {
+  background?: string;
+  color?: string;
+};
+
+const SidebarLink = styled.li<SidebarLinkProps>`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: ${(props) => props.color || props.theme.colors.text};
+  background: ${(props) => props.background || props.theme.colors.primary};
+  align-self: stretch;
+  &:hover {
+    background: #eeeeee;
+  }
+  span {
+    margin: 0 0 0 20px;
+  }
+`;
+
 export default function SideBar(props) {
+  const hamburger = useRecoilValue(hamburgerState);
   return (
-    <SideBarStyles {...props}>
+    <SideBarStyles {...props} collapsed={hamburger}>
       <aside>
-        <ButtonStyled background="white"> Burger</ButtonStyled>
-        <Flex direction="column" margin="20px 0 0 0">
+        <Flex direction="column" margin="10px 0 0 0">
           <Link passHref href={"/employees/profile"}>
-            <ButtonStyled> Me </ButtonStyled>
+            <SidebarLink>
+              <FaRegUserCircle size="25" />
+              {!hamburger && <span>Me</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/"}>
-            <ButtonStyled> Main page </ButtonStyled>
+            <SidebarLink>
+              <FaHome size="25" />
+              {!hamburger && <span>Main page</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/tasks"}>
-            <ButtonStyled> Tasks </ButtonStyled>
+            <SidebarLink>
+              <FaRegCheckCircle size="25" />
+              {!hamburger && <span>Tasks</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/time-tracker"}>
-            <ButtonStyled> Time tracker </ButtonStyled>
+            <SidebarLink>
+              <FaCalendarCheck size="25" />
+              {!hamburger && <span>Time tracker</span>}
+            </SidebarLink>
           </Link>
         </Flex>
-        <UserTitle size="16px" margin="15px 0 10px 90px">
-          {" "}
-          Company{" "}
-        </UserTitle>
-        <Flex direction="column" content="start">
+        {!hamburger && (
+          <UserTitle size="16px" margin="40px 0 15px 6px">
+            Company
+          </UserTitle>
+        )}
+        <Flex direction="column">
           <Link passHref href={"/calendar"}>
-            <ButtonStyled> Calendar </ButtonStyled>
+            <SidebarLink>
+              <FaRegCalendar size="25" />
+              {!hamburger && <span>Calendar</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/projects"}>
-            <ButtonStyled> Projects </ButtonStyled>
+            <SidebarLink>
+              <FaListOl size="25" />
+              {!hamburger && <span>Projects</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/employees"}>
-            <ButtonStyled> Employees </ButtonStyled>
+            <SidebarLink>
+              <FaAddressBook size="25" />
+              {!hamburger && <span>Employees</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/knowledge"}>
-            <ButtonStyled> Knowledge base </ButtonStyled>
+            <SidebarLink>
+              <FaBook size="25" />
+              {!hamburger && <span>Knowledge base</span>}
+            </SidebarLink>
           </Link>
           <Link passHref href={"/reports"}>
-            <ButtonStyled> Reports </ButtonStyled>
+            <SidebarLink>
+              <FaRegChartBar size="25" />
+              {!hamburger && <span>Reports</span>}
+            </SidebarLink>
           </Link>
         </Flex>
       </aside>
