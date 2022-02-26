@@ -11,7 +11,7 @@ export default function Profile() {
   }, []);
   return (
     <MainLayout>
-      <UserWindow>
+      <UserWindow collapsed>
         <UserTitle size="50px" color="green">
           {user?.name}
         </UserTitle>

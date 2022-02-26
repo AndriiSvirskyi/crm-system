@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { hamburgerState } from "state/atoms";
+import { useRecoilValue } from "recoil";
+
 type PropsUser = {
   padding: string;
   size: string;
@@ -7,8 +10,11 @@ type PropsUser = {
   width: string;
   textAlign?: string;
 };
-export const UserWindow = styled.div`
-  margin: 100px 0 0 280px;
+type UserWindowProps = {
+  collapsed: boolean;
+};
+export const UserWindowContainer = styled.div<UserWindowProps>`
+  margin: 100px 0 0 ${(props) => (props.collapsed ? "60px" : "280px")};
 `;
 export const MainUserInformationMenu = styled.div`
   width: 100%;
@@ -48,4 +54,13 @@ export const UserText = (props) => {
 
 export const UserBlockItem = (props) => {
   return <UserItemMenu {...props}>{props.children}</UserItemMenu>;
+};
+
+export const UserWindow = (props) => {
+  const hamburger = useRecoilValue(hamburgerState);
+  return (
+    <UserWindowContainer collapsed={hamburger}>
+      {props.children}
+    </UserWindowContainer>
+  );
 };
