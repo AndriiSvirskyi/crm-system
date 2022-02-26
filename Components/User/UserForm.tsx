@@ -43,6 +43,7 @@ const UserItemMenu = styled.div<PropsUser>`
   margin: ${(props) => props.margin || "1em"};
   box-sizing: border-box;
   padding: ${(props) => props.padding || "10px"};
+
 `;
 export const UserTitle = (props) => {
   return <Title {...props}>{props.children}</Title>;
