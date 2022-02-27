@@ -33,6 +33,7 @@ const TextInformation = styled.p<PropsUser>`
   font-size: ${(props) => props.size || "20px"};
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
+
 `;
 
 const UserItemMenu = styled.div<PropsUser>`
