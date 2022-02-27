@@ -1,6 +1,8 @@
 import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
 import Tabs from "components/User/TabsUser";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import {
   MainUserInformationMenu,
   UserBlockItem,
@@ -9,12 +11,31 @@ import {
 } from "./UserForm";
 
 export default function UserProfile({ user }) {
+  const currentUser =
+    typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const [userRole, setUserRole] = useState();
+  const router = useRouter();
+
+  useEffect(() => {
+    setUserRole(JSON.parse(currentUser).role);
+  }, [currentUser]);
+
+  const deleteUser = async () => {
+    await fetch(`http://localhost:4200/users/${user.id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    router.push("/employees");
+  };
+
   return (
     <>
       <MainUserInformationMenu>
-        <Flex justify="end" padding="10px" wrap="wrap">
-          <ButtonStyled>Edit Profile</ButtonStyled>
-        </Flex>
+        {userRole === "admin" && (
+          <Flex justify="end" padding="10px" wrap="wrap">
+            <ButtonStyled onClick={() => deleteUser()}>Remove</ButtonStyled>
+          </Flex>
+        )}
         <ButtonStyled margin="10px">Icon Image</ButtonStyled>
         <UserTitle size="37px" margin="0 0 0 5em">
           {user.name} {user.surname}

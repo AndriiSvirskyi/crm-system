@@ -7,9 +7,9 @@ import {
 } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
-import { SignUpModal } from "components/modal/SignUpModal";
+import { SignUpModal } from "components/Modal/SignUpModal";
 import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
