@@ -1,21 +1,24 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import Modal from "components/modal/Modal";
+import Modal from "components/Modal/Modal";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";
-import { ImTree } from "react-icons/im";
 import { FaBars, FaThList } from "react-icons/fa";
-import { ImAddressBook } from "react-icons/im";
+import { ImAddressBook, ImTree } from "react-icons/im";
 import { HiUserGroup } from "react-icons/hi";
 import { InputComponent } from "components/InputComponent";
-export default function InputFilter({ allEmployees, setFilteredEmployees }) {
+
+export default function InputFilter({
+  allEmployees,
+  setFilteredEmployees,
+  toProjects,
+  toEmployees,
+  switchToProjects,
+  switchToEmployees,
+  setSearchProject,
+}) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [filters, setFilters] = useState<any>({});
-  const icons = {
-    1: <ImAddressBook />,
-    2: <HiUserGroup />,
-    3: <ImTree />,
-  };
   const inputs = {
     role: {
       title: "role",
@@ -51,6 +54,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       dataList: { Andriy: "Andriy", NeAndriy: "NeAndriy" },
     },
   };
+
   const setFilterValues = (e, type) => {
     const { value } = e.target;
     if (!value) {
@@ -59,6 +63,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
     }
     setFilters({ ...filters, [type]: value });
   };
+
   useEffect(() => {
     const filterKeys = Object.keys(filters);
     setFilteredEmployees(
@@ -76,93 +81,126 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       })
     );
   }, [filters]);
+
   const openCloseFilterModal = () => {
     setFilterModalVisible(!filterModalVisible);
   };
+
   return (
     <>
       <Flex justify="space-between" margin="">
-        <UserTitle size="40px">Список співробітників</UserTitle>
+        <UserTitle size="40px">
+          {switchToProjects && "Teams"}
+          {switchToEmployees && "Directory"}
+        </UserTitle>
         <Flex margin="50px 20px 0 0">
-          {Object.values(icons).map((tab,i) => {
-            return (
-              <ButtonStyled
-                width="100px"
-                height="40px"
-                background="#9C9C9C"
-                key={i}
-                onClick={() => {}}
-              >
-                {tab}
-              </ButtonStyled>
-            );
-          })}
+          <ButtonStyled
+            width="100px"
+            height="40px"
+            margin="5px"
+            background="#9C9C9C"
+            onClick={() => toEmployees()}
+          >
+            <ImAddressBook />
+          </ButtonStyled>
+          <ButtonStyled
+            width="100px"
+            height="40px"
+            margin="5px"
+            background="#9C9C9C"
+            onClick={() => toProjects()}
+          >
+            <HiUserGroup />
+          </ButtonStyled>
+          <ButtonStyled
+            width="100px"
+            height="40px"
+            margin="5px"
+            background="#9C9C9C"
+          >
+            <ImTree />
+          </ButtonStyled>
         </Flex>
       </Flex>
-      <Flex justify="space-between" margin="20px">
-        <Flex>
+      {switchToEmployees && (
+        <>
+          <Flex justify="space-between" margin="20px">
+            <Flex>
+              <InputComponent
+                width="405px"
+                height="60px"
+                value={filters.surname}
+                placeholder="Search"
+                type="text"
+                onChange={(e) => {
+                  setFilterValues(e, "surname");
+                }}
+              />
+              <ButtonStyled
+                margin=" 0 0 0 10px"
+                height="60px"
+                width="120px"
+                onClick={openCloseFilterModal}
+              >
+                Filter
+              </ButtonStyled>
+            </Flex>
+            <Flex margin="10px">
+              <ButtonStyled margin="5px">
+                <FaBars size="2em" />
+              </ButtonStyled>
+              <ButtonStyled margin="5px">
+                <FaThList size="2em" />
+              </ButtonStyled>
+            </Flex>
+          </Flex>
+          <Modal
+            visibility={filterModalVisible}
+            right="48%"
+            top="29%"
+            close={openCloseFilterModal}
+          >
+            {Object.values(inputs).map((input) => {
+              return (
+                <Flex
+                  key={input.title + input.title}
+                  content="space-around"
+                  width="100%"
+                >
+                  <InputComponent
+                    value={filters[input.title]}
+                    onChange={(e) => {
+                      setFilterValues(e, input.title);
+                    }}
+                    margin="20px"
+                    type="text"
+                    placeholder={input.title}
+                    height="40px"
+                    width="500px"
+                    list={input.title}
+                  />
+                  <datalist id={input.title}>
+                    {Object.values(input.dataList).map((position) => (
+                      <option key={position} value={position} />
+                    ))}
+                  </datalist>
+                </Flex>
+              );
+            })}
+          </Modal>
+        </>
+      )}
+      {switchToProjects && (
+        <Flex margin="20px">
           <InputComponent
             width="405px"
             height="60px"
-            value={filters.name}
             placeholder="Search"
-            type="text"
-            onChange={(e) => {
-              setFilterValues(e, "name");
-            }}
+            type="search"
+            onChange={(e) => setSearchProject(e.target.value)}
           />
-          <ButtonStyled
-            margin=" 0 0 0 10px"
-            height="60px"
-            width="120px"
-            onClick={openCloseFilterModal}
-          >
-            Filter
-          </ButtonStyled>
         </Flex>
-        <Flex margin="10px">
-          <ButtonStyled>
-            <FaBars size="2em" />
-          </ButtonStyled>
-          <ButtonStyled>
-            <FaThList size="2em" />
-          </ButtonStyled>
-        </Flex>
-      </Flex>
-      <Modal
-        visibility={filterModalVisible}
-        right="48%"
-        top="29%"
-        close={openCloseFilterModal}
-      >
-        {Object.values(inputs).map((input) => {
-          return (
-            <Flex
-              key={input.title + input.title}
-              content="space-around"
-              width="100%"
-            >
-              <InputComponent
-                value={filters[input.title]}
-                onChange={(e) => {
-                  setFilterValues(e, input.title);
-                }}
-                margin="20px"
-                type="text"
-                placeholder={input.title}
-                height="40px"
-                width="500px"
-                list={input.title}
-              />
-              <datalist id={input.title}>
-                {Object.values(input.dataList).map((position) => (
-                  <option key={position} value={position} />
-                ))}
-              </datalist>
-            </Flex>
-          );
-        })}
-      </Modal>
+      )}
     </>
   );
 }

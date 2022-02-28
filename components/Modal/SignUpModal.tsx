@@ -105,6 +105,7 @@ export const SignUpModal = ({ users, display }) => {
             surname: surname,
             role: role,
             startDate: startDate,
+            project: "",
             company: "",
             department: "",
             unit: "",

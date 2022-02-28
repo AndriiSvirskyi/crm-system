@@ -31,6 +31,7 @@ export const PersonalInfo = ({ user }) => {
         name: name,
         surname: surname,
         role: user.role,
+        project: user.project,
         company: user.company,
         department: user.department,
         unit: user.unit,

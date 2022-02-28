@@ -39,6 +39,15 @@ export default function Employee() {
     setUserRole(JSON.parse(currentUser).role);
   }, []);
 
+  const projects = users.reduce((acc, cur) => {
+    if (acc[cur.project]) {
+      acc[cur.project].push(cur.name + " " + cur.surname);
+    } else {
+      acc[cur.project] = [cur.name + " " + cur.surname];
+    }
+    return acc;
+  }, {});
+
   return (
     <MainLayout>
       <UserWindow>
@@ -70,20 +79,6 @@ export default function Employee() {
           <>loading</>
         )}
       </UserWindow>
-      {userRole === "admin" && (
-        <>
-          <Button
-            position="fixed"
-            right="0"
-            bottom="0"
-            margin="0 20px 20px 0"
-            onClick={() => setShowModal(!showModal)}
-          >
-            <FaUserPlus size={30}></FaUserPlus>
-          </Button>
-          <SignUpModal users={users} display={showModal ? "initial" : "none"} />
-        </>
-      )}
     </MainLayout>
   );
 }

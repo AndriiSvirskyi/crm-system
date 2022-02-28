@@ -40,6 +40,7 @@ export const SocialInfo = ({ user }) => {
         name: user.name,
         surname: user.surname,
         role: user.role,
+        project: user.project,
         company: user.company,
         department: user.department,
         unit: user.unit,
