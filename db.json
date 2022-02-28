@@ -43,12 +43,12 @@
           },
           {
             "id": "2",
-            "type": "Hospital",
+            "type": "Paid",
             "count": "9",
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "reject" },
               { "name": "Andrii", "status": "accept" },
               { "name": "Andrii", "status": "accept" },
               { "name": "Anastasia", "status": "reject" }
@@ -61,10 +61,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "pending" },
               { "name": "Anastasia", "status": "reject" },
               { "name": "Anastasia", "status": "reject" },
-              { "name": "Anastasia", "status": "reject" }
+              { "name": "Anastasia", "status": "accept" }
             ]
           }
         ],

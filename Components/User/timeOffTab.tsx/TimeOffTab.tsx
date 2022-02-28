@@ -4,7 +4,7 @@ import { Flex } from "../Flex";
 import { UserBlockItem, UserText, UserTitle } from "../UserForm";
 import Select from "./Select";
 import { IoAirplane, IoMedicalSharp, IoBagAdd } from "react-icons/io5";
-import { BiChevronDownCircle, BiUser } from "react-icons/bi";
+import { BiChevronDownCircle, BiUser, BiHourglass } from "react-icons/bi";
 
 export default function TimeOffTab({ user }) {
   const requests = user.timeoff.requests;
@@ -70,6 +70,24 @@ export default function TimeOffTab({ user }) {
         </Flex>
         <Flex direction="column">
           {filteredRequests.map(({ id, type, reviewers, count }) => {
+            let accepted = [];
+            let rejected = [];
+            let pending = [];
+
+            for (let i = 0; i < reviewers.length; i++) {
+              if (reviewers[i].status === "accept") {
+                accepted.push(reviewers[i]);
+                continue;
+              }
+              if (reviewers[i].status === "reject") {
+                rejected.push(reviewers[i]);
+                continue;
+              }
+              if (reviewers[i].status === "pending") {
+                pending.push(reviewers[i]);
+                continue;
+              }
+            }
             return (
               <Flex
                 key={id + reviewers.name}
@@ -88,16 +106,16 @@ export default function TimeOffTab({ user }) {
                   <UserText size="10px">1.01 2000 - 11.02.2022</UserText>
                 </Flex>
                 <UserText>{count} Days</UserText>
-                <Flex>
-                  <UserText>Status</UserText>
-                  {reviewers.map(({ status }) => {
-                    let countOfAccept = 0;
-                    if (status === "accept") {
-                      countOfAccept++;
-                      return <BiChevronDownCircle size={25} color="green" />;
-                    }
-                    return <BiUser key={status} size={25} />;
-                  })}
+                  {accepted.length === 4 ? (
+                    <UserText color="green" background='#0aff5363' radius='8px' padding='5px'>Accepted</UserText>
+                  ) : (
+                    <UserText color="grey" background='#a5a4a47c' radius='8px' padding='5px' >Open</UserText>
+                  )}
+                    <Flex margin='20px 0 0 0'>
+                  {accepted.length >= 1 && (accepted.map((accept,i)=> <BiChevronDownCircle key={id} size={25} color="green" />))}
+                  {rejected.length >= 1 && (rejected.map((accept,i)=> <BiUser key={id} size={25} color="red" />))}
+                  {pending.length >= 1 && (pending.map((accept,i)=> <BiHourglass key={id} size={25} color="yellow" />))}
+                  
                 </Flex>
               </Flex>
             );
@@ -113,7 +131,7 @@ export default function TimeOffTab({ user }) {
             setFilteredState={setFilteredHistory}
           />
         </Flex>
-        <Flex justify='space-around'>
+        <Flex justify="space-around">
           <UserText>Total Used</UserText>
           <UserText>Total Adjustments</UserText>
           <UserText>Displaying</UserText>
