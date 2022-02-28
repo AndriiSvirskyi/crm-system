@@ -112,9 +112,9 @@ export default function TimeOffTab({ user }) {
                     <UserText color="grey" background='#a5a4a47c' radius='8px' padding='5px' >Open</UserText>
                   )}
                     <Flex margin='20px 0 0 0'>
-                  {accepted.length >= 1 && (accepted.map((accept,i)=> <BiChevronDownCircle key={id} size={25} color="green" />))}
-                  {rejected.length >= 1 && (rejected.map((accept,i)=> <BiUser key={id} size={25} color="red" />))}
-                  {pending.length >= 1 && (pending.map((accept,i)=> <BiHourglass key={id} size={25} color="yellow" />))}
+                  {accepted.length >= 1 && (accepted.map((accept)=> <BiChevronDownCircle key={accept.name} size={25} color="green" />))}
+                  {rejected.length >= 1 && (rejected.map((accept)=> <BiUser key={accept.name} size={25} color="red" />))}
+                  {pending.length >= 1 && (pending.map((accept)=> <BiHourglass key={accept.name} size={25} color="yellow" />))}
                   
                 </Flex>
               </Flex>
