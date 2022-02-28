@@ -13,6 +13,8 @@ type FlexStyle = {
   right: string;
   left: string;
   height: string;
+  borderTop?:string;
+  borderBottom?:string;
 };
 const StyledFlex = styled.div<FlexStyle>`
   display: flex;
@@ -27,6 +29,9 @@ const StyledFlex = styled.div<FlexStyle>`
   margin-right: ${(props) => props.right || ""};
   margin-left: ${(props) => props.left || ""};
   height: ${(props) => props.height || ""};
+  border-top:${props => props.borderTop || ''};
+  border-bottom: ${(props)=> props.borderBottom || ''};
+
 `;
 
 export const Flex = (props) => {

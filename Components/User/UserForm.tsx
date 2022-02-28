@@ -9,6 +9,9 @@ type PropsUser = {
   margin: string;
   width: string;
   textAlign?: string;
+  background?:string;
+  radius?:string;
+
 };
 type UserWindowProps = {
   collapsed: boolean;
@@ -28,11 +31,12 @@ const Title = styled.h3<PropsUser>`
   text-align: ${(props) => props.textAlign || ""};
 `;
 const TextInformation = styled.p<PropsUser>`
-  padding: 10px;
   padding: ${(props) => props.padding || ""};
   font-size: ${(props) => props.size || "20px"};
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
+  background: ${(props)=> props.background || ""};
+  border-radius: ${props => props.radius || ''};
 `;
 
 const UserItemMenu = styled.div<PropsUser>`

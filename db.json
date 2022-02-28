@@ -20,6 +20,74 @@
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
         "twitter": "https://twitter.com/?lang=en"
+      },
+      "timeoff": {
+        "type": {
+          "vacation": { "days": "25.0" },
+          "paid": { "days": "30.0" },
+          "hospital": { "days": "10.0" }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Vitya", "status": "accept" }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              { "name": "Andrii", "status": "reject" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Anastasia", "status": "reject" }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              { "name": "Andrii", "status": "pending" },
+              { "name": "Anastasia", "status": "reject" },
+              { "name": "Anastasia", "status": "reject" },
+              { "name": "Anastasia", "status": "accept" }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -153,6 +221,44 @@
         "linkedin": "",
         "twitter": ""
       }
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "name": "Bench",
+      "teamlead": "andrii.s@4irelabs.com",
+      "members": "2"
+    },
+    {
+      "id": "2",
+      "name": "Admin",
+      "teamlead": "andrii.s@4irelabs.com",
+      "members": "2"
+    },
+    {
+      "id": "3",
+      "name": "Agendo",
+      "teamlead": "andrii.s@4irelabs.com",
+      "members": "2"
+    },
+    {
+      "id": "4",
+      "name": "Arterra",
+      "teamlead": "andrii.s@4irelabs.com",
+      "members": "2"
+    },
+    {
+      "id": "5",
+      "name": "Bancambios",
+      "teamlead": "andrii.s@4irelabs.com",
+      "members": "2"
+    },
+    {
+      "id": "6",
+      "name": "Blackchain",
+      "teamlead": "andrii.s@4irelabs.com",
+      "members": "2"
     }
   ]
 }
