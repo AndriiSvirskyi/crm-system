@@ -48,10 +48,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
+              { "name": "Andrii", "status": "accept" },
               { "name": "Andrii", "status": "reject" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Anastasia", "status": "reject" }
+              { "name": "Andrii", "status": "inProcess" },
+              { "name": "Anastasia", "status": "pending" }
             ]
           },
           {
@@ -61,10 +61,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "pending" },
-              { "name": "Anastasia", "status": "reject" },
-              { "name": "Anastasia", "status": "reject" },
-              { "name": "Anastasia", "status": "accept" }
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Anastasia", "status": "accept" },
+              { "name": "Anastasia", "status": "accept" },
+              { "name": "Anastasia", "status": "inProcess" }
             ]
           }
         ],
