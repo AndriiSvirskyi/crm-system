@@ -7,9 +7,14 @@
       "name": "Andrii",
       "surname": "Svirskyi",
       "role": "admin",
+      "startDate": "2022-03-01",
+      "typeOfWork": "Fulltime",
+      "probationPolicy": "Trial (2 months)",
       "company": "4ire",
+      "position": "Head Of Web Department",
       "department": "Tech",
       "unit": "Frontend",
+      "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "24 Mar",
       "gender": "man",
@@ -23,9 +28,15 @@
       },
       "timeoff": {
         "type": {
-          "vacation": { "days": "25.0" },
-          "paid": { "days": "30.0" },
-          "hospital": { "days": "10.0" }
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
         },
         "requests": [
           {
@@ -35,10 +46,22 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Vitya", "status": "accept" }
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
             ]
           },
           {
@@ -48,10 +71,22 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "reject" },
-              { "name": "Andrii", "status": "inProcess" },
-              { "name": "Anastasia", "status": "pending" }
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
             ]
           },
           {
@@ -61,10 +96,22 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Anastasia", "status": "accept" },
-              { "name": "Anastasia", "status": "accept" },
-              { "name": "Anastasia", "status": "inProcess" }
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              }
             ]
           }
         ],
@@ -214,6 +261,29 @@
       "birth": "",
       "gender": "",
       "mobile": "01010110",
+      "username": "",
+      "address": "",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "bpK5IqX",
+      "email": "petravka@petronich.com",
+      "password": "123",
+      "name": "Petro",
+      "surname": "Petrovich",
+      "role": "manager",
+      "startDate": "2022-03-01",
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "",
+      "gender": "",
+      "mobile": "1233451231",
       "username": "",
       "address": "",
       "links": {
