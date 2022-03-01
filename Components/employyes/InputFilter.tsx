@@ -1,5 +1,5 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import Modal from "components/Modal/Modal";
+import Modal from "components/modal/Modal";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";

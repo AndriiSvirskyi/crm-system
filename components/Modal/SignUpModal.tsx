@@ -5,6 +5,8 @@ import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { ErrorText } from "components/form/ErrorText";
 import { useRouter } from "next/router";
+import { UserText } from "components/User/UserForm";
+import moment from "moment";
 
 const SignUpAnimation = keyframes`
   from {
@@ -14,14 +16,14 @@ const SignUpAnimation = keyframes`
   to {
     left: 50%;
   }
-`
+`;
 const SignUpPage = styled.div`
-  display: ${(props: {display: string}) => props.display};
+  display: ${(props: { display: string }) => props.display};
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: ${SignUpAnimation}  0.6s ease-in-out ;
+  animation: ${SignUpAnimation} 0.6s ease-in-out;
 `;
 const Fullname = styled.div`
   width: 102%;
@@ -50,6 +52,11 @@ const RoleArrow = styled.div`
   justify-content: center;
   align-items: center;
 `;
+const StartDateContainer = styled.div`
+  width: 102%;
+  display: flex;
+  justify-content: space-between;
+`;
 
 type Errors = {
   [key: string]: string;
@@ -61,6 +68,7 @@ export const SignUpModal = ({ users, display }) => {
   const [userEmail, setUserEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
+  const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [errors, setErrors] = useState<Errors | null>(null);
@@ -95,6 +103,7 @@ export const SignUpModal = ({ users, display }) => {
             name: name,
             surname: surname,
             role: role,
+            startDate: startDate,
             company: "",
             department: "",
             unit: "",
@@ -116,6 +125,7 @@ export const SignUpModal = ({ users, display }) => {
         setUserEmail("");
         setPhone("");
         setRole("");
+        setStartDate(moment().format("YYYY-MM-DD"));
         setUserPassword("");
         setCheckPassword("");
         setErrors(null);
@@ -205,6 +215,23 @@ export const SignUpModal = ({ users, display }) => {
     ),
     [role]
   );
+  const StartDateInput: JSX.Element = useMemo(
+    () => (
+      <Input
+        outline="none"
+        value={startDate}
+        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setStartDate(e.target.value)
+        }
+        type="date"
+        width="60%"
+        height="40px"
+        placeholder="222"
+        marginBottom="25px"
+      />
+    ),
+    [startDate]
+  );
   const PasswordInput: JSX.Element = useMemo(
     () => (
       <Input
@@ -260,6 +287,11 @@ export const SignUpModal = ({ users, display }) => {
               <span>▲</span>
             </RoleArrow>
           </RoleContainer>
+          <StartDateContainer>
+            <UserText size="15px">Start work since: </UserText>
+            {StartDateInput}
+          </StartDateContainer>
+
           {EmailInput}
           <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>
             {errors?.userExist}

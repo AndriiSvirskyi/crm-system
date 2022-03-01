@@ -5,12 +5,11 @@ import {
   UserTitle,
   UserWindow,
 } from "components/User/UserForm";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "Layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
-import { SignUpModal } from "components/Modal/SignUpModal";
+import { SignUpModal } from "components/modal/SignUpModal";
 import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";

@@ -12,7 +12,6 @@ const TabsStyled = styled.div`
   border-radius: 8px;
   font-size: 16px;
   user-select: none;
-  cursor: pointer;
 `;
 const TabsContent = styled.div`
   width: 100%;
