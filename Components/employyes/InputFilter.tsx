@@ -84,13 +84,13 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       <Flex justify="space-between" margin="">
         <UserTitle size="40px">Список співробітників</UserTitle>
         <Flex margin="50px 20px 0 0">
-          {Object.values(icons).map((tab) => {
+          {Object.values(icons).map((tab,i) => {
             return (
               <ButtonStyled
                 width="100px"
                 height="40px"
                 background="#9C9C9C"
-                key={tab}
+                key={i}
                 onClick={() => {}}
               >
                 {tab}

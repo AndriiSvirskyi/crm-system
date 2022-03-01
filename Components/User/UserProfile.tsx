@@ -6,7 +6,6 @@ import {
   UserBlockItem,
   UserText,
   UserTitle,
-  UserWindow,
 } from "./UserForm";
 
 export default function UserProfile({ user }) {

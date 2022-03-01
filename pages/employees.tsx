@@ -8,12 +8,13 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
 import { SignUpModal } from "components/Modal/SignUpModal";
 import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
+import router from "next/router";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -38,7 +39,6 @@ export default function Employee() {
     }
     setUserRole(JSON.parse(currentUser).role);
   }, []);
-  console.log(filteredEmployees);
 
   return (
     <MainLayout>
@@ -51,20 +51,20 @@ export default function Employee() {
         {users ? (
           <Flex justify="start" wrap="wrap">
             {filteredEmployees.map((user) => (
-              <Link
-                href={`/employees/${user.id}`}
-                key={user.id + user.name}
-                passHref
+              <UserBlockItem
+                width="31%"
+                key={user.id}
+                onClick={() => {
+                  router.push(`/employees/${user.id}`);
+                }}
               >
-                <UserBlockItem width="31%">
-                  <Flex>
-                    <UserTitle>{user.name}</UserTitle>
-                  </Flex>
-                  <UserText>
-                    {user.role} в {user.address}
-                  </UserText>
-                </UserBlockItem>
-              </Link>
+                <Flex>
+                  <UserTitle>{user.name}</UserTitle>
+                </Flex>
+                <UserText>
+                  {user.role} в {user.address}
+                </UserText>
+              </UserBlockItem>
             ))}
           </Flex>
         ) : (

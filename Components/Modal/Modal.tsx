@@ -3,21 +3,21 @@ import { VscChromeClose } from "react-icons/vsc";
 import { ButtonStyled } from "components/ButtonStyled";
 
 type ModalProps = {
-top: string;
-right: string;
-left: string;
-bottom: string;
-visibility:boolean;
-}
+  top: string;
+  right: string;
+  left: string;
+  bottom: string;
+  visibility: string;
+};
 
 const ModalContainer = styled.div<ModalProps>`
   position: fixed;
   width: 25%;
   min-height: 50%;
-  top: ${props => props.top || ''};
-  right: ${({right}) => right || ''};
-  left:${({left}) => left || ''};
-  bottom:${({bottom}) => bottom || ''};
+  top: ${(props) => props.top || ""};
+  right: ${({ right }) => right || ""};
+  left: ${({ left }) => left || ""};
+  bottom: ${({ bottom }) => bottom || ""};
   padding: 10px;
   text-align: center;
   font-weight: 500;
@@ -26,15 +26,19 @@ const ModalContainer = styled.div<ModalProps>`
   background-color: #ffffff;
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  visibility: ${ ({visibility}) => visibility ?'visible' : 'hidden'};
- 
+  visibility: ${({ visibility }) => visibility};
 `;
 
 export default function Modal(props) {
-  return <ModalContainer {...props} visibility={props.visibility}>
-    <ButtonStyled margin="0 0 0 80%" onClick={props.close}>
-            <VscChromeClose />
-          </ButtonStyled>
-    {props.children}
-    </ModalContainer>;
+  return (
+    <ModalContainer
+      {...props}
+      visibility={props.visibility ? "visible" : "hidden"}
+    >
+      <ButtonStyled margin="0 0 0 80%" onClick={props.close}>
+        <VscChromeClose />
+      </ButtonStyled>
+      {props.children}
+    </ModalContainer>
+  );
 }

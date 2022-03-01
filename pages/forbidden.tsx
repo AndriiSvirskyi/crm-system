@@ -40,7 +40,7 @@ const Forbidden: NextPage<Users> = ({ users }) => {
         <br />
         Please, for any questions contact the administrator:
       </p>
-      <Link href={`mailto:${admin.email}`}>
+      <Link href={`mailto:${admin.email}`} passHref>
         <a>{admin.email}</a>
       </Link>
     </ForbiddenContainer>

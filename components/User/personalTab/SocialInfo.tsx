@@ -92,7 +92,7 @@ export const SocialInfo = ({ user }) => {
             readonly={false}
           />
         ) : (
-          <Link href={facebook} passHref={true}>
+          <Link href={facebook} passHref>
             <Anchor target="_blank">{facebook}</Anchor>
           </Link>
         )}
@@ -113,7 +113,7 @@ export const SocialInfo = ({ user }) => {
             readonly={false}
           />
         ) : (
-          <Link href={linkedin} passHref={true}>
+          <Link href={linkedin} passHref>
             <Anchor target="_blank">{linkedin}</Anchor>
           </Link>
         )}
@@ -134,7 +134,7 @@ export const SocialInfo = ({ user }) => {
             readonly={false}
           />
         ) : (
-          <Link href={twitter} passHref={true}>
+          <Link href={twitter} passHref>
             <Anchor target="_blank">{twitter}</Anchor>
           </Link>
         )}

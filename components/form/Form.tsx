@@ -45,7 +45,7 @@ export const Form = ({ submit, children, content }) => {
   return (
     <Container>
       <Logo>
-        <Link href="/">
+        <Link href="/" passHref>
           <a>
             <Image src={logo} alt="Logo" />
           </a>

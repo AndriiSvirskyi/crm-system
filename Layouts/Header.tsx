@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState } from "react";
 import { ButtonStyled } from "components/ButtonStyled";
 import styled from "styled-components";
@@ -30,12 +29,11 @@ const HeaderStyles = styled.div<PropsHeader>`
 
 export default function Header() {
   const [bellModalVisible, setBellModalVisible] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const openCloseModalBells = () => {
     setBellModalVisible(!bellModalVisible);
   };
-  const hamburger = useRecoilValue(hamburgerState);
   const setHamburger = useSetRecoilState(hamburgerState);
-  console.log("hamburger", hamburger);
   return (
     <HeaderStyles>
       <Flex>
@@ -56,11 +54,9 @@ export default function Header() {
           align-items="center"
           padding="10px 15px 0 0"
         >
-          <Link href={`/employees/`} passHref>
-            <ButtonStyled height="50px">
-              <VscAccount size="20" />
-            </ButtonStyled>
-          </Link>
+          <ButtonStyled height="50px">
+            <VscAccount size="20" />
+          </ButtonStyled>
           <Flex margin="0 10px">
             <CgAddR size="40" onClick={openCloseModalBells} />
             <InputComponent
@@ -69,6 +65,10 @@ export default function Header() {
               width="100%"
               height="40px"
               margin="0 30px"
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+              }}
             />
             <AiFillBell size="40" onClick={openCloseModalBells} />
           </Flex>
@@ -79,9 +79,7 @@ export default function Header() {
           >
             <UserText>Нових сповіщень немає!</UserText>
           </Modal>
-          <Link href={"/employees/profile"} passHref>
-            <ButtonStyled>Icon Profille</ButtonStyled>
-          </Link>
+          <ButtonStyled>Icon Profille</ButtonStyled>
         </Flex>
       </Flex>
     </HeaderStyles>
