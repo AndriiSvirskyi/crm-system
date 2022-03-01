@@ -70,7 +70,11 @@
             "name": "Andrii",
             "surname": "Svirskyi",
             "role": "admin",
-            "project": "Bench",
+            "project": {
+                "id": "156575",
+                "name": "Bench",
+                "role": "Team Lead"
+            },
             "company": "4ire",
             "department": "Tech",
             "unit": "Frontend",

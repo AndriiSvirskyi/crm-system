@@ -99,12 +99,12 @@ export default function SideBar(props) {
               {!hamburger && <span>Calendar</span>}
             </SidebarLink>
           </Link>
-          {/* <Link passHref href={"/projects"}>
+          <Link passHref href={"/projects"}>
             <SidebarLink>
               <FaListOl size="25" />
               {!hamburger && <span>Projects</span>}
             </SidebarLink>
-          </Link> */}
+          </Link>
           <Link passHref href={"/employees"}>
             <SidebarLink>
               <FaAddressBook size="25" />
