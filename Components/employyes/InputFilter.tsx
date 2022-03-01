@@ -5,7 +5,6 @@ import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { FaBars, FaThList } from "react-icons/fa";
 import { InputComponent } from "components/InputComponent";
-
 export default function InputFilter({ allEmployees, setFilteredEmployees }) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [filters, setFilters] = useState<any>({});
@@ -44,7 +43,6 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       dataList: { Andriy: "Andriy", NeAndriy: "NeAndriy" },
     },
   };
-
   const setFilterValues = (e, type) => {
     const { value } = e.target;
     if (!value) {
@@ -53,7 +51,6 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
     }
     setFilters({ ...filters, [type]: value });
   };
-
   useEffect(() => {
     const filterKeys = Object.keys(filters);
     setFilteredEmployees(
@@ -71,14 +68,12 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       })
     );
   }, [filters]);
-
   const openCloseFilterModal = () => {
     setFilterModalVisible(!filterModalVisible);
   };
-
   return (
     <>
-      <Flex>
+      <Flex justify="space-between" margin="">
         <UserTitle size="40px">Directory</UserTitle>
       </Flex>
       <Flex justify="space-between" margin="20px">
@@ -86,11 +81,11 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
           <InputComponent
             width="405px"
             height="60px"
-            value={filters.surname}
+            value={filters.name}
             placeholder="Search"
             type="text"
             onChange={(e) => {
-              setFilterValues(e, "surname");
+              setFilterValues(e, "name");
             }}
           />
           <ButtonStyled
@@ -103,10 +98,10 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
           </ButtonStyled>
         </Flex>
         <Flex margin="10px">
-          <ButtonStyled margin="5px">
+          <ButtonStyled>
             <FaBars size="2em" />
           </ButtonStyled>
-          <ButtonStyled margin="5px">
+          <ButtonStyled>
             <FaThList size="2em" />
           </ButtonStyled>
         </Flex>

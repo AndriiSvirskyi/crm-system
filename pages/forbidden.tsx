@@ -1,5 +1,8 @@
 import { NextPage } from "next";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { usersState } from "state/atoms";
 import styled from "styled-components";
 
 const ForbiddenContainer = styled.div`
@@ -27,12 +30,30 @@ const ForbiddenContainer = styled.div`
     text-align: center;
   }
 `;
-type Users = {
-  users: object;
-};
 
-const Forbidden: NextPage<Users> = ({ users }) => {
-  const admin = Object.values(users).find((user) => user.role === "admin");
+const Forbidden = () => {
+  const setUsersToRecoil = useSetRecoilState(usersState);
+  const users = useRecoilValue(usersState);
+
+  useEffect(() => {
+    if (!users) {
+      const response = fetch(`http://localhost:4200/users`);
+      response
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setUsersToRecoil(res);
+        });
+    }
+  }, []);
+
+  const admin: { email?: string } = users
+    ? Object.values(users).find(
+        (user: { role?: string }) => user.role === "admin"
+      )
+    : [];
+
   return (
     <ForbiddenContainer>
       <p>

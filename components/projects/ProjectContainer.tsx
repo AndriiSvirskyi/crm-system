@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { MainUserInformationMenu } from "components/User/UserForm";
 import Link from "next/link";
+import { Flex } from "components/User/Flex";
 
 const TableCard = styled.div`
   margin-bottom: 1.25rem;
@@ -18,13 +19,13 @@ const Table = styled.table`
 `;
 const TH = styled.th`
   border-bottom: 1.5px solid rgb(183, 183, 183);
-  padding: 0.425rem 3.25rem;
+  padding: 0.425rem 1.25rem;
   font-weight: 500;
   text-align: inherit;
 `;
 
 const TD = styled.td`
-  padding: 0.75rem 3.25rem;
+  padding: 0.75rem 1.25rem;
   border-top: 1px solid #ddd;
 `;
 const Anchor = styled.span`
@@ -46,11 +47,11 @@ const tHead = (
 );
 export const ProjectContainer = ({ project }) => {
   return (
-    <MainUserInformationMenu>
+    <Flex direction="column" padding="10px">
       <span>
         <Anchor>
           <Link href={"/projects"} passHref>
-            <a>Projects </a>
+            <a>Teams </a>
           </Link>
         </Anchor>
         / {project.name}
@@ -109,6 +110,6 @@ export const ProjectContainer = ({ project }) => {
           </Table>
         </TableCard>
       </div>
-    </MainUserInformationMenu>
+    </Flex>
   );
 };

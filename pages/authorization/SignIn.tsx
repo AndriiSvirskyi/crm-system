@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { NextPage, NextApiResponse } from "next";
 import { Input } from "components/form/Input";
@@ -6,24 +6,39 @@ import { Button } from "components/Button";
 import { Form } from "components/form/Form";
 import { ErrorText } from "components/form/ErrorText";
 import Router from "next/router";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { usersState } from "state/atoms";
 
 const SignInPage = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 100vh;
 `;
 
-type Users = {
-  users: object;
-};
 type Errors = {
   [key: string]: string;
 };
 
-const SignIn = ({ users }) => {
+const SignIn = () => {
   const [emailInput, setEmailInput] = useState<string>("");
   const [passwordInput, setPasswordInput] = useState<string>("");
   const [errors, setErrors] = useState<Errors | null>(null);
+  const setUsersToRecoil = useSetRecoilState(usersState);
+  const users = useRecoilValue(usersState);
+
+  useEffect(() => {
+    if (!users) {
+      const response = fetch(`http://localhost:4200/users`);
+      response
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setUsersToRecoil(res);
+        });
+    }
+  }, []);
 
   const checkUser = (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -51,7 +66,9 @@ const SignIn = ({ users }) => {
         <Input
           outline="none"
           value={emailInput}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setEmailInput(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmailInput(e.target.value)
+          }
           type="email"
           placeholder="Email"
           height="50px"
@@ -65,7 +82,9 @@ const SignIn = ({ users }) => {
         <Input
           outline="none"
           value={passwordInput}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setPasswordInput(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setPasswordInput(e.target.value)
+          }
           type="password"
           placeholder="Password"
           height="50px"
@@ -83,14 +102,6 @@ const SignIn = ({ users }) => {
       </Form>
     </SignInPage>
   );
-};
-
-SignIn.getInitialProps = async () => {
-  const response = await fetch(`http://localhost:4200/users`);
-  const users: NextApiResponse<Users> = await response.json();
-  return {
-    users,
-  };
 };
 
 export default SignIn;

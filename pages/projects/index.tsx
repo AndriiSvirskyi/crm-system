@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { usersState } from "state/atoms";
 import MainLayout from "Layouts/MainLayout";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "components/User/Flex";
@@ -10,9 +12,6 @@ import {
   UserTitle,
   UserWindow,
 } from "components/User/UserForm";
-
-import { useRecoilValue } from "recoil";
-import { usersState } from "state/atoms";
 
 type projectsProps = {
   [key: string]: {
@@ -36,26 +35,44 @@ const Anchor = styled.span`
   }
 `;
 
-const Projects = ({ users }) => {
+const Projects = () => {
+  const setUsersToRecoil = useSetRecoilState(usersState);
+  const users = useRecoilValue(usersState);
   const [searchProject, setSearchProject] = useState("");
-  const projects: projectsProps = users.reduce((acc, cur) => {
-    if (acc[cur.project.name]) {
-      acc[cur.project.name].members.push(cur.name + " " + cur.surname);
-    } else {
-      acc[cur.project.name] = { id: cur.project.id, members: [] };
-      acc[cur.project.name].members.push(cur.name + " " + cur.surname);
+
+  useEffect(() => {
+    if (!users) {
+      const response = fetch(`http://localhost:4200/users`);
+      response
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setUsersToRecoil(res);
+        });
     }
-    if (cur.project.role === "Team Lead") {
-      acc[cur.project.name].lead = cur.name + " " + cur.surname;
-    }
-    return acc;
-  }, {});
+  }, []);
+
+  const projects: projectsProps = users
+    ? users.reduce((acc, cur) => {
+        if (acc[cur.project.name]) {
+          acc[cur.project.name].members.push(cur.name + " " + cur.surname);
+        } else {
+          acc[cur.project.name] = { id: cur.project.id, members: [] };
+          acc[cur.project.name].members.push(cur.name + " " + cur.surname);
+        }
+        if (cur.project.role === "Team Lead") {
+          acc[cur.project.name].lead = cur.name + " " + cur.surname;
+        }
+        return acc;
+      }, {})
+    : [];
 
   return (
     <MainLayout>
       <UserWindow>
-        <Flex justify="space-between" align="center">
-          <UserTitle size="40px">Projects</UserTitle>
+        <Flex justify="left" align="center" margin="0 0 60px 0">
+          <UserTitle size="40px" margin="0 60px 0 0">Teams</UserTitle>
           <InputComponent
             height="50px"
             placeholder="Search team"
@@ -78,7 +95,7 @@ const Projects = ({ users }) => {
                 key={project[1].id}
                 passHref
               >
-                <UserBlockItem key={project} width="350px">
+                <UserBlockItem key={project} width="30%">
                   <UserTitle color="rgb(25, 118, 186)"> {project[0]}</UserTitle>
                   <UserText size="16px" padding="0 10px">
                     Members({project[1].members.length})
@@ -106,13 +123,5 @@ const Projects = ({ users }) => {
     </MainLayout>
   );
 };
-
-export async function getServerSideProps() {
-    const response = await fetch(`http://localhost:4200/users/`);
-    const users = await response.json();
-    return {
-      props: { users },
-    };
-  }
 
 export default Projects;
