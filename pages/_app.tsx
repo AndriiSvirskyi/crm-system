@@ -18,6 +18,10 @@ body{
     align-items: center;
     font-family: 'Roboto', sans-serif;
   }
+  
+#__next{
+  width: 100%;
+}
 `;
 
 const theme = {
