@@ -9,6 +9,7 @@ type Tab = {
 };
 
 const TabsStyled = styled.div`
+width: 100%;
   border-radius: 8px;
   font-size: 16px;
   user-select: none;

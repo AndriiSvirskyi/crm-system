@@ -5,9 +5,9 @@ import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import { Form } from "components/form/Form";
 import { ErrorText } from "components/form/ErrorText";
-import Router from "next/router";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
+import router from "next/router";
 
 const SignInPage = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ const SignIn = () => {
           "user",
           JSON.stringify(users.find(({ email }) => email === emailInput))
         );
-        Router.push("/employees/profile");
+        router.push("/employees/profile");
       }
     } else {
       setErrors({ invalidEmail: "Invalid email" });

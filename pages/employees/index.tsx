@@ -56,10 +56,10 @@ export default function Employee() {
                 }}
               >
                 <Flex>
-                  <UserTitle>{user.name}</UserTitle>
+                  <UserTitle>{user.name} {user.surname}</UserTitle>
                 </Flex>
                 <UserText>
-                  {user.role} в {user.address}
+                  {user.role} in {user.address}
                 </UserText>
               </UserBlockItem>
             ))}
@@ -79,7 +79,7 @@ export default function Employee() {
           >
             <FaUserPlus size={30}></FaUserPlus>
           </Button>
-          <SignUpModal users={users} display={showModal ? "initial" : "none"} />
+          {showModal && <SignUpModal closeModal={() => setShowModal(false)} users={users} />}
         </>
       )}
     </MainLayout>

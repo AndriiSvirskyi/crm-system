@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { MainUserInformationMenu } from "components/User/UserForm";
-import Link from "next/link";
 import { Flex } from "components/User/Flex";
+import router from "next/router";
 
 const TableCard = styled.div`
   margin-bottom: 1.25rem;
@@ -29,6 +28,7 @@ const TD = styled.td`
   border-top: 1px solid #ddd;
 `;
 const Anchor = styled.span`
+cursor: pointer;
   a {
     color: rgb(25, 118, 186);
     text-decoration: none;
@@ -49,10 +49,8 @@ export const ProjectContainer = ({ project }) => {
   return (
     <Flex direction="column" padding="10px">
       <span>
-        <Anchor>
-          <Link href={"/projects"} passHref>
+        <Anchor onClick={() => router.push("/projects")}>
             <a>Teams </a>
-          </Link>
         </Anchor>
         / {project.name}
       </span>
@@ -65,10 +63,8 @@ export const ProjectContainer = ({ project }) => {
             <tbody>
               <tr>
                 <TD>
-                  <Anchor>
-                    <Link href={`/employees/${project.lead.id}`} passHref>
+                  <Anchor onClick={() => router.push(`/employees/${project.lead.id}`)}>
                       <a>{`${project.lead.name} ${project.lead.surname}`}</a>
-                    </Link>
                   </Anchor>
                 </TD>
                 <TD>{project.lead.role}</TD>
@@ -92,10 +88,8 @@ export const ProjectContainer = ({ project }) => {
                   return (
                     <tr key={id}>
                       <TD>
-                        <Anchor>
-                          <Link href={`/employees/${id}`} passHref>
+                        <Anchor onClick={() => router.push(`/employees/${id}`)}>
                             <a>{`${name} ${surname}`}</a>
-                          </Link>
                         </Anchor>
                       </TD>
                       <TD>{role}</TD>

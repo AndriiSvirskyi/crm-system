@@ -28,9 +28,15 @@
       },
       "timeoff": {
         "type": {
-          "vacation": { "days": "25.0" },
-          "paid": { "days": "30.0" },
-          "hospital": { "days": "10.0" }
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
         },
         "requests": [
           {
@@ -40,10 +46,22 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Vitya", "status": "accept" }
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
             ]
           },
           {
@@ -53,10 +71,22 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "reject" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Andrii", "status": "accept" },
-              { "name": "Anastasia", "status": "reject" }
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "reject"
+              }
             ]
           },
           {
@@ -66,10 +96,22 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              { "name": "Andrii", "status": "pending" },
-              { "name": "Anastasia", "status": "reject" },
-              { "name": "Anastasia", "status": "reject" },
-              { "name": "Anastasia", "status": "accept" }
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "reject"
+              },
+              {
+                "name": "Anastasia",
+                "status": "reject"
+              },
+              {
+                "name": "Anastasia",
+                "status": "accept"
+              }
             ]
           }
         ],

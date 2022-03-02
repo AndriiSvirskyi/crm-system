@@ -17,7 +17,7 @@ export const Personal = ({ user }) => {
       {PersonalInfoMemo}
       {ContactsInfoMemo}
       {SocialInfoMemo}
-      <UserBlockItem margin="1em 0">
+      <UserBlockItem >
         <FlexContainer justify="space-between">
           <UserTitle>Skills</UserTitle>
           <Button height="25px" margin=" 0 20px 0 0">
@@ -25,7 +25,7 @@ export const Personal = ({ user }) => {
           </Button>
         </FlexContainer>
       </UserBlockItem>
-      <UserBlockItem margin="1em 0">
+      <UserBlockItem >
         <FlexContainer justify="space-between">
           <UserTitle>Education</UserTitle>
           <Button height="25px" margin=" 0 20px 0 0">
@@ -33,7 +33,7 @@ export const Personal = ({ user }) => {
           </Button>
         </FlexContainer>
       </UserBlockItem>
-      <UserBlockItem margin="1em 0">
+      <UserBlockItem >
         <FlexContainer justify="space-between">
           <UserTitle>Licenses and certificates</UserTitle>
           <Button height="25px" margin=" 0 20px 0 0">

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Input } from "components/form/Input";
 import { Label, FlexContainer } from "./Label&FlexContainer";
+import router from "next/router";
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -60,7 +60,7 @@ export const SocialInfo = ({ user }) => {
   };
 
   return (
-    <UserBlockItem margin="1em 0">
+    <UserBlockItem>
       <FlexContainer justify="space-between">
         <UserTitle>Social</UserTitle>
         <Button
@@ -78,14 +78,14 @@ export const SocialInfo = ({ user }) => {
         </Button>
       </FlexContainer>
       <FlexContainer>
-        <Label htmlFor="facebook">
-          Facebook URL
-        </Label>
+        <Label htmlFor="facebook">Facebook URL</Label>
         {socialInfoEdit ? (
           <Input
             id="facebook"
             outline={socialInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setFacebook(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setFacebook(e.target.value)
+            }
             value={facebook}
             type="text"
             background="transparent"
@@ -93,20 +93,20 @@ export const SocialInfo = ({ user }) => {
             readonly={false}
           />
         ) : (
-          <Link href={facebook} passHref>
-            <Anchor target="_blank">{facebook}</Anchor>
-          </Link>
+          <div onClick={() => router.push(facebook)}>
+            <Anchor>{facebook}</Anchor>
+          </div>
         )}
       </FlexContainer>
       <FlexContainer>
-        <Label htmlFor="linkedin">
-          LinkedIn URL
-        </Label>
+        <Label htmlFor="linkedin">LinkedIn URL</Label>
         {socialInfoEdit ? (
           <Input
             id="linkedin"
             outline={socialInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setLinkedin(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setLinkedin(e.target.value)
+            }
             value={linkedin}
             type="text"
             background="transparent"
@@ -114,20 +114,20 @@ export const SocialInfo = ({ user }) => {
             readonly={false}
           />
         ) : (
-          <Link href={linkedin} passHref>
+          <div onClick={() => router.push(linkedin)}>
             <Anchor target="_blank">{linkedin}</Anchor>
-          </Link>
+          </div>
         )}
       </FlexContainer>
       <FlexContainer margin="0 0 40px 0">
-        <Label htmlFor="twitter">
-          Twitter Username
-        </Label>
+        <Label htmlFor="twitter">Twitter Username</Label>
         {socialInfoEdit ? (
           <Input
             id="twitter"
             outline={socialInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setTwitter(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setTwitter(e.target.value)
+            }
             value={twitter}
             type="text"
             background="transparent"
@@ -135,9 +135,9 @@ export const SocialInfo = ({ user }) => {
             readonly={false}
           />
         ) : (
-          <Link href={twitter} passHref>
+          <div onClick={() => router.push(twitter)}>
             <Anchor target="_blank">{twitter}</Anchor>
-          </Link>
+          </div>
         )}
       </FlexContainer>
       {socialInfoEdit ? (

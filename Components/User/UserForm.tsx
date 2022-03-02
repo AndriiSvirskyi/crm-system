@@ -17,7 +17,7 @@ type UserWindowProps = {
   collapsed: boolean;
 };
 export const UserWindowContainer = styled.div<UserWindowProps>`
-  margin: 100px 0 0 ${(props) => (props.collapsed ? "60px" : "280px")};
+  margin: 70px 0 0 ${(props) => (props.collapsed ? "60px" : "280px")};
 `;
 export const MainUserInformationMenu = styled.div`
   width: 100%;
@@ -32,7 +32,7 @@ const Title = styled.h3<PropsUser>`
 `;
 const TextInformation = styled.p<PropsUser>`
   padding: ${(props) => props.padding || ""};
-  font-size: ${(props) => props.size || "20px"};
+  font-size: ${(props) => props.size || "18px"};
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
   background: ${(props)=> props.background || ""};
@@ -45,7 +45,7 @@ const UserItemMenu = styled.div<PropsUser>`
   width: ${(props) => props.width || "100%"};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
-  margin: ${(props) => props.margin || "1em"};
+  margin: ${(props) => props.margin || "10px"};
   box-sizing: border-box;
   padding: ${(props) => props.padding || "10px"};
 `;

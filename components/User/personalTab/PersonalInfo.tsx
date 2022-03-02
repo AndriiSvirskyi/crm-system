@@ -51,7 +51,7 @@ export const PersonalInfo = ({ user }) => {
   };
 
   return (
-    <UserBlockItem margin="1em 0">
+    <UserBlockItem >
       <FlexContainer justify="space-between">
         <UserTitle>Personal</UserTitle>
         {
