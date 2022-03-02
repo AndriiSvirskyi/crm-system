@@ -7,14 +7,14 @@
       "name": "Andrii",
       "surname": "Svirskyi",
       "role": "admin",
-      "startDate": "2022-03-01",
-      "typeOfWork": "Fulltime",
-      "probationPolicy": "Trial (2 months)",
+      "project": {
+        "id": "156575",
+        "name": "Bench",
+        "role": "Team Lead"
+      },
       "company": "4ire",
-      "position": "Head Of Web Department",
       "department": "Tech",
       "unit": "Frontend",
-      "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "24 Mar",
       "gender": "man",
@@ -28,15 +28,9 @@
       },
       "timeoff": {
         "type": {
-          "vacation": {
-            "days": "25.0"
-          },
-          "paid": {
-            "days": "30.0"
-          },
-          "hospital": {
-            "days": "10.0"
-          }
+          "vacation": { "days": "25.0" },
+          "paid": { "days": "30.0" },
+          "hospital": { "days": "10.0" }
         },
         "requests": [
           {
@@ -46,117 +40,11 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Vitya",
-                "status": "accept"
-              }
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Vitya", "status": "accept" }
             ]
-          },
-          {
-            "email": "andrii.s@4irelabs.com",
-            "password": "1234",
-            "name": "Andrii",
-            "surname": "Svirskyi",
-            "role": "admin",
-            "project": {
-                "id": "156575",
-                "name": "Bench",
-                "role": "Team Lead"
-            },
-            "company": "4ire",
-            "department": "Tech",
-            "unit": "Frontend",
-            "team": "Andriy",
-            "birth": "24 Mar",
-            "gender": "man",
-            "mobile": "380931234567",
-            "username": "user",
-            "address": "Hawaii , USA",
-            "links": {
-              "facebook": "https://www.google.com",
-              "linkedin": "https://www.linkedin.com/",
-              "twitter": "https://twitter.com/?lang=en"
-            },
-            "timeoff": {
-              "type": {
-                "vacation": { "days": "25.0" },
-                "paid": { "days": "30.0" },
-                "hospital": { "days": "10.0" }
-              },
-              "requests": [
-                {
-                  "id": "1",
-                  "type": "Hospital",
-                  "count": "20",
-                  "startTime": "",
-                  "endTime": "",
-                  "reviewers": [
-                    { "name": "Andrii", "status": "accept" },
-                    { "name": "Andrii", "status": "accept" },
-                    { "name": "Andrii", "status": "accept" },
-                    { "name": "Vitya", "status": "accept" }
-                  ]
-                },
-                {
-                  "id": "2",
-                  "type": "Paid",
-                  "count": "9",
-                  "startTime": "",
-                  "endTime": "",
-                  "reviewers": [
-                    { "name": "Andrii", "status": "reject" },
-                    { "name": "Andrii", "status": "accept" },
-                    { "name": "Andrii", "status": "accept" },
-                    { "name": "Anastasia", "status": "reject" }
-                  ]
-                },
-                {
-                  "id": "3",
-                  "type": "Vacation",
-                  "count": "9",
-                  "startTime": "",
-                  "endTime": "",
-                  "reviewers": [
-                    { "name": "Andrii", "status": "pending" },
-                    { "name": "Anastasia", "status": "reject" },
-                    { "name": "Anastasia", "status": "reject" },
-                    { "name": "Anastasia", "status": "accept" }
-                  ]
-                }
-              ],
-              "history": [
-                {
-                  "id": "1",
-                  "type": "Paid",
-                  "data": "21.02.2013",
-                  "description": "some text",
-                  "availableDays": "4.0",
-                  "used": "10.0",
-                  "accured": "5.0"
-                },
-                {
-                  "id": "2",
-                  "type": "Vacation",
-                  "data": "21.02.2013",
-                  "description": "sasdasdas",
-                  "availableDays": "4.0",
-                  "used": "10.0",
-                  "accured": "5.0"
-                }
-              ]
-            }
           },
           {
             "id": "2",
@@ -165,22 +53,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Andrii",
-                "status": "reject"
-              },
-              {
-                "name": "Andrii",
-                "status": "inProcess"
-              },
-              {
-                "name": "Anastasia",
-                "status": "pending"
-              }
+              { "name": "Andrii", "status": "reject" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Anastasia", "status": "reject" }
             ]
           },
           {
@@ -190,22 +66,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Anastasia",
-                "status": "accept"
-              },
-              {
-                "name": "Anastasia",
-                "status": "accept"
-              },
-              {
-                "name": "Anastasia",
-                "status": "inProcess"
-              }
+              { "name": "Andrii", "status": "pending" },
+              { "name": "Anastasia", "status": "reject" },
+              { "name": "Anastasia", "status": "reject" },
+              { "name": "Anastasia", "status": "accept" }
             ]
           }
         ],
@@ -238,6 +102,11 @@
       "name": "Viktor",
       "surname": "Malinovskyi",
       "role": "manager",
+      "project": {
+        "id": "156575",
+        "name": "Bench",
+        "role": "manager"
+      },
       "company": "4ire",
       "department": "UI",
       "unit": "Frontend",
@@ -246,7 +115,7 @@
       "gender": "man",
       "mobile": "380931234567",
       "username": "fedosieievaa",
-      "address": "Monako , Monako",
+      "address": "Monako, Monako",
       "links": {
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
@@ -260,6 +129,11 @@
       "name": "Anastasiia",
       "surname": "Fedosyeyeva",
       "role": "manager",
+      "project": {
+        "id": "156575",
+        "name": "Bench",
+        "role": "manager"
+      },
       "company": "4ire",
       "department": "UI",
       "unit": "Frontend",
@@ -268,7 +142,7 @@
       "gender": "female",
       "mobile": "380931234567",
       "username": "fedosieievaa",
-      "address": "Monako , Monako",
+      "address": "Monako, Monako",
       "links": {
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
@@ -276,65 +150,26 @@
       }
     },
     {
-      "id": "4",
-      "email": "nastasia.f@4irelabs.com",
-      "password": "1",
-      "name": "anastasia.f@4irelabs.com",
-      "surname": "anastasia.f@4irelabs.com",
-      "role": "admin",
-      "company": "4ire",
-      "department": "Tech",
-      "unit": "Frontend",
-      "team": "Andriy",
-      "birth": "24 Mar",
-      "gender": "female",
-      "mobile": "380931234567",
-      "username": "fedosieievaa",
-      "address": "Lviv , Ukraine",
-      "links": {
-        "facebook": "https://www.google.com",
-        "linkedin": "https://www.linkedin.com/",
-        "twitter": "https://twitter.com/?lang=en"
-      }
-    },
-    {
-      "id": "5",
-      "email": "user@4irelabs.com",
-      "password": "1",
-      "name": "User",
-      "surname": "User",
-      "role": "admin",
-      "company": "4ire",
-      "department": "Hr",
-      "unit": "Frontend",
-      "team": "Andriy",
-      "birth": "24 Mar",
-      "gender": "female",
-      "mobile": "380931234567",
-      "username": "fedosieievaa",
-      "address": "Lviv , Ukraine",
-      "links": {
-        "facebook": "https://www.google.com",
-        "linkedin": "https://www.linkedin.com/",
-        "twitter": "https://twitter.com/"
-      }
-    },
-    {
-      "id": "KbuRw5O",
-      "email": "test@gmail.com",
-      "password": "11",
-      "name": "Test",
-      "surname": "Test",
+      "id": "UYvGjL-",
+      "email": "adamenko@gmail.com",
+      "password": "1234",
+      "name": "Pavel",
+      "surname": "Adamenko",
       "role": "user",
+      "project": {
+        "id": "ffsd2",
+        "name": "Arterra",
+        "role": "Team Lead"
+      },
       "company": "",
       "department": "",
       "unit": "",
       "team": "",
       "birth": "",
       "gender": "",
-      "mobile": "12345",
+      "mobile": "123456789",
       "username": "",
-      "address": "",
+      "address": "Odessa",
       "links": {
         "facebook": "",
         "linkedin": "",
@@ -342,21 +177,26 @@
       }
     },
     {
-      "id": "l4S7LNQ",
-      "email": "nemocat@gmail.com",
-      "password": "cat",
-      "name": "Nemo",
-      "surname": "Cat",
+      "id": "M0tz6Jl",
+      "email": "andreev@gmail.com",
+      "password": "1234",
+      "name": "Artem",
+      "surname": "Andreev",
       "role": "user",
+      "project": {
+        "id": "ffsd2",
+        "name": "Arterra",
+        "role": "manager"
+      },
       "company": "",
       "department": "",
       "unit": "",
       "team": "",
       "birth": "",
       "gender": "",
-      "mobile": "01010110",
+      "mobile": "123456789",
       "username": "",
-      "address": "",
+      "address": "Zaporizhzhya",
       "links": {
         "facebook": "",
         "linkedin": "",
@@ -364,65 +204,112 @@
       }
     },
     {
-      "id": "bpK5IqX",
-      "email": "petravka@petronich.com",
-      "password": "123",
-      "name": "Petro",
-      "surname": "Petrovich",
-      "role": "manager",
-      "startDate": "2022-03-01",
+      "id": "D02UaF_",
+      "email": "andriushyn@gmail.com",
+      "password": "1234",
+      "name": "Dmytro",
+      "surname": "Andriushyn",
+      "role": "user",
+      "project": {
+        "id": "ffsd2",
+        "name": "Arterra",
+        "role": "manager"
+      },
       "company": "",
       "department": "",
       "unit": "",
       "team": "",
       "birth": "",
       "gender": "",
-      "mobile": "1233451231",
+      "mobile": "123456789",
       "username": "",
-      "address": "",
+      "address": "Odessa",
       "links": {
         "facebook": "",
         "linkedin": "",
         "twitter": ""
       }
-    }
-  ],
-  "projects": [
-    {
-      "id": "1",
-      "name": "Bench",
-      "teamlead": "andrii.s@4irelabs.com",
-      "members": "2"
     },
     {
-      "id": "2",
-      "name": "Admin",
-      "teamlead": "andrii.s@4irelabs.com",
-      "members": "2"
+      "id": "yLrw5VR",
+      "email": "anisimov@gmail.com",
+      "password": "1234",
+      "name": "Andrii",
+      "surname": "Anisimov",
+      "role": "user",
+      "project": {
+        "id": "3fdffs",
+        "name": "Blackchain",
+        "role": "Team Lead"
+      },
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Lviv",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
-      "id": "3",
-      "name": "Agendo",
-      "teamlead": "andrii.s@4irelabs.com",
-      "members": "2"
+      "id": "C8yBU7z",
+      "email": "antonov@gmail.com",
+      "password": "1234",
+      "name": "Volodymyr",
+      "surname": "Antonov",
+      "role": "user",
+      "project": {
+        "id": "3fdffs",
+        "name": "Blackchain",
+        "role": "manager"
+      },
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Kyiv",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
-      "id": "4",
-      "name": "Arterra",
-      "teamlead": "andrii.s@4irelabs.com",
-      "members": "2"
-    },
-    {
-      "id": "5",
-      "name": "Bancambios",
-      "teamlead": "andrii.s@4irelabs.com",
-      "members": "2"
-    },
-    {
-      "id": "6",
-      "name": "Blackchain",
-      "teamlead": "andrii.s@4irelabs.com",
-      "members": "2"
+      "id": "jdK6qe1",
+      "email": "areshina@gmail.com",
+      "password": "1234",
+      "name": "Eva Maria",
+      "surname": "Areshina",
+      "role": "user",
+      "project": {
+        "id": "3fdffs",
+        "name": "Blackchain",
+        "role": "manager"
+      },
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Kyiv",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     }
   ]
 }
