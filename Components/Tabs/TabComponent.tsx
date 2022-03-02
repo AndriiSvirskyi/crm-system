@@ -1,4 +1,5 @@
 import { ButtonStyled } from "components/ButtonStyled";
+import { Flex } from "components/User/Flex";
 import styled from "styled-components";
 
 type Tab = {
@@ -9,7 +10,7 @@ type Tab = {
 };
 
 const TabsStyled = styled.div`
-width: 100%;
+  width: 100%;
   border-radius: 8px;
   font-size: 16px;
   user-select: none;
@@ -26,22 +27,24 @@ export const TabComponent = (props) => {
   };
   return (
     <TabsStyled>
-      {props.array.map((tab) => {
-        return (
-          <ButtonStyled
-            width="160px"
-            height="60px"
-            margin="10px"
-            background={
-              props.state === tab.toLocaleLowerCase() ? "#9C9C9C" : "#D0D0D0"
-            }
-            key={tab}
-            onClick={() => clickInTabHanler(tab)}
-          >
-            {tab}
-          </ButtonStyled>
-        );
-      })}
+      <Flex>
+        {props.array.map((tab) => {
+          return (
+            <ButtonStyled
+              width="20%"
+              height="60px"
+              margin="10px"
+              background={
+                props.state === tab.toLocaleLowerCase() ? "#9C9C9C" : "#D0D0D0"
+              }
+              key={tab}
+              onClick={() => clickInTabHanler(tab)}
+            >
+              {tab}
+            </ButtonStyled>
+          );
+        })}
+      </Flex>
       <TabsContent>{props.content[props.state]}</TabsContent>
     </TabsStyled>
   );
