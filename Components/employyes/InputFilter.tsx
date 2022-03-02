@@ -98,7 +98,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
           </ButtonStyled>
         </Flex>
         <Flex margin="10px">
-          <ButtonStyled>
+          <ButtonStyled margin="0 10px 0 0">
             <FaBars size="2em" />
           </ButtonStyled>
           <ButtonStyled>

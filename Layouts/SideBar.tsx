@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styled from "styled-components";
 import {
   FaHome,
@@ -15,6 +14,7 @@ import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useRecoilValue } from "recoil";
 import { hamburgerState } from "state/atoms";
+import router from "next/router";
 
 type PropsSideBar = {
   background: string;
@@ -62,30 +62,22 @@ export default function SideBar(props) {
     <SideBarStyles {...props} collapsed={hamburger}>
       <aside>
         <Flex direction="column" margin="10px 0 0 0">
-          <Link passHref href={"/employees/profile"}>
-            <SidebarLink>
-              <FaRegUserCircle size="25" />
-              {!hamburger && <span>Me</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/"}>
-            <SidebarLink>
-              <FaHome size="25" />
-              {!hamburger && <span>Main page</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/tasks"}>
-            <SidebarLink>
-              <FaRegCheckCircle size="25" />
-              {!hamburger && <span>Tasks</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/time-tracker"}>
-            <SidebarLink>
-              <FaCalendarCheck size="25" />
-              {!hamburger && <span>Time tracker</span>}
-            </SidebarLink>
-          </Link>
+          <SidebarLink onClick={() => router.push("/employees/profile")}>
+            <FaRegUserCircle size="25" />
+            {!hamburger && <span>Me</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/")}>
+            <FaHome size="25" />
+            {!hamburger && <span>Main page</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/tasks")}>
+            <FaRegCheckCircle size="25" />
+            {!hamburger && <span>Tasks</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/time-tracker")}>
+            <FaCalendarCheck size="25" />
+            {!hamburger && <span>Time tracker</span>}
+          </SidebarLink>
         </Flex>
         {!hamburger && (
           <UserTitle size="16px" margin="40px 0 15px 6px">
@@ -93,36 +85,26 @@ export default function SideBar(props) {
           </UserTitle>
         )}
         <Flex direction="column">
-          <Link passHref href={"/calendar"}>
-            <SidebarLink>
-              <FaRegCalendar size="25" />
-              {!hamburger && <span>Calendar</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/projects"}>
-            <SidebarLink>
-              <FaListOl size="25" />
-              {!hamburger && <span>Projects</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/employees"}>
-            <SidebarLink>
-              <FaAddressBook size="25" />
-              {!hamburger && <span>Employees</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/knowledge"}>
-            <SidebarLink>
-              <FaBook size="25" />
-              {!hamburger && <span>Knowledge base</span>}
-            </SidebarLink>
-          </Link>
-          <Link passHref href={"/reports"}>
-            <SidebarLink>
-              <FaRegChartBar size="25" />
-              {!hamburger && <span>Reports</span>}
-            </SidebarLink>
-          </Link>
+          <SidebarLink onClick={() => router.push("/calendar")}>
+            <FaRegCalendar size="25" />
+            {!hamburger && <span>Calendar</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/projects")}>
+            <FaListOl size="25" />
+            {!hamburger && <span>Projects</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/employees")}>
+            <FaAddressBook size="25" />
+            {!hamburger && <span>Employees</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/knowledge")}>
+            <FaBook size="25" />
+            {!hamburger && <span>Knowledge base</span>}
+          </SidebarLink>
+          <SidebarLink onClick={() => router.push("/reports")}>
+            <FaRegChartBar size="25" />
+            {!hamburger && <span>Reports</span>}
+          </SidebarLink>
         </Flex>
       </aside>
     </SideBarStyles>

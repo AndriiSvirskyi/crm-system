@@ -1,26 +1,31 @@
+import router from "next/router";
+import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
 import Tabs from "components/User/TabsUser";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import {
-  MainUserInformationMenu,
-  UserBlockItem,
-  UserText,
-  UserTitle,
-} from "./UserForm";
+import { UserBlockItem, UserText, UserTitle } from "./UserForm";
+import { RemoveUserModal } from "components/Modal/RemoveUserModal";
+
+const IconContainer = styled.div`
+  width: 235px;
+  height: 235px;
+  border-radius: 50%;
+  background: #d0d0d0;
+  margin: 0 80px 0 0;
+`;
 
 export default function UserProfile({ user }) {
+  const [askToRemove, setAskToRemove] = useState(false);
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
-  const router = useRouter();
 
   useEffect(() => {
     setUserRole(JSON.parse(currentUser).role);
   }, [currentUser]);
 
-  const deleteUser = async () => {
+  const removeUser = async () => {
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
@@ -29,47 +34,41 @@ export default function UserProfile({ user }) {
   };
 
   return (
-    <Flex direction="column" padding=" 0 10px 0 0">
-      <MainUserInformationMenu>
-        {userRole === "admin" && (
-          <Flex justify="end" padding="10px" wrap="wrap">
-            <ButtonStyled onClick={() => deleteUser()}>Remove</ButtonStyled>
+    <Flex direction="column" padding="0 20px 0 0">
+      <UserBlockItem>
+        <Flex height="300px" align="center" justify="space-between">
+          <Flex>
+            <IconContainer></IconContainer>
+            <div>
+              <UserTitle margin="0" padding="0" size="37px">
+                {user.name} {user.surname}
+              </UserTitle>
+              <UserText>Work position: {user.company}</UserText>
+              <UserText>Location: {user.address}</UserText>
+              <UserText>Email: {user.email}</UserText>
+              <UserText>Phone: {user.mobile}</UserText>
+            </div>
           </Flex>
-        )}
-        <ButtonStyled margin="10px">Icon Image</ButtonStyled>
-        <UserTitle size="37px" margin="0 0 0 5em">
-          {user.name} {user.surname}
-        </UserTitle>
-        <Flex>
-          <Flex
-            wrap="wrap"
-            direction="column"
-            content="space-around"
-            width="100%"
-          >
-            <UserText>Work position: {user.company}</UserText>
-            <UserText>Location: {user.address}</UserText>
-          </Flex>
-          <Flex
-            wrap="wrap"
-            direction="column"
-            content="space-around"
-            width="100%"
-          >
-            <UserText>Email: {user.email}</UserText>
-            <UserText>Phone: {user.mobile}</UserText>
-          </Flex>
+          {userRole === "admin" && (
+            <ButtonStyled height="40px" onClick={() => setAskToRemove(true)}>
+              Remove
+            </ButtonStyled>
+          )}
         </Flex>
-      </MainUserInformationMenu>
+      </UserBlockItem>
+      {askToRemove && (
+        <RemoveUserModal
+          yes={() => removeUser()}
+          no={() => setAskToRemove(false)}
+        ></RemoveUserModal>
+      )}
       <Flex>
         <UserBlockItem width="50%">
-          <UserTitle padding="10px">Info about User</UserTitle>
-          <UserText>Username:{user.username}</UserText>
+          <UserTitle margin="0" padding="0">
+            Info about User
+          </UserTitle>
+          <UserText>Username: {user.username}</UserText>
           <UserText>Address: {user.address}</UserText>
-          <UserText>
-            {user.address}
-            {user.address}
-          </UserText>
         </UserBlockItem>
         <Tabs user={user} />
       </Flex>

@@ -1,9 +1,7 @@
 import { UserWindow } from "components/User/UserForm";
-import { useRouter } from "next/router";
 import MainLayout from "../Layouts/MainLayout";
 
 export default function Home() {
-  const router = useRouter();
   return (
     <MainLayout>
       <UserWindow>

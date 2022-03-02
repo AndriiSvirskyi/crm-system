@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
@@ -12,6 +11,7 @@ import {
   UserTitle,
   UserWindow,
 } from "components/User/UserForm";
+import router from "next/router";
 
 type projectsProps = {
   [key: string]: {
@@ -26,7 +26,6 @@ const Anchor = styled.span`
     color: rgb(25, 118, 186);
     text-decoration: none;
     display: block;
-    padding: 10px;
   }
   :hover {
     a {
@@ -71,8 +70,10 @@ const Projects = () => {
   return (
     <MainLayout>
       <UserWindow>
-        <Flex justify="left" align="center" margin="0 0 60px 0">
-          <UserTitle size="40px" margin="0 60px 0 0">Teams</UserTitle>
+        <Flex justify="left" align="center" margin="100px 0 60px 0">
+          <UserTitle size="40px" margin="0 60px 0 0">
+            Teams
+          </UserTitle>
           <InputComponent
             height="50px"
             placeholder="Search team"
@@ -90,33 +91,39 @@ const Projects = () => {
               }
             })
             .map((project) => (
-              <Link
-                href={`/projects/${project[1].id}`}
+              <UserBlockItem
                 key={project[1].id}
-                passHref
+                padding="0 0 20px 15px"
+                width="30%"
               >
-                <UserBlockItem key={project} width="30%">
-                  <UserTitle color="rgb(25, 118, 186)"> {project[0]}</UserTitle>
-                  <UserText size="16px" padding="0 10px">
-                    Members({project[1].members.length})
-                  </UserText>
-                  <UserText>Team Lead:</UserText>
-                  <hr />
-                  <Anchor>
-                    <Link
-                      href={`/employees/${
+                <UserTitle
+                  onClick={() => router.push(`/projects/${project[1].id}`)}
+                  padding="0"
+                  color="rgb(25, 118, 186)"
+                >
+                  {" "}
+                  {project[0]}
+                </UserTitle>
+                <UserText size="16px">
+                  Members({project[1].members.length})
+                </UserText>
+                <UserText>Team Lead:</UserText>
+                <hr />
+                <Anchor
+                  onClick={() =>
+                    router.push(
+                      `/employees/${
                         users.find(
                           (user) =>
                             user.name + " " + user.surname === project[1].lead
                         ).id
-                      }`}
-                      passHref
-                    >
-                      <a href="">{project[1].lead}</a>
-                    </Link>
-                  </Anchor>
-                </UserBlockItem>
-              </Link>
+                      }`
+                    )
+                  }
+                >
+                  <a>{project[1].lead}</a>
+                </Anchor>
+              </UserBlockItem>
             ))}
         </Flex>
       </UserWindow>

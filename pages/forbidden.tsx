@@ -1,5 +1,4 @@
-import { NextPage } from "next";
-import Link from "next/link";
+import router from "next/router";
 import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
@@ -61,9 +60,9 @@ const Forbidden = () => {
         <br />
         Please, for any questions contact the administrator:
       </p>
-      <Link href={`mailto:${admin.email}`} passHref>
+      <div onClick={() => router.push(`mailto:${admin.email}`)} >
         <a>{admin.email}</a>
-      </Link>
+      </div>
     </ForbiddenContainer>
   );
 };

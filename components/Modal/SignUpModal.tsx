@@ -1,12 +1,11 @@
 import styled, { keyframes } from "styled-components";
+import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { Form } from "components/form/Form";
 import { Input } from "components/form/Input";
 import { Button } from "components/Button";
-import { ErrorText } from "components/form/ErrorText";
-import { useRouter } from "next/router";
+import router from "next/router";
 import { UserText } from "components/User/UserForm";
-import moment from "moment";
 
 const SignUpAnimation = keyframes`
   from {
@@ -18,52 +17,40 @@ const SignUpAnimation = keyframes`
   }
 `;
 const SignUpPage = styled.div`
-  display: ${(props: {display: string}) => props.display};
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: ${SignUpAnimation}  0.6s ease-in-out ;
-  z-index: 99;
+  animation: ${SignUpAnimation} 0.6s ease-in-out;
+  z-index: 1;
 `;
 const Fullname = styled.div`
-  width: 102%;
+  width: 101%;
   display: flex;
   justify-content: space-between;
-`;
-const RoleContainer = styled.div`
-  width: 100%;
-  height: 67px;
-  margin: 0;
-  padding: 0;
-  :hover div {
-    transform: rotate(0);
-  }
-`;
-const RoleArrow = styled.div`
-  margin: 0;
-  width: 20px;
-  height: 40px;
-  background: #d0d0d0;
-  position: relative;
-  top: -41px;
-  left: 96%;
-  transform: rotate(180deg);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 const StartDateContainer = styled.div`
-  width: 102%;
+  width: 101%;
   display: flex;
   justify-content: space-between;
 `;
-
+const ErrorInputContainer = styled.div`
+  position: relative;
+  width: 100%;
+  left: -3px;
+`;
+const ErrorText = styled.p`
+  position: absolute;
+  font-size: 12px;
+  top: 2px;
+  right: 0;
+  color: red;
+`;
 type Errors = {
   [key: string]: string;
 };
 
-export const SignUpModal = ({ users, display }) => {
+export const SignUpModal = ({ users, closeModal }) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -73,7 +60,6 @@ export const SignUpModal = ({ users, display }) => {
   const [userPassword, setUserPassword] = useState("");
   const [checkPassword, setCheckPassword] = useState("");
   const [errors, setErrors] = useState<Errors | null>(null);
-  const router = useRouter();
   const workPositions = {
     admin: "admin",
     manager: "manager",
@@ -137,18 +123,21 @@ export const SignUpModal = ({ users, display }) => {
 
   const EmailInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
-        value={userEmail}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setUserEmail(e.target.value)
-        }
-        type="email"
-        placeholder="Email"
-        height="40px"
-        marginBottom="0"
-        error={errors?.userExist}
-      />
+      <ErrorInputContainer>
+        <Input
+          outline="none"
+          value={userEmail}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setUserEmail(e.target.value)
+          }
+          type="email"
+          placeholder="Email"
+          height="40px"
+          marginBottom="10px"
+          error={errors?.userExist}
+        />
+        <ErrorText>{errors?.userExist}</ErrorText>
+      </ErrorInputContainer>
     ),
     [userEmail, errors?.userExist]
   );
@@ -163,8 +152,7 @@ export const SignUpModal = ({ users, display }) => {
         type="text"
         placeholder="Name"
         height="40px"
-        margin="0 25px 0 0"
-        marginBottom="25px"
+        margin="0 10px 10px 0"
       />
     ),
     [name]
@@ -180,7 +168,7 @@ export const SignUpModal = ({ users, display }) => {
         type="text"
         placeholder="Surname"
         height="40px"
-        marginBottom="25px"
+        margin="0 0 10px 0"
       />
     ),
     [surname]
@@ -196,7 +184,7 @@ export const SignUpModal = ({ users, display }) => {
         type="number"
         placeholder="Phone"
         height="40px"
-        marginBottom="25px"
+        margin="0 0 10px 0"
       />
     ),
     [phone]
@@ -213,6 +201,7 @@ export const SignUpModal = ({ users, display }) => {
         placeholder="Work position"
         height="40px"
         list="roles"
+        margin="0 0 10px 0"
       />
     ),
     [role]
@@ -228,8 +217,7 @@ export const SignUpModal = ({ users, display }) => {
         type="date"
         width="60%"
         height="40px"
-        placeholder="222"
-        marginBottom="25px"
+        margin="0 0 10px 0"
       />
     ),
     [startDate]
@@ -245,7 +233,7 @@ export const SignUpModal = ({ users, display }) => {
         type="password"
         placeholder="Password"
         height="40px"
-        marginBottom="25px"
+        margin="0 0 10px 0"
       />
     ),
     [userPassword]
@@ -253,60 +241,51 @@ export const SignUpModal = ({ users, display }) => {
 
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
-        value={checkPassword}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setCheckPassword(e.target.value)
-        }
-        type="password"
-        placeholder="Repeat password"
-        height="40px"
-        error={errors?.invalidPassword}
-        marginBottom="0"
-      />
+      <ErrorInputContainer>
+        <Input
+          outline="none"
+          value={checkPassword}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setCheckPassword(e.target.value)
+          }
+          type="password"
+          placeholder="Repeat password"
+          height="40px"
+          error={errors?.invalidPassword}
+          margin="0 0 30px 0"
+        />
+        <ErrorText>{errors?.invalidPassword}</ErrorText>
+      </ErrorInputContainer>
     ),
     [checkPassword, errors?.invalidPassword]
   );
 
   return (
-    <SignUpPage display={display}>
-      <Form submit={getInformation} content="Create admin account">
-        <div>
-          <Fullname>
-            {NameInput}
-            {SurnameInput}
-          </Fullname>
-          {PhoneInput}
-          <RoleContainer>
-            {RoleInput}
-            <datalist id="roles">
-              {Object.values(workPositions).map((position) => (
-                <option key={position} value={position} />
-              ))}
-            </datalist>
-            <RoleArrow>
-              <span>▲</span>
-            </RoleArrow>
-          </RoleContainer>
-          <StartDateContainer>
-            <UserText size="15px">Start work since: </UserText>
-            {StartDateInput}
-          </StartDateContainer>
-
-          {EmailInput}
-          <ErrorText background={errors?.userExist ? "#ffe7e6" : "transparent"}>
-            {errors?.userExist}
-          </ErrorText>
-          {PasswordInput}
-          {CheckPasswordInput}
-          <ErrorText
-            background={errors?.invalidPassword ? "#ffe7e6" : "transparent"}
-          >
-            {errors?.invalidPassword}
-          </ErrorText>
-        </div>
-        <Button width="30%" margin=" 0 0 35px 0" height="50px">
+    <SignUpPage>
+      <Form
+        closeModal={closeModal}
+        submit={getInformation}
+        content="Create account"
+      >
+        <Fullname>
+          {NameInput}
+          {SurnameInput}
+        </Fullname>
+        {PhoneInput}
+        {RoleInput}
+        <datalist id="roles">
+          {Object.values(workPositions).map((position) => (
+            <option key={position} value={position} />
+          ))}
+        </datalist>
+        <StartDateContainer>
+          <UserText size="15px">Start work since: </UserText>
+          {StartDateInput}
+        </StartDateContainer>
+        {EmailInput}
+        {PasswordInput}
+        {CheckPasswordInput}
+        <Button width="30%" height="50px">
           Create account
         </Button>
       </Form>
