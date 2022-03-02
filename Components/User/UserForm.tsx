@@ -11,6 +11,7 @@ type PropsUser = {
   textAlign?: string;
   background?:string;
   radius?:string;
+  borderBottom?:string;
 
 };
 type UserWindowProps = {
@@ -29,10 +30,11 @@ const Title = styled.h3<PropsUser>`
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
   text-align: ${(props) => props.textAlign || ""};
+  border-bottom: ${(props)=> props.borderBottom || ""};
 `;
 const TextInformation = styled.p<PropsUser>`
   padding: ${(props) => props.padding || ""};
-  font-size: ${(props) => props.size || "18px"};
+  font-size: ${(props) => props.size || ""};
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
   background: ${(props)=> props.background || ""};
@@ -40,7 +42,6 @@ const TextInformation = styled.p<PropsUser>`
 `;
 
 const UserItemMenu = styled.div<PropsUser>`
-  cursor: pointer;
   background: #ffffff;
   width: ${(props) => props.width || "100%"};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);

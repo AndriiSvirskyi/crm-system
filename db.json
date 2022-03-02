@@ -7,14 +7,18 @@
       "name": "Andrii",
       "surname": "Svirskyi",
       "role": "admin",
+      "startDate": "2021-04-20",
       "project": {
         "id": "156575",
         "name": "Bench",
         "role": "Team Lead"
       },
       "company": "4ire",
+      "position": "Team Lead",
+      "typeOfWork": "Frontend Developer",
       "department": "Tech",
       "unit": "Frontend",
+      "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "24 Mar",
       "gender": "man",
@@ -71,22 +75,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              {
-                "name": "Andrii",
-                "status": "reject"
-              },
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Andrii",
-                "status": "accept"
-              },
-              {
-                "name": "Anastasia",
-                "status": "reject"
-              }
+              { "name": "Andrii", "status": "reject" },
+              { "name": "Andrii", "status": "pending" },
+              { "name": "Andrii", "status": "pending" },
+              { "name": "Anastasia", "status": "pending" }
             ]
           },
           {
@@ -96,22 +88,10 @@
             "startTime": "",
             "endTime": "",
             "reviewers": [
-              {
-                "name": "Andrii",
-                "status": "pending"
-              },
-              {
-                "name": "Anastasia",
-                "status": "reject"
-              },
-              {
-                "name": "Anastasia",
-                "status": "reject"
-              },
-              {
-                "name": "Anastasia",
-                "status": "accept"
-              }
+              { "name": "Andrii", "status": "accept" },
+              { "name": "Anastasia", "status": "inProcess" },
+              { "name": "Anastasia", "status": "pending" },
+              { "name": "Anastasia", "status": "pending" }
             ]
           }
         ],

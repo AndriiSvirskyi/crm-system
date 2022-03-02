@@ -1,10 +1,16 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import Modal from "components/Modal/Modal";
+import Modal from "components/modal/Modal";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { FaBars, FaThList } from "react-icons/fa";
 import { InputComponent } from "components/InputComponent";
+import styled from "styled-components";
+
+const ModalFilterContainer = styled.div`
+  position: relative;
+`;
+
 export default function InputFilter({ allEmployees, setFilteredEmployees }) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [filters, setFilters] = useState<any>({});
@@ -71,75 +77,96 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
   const openCloseFilterModal = () => {
     setFilterModalVisible(!filterModalVisible);
   };
+  const clearInputValues = () => {
+    setFilters({
+      name: filters.name,
+      role: "",
+      department: "",
+      unit: "",
+      address: "",
+      team: "",
+    });
+  };
   return (
     <>
       <Flex justify="space-between" margin="">
         <UserTitle size="40px">Directory</UserTitle>
       </Flex>
-      <Flex justify="space-between" margin="20px">
-        <Flex>
-          <InputComponent
-            width="405px"
-            height="60px"
-            value={filters.name}
-            placeholder="Search"
-            type="text"
-            onChange={(e) => {
-              setFilterValues(e, "name");
-            }}
-          />
-          <ButtonStyled
-            margin=" 0 0 0 10px"
-            height="60px"
-            width="120px"
-            onClick={openCloseFilterModal}
-          >
-            Filter
-          </ButtonStyled>
-        </Flex>
-        <Flex margin="10px">
-          <ButtonStyled margin="0 10px 0 0">
-            <FaBars size="2em" />
-          </ButtonStyled>
-          <ButtonStyled>
-            <FaThList size="2em" />
-          </ButtonStyled>
-        </Flex>
-      </Flex>
-      <Modal
-        visibility={filterModalVisible}
-        right="48%"
-        top="29%"
-        close={openCloseFilterModal}
-      >
-        {Object.values(inputs).map((input) => {
-          return (
-            <Flex
-              key={input.title + input.title}
-              content="space-around"
+      <ModalFilterContainer>
+        <Flex justify="space-between">
+          <Flex margin="0 0 0 10px">
+            <InputComponent
               width="100%"
+              height="60px"
+              value={filters.name}
+              placeholder="Search"
+              type="text"
+              onChange={(e) => {
+                setFilterValues(e, "name");
+              }}
+            />
+            <ButtonStyled
+              margin=" 0 0 0 15px"
+              padding="15px"
+              width="90px"
+              onClick={openCloseFilterModal}
             >
-              <InputComponent
-                value={filters[input.title]}
-                onChange={(e) => {
-                  setFilterValues(e, input.title);
-                }}
-                margin="20px"
-                type="text"
-                placeholder={input.title}
-                height="40px"
-                width="500px"
-                list={input.title}
-              />
-              <datalist id={input.title}>
-                {Object.values(input.dataList).map((position) => (
-                  <option key={position} value={position} />
-                ))}
-              </datalist>
-            </Flex>
-          );
-        })}
-      </Modal>
+              Filter
+            </ButtonStyled>
+          </Flex>
+          <Flex margin="10px">
+            <ButtonStyled>
+              <FaBars size="2em" />
+            </ButtonStyled>
+            <ButtonStyled>
+              <FaThList size="2em" />
+            </ButtonStyled>
+          </Flex>
+        </Flex>
+        <Modal
+          width="300px"
+          left="19%"
+          visibility={filterModalVisible}
+          close={openCloseFilterModal}
+        >
+          {Object.values(inputs).map((input) => {
+            return (
+              <Flex
+                key={input.title + input.title}
+                content="space-around"
+                width="100%"
+              >
+                <InputComponent
+                  value={filters[input.title]}
+                  onChange={(e) => {
+                    setFilterValues(e, input.title);
+                  }}
+                  type="text"
+                  placeholder={input.title}
+                  height="25px"
+                  margin="5px"
+                  width="100%"
+                  list={input.title}
+                />
+                <datalist id={input.title}>
+                  {Object.values(input.dataList).map((position) => (
+                    <option key={position} value={position} />
+                  ))}
+                </datalist>
+              </Flex>
+            );
+          })}
+          <Flex justify="end">
+            <ButtonStyled
+              onClick={clearInputValues}
+              margin="10px"
+              padding="5px"
+            >
+              Clear all
+            </ButtonStyled>
+          </Flex>
+        </Modal>
+      </ModalFilterContainer>
     </>
   );
 }
