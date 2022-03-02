@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Input } from "components/form/Input";
@@ -54,20 +54,22 @@ export const PersonalInfo = ({ user }) => {
     <UserBlockItem margin="1em 0">
       <FlexContainer justify="space-between">
         <UserTitle>Personal</UserTitle>
-        <Button
-          height="25px"
-          onClick={() => {
-            setPersonalInfoEdit({
-              name,
-              surname,
-              birth,
-              email,
-              gender,
-            });
-          }}
-        >
-          EDIT
-        </Button>
+        {
+          <Button
+            height="25px"
+            onClick={() => {
+              setPersonalInfoEdit({
+                name,
+                surname,
+                birth,
+                email,
+                gender,
+              });
+            }}
+          >
+            EDIT
+          </Button>
+        }
       </FlexContainer>
       <FlexContainer justify="space-between">
         <Label htmlFor="employee_id">Employee ID</Label>
@@ -86,7 +88,9 @@ export const PersonalInfo = ({ user }) => {
           <Label htmlFor="last_name">First name</Label>
           <Input
             outline={personalInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value)
+            }
             value={name}
             type="text"
             id="last_name"
@@ -101,7 +105,9 @@ export const PersonalInfo = ({ user }) => {
           <Label htmlFor="first_name">Last name</Label>
           <Input
             outline={personalInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) => setSurname(e.target.value)}
+            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setSurname(e.target.value)
+            }
             value={surname}
             type="text"
             id="first_name"
@@ -116,7 +122,9 @@ export const PersonalInfo = ({ user }) => {
         <Label htmlFor="email">Email</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setEmail(e.target.value)
+          }
           value={email}
           type="text"
           id="email"
@@ -129,7 +137,9 @@ export const PersonalInfo = ({ user }) => {
         <Label htmlFor="birthday">Date of birth</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setBirth(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setBirth(e.target.value)
+          }
           value={birth}
           type="text"
           id="birthday"
@@ -142,7 +152,9 @@ export const PersonalInfo = ({ user }) => {
         <Label htmlFor="gender">Gender</Label>
         <Input
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setGender(e.target.value)}
+          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setGender(e.target.value)
+          }
           value={gender}
           type="text"
           id="gender"

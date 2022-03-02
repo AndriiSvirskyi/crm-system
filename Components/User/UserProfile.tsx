@@ -29,7 +29,7 @@ export default function UserProfile({ user }) {
   };
 
   return (
-    <>
+    <Flex direction="column" padding=" 0 10px 0 0">
       <MainUserInformationMenu>
         {userRole === "admin" && (
           <Flex justify="end" padding="10px" wrap="wrap">
@@ -90,6 +90,6 @@ export default function UserProfile({ user }) {
         <UserBlockItem></UserBlockItem>
         <ButtonStyled>Look at organizational structure</ButtonStyled>
       </Flex>
-    </>
+    </Flex>
   );
 }
