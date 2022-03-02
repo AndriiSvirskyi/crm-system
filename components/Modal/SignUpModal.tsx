@@ -18,12 +18,13 @@ const SignUpAnimation = keyframes`
   }
 `;
 const SignUpPage = styled.div`
-  display: ${(props: { display: string }) => props.display};
-  position: absolute;
-  top: 70%;
+  display: ${(props: {display: string}) => props.display};
+  position: fixed;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: ${SignUpAnimation} 0.6s ease-in-out;
+  animation: ${SignUpAnimation}  0.6s ease-in-out ;
+  z-index: 99;
 `;
 const Fullname = styled.div`
   width: 102%;
@@ -104,6 +105,7 @@ export const SignUpModal = ({ users, display }) => {
             surname: surname,
             role: role,
             startDate: startDate,
+            project: "",
             company: "",
             department: "",
             unit: "",

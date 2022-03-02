@@ -1,21 +1,13 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import Modal from "components/modal/Modal";
+import Modal from "components/Modal/Modal";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";
-import { ImTree } from "react-icons/im";
 import { FaBars, FaThList } from "react-icons/fa";
-import { ImAddressBook } from "react-icons/im";
-import { HiUserGroup } from "react-icons/hi";
 import { InputComponent } from "components/InputComponent";
 export default function InputFilter({ allEmployees, setFilteredEmployees }) {
   const [filterModalVisible, setFilterModalVisible] = useState(false);
   const [filters, setFilters] = useState<any>({});
-  const icons = {
-    1: <ImAddressBook />,
-    2: <HiUserGroup />,
-    3: <ImTree />,
-  };
   const inputs = {
     role: {
       title: "role",
@@ -82,22 +74,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
   return (
     <>
       <Flex justify="space-between" margin="">
-        <UserTitle size="40px">Список співробітників</UserTitle>
-        <Flex margin="50px 20px 0 0">
-          {Object.values(icons).map((tab,i) => {
-            return (
-              <ButtonStyled
-                width="100px"
-                height="40px"
-                background="#9C9C9C"
-                key={i}
-                onClick={() => {}}
-              >
-                {tab}
-              </ButtonStyled>
-            );
-          })}
-        </Flex>
+        <UserTitle size="40px">Directory</UserTitle>
       </Flex>
       <Flex justify="space-between" margin="20px">
         <Flex>

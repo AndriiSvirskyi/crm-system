@@ -7,9 +7,9 @@ import {
 } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
-import { SignUpModal } from "components/modal/SignUpModal";
+import { SignUpModal } from "components/Modal/SignUpModal";
 import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
@@ -26,7 +26,6 @@ export default function Employee() {
   useEffect(() => {
     if (!users) {
       const responce = fetch(`http://localhost:4200/users`);
-
       responce
         .then((res) => {
           return res.json();
@@ -46,7 +45,6 @@ export default function Employee() {
           allEmployees={users || []}
           setFilteredEmployees={setFilteredEmployees}
         />
-
         {users ? (
           <Flex justify="start" wrap="wrap">
             {filteredEmployees.map((user) => (

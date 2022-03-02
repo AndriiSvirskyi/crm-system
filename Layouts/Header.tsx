@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { ButtonStyled } from "components/ButtonStyled";
 import styled from "styled-components";
-import Modal from "../components/modal/Modal";
+import Modal from "components/Modal/Modal";
 import { InputComponent } from "components/InputComponent";
 import { UserText } from "components/User/UserForm";
 import { AiFillBell } from "react-icons/ai";
 import { CgAddR } from "react-icons/cg";
 import { VscAccount } from "react-icons/vsc";
 import { FiAlignJustify } from "react-icons/fi";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { hamburgerState } from "state/atoms";
 import { Flex } from "components/User/Flex";
 
@@ -39,7 +39,6 @@ export default function Header() {
         <Flex width="350px" padding="10px 5px 0 15px">
           <ButtonStyled
             onClick={() => {
-              // setCollapsed(!collapsed);
               setHamburger((oldHamburger) => !oldHamburger);
             }}
             height="50px"

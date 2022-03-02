@@ -40,6 +40,7 @@ const TextInformation = styled.p<PropsUser>`
 `;
 
 const UserItemMenu = styled.div<PropsUser>`
+  cursor: pointer;
   background: #ffffff;
   width: ${(props) => props.width || "100%"};
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
@@ -47,7 +48,6 @@ const UserItemMenu = styled.div<PropsUser>`
   margin: ${(props) => props.margin || "1em"};
   box-sizing: border-box;
   padding: ${(props) => props.padding || "10px"};
-
 `;
 export const UserTitle = (props) => {
   return <Title {...props}>{props.children}</Title>;
