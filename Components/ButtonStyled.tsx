@@ -7,16 +7,17 @@ type ButtonProps = {
   color: string;
   width: string;
   height: string;
+  padding: string;
 };
 
 const StyledButton = styled.button<ButtonProps>`
   border: none;
   cursor: pointer;
-  padding: 10px 15px;
+  align-self: center;
+  padding: ${(props) => props.padding || ""};
   margin: ${(props) => props.margin || ""};
-  font-size: 16px;
   border-radius: 8px;
-  align-self: ${(props) => props.align || "stretch"};
+  align-self: ${(props) => props.align || ""};
   color: ${(props) => props.color || props.theme.colors.text};
   background: ${(props) => props.background || props.theme.colors.primary};
   width: ${(props) => props.width || ""};

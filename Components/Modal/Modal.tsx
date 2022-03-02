@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { VscChromeClose } from "react-icons/vsc";
 import { ButtonStyled } from "components/ButtonStyled";
+import { Flex } from "components/User/Flex";
 
 type ModalProps = {
   top: string;
@@ -8,19 +9,21 @@ type ModalProps = {
   left: string;
   bottom: string;
   visibility: string;
+  width: string;
+  height: string;
+  padding?: string;
 };
 
 const ModalContainer = styled.div<ModalProps>`
-  position: fixed;
-  width: 25%;
-  min-height: 50%;
+  position: absolute;
+  width: ${({ width }) => width || ""};
+  height: ${({ height }) => height || ""};
   top: ${(props) => props.top || ""};
   right: ${({ right }) => right || ""};
   left: ${({ left }) => left || ""};
   bottom: ${({ bottom }) => bottom || ""};
-  padding: 10px;
+  padding: ${({ padding }) => padding || ""};
   text-align: center;
-  font-weight: 500;
   color: #666666;
   border: 2px solid #d0d0d0;
   background-color: #ffffff;
@@ -35,9 +38,16 @@ export default function Modal(props) {
       {...props}
       visibility={props.visibility ? "visible" : "hidden"}
     >
-      <ButtonStyled margin="0 0 0 80%" onClick={props.close}>
-        <VscChromeClose />
-      </ButtonStyled>
+      <Flex justify="end">
+        <ButtonStyled
+          margin="5px"
+          padding="2px 5px"
+          background="transparent"
+          onClick={props.close}
+        >
+          <VscChromeClose />
+        </ButtonStyled>
+      </Flex>
       {props.children}
     </ModalContainer>
   );

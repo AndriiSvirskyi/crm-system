@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const Progress = styled.progress`
   width: 700px;
+  margin-left: 10px;
 `;
 
 export default function PDPTime() {
@@ -14,22 +15,20 @@ export default function PDPTime() {
   const deadline = moment([2022, 2, 27]);
   return (
     <UserBlockItem>
-      <Flex justify="space-between" margin="15px">
-        <UserTitle>PDPTime</UserTitle>
-        <UserText>Left:{deadline.diff(today, "d")} days </UserText>
+        <UserTitle borderBottom='1px solid grey'>PDPTime</UserTitle>
+      <Flex justify="end" margin=' 10px 10px 0' >
+        <UserText size='20px'>Left:{deadline.diff(today, "d")} days </UserText>
       </Flex>
-
-      <Flex margin="15px" width="100%">
+      <Flex>
         <Progress
           value={today.diff(startDay, "d")}
           max={deadline.diff(startDay, "d")}
         >
-          {" "}
         </Progress>
       </Flex>
-      <Flex justify="space-between">
+      <Flex justify="space-between" margin='0 10px'>
         <UserText>Start: {startDay.format("D, MMMM, y")}</UserText>
-        <UserText>End: {deadline.format("D, MMMM, y")}</UserText>
+        <UserText margin='16px 50px 0 0'>End: {deadline.format("D, MMMM, y")}</UserText>
       </Flex>
     </UserBlockItem>
   );

@@ -49,7 +49,7 @@ export default function Employee() {
           <Flex justify="start" wrap="wrap">
             {filteredEmployees.map((user) => (
               <UserBlockItem
-                width="31%"
+                width="350px"
                 key={user.id}
                 onClick={() => {
                   router.push(`/employees/${user.id}`);

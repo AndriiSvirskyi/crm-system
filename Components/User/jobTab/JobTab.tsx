@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex } from "../Flex";
+import { TableCell, TableContainer, TableTitle } from "../timeOffTab.tsx/Table";
 
 import { UserBlockItem, UserText, UserTitle } from "../UserForm";
 
@@ -14,47 +15,7 @@ const Title = styled(UserTitle)`
 `;
 
 export default function JobTab({ user }) {
-  const employmentStatusTitle = [
-    "Effective From",
-    "Type",
-    "Probation Policy",
-    "Work Pattern",
-  ];
-  const employmentInfo = [
-    user.startDate,
-    user.typeOfWork,
-    user.probationPolicy,
-    '?'
-  ]
-  const positionsTitle = [
-    "Effective From",
-    "Position",
-    "Location",
-    "Division",
-    "Department",
-    "Reporting To"
-  ];
-  const positionsInfo = [
-    user.startDate,
-    user.position,
-    user.address,
-    user.department,
-    user.team
-  ]
-  const conpensationTitle = [
-    "Effective From",
-    "Amount",
-    "Per",
-    "Overtime",
-    "Pay Schedule",
-  ];
-  const conpensationInfo = [
-    user.startDate,
-    user.amount,
-    "Month",
-    "No",
-    "Paymens"
-  ]
+
   return (
     <Flex direction="column">
       <UserBlockItem>
@@ -64,55 +25,61 @@ export default function JobTab({ user }) {
       </UserBlockItem>
       <UserBlockItem>
         <Title>Employment Status</Title>
-        <Flex justify="space-between" borderBottom="1px solid grey">
-          {employmentStatusTitle.map((title, id) => (
-            <UserText key={id} size="15px" margin="5px">
-              {title}
-            </UserText>
-          ))}
-        </Flex>
-        <Flex justify="space-between" borderBottom="1px solid grey">
-          {employmentInfo.map((title, id) => (
-            <UserText key={id} size="10px" margin="5px">
-              {title}
-            </UserText>
-          ))}
-        </Flex>
+        <TableContainer>
+            <tr>
+            <TableTitle>Effective From</TableTitle>
+            <TableTitle>Type</TableTitle>
+            <TableTitle>Probation Policy</TableTitle>
+            <TableTitle>Work Pattern</TableTitle>
+          </tr>
+          <tr>
+            <TableCell>{user.startDate}</TableCell>
+            <TableCell>{user.typeOfWork}</TableCell>
+            <TableCell>hard: 2 Month</TableCell>
+            <TableCell>?</TableCell>
+          </tr>
+        </TableContainer>
       </UserBlockItem>
       <UserBlockItem>
         <Title>Positions</Title>
-        <Flex justify="space-between" borderBottom="1px solid grey">
-          {positionsTitle.map((title, id) => (
-            <UserText key={id} size="15px" margin="5px">
-              {title}
-            </UserText>
-          ))}
-        </Flex>
-        <Flex justify="space-between" borderBottom="1px solid grey">
-          {positionsInfo.map((title, id) => (
-            <UserText key={id} size="10px" margin="5px">
-              {title}
-            </UserText>
-          ))}
-        </Flex>
+        <TableContainer>
+            <tr>
+            <TableTitle>Effective From</TableTitle>
+            <TableTitle>Position</TableTitle>
+            <TableTitle>Location</TableTitle>
+            <TableTitle>Division</TableTitle>
+            <TableTitle>Department</TableTitle>
+            <TableTitle>Reporting To</TableTitle>
+          </tr>
+          <tr>
+            <TableCell>{user.startDate}</TableCell>
+            <TableCell>{user.position}</TableCell>
+            <TableCell>{user.address}</TableCell>
+            <TableCell>{user.department}</TableCell>
+            <TableCell>{user.team}</TableCell>
+            <TableCell>hard:?</TableCell>
+          </tr>
+        </TableContainer>
       </UserBlockItem>
       {user.role ==='admin' && (
       <UserBlockItem>
         <Title>Compensation</Title>
-        <Flex justify="space-between" borderBottom="1px solid grey">
-          {conpensationTitle.map((title, id) => (
-            <UserText key={id} size="15px" margin="5px">
-              {title}
-            </UserText>
-          ))}
-        </Flex>
-        <Flex justify="space-between" borderBottom="1px solid grey">
-          {conpensationInfo.map((title, id) => (
-            <UserText key={id} size="10px" margin="5px">
-              {title}
-            </UserText>
-          ))}
-        </Flex>
+        <TableContainer>
+            <tr>
+            <TableTitle>Effective From</TableTitle>
+            <TableTitle>Amount</TableTitle>
+            <TableTitle>Per</TableTitle>
+            <TableTitle>Overtime</TableTitle>
+            <TableTitle>Pay Schedule</TableTitle>
+          </tr>
+          <tr>
+            <TableCell>{user.startDate}</TableCell>
+            <TableCell>{user.amount}</TableCell>
+            <TableCell>hard:Month</TableCell>
+            <TableCell>hard:No</TableCell>
+            <TableCell>hard:Paymens</TableCell>
+          </tr>
+        </TableContainer>
       </UserBlockItem>
       )}
     </Flex>
