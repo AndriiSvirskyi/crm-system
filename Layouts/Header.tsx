@@ -71,14 +71,14 @@ export default function Header() {
             />
             <AiFillBell size="40" onClick={openCloseModalBells} />
           </Flex>
-          <Modal
-            top="90px"
-            visibility={bellModalVisible}
-            close={openCloseModalBells}
-          >
-            <UserText>Нових сповіщень немає!</UserText>
-          </Modal>
-          <ButtonStyled width="100px" height="50px">Icon Profille</ButtonStyled>
+          {bellModalVisible && (
+            <Modal close={openCloseModalBells}>
+              <UserText>Нових сповіщень немає!</UserText>
+            </Modal>
+          )}
+          <ButtonStyled width="100px" height="50px">
+            Icon Profille
+          </ButtonStyled>
         </Flex>
       </Flex>
     </HeaderStyles>
