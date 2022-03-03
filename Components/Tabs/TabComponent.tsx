@@ -18,7 +18,6 @@ const TabsStyled = styled.div`
 const TabsContent = styled.div`
   width: 100%;
   color: ${(props) => props.color || props.theme.colors.text};
-  background: ${(props) => props.color || props.theme.colors.background};
 `;
 
 export const TabComponent = (props) => {
