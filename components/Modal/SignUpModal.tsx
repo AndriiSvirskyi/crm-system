@@ -6,46 +6,10 @@ import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import router from "next/router";
 import { UserText } from "components/User/UserForm";
+import { InputComponent } from "components/InputComponent";
+import { Flex } from "components/User/Flex";
+import Modal from "./Modal";
 
-const SignUpAnimation = keyframes`
-  from {
-    left: -100px;
-  }
-
-  to {
-    left: 50%;
-  }
-`;
-const SignUpPage = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ${SignUpAnimation} 0.6s ease-in-out;
-  z-index: 1;
-`;
-const Fullname = styled.div`
-  width: 101%;
-  display: flex;
-  justify-content: space-between;
-`;
-const StartDateContainer = styled.div`
-  width: 101%;
-  display: flex;
-  justify-content: space-between;
-`;
-const ErrorInputContainer = styled.div`
-  position: relative;
-  width: 100%;
-  left: -3px;
-`;
-const ErrorText = styled.p`
-  position: absolute;
-  font-size: 12px;
-  top: 2px;
-  right: 0;
-  color: red;
-`;
 type Errors = {
   [key: string]: string;
 };
@@ -58,7 +22,7 @@ export const SignUpModal = ({ users, closeModal }) => {
   const [role, setRole] = useState("");
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
   const [userPassword, setUserPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState<Errors | null>(null);
   const workPositions = {
     admin: "admin",
@@ -77,7 +41,7 @@ export const SignUpModal = ({ users, closeModal }) => {
     if (users.find(({ email }) => email === userEmail)) {
       setErrors({ userExist: "User exists" });
     } else {
-      if (userPassword !== checkPassword) {
+      if (userPassword !== confirmPassword) {
         setErrors({ invalidPassword: "Invalid password" });
       } else {
         await fetch(`http://localhost:4200/users`, {
@@ -115,7 +79,7 @@ export const SignUpModal = ({ users, closeModal }) => {
         setRole("");
         setStartDate(moment().format("YYYY-MM-DD"));
         setUserPassword("");
-        setCheckPassword("");
+        setConfirmPassword("");
         setErrors(null);
       }
     }
@@ -123,21 +87,18 @@ export const SignUpModal = ({ users, closeModal }) => {
 
   const EmailInput: JSX.Element = useMemo(
     () => (
-      <ErrorInputContainer>
-        <Input
-          outline="none"
-          value={userEmail}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setUserEmail(e.target.value)
-          }
-          type="email"
-          placeholder="Email"
-          height="40px"
-          marginBottom="10px"
-          error={errors?.userExist}
-        />
-        <ErrorText>{errors?.userExist}</ErrorText>
-      </ErrorInputContainer>
+      <InputComponent
+        value={userEmail}
+        width="100%"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setUserEmail(e.target.value)
+        }
+        type="email"
+        margin="0 0 10px 0"
+        placeholder="Email"
+        height="40px"
+        error={errors?.userExist}
+      />
     ),
     [userEmail, errors?.userExist]
   );
@@ -241,36 +202,33 @@ export const SignUpModal = ({ users, closeModal }) => {
 
   const CheckPasswordInput: JSX.Element = useMemo(
     () => (
-      <ErrorInputContainer>
-        <Input
-          outline="none"
-          value={checkPassword}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setCheckPassword(e.target.value)
-          }
-          type="password"
-          placeholder="Repeat password"
-          height="40px"
-          error={errors?.invalidPassword}
-          margin="0 0 30px 0"
-        />
-        <ErrorText>{errors?.invalidPassword}</ErrorText>
-      </ErrorInputContainer>
+      <InputComponent
+        value={confirmPassword}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setConfirmPassword(e.target.value)
+        }
+        type="password"
+        placeholder="Repeat password"
+        height="40px"
+        width="100%"
+        error={errors?.invalidPassword}
+        margin="0 0 30px 0"
+      />
     ),
-    [checkPassword, errors?.invalidPassword]
+    [confirmPassword, errors?.invalidPassword]
   );
 
   return (
-    <SignUpPage>
+    <Modal close={closeModal}>
       <Form
-        closeModal={closeModal}
+        
         submit={getInformation}
         content="Create account"
       >
-        <Fullname>
+        <Flex justify="space-between" width="100%">
           {NameInput}
           {SurnameInput}
-        </Fullname>
+        </Flex>
         {PhoneInput}
         {RoleInput}
         <datalist id="roles">
@@ -278,10 +236,10 @@ export const SignUpModal = ({ users, closeModal }) => {
             <option key={position} value={position} />
           ))}
         </datalist>
-        <StartDateContainer>
+        <Flex justify="space-between" width="100%">
           <UserText size="15px">Start work since: </UserText>
           {StartDateInput}
-        </StartDateContainer>
+        </Flex>
         {EmailInput}
         {PasswordInput}
         {CheckPasswordInput}
@@ -289,6 +247,6 @@ export const SignUpModal = ({ users, closeModal }) => {
           Create account
         </Button>
       </Form>
-    </SignUpPage>
+    </Modal>
   );
 };

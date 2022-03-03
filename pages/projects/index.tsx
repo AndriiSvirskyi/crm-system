@@ -21,7 +21,8 @@ type projectsProps = {
   };
 };
 
-const Anchor = styled.span`
+export const Anchor = styled.span`
+  cursor: pointer;
   a {
     color: rgb(25, 118, 186);
     text-decoration: none;
@@ -54,19 +55,24 @@ const Projects = () => {
 
   const projects: projectsProps = users
     ? users.reduce((acc, cur) => {
-        if (acc[cur.project.name]) {
-          acc[cur.project.name].members.push(cur.name + " " + cur.surname);
-        } else {
-          acc[cur.project.name] = { id: cur.project.id, members: [] };
-          acc[cur.project.name].members.push(cur.name + " " + cur.surname);
-        }
-        if (cur.project.role === "Team Lead") {
-          acc[cur.project.name].lead = cur.name + " " + cur.surname;
+        for (let i = 0; i < cur.projects.length; i++) {
+          if (acc[cur.projects[i].name]) {
+            acc[cur.projects[i].name].members.push(
+              cur.name + " " + cur.surname
+            );
+          } else {
+            acc[cur.projects[i].name] = { id: cur.projects[i].id, members: [] };
+            acc[cur.projects[i].name].members.push(
+              cur.name + " " + cur.surname
+            );
+          }
+          if (cur.projects[i].role === "Team Lead") {
+            acc[cur.projects[i].name].lead = cur.name + " " + cur.surname;
+          }
         }
         return acc;
       }, {})
     : [];
-
   return (
     <MainLayout>
       <UserWindow>

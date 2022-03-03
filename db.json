@@ -8,11 +8,18 @@
       "surname": "Svirskyi",
       "role": "admin",
       "startDate": "2021-04-20",
-      "project": {
-        "id": "156575",
-        "name": "Bench",
-        "role": "Team Lead"
-      },
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        },
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "Team Lead"
+        }
+      ],
       "company": "4ire",
       "position": "Team Lead",
       "typeOfWork": "Frontend Developer",
@@ -124,11 +131,13 @@
       "name": "Viktor",
       "surname": "Malinovskyi",
       "role": "manager",
-      "project": {
-        "id": "156575",
-        "name": "Bench",
-        "role": "manager"
-      },
+      "projects": [
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "manager"
+        }
+      ],
       "company": "4ire",
       "department": "UI",
       "unit": "Frontend",
@@ -151,11 +160,13 @@
       "name": "Anastasiia",
       "surname": "Fedosyeyeva",
       "role": "manager",
-      "project": {
-        "id": "156575",
-        "name": "Bench",
-        "role": "manager"
-      },
+      "projects": [
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "manager"
+        }
+      ],
       "company": "4ire",
       "department": "UI",
       "unit": "Frontend",
@@ -178,11 +189,13 @@
       "name": "Pavel",
       "surname": "Adamenko",
       "role": "user",
-      "project": {
-        "id": "ffsd2",
-        "name": "Arterra",
-        "role": "Team Lead"
-      },
+      "projects": [
+        {
+          "id": "ffsd2",
+          "name": "Arterra",
+          "role": "Team Lead"
+        }
+      ],
       "company": "",
       "department": "",
       "unit": "",
@@ -205,11 +218,13 @@
       "name": "Artem",
       "surname": "Andreev",
       "role": "user",
-      "project": {
-        "id": "ffsd2",
-        "name": "Arterra",
-        "role": "manager"
-      },
+      "projects": [
+        {
+          "id": "ffsd2",
+          "name": "Arterra",
+          "role": "manager"
+        }
+      ],
       "company": "",
       "department": "",
       "unit": "",
@@ -232,11 +247,13 @@
       "name": "Dmytro",
       "surname": "Andriushyn",
       "role": "user",
-      "project": {
-        "id": "ffsd2",
-        "name": "Arterra",
-        "role": "manager"
-      },
+      "projects": [
+        {
+          "id": "ffsd2",
+          "name": "Arterra",
+          "role": "manager"
+        }
+      ],
       "company": "",
       "department": "",
       "unit": "",
@@ -259,11 +276,13 @@
       "name": "Andrii",
       "surname": "Anisimov",
       "role": "user",
-      "project": {
-        "id": "3fdffs",
-        "name": "Blackchain",
-        "role": "Team Lead"
-      },
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "Team Lead"
+        }
+      ],
       "company": "",
       "department": "",
       "unit": "",
@@ -286,11 +305,13 @@
       "name": "Volodymyr",
       "surname": "Antonov",
       "role": "user",
-      "project": {
-        "id": "3fdffs",
-        "name": "Blackchain",
-        "role": "manager"
-      },
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
       "company": "",
       "department": "",
       "unit": "",
@@ -313,11 +334,13 @@
       "name": "Eva Maria",
       "surname": "Areshina",
       "role": "user",
-      "project": {
-        "id": "3fdffs",
-        "name": "Blackchain",
-        "role": "manager"
-      },
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
       "company": "",
       "department": "",
       "unit": "",

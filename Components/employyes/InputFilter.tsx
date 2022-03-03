@@ -1,5 +1,5 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import Modal from "components/modal/Modal";
+import Modal from "components/Modal/Modal";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";
@@ -7,12 +7,20 @@ import { FaBars, FaThList } from "react-icons/fa";
 import { InputComponent } from "components/InputComponent";
 import styled from "styled-components";
 
-const ModalFilterContainer = styled.div`
+const FiltersContainer = styled.div`
   position: relative;
 `;
 
+const Filters = styled.div`
+  position: absolute;
+  background: #eeeeee;
+  left: 10px;
+  padding: 10px;
+  width: calc(100% - 20px);
+`;
+
 export default function InputFilter({ allEmployees, setFilteredEmployees }) {
-  const [filterModalVisible, setFilterModalVisible] = useState(false);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<any>({});
   const inputs = {
     role: {
@@ -62,11 +70,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
     setFilteredEmployees(
       allEmployees.filter((employee) => {
         for (let i = 0; i < filterKeys.length; i++) {
-          if (
-            !employee[filterKeys[i]]
-              .toLowerCase()
-              .includes(filters[filterKeys[i]].toLowerCase())
-          ) {
+          if (!employee[filterKeys[i]].includes(filters[filterKeys[i]])) {
             return false;
           }
         }
@@ -74,9 +78,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       })
     );
   }, [filters]);
-  const openCloseFilterModal = () => {
-    setFilterModalVisible(!filterModalVisible);
-  };
+
   const clearInputValues = () => {
     setFilters({
       name: filters.name,
@@ -92,28 +94,72 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
       <Flex justify="space-between" margin="">
         <UserTitle size="40px">Directory</UserTitle>
       </Flex>
-      <ModalFilterContainer>
+      <div>
         <Flex justify="space-between">
-          <Flex margin="0 0 0 10px">
-            <InputComponent
-              width="100%"
-              height="60px"
-              value={filters.name}
-              placeholder="Search"
-              type="text"
-              onChange={(e) => {
-                setFilterValues(e, "name");
-              }}
-            />
-            <ButtonStyled
-              margin=" 0 0 0 15px"
-              padding="15px"
-              width="90px"
-              onClick={openCloseFilterModal}
-            >
-              Filter
-            </ButtonStyled>
-          </Flex>
+          <FiltersContainer>
+            <Flex margin="0 0 0 10px">
+              <InputComponent
+                width="100%"
+                height="60px"
+                value={filters.name}
+                placeholder="Search"
+                type="text"
+                onChange={(e) => {
+                  setFilterValues(e, "name");
+                }}
+              />
+              <ButtonStyled
+                margin=" 0 0 0 15px"
+                padding="15px"
+                width="90px"
+                onClick={() => {
+                  setIsFiltersOpen(!isFiltersOpen);
+                }}
+              >
+                Filter
+              </ButtonStyled>
+            </Flex>
+            {isFiltersOpen && (
+              <Filters>
+                {Object.values(inputs).map((input) => {
+                  return (
+                    <Flex
+                      key={input.title + input.title}
+                      content="space-around"
+                      width="100%"
+                    >
+                      <InputComponent
+                        value={filters[input.title]}
+                        onChange={(e) => {
+                          setFilterValues(e, input.title);
+                        }}
+                        type="text"
+                        placeholder={input.title}
+                        height="25px"
+                        margin="5px"
+                        width="100%"
+                        list={input.title}
+                      />
+                      <datalist id={input.title}>
+                        {Object.values(input.dataList).map((position) => (
+                          <option key={position} value={position} />
+                        ))}
+                      </datalist>
+                    </Flex>
+                  );
+                })}
+                <Flex justify="end">
+                  <ButtonStyled
+                    onClick={clearInputValues}
+                    margin="10px"
+                    padding="5px"
+                  >
+                    Clear all
+                  </ButtonStyled>
+                </Flex>
+              </Filters>
+            )}
+          </FiltersContainer>
           <Flex margin="10px">
             <ButtonStyled>
               <FaBars size="2em" />
@@ -123,50 +169,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
             </ButtonStyled>
           </Flex>
         </Flex>
-        <Modal
-          width="300px"
-          left="19%"
-          visibility={filterModalVisible}
-          close={openCloseFilterModal}
-        >
-          {Object.values(inputs).map((input) => {
-            return (
-              <Flex
-                key={input.title + input.title}
-                content="space-around"
-                width="100%"
-              >
-                <InputComponent
-                  value={filters[input.title]}
-                  onChange={(e) => {
-                    setFilterValues(e, input.title);
-                  }}
-                  type="text"
-                  placeholder={input.title}
-                  height="25px"
-                  margin="5px"
-                  width="100%"
-                  list={input.title}
-                />
-                <datalist id={input.title}>
-                  {Object.values(input.dataList).map((position) => (
-                    <option key={position} value={position} />
-                  ))}
-                </datalist>
-              </Flex>
-            );
-          })}
-          <Flex justify="end">
-            <ButtonStyled
-              onClick={clearInputValues}
-              margin="10px"
-              padding="5px"
-            >
-              Clear all
-            </ButtonStyled>
-          </Flex>
-        </Modal>
-      </ModalFilterContainer>
+      </div>
     </>
   );
 }

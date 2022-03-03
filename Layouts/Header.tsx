@@ -42,6 +42,7 @@ export default function Header() {
               setHamburger((oldHamburger) => !oldHamburger);
             }}
             height="50px"
+            width="50px"
           >
             <FiAlignJustify size="20" />
           </ButtonStyled>
@@ -52,7 +53,7 @@ export default function Header() {
           align-items="center"
           padding="10px 15px 0 0"
         >
-          <ButtonStyled height="50px">
+          <ButtonStyled height="50px" width="50px">
             <VscAccount size="20" />
           </ButtonStyled>
           <Flex margin="0 10px">
@@ -70,14 +71,14 @@ export default function Header() {
             />
             <AiFillBell size="40" onClick={openCloseModalBells} />
           </Flex>
-          <Modal
-            top="90px"
-            visibility={bellModalVisible}
-            close={openCloseModalBells}
-          >
-            <UserText>Нових сповіщень немає!</UserText>
-          </Modal>
-          <ButtonStyled>Icon Profille</ButtonStyled>
+          {bellModalVisible && (
+            <Modal close={openCloseModalBells}>
+              <UserText>Нових сповіщень немає!</UserText>
+            </Modal>
+          )}
+          <ButtonStyled width="100px" height="50px">
+            Icon Profille
+          </ButtonStyled>
         </Flex>
       </Flex>
     </HeaderStyles>

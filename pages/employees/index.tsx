@@ -1,10 +1,5 @@
 import { Flex } from "components/User/Flex";
-import {
-  UserBlockItem,
-  UserText,
-  UserTitle,
-  UserWindow,
-} from "components/User/UserForm";
+import { UserBlockItem, UserText, UserWindow } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import MainLayout from "Layouts/MainLayout";
@@ -14,6 +9,12 @@ import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
 import router from "next/router";
+import styled from "styled-components";
+
+const UserTitle = styled.div`
+  color: rgb(25, 118, 186);
+  cursor: pointer;
+`;
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -48,15 +49,15 @@ export default function Employee() {
         {users ? (
           <Flex justify="start" wrap="wrap">
             {filteredEmployees.map((user) => (
-              <UserBlockItem
-                width="350px"
-                key={user.id}
-                onClick={() => {
-                  router.push(`/employees/${user.id}`);
-                }}
-              >
+              <UserBlockItem width="350px" key={user.id}>
                 <Flex>
-                  <UserTitle>{user.name} {user.surname}</UserTitle>
+                  <UserTitle
+                    onClick={() => {
+                      router.push(`/employees/${user.id}`);
+                    }}
+                  >
+                    {user.name} {user.surname}
+                  </UserTitle>
                 </Flex>
                 <UserText>
                   {user.role} in {user.address}
@@ -79,7 +80,9 @@ export default function Employee() {
           >
             <FaUserPlus size={30}></FaUserPlus>
           </Button>
-          {showModal && <SignUpModal closeModal={() => setShowModal(false)} users={users} />}
+          {showModal && (
+            <SignUpModal closeModal={() => setShowModal(false)} users={users} />
+          )}
         </>
       )}
     </MainLayout>

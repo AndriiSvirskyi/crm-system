@@ -1,21 +1,40 @@
 import styled from "styled-components";
 
-type Props = {
+type StyledInputProps = {
   value?: string;
   height: string;
-  margin: string;
   width: string;
   list?: string;
   error?: string;
 };
-const StyledInput = styled.input<Props>`
+
+type InputWrapProps = {
+  width: string;
+  margin: string;
+};
+
+const InputWrap = styled.div<InputWrapProps>`
+  position: relative;
+  width: ${({ width }) => width || "auto"};
+  margin: ${({ margin }) => margin || "auto"};
+`;
+
+const Error = styled.div`
+  position: absolute;
+  top: calc(50% - 7px);
+  right: 8px;
+  color: #fe5959c9;
+  font-size: 12px;
+`;
+
+const StyledInput = styled.input<StyledInputProps>`
   outline: none;
-  height: ${({ height }) => height || ""};
-  width: ${({ width }) => width || ""};
+  height: ${({ height }) => height || "auto"};
+  width: ${({ width }) => `calc(${width} - 25px)` || "auto"};
   background: #d0d0d0;
-  border: ${({ error }) => (error ? "1px solid red" : "1px solid transparent")};
+  border: ${({ error }) =>
+    error ? "1px solid #fe5959c9" : "1px solid transparent"};
   border-radius: 8px;
-  margin: ${({ margin }) => margin || ""};
   padding: 0 0 0 25px;
 `;
 
@@ -44,16 +63,18 @@ export const InputComponent = ({
   value,
 }: InputProps) => {
   return (
-    <StyledInput
-      list={list}
-      margin={margin}
-      error={error}
-      height={height}
-      width={width}
-      type={type}
-      placeholder={placeholder}
-      onChange={onChange}
-      value={value}
-    />
+    <InputWrap width={width} margin={margin}>
+      <StyledInput
+        list={list}
+        width={width}
+        error={error}
+        height={height}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+      />
+      {error && <Error>{error}</Error>}
+    </InputWrap>
   );
 };

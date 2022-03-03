@@ -9,10 +9,9 @@ type PropsUser = {
   margin: string;
   width: string;
   textAlign?: string;
-  background?:string;
-  radius?:string;
-  borderBottom?:string;
-
+  background?: string;
+  radius?: string;
+  borderBottom?: string;
 };
 type UserWindowProps = {
   collapsed: boolean;
@@ -28,17 +27,17 @@ const Title = styled.h3<PropsUser>`
   padding: ${(props) => props.padding || "10px"};
   font-size: ${(props) => props.size || "20px"};
   color: ${(props) => props.color || props.theme.colors.text};
-  margin: ${(props) => props.margin || ""};
+  ${(props) => `margin: ${props.margin}`};
   text-align: ${(props) => props.textAlign || ""};
-  border-bottom: ${(props)=> props.borderBottom || ""};
+  border-bottom: ${(props) => props.borderBottom || ""};
 `;
 const TextInformation = styled.p<PropsUser>`
   padding: ${(props) => props.padding || ""};
   font-size: ${(props) => props.size || ""};
   color: ${(props) => props.color || props.theme.colors.text};
   margin: ${(props) => props.margin || ""};
-  background: ${(props)=> props.background || ""};
-  border-radius: ${props => props.radius || ''};
+  background: ${(props) => props.background || ""};
+  border-radius: ${(props) => props.radius || ""};
 `;
 
 const UserItemMenu = styled.div<PropsUser>`
@@ -50,6 +49,7 @@ const UserItemMenu = styled.div<PropsUser>`
   box-sizing: border-box;
   padding: ${(props) => props.padding || "10px"};
 `;
+
 export const UserTitle = (props) => {
   return <Title {...props}>{props.children}</Title>;
 };
