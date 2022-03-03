@@ -32,26 +32,28 @@ export default function History({history}) {
       </UserText>
     </UserText>
     <TableContainer>
+      <>
       <tr>
-        <TableTitle>Data</TableTitle>
-        <TableTitle>Description</TableTitle>
-        <TableTitle>Used(-)</TableTitle>
-        <TableTitle>Accrued(+)</TableTitle>
-        <TableTitle>Balance</TableTitle>
+        <TableTitle width='20%'>Data</TableTitle>
+        <TableTitle width='40%'>Description</TableTitle>
+        <TableTitle width='10%'>Used(-)</TableTitle>
+        <TableTitle width='10%'>Accrued(+)</TableTitle>
+        <TableTitle width='10%'>Balance</TableTitle>
       </tr>
       {filteredHiltory.map(
         ({ id, description, data, used, accured, availableDays }) => {
           return (
             <tr key={id}>
-              <TableCell>{data}</TableCell>
-              <TableCell>{description}</TableCell>
-              <TableCell>{used}</TableCell>
-              <TableCell>{accured}</TableCell>
-              <TableCell>{availableDays}</TableCell>
+              <TableCell width='20%'>{data}</TableCell>
+              <TableCell width='40%'>{description}</TableCell>
+              <TableCell width='10%'>{used}</TableCell>
+              <TableCell width='10%'>{accured}</TableCell>
+              <TableCell width='10%'>{availableDays}</TableCell>
             </tr>
           );
         }
       )}
+      </>
     </TableContainer>
   </UserBlockItem>
   )

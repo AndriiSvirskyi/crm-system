@@ -27,16 +27,16 @@ export default function JobTab({ user }) {
         <Title>Employment Status</Title>
         <TableContainer>
             <tr>
-            <TableTitle>Effective From</TableTitle>
-            <TableTitle>Type</TableTitle>
-            <TableTitle>Probation Policy</TableTitle>
-            <TableTitle>Work Pattern</TableTitle>
+            <TableTitle width="25%">Effective From</TableTitle>
+            <TableTitle width="25%">Type</TableTitle>
+            <TableTitle width="25%">Probation Policy</TableTitle>
+            <TableTitle width="25%">Work Pattern</TableTitle>
           </tr>
           <tr>
-            <TableCell>{user.startDate}</TableCell>
-            <TableCell>{user.typeOfWork}</TableCell>
-            <TableCell>hard: 2 Month</TableCell>
-            <TableCell>?</TableCell>
+            <TableCell width="25%">{user.startDate}</TableCell>
+            <TableCell width="25%">{user.typeOfWork}</TableCell>
+            <TableCell width="25%">hard: 2 Month</TableCell>
+            <TableCell width="25%">?</TableCell>
           </tr>
         </TableContainer>
       </UserBlockItem>
@@ -44,20 +44,20 @@ export default function JobTab({ user }) {
         <Title>Positions</Title>
         <TableContainer>
             <tr>
-            <TableTitle>Effective From</TableTitle>
-            <TableTitle>Position</TableTitle>
-            <TableTitle>Location</TableTitle>
-            <TableTitle>Division</TableTitle>
-            <TableTitle>Department</TableTitle>
-            <TableTitle>Reporting To</TableTitle>
+            <TableTitle width="20%">Effective From</TableTitle>
+            <TableTitle width="20%">Position</TableTitle>
+            <TableTitle width="20%">Location</TableTitle>
+            <TableTitle width="15%">Division</TableTitle>
+            <TableTitle width="15%">Department</TableTitle>
+            <TableTitle width="10%">Reporting To</TableTitle>
           </tr>
           <tr>
-            <TableCell>{user.startDate}</TableCell>
-            <TableCell>{user.position}</TableCell>
-            <TableCell>{user.address}</TableCell>
-            <TableCell>{user.department}</TableCell>
-            <TableCell>{user.team}</TableCell>
-            <TableCell>hard:?</TableCell>
+            <TableCell width="20%">{user.startDate}</TableCell>
+            <TableCell width="20%">{user.position}</TableCell>
+            <TableCell width="20%">{user.address}</TableCell>
+            <TableCell width="15%">{user.department}</TableCell>
+            <TableCell width="15%">{user.team}</TableCell>
+            <TableCell width="10%">hard:?</TableCell>
           </tr>
         </TableContainer>
       </UserBlockItem>
@@ -66,18 +66,18 @@ export default function JobTab({ user }) {
         <Title>Compensation</Title>
         <TableContainer>
             <tr>
-            <TableTitle>Effective From</TableTitle>
-            <TableTitle>Amount</TableTitle>
-            <TableTitle>Per</TableTitle>
-            <TableTitle>Overtime</TableTitle>
-            <TableTitle>Pay Schedule</TableTitle>
+            <TableTitle width="20%">Effective From</TableTitle>
+            <TableTitle width="20%">Amount</TableTitle>
+            <TableTitle width="20%">Per</TableTitle>
+            <TableTitle width="20%">Overtime</TableTitle>
+            <TableTitle width="20%">Pay Schedule</TableTitle>
           </tr>
           <tr>
-            <TableCell>{user.startDate}</TableCell>
-            <TableCell>{user.amount}</TableCell>
-            <TableCell>hard:Month</TableCell>
-            <TableCell>hard:No</TableCell>
-            <TableCell>hard:Paymens</TableCell>
+            <TableCell width="20%">{user.startDate}</TableCell>
+            <TableCell width="20%">{user.amount}</TableCell>
+            <TableCell width="20%">hard:Month</TableCell>
+            <TableCell width="20%">hard:No</TableCell>
+            <TableCell width="20%">hard:Paymens</TableCell>
           </tr>
         </TableContainer>
       </UserBlockItem>
