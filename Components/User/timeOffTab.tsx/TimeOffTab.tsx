@@ -1,5 +1,4 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import React, { useState } from "react";
 import { Flex } from "../Flex";
 import { UserBlockItem, UserText, UserTitle } from "../UserForm";
 import { IoAirplane, IoMedicalSharp, IoBagAdd } from "react-icons/io5";
