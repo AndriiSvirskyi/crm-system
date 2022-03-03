@@ -21,7 +21,8 @@ type projectsProps = {
   };
 };
 
-const Anchor = styled.span`
+export const Anchor = styled.span`
+  cursor: pointer;
   a {
     color: rgb(25, 118, 186);
     text-decoration: none;

@@ -1,10 +1,8 @@
-import { Button } from "components/Button";
-import { ButtonStyled } from "components/ButtonStyled";
 import { AiFillCloseCircle } from "react-icons/ai";
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 100%;
+  width: 500px;
   padding: 0 40px 30px 40px;
   background: #ffffff;
   box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.05);
@@ -41,9 +39,9 @@ const CloseContainer = styled.div`
 export const Form = ({ closeModal, submit, children, content }) => {
   return (
     <Container>
-      <CloseContainer>
+      {/* <CloseContainer>
         <AiFillCloseCircle size="30" onClick={closeModal} />
-      </CloseContainer>
+      </CloseContainer> */}
       <Title>{content}</Title>
       <InputsForm onSubmit={submit} action="">
         {children}

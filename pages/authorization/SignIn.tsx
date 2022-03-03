@@ -62,7 +62,7 @@ const SignIn = () => {
 
   return (
     <SignInPage>
-      <Form submit={checkUser} content="Log in">
+      <Form submit={checkUser} content="Log in" closeModal={undefined}>
         <Input
           outline="none"
           value={emailInput}
