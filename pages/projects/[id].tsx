@@ -25,18 +25,20 @@ export default function Project() {
 
   const getProject = users
     ? users.reduce((acc, cur) => {
-        if (cur.project.id === id) {
-          if (cur.project.role === "Team Lead") {
-            acc.lead = cur;
-          } else {
-            if (acc.team) {
-              acc.team.push(cur);
+        for (let i = 0; i < cur.projects.length; i++) {
+          if (cur.projects[i].id === id) {
+            if (cur.projects[i].role === "Team Lead") {
+              acc.lead = cur;
             } else {
-              acc.team = [cur];
-            }
-            if (!acc.name) {
-              acc.name = cur.project.name;
-              acc.id = id;
+              if (acc.team) {
+                acc.team.push(cur);
+              } else {
+                acc.team = [cur];
+              }
+              if (!acc.name) {
+                acc.name = cur.projects[i].name;
+                acc.id = id;
+              }
             }
           }
         }
