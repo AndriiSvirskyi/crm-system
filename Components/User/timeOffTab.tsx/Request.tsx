@@ -25,10 +25,11 @@ export default function Request({requests}) {
         </UserText>
 
         <TableContainer>
+          <>
           <tr>
-            <TableTitle>Type</TableTitle>
-            <TableTitle>Count</TableTitle>
-            <TableTitle>Status</TableTitle>
+            <TableTitle width='30%'>Type</TableTitle>
+            <TableTitle width='30%'>Count</TableTitle>
+            <TableTitle width='40%'>Status</TableTitle>
           </tr>
           {filteredRequests.map(({ id, type, reviewers, count }) => {
             let accepted = [];
@@ -56,7 +57,7 @@ export default function Request({requests}) {
             }
             return (
               <tr key={id + reviewers.name}>
-                <TableCell>
+                <TableCell width='30%'>
                   <Flex direction="column">
                     {type === "Hospital" && <IoBagAdd size={30} color="red" />}
                     {type === "Paid" && (
@@ -68,11 +69,11 @@ export default function Request({requests}) {
                     <UserText size="10px">1.01 2000 - 11.02.2022</UserText>
                   </Flex>
                 </TableCell>
-                <TableCell>
+                <TableCell width='30%'>
                   <UserText>{count} Days</UserText>
                 </TableCell>
-                <TableCell>
-                  <Flex justify='end' >
+                <TableCell width='40%'>
+                  <Flex justify='space-between'>
                     {accepted.length === 4 && (
                       <UserText
                         color="green"
@@ -127,11 +128,12 @@ export default function Request({requests}) {
                         />
                       ))}
                       </Flex>
-                  </Flex>
+                      </Flex>
                 </TableCell>
               </tr>
             );
           })}
+          </>
         </TableContainer>
       </UserBlockItem>
   )
