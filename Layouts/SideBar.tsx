@@ -15,6 +15,7 @@ import { UserTitle } from "components/User/UserForm";
 import { useRecoilValue } from "recoil";
 import { hamburgerState } from "state/atoms";
 import router from "next/router";
+import { useEffect, useState } from "react";
 
 type PropsSideBar = {
   background: string;
@@ -58,11 +59,19 @@ const SidebarLink = styled.li<SidebarLinkProps>`
 
 export default function SideBar(props) {
   const hamburger = useRecoilValue(hamburgerState);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.user) {
+      setUser(JSON.parse(localStorage.user));
+    }
+  }, []);
+
   return (
     <SideBarStyles {...props} collapsed={hamburger}>
       <aside>
         <Flex direction="column" margin="10px 0 0 0">
-          <SidebarLink onClick={() => router.push("/employees/profile")}>
+          <SidebarLink onClick={() => router.push(`/employees/${user?.id}`)}>
             <FaRegUserCircle size="25" />
             {!hamburger && <span>Me</span>}
           </SidebarLink>

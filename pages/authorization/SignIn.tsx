@@ -53,7 +53,7 @@ const SignIn = () => {
           "user",
           JSON.stringify(users.find(({ email }) => email === emailInput))
         );
-        router.push("/employees/profile");
+        router.push(`/employees/${users.find(({ email }) => email === emailInput).id}`);
       }
     } else {
       setErrors({ invalidEmail: "Invalid email" });
@@ -62,7 +62,7 @@ const SignIn = () => {
 
   return (
     <SignInPage>
-      <Form submit={checkUser} content="Log in" closeModal={undefined}>
+      <Form submit={checkUser} content="Log in">
         <Input
           outline="none"
           value={emailInput}

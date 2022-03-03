@@ -102,14 +102,13 @@ const Projects = () => {
                 padding="0 0 20px 15px"
                 width="30%"
               >
-                <UserTitle
+                <Anchor
                   onClick={() => router.push(`/projects/${project[1].id}`)}
-                  padding="0"
-                  color="rgb(25, 118, 186)"
                 >
-                  {" "}
-                  {project[0]}
-                </UserTitle>
+                  <UserTitle padding="0">
+                    <a>{project[0]}</a>
+                  </UserTitle>
+                </Anchor>
                 <UserText size="16px">
                   Members({project[1].members.length})
                 </UserText>
