@@ -26,6 +26,7 @@ export default function JobTab({ user }) {
       <UserBlockItem>
         <Title>Employment Status</Title>
         <TableContainer>
+          <>
             <tr>
             <TableTitle width="25%">Effective From</TableTitle>
             <TableTitle width="25%">Type</TableTitle>
@@ -38,11 +39,13 @@ export default function JobTab({ user }) {
             <TableCell width="25%">hard: 2 Month</TableCell>
             <TableCell width="25%">?</TableCell>
           </tr>
+          </>
         </TableContainer>
       </UserBlockItem>
       <UserBlockItem>
         <Title>Positions</Title>
         <TableContainer>
+          <>
             <tr>
             <TableTitle width="20%">Effective From</TableTitle>
             <TableTitle width="20%">Position</TableTitle>
@@ -59,12 +62,14 @@ export default function JobTab({ user }) {
             <TableCell width="15%">{user.team}</TableCell>
             <TableCell width="10%">hard:?</TableCell>
           </tr>
+          </>
         </TableContainer>
       </UserBlockItem>
       {user.role ==='admin' && (
       <UserBlockItem>
         <Title>Compensation</Title>
         <TableContainer>
+          <>
             <tr>
             <TableTitle width="20%">Effective From</TableTitle>
             <TableTitle width="20%">Amount</TableTitle>
@@ -79,6 +84,7 @@ export default function JobTab({ user }) {
             <TableCell width="20%">hard:No</TableCell>
             <TableCell width="20%">hard:Paymens</TableCell>
           </tr>
+          </>
         </TableContainer>
       </UserBlockItem>
       )}

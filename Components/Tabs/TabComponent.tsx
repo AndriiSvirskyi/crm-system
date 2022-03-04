@@ -2,11 +2,13 @@ import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
 import styled from "styled-components";
 
-type Tab = {
-  array: string[];
-  background?: string;
+type TabProps = {
+  arrayIcon: string[] | JSX.Element[];
+  state: string;
+  setstate: Function;
+  content: {};
   padding?: string;
-  tabsButtons;
+  background?: string;
 };
 
 const TabsStyled = styled.div`
@@ -20,21 +22,21 @@ const TabsContent = styled.div`
   color: ${(props) => props.color || props.theme.colors.text};
 `;
 
-export const TabComponent = (props) => {
+export const TabComponent = ({arrayIcon, state, setstate, content}:TabProps) => {
   const clickInTabHanler = (tabs) => {
-    props.setstate(tabs.toLocaleLowerCase());
+    setstate(tabs.toLocaleLowerCase());
   };
   return (
     <TabsStyled>
       <Flex>
-        {props.array.map((tab) => {
+        {arrayIcon.map((tab) => {
           return (
             <ButtonStyled
               width="20%"
               height="60px"
               margin="10px"
               background={
-                props.state === tab.toLocaleLowerCase() ? "#9C9C9C" : "#D0D0D0"
+                state === tab.toLocaleLowerCase() ? "#9C9C9C" : "#D0D0D0"
               }
               key={tab}
               onClick={() => clickInTabHanler(tab)}
@@ -44,7 +46,7 @@ export const TabComponent = (props) => {
           );
         })}
       </Flex>
-      <TabsContent>{props.content[props.state]}</TabsContent>
+      <TabsContent>{content[state]}</TabsContent>
     </TabsStyled>
   );
 };

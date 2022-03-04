@@ -1,11 +1,11 @@
 import { ButtonStyled } from "components/ButtonStyled";
-import Modal from "components/Modal/Modal";
 import { Flex } from "components/User/Flex";
 import { UserTitle } from "components/User/UserForm";
 import { useEffect, useState } from "react";
-import { FaBars, FaThList } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import { InputComponent } from "components/InputComponent";
 import styled from "styled-components";
+import EmployeeTabs from "./EmployeeTabs";
 
 const FiltersContainer = styled.div`
   position: relative;
@@ -18,10 +18,24 @@ const Filters = styled.div`
   padding: 10px;
   width: calc(100% - 20px);
 `;
+const ButtonClose = styled.button`
+  cursor: pointer;
+  background: #eeeeee;
+  border: none;
+  &:hover {
+    color: #ffffffc0;
+  }
+`;
 
-export default function InputFilter({ allEmployees, setFilteredEmployees }) {
+export default function InputFilter({
+  allEmployees,
+  setFilteredEmployees,
+  activeTabRender,
+  setActiveTabRender,
+}) {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<any>({});
+
   const inputs = {
     role: {
       title: "role",
@@ -70,7 +84,11 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
     setFilteredEmployees(
       allEmployees.filter((employee) => {
         for (let i = 0; i < filterKeys.length; i++) {
-          if (!employee[filterKeys[i]].includes(filters[filterKeys[i]])) {
+          if (
+            !employee[filterKeys[i]]
+              .toLowerCase()
+              .includes(filters[filterKeys[i]].toLowerCase())
+          ) {
             return false;
           }
         }
@@ -81,7 +99,7 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
 
   const clearInputValues = () => {
     setFilters({
-      name: filters.name,
+      name: "",
       role: "",
       department: "",
       unit: "",
@@ -121,6 +139,15 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
             </Flex>
             {isFiltersOpen && (
               <Filters>
+                <Flex justify="end">
+                  <ButtonClose
+                    onClick={() => {
+                      setIsFiltersOpen(!isFiltersOpen);
+                    }}
+                  >
+                    <FaTimes size={20} />
+                  </ButtonClose>
+                </Flex>
                 {Object.values(inputs).map((input) => {
                   return (
                     <Flex
@@ -160,14 +187,10 @@ export default function InputFilter({ allEmployees, setFilteredEmployees }) {
               </Filters>
             )}
           </FiltersContainer>
-          <Flex margin="10px">
-            <ButtonStyled>
-              <FaBars size="2em" />
-            </ButtonStyled>
-            <ButtonStyled>
-              <FaThList size="2em" />
-            </ButtonStyled>
-          </Flex>
+          <EmployeeTabs
+            activeTabRender={activeTabRender}
+            setActiveTabRender={setActiveTabRender}
+          />
         </Flex>
       </div>
     </>

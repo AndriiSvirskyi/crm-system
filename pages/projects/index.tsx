@@ -12,6 +12,7 @@ import {
   UserWindow,
 } from "components/User/UserForm";
 import router from "next/router";
+import Loader from "components/Loader";
 
 type projectsProps = {
   [key: string]: {
@@ -87,50 +88,54 @@ const Projects = () => {
             onChange={(e) => setSearchProject(e.target.value)}
           />
         </Flex>
-        <Flex wrap="wrap">
-          {Object.entries(projects)
-            .filter((project) => {
-              if (
-                project[0].toLowerCase().includes(searchProject.toLowerCase())
-              ) {
-                return project;
-              }
-            })
-            .map((project) => (
-              <UserBlockItem
-                key={project[1].id}
-                padding="0 0 20px 15px"
-                width="30%"
-              >
-                <Anchor
-                  onClick={() => router.push(`/projects/${project[1].id}`)}
+        {!users ? (
+          <Loader />
+        ) : (
+          <Flex wrap="wrap">
+            {Object.entries(projects)
+              .filter((project) => {
+                if (
+                  project[0].toLowerCase().includes(searchProject.toLowerCase())
+                ) {
+                  return project;
+                }
+              })
+              .map((project) => (
+                <UserBlockItem
+                  key={project[1].id}
+                  padding="0 0 20px 15px"
+                  width="30%"
                 >
-                  <UserTitle padding="0">
-                    <a>{project[0]}</a>
-                  </UserTitle>
-                </Anchor>
-                <UserText size="16px">
-                  Members({project[1].members.length})
-                </UserText>
-                <UserText>Team Lead:</UserText>
-                <hr />
-                <Anchor
-                  onClick={() =>
-                    router.push(
-                      `/employees/${
-                        users.find(
-                          (user) =>
-                            user.name + " " + user.surname === project[1].lead
-                        ).id
-                      }`
-                    )
-                  }
-                >
-                  <a>{project[1].lead}</a>
-                </Anchor>
-              </UserBlockItem>
-            ))}
-        </Flex>
+                  <Anchor
+                    onClick={() => router.push(`/projects/${project[1].id}`)}
+                  >
+                    <UserTitle padding="0">
+                      <a>{project[0]}</a>
+                    </UserTitle>
+                  </Anchor>
+                  <UserText size="16px">
+                    Members({project[1].members.length})
+                  </UserText>
+                  <UserText>Team Lead:</UserText>
+                  <hr />
+                  <Anchor
+                    onClick={() =>
+                      router.push(
+                        `/employees/${
+                          users.find(
+                            (user) =>
+                              user.name + " " + user.surname === project[1].lead
+                          ).id
+                        }`
+                      )
+                    }
+                  >
+                    <a>{project[1].lead}</a>
+                  </Anchor>
+                </UserBlockItem>
+              ))}
+          </Flex>
+        )}
       </UserWindow>
     </MainLayout>
   );

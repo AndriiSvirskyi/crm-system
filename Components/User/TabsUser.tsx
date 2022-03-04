@@ -1,11 +1,11 @@
 import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
-import { TabComponent } from "components/Tabs/TabComponent";
 import { useState } from "react";
 import { Personal } from "./personalTab";
 import PDPTime from "./pdpTimeTab.tsx/PDPTime";
 import TimeOffTab from "./timeOffTab.tsx/TimeOffTab";
 import JobTab from "./jobTab/JobTab";
+import { TabComponent } from "components/tabs/TabComponent";
 
 export default function Tabs({ user }) {
   const [activeTab, setActiveTab] = useState("personal");
@@ -21,7 +21,7 @@ export default function Tabs({ user }) {
   return (
     <Flex justify="space-around" width="100%">
       <TabComponent
-        array={tabsButtons}
+        arrayIcon={tabsButtons}
         state={activeTab}
         setstate={setActiveTab}
         content={tabContent}
@@ -29,3 +29,4 @@ export default function Tabs({ user }) {
     </Flex>
   );
 }
+

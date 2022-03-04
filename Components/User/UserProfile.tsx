@@ -5,7 +5,7 @@ import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
 import Tabs from "components/User/TabsUser";
 import { UserBlockItem, UserText, UserTitle } from "./UserForm";
-import { RemoveUserModal } from "components/Modal/RemoveUserModal";
+import { RemoveUserModal } from "components/modal/RemoveUserModal";
 import { FaSitemap, FaUserCheck, FaUsers, FaUserTie } from "react-icons/fa";
 import { useRecoilValue } from "recoil";
 import { usersState } from "state/atoms";
