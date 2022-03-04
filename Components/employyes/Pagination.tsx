@@ -1,10 +1,18 @@
+import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
-import router, { useRouter } from "next/router";
+import styled from "styled-components";
 
+const ButtonOfPaginate = styled(ButtonStyled)`
+    cursor: pointer;
+    border: none;
+    font-size: 15px;
+    border-radius: 8px;
+    margin: 0 10px;
+    padding: 5px 10px;
+`
 
-export default function Pagination({employeesPerPage, totalEmployees, paginate}) {
+export default function Pagination({employeesPerPage, totalEmployees, paginate, currentPage}) {
     const pageNumbers = [];
-    const {pathname} = useRouter()
     
 
 for(let i = 1; i <= Math.ceil(totalEmployees / employeesPerPage); i++){
@@ -12,17 +20,16 @@ for(let i = 1; i <= Math.ceil(totalEmployees / employeesPerPage); i++){
 }
 
 return (
-    <div>
-        <Flex>
+    
+        <Flex justify='center'>
     {pageNumbers.map((number)=> (
             
         
-<button key={number} onClick={()=> paginate(number)}>
+<ButtonOfPaginate key={number} onClick={()=> paginate(number)} background={ number === currentPage ? 'grey' : ''}>
 {number}
-        </button>
+        </ButtonOfPaginate>
     ))}
 </Flex>
 
-</div>
   )
 }

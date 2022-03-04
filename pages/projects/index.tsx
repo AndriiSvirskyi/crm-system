@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
-import MainLayout from "Layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "components/User/Flex";
 import {
@@ -12,6 +12,7 @@ import {
   UserWindow,
 } from "components/User/UserForm";
 import router from "next/router";
+import Loader from "components/Loader";
 
 type projectsProps = {
   [key: string]: {
@@ -87,6 +88,7 @@ const Projects = () => {
             onChange={(e) => setSearchProject(e.target.value)}
           />
         </Flex>
+        {users ? (
         <Flex wrap="wrap">
           {Object.entries(projects)
             .filter((project) => {
@@ -131,6 +133,7 @@ const Projects = () => {
               </UserBlockItem>
             ))}
         </Flex>
+        ) : (<Loader />)}
       </UserWindow>
     </MainLayout>
   );

@@ -1,7 +1,7 @@
 import { UserWindow } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "Layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
 import { SignUpModal } from "components/modal/SignUpModal";
 import { Button } from "components/Button";
@@ -10,6 +10,8 @@ import { usersState } from "state/atoms";
 import GridCardEmployees from "components/employyes/GridCardEmployees";
 import TableCardEmployees from "components/employyes/TableCardEmployees";
 import Pagination from "components/employyes/Pagination";
+import Loader from "components/Loader";
+import { Flex } from "components/User/Flex";
 
 
 export default function Employee() {
@@ -17,14 +19,11 @@ export default function Employee() {
   const [activeTabRender, setActiveTabRender] = useState("block");
 // pagination
 const [currentPage, setCurrentPage] = useState(1)
-const [employeesPerPage, setEmployeesPerPage] = useState(12);
-
+const employeesPerPage = 12;
 const indexOfLastEmployee = currentPage * employeesPerPage;
 const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
 const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-
 const paginate = (pageNumber) => setCurrentPage(pageNumber)
-
 // pagination
   const [showModal, setShowModal] = useState(false);
   const currentUser =
@@ -66,9 +65,9 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber)
               )}
           </>
         ) : (
-          <>loading</>
+          <Loader />
           )}
-      <Pagination employeesPerPage={employeesPerPage} totalEmployees={filteredEmployees.length} paginate={paginate} />
+      <Pagination employeesPerPage={employeesPerPage} totalEmployees={filteredEmployees.length} paginate={paginate} currentPage={currentPage} />
       </UserWindow>
       {userRole === "admin" && (
         <>

@@ -7,7 +7,6 @@ import { InputComponent } from "components/InputComponent";
 import styled from "styled-components";
 import EmployeeTabs from "./EmployeeTabs";
 
-
 const FiltersContainer = styled.div`
   position: relative;
 `;
@@ -28,8 +27,12 @@ const ButtonClose = styled.button`
   }
 `;
 
-
-export default function InputFilter({ allEmployees, setFilteredEmployees, activeTabRender, setActiveTabRender  }) {
+export default function InputFilter({
+  allEmployees,
+  setFilteredEmployees,
+  activeTabRender,
+  setActiveTabRender,
+}) {
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [filters, setFilters] = useState<any>({});
 
@@ -81,7 +84,11 @@ export default function InputFilter({ allEmployees, setFilteredEmployees, active
     setFilteredEmployees(
       allEmployees.filter((employee) => {
         for (let i = 0; i < filterKeys.length; i++) {
-          if (!employee[filterKeys[i]].toLowerCase().includes(filters[filterKeys[i]].toLowerCase())) {
+          if (
+            !employee[filterKeys[i]]
+              .toLowerCase()
+              .includes(filters[filterKeys[i]].toLowerCase())
+          ) {
             return false;
           }
         }
@@ -133,9 +140,11 @@ export default function InputFilter({ allEmployees, setFilteredEmployees, active
             {isFiltersOpen && (
               <Filters>
                 <Flex justify="end">
-                  <ButtonClose onClick={() => {
-                  setIsFiltersOpen(!isFiltersOpen);
-                }}>
+                  <ButtonClose
+                    onClick={() => {
+                      setIsFiltersOpen(!isFiltersOpen);
+                    }}
+                  >
                     <FaTimes size={20} />
                   </ButtonClose>
                 </Flex>
@@ -178,7 +187,10 @@ export default function InputFilter({ allEmployees, setFilteredEmployees, active
               </Filters>
             )}
           </FiltersContainer>
-          <EmployeeTabs activeTabRender={activeTabRender} setActiveTabRender={setActiveTabRender}  />
+          <EmployeeTabs
+            activeTabRender={activeTabRender}
+            setActiveTabRender={setActiveTabRender}
+          />
         </Flex>
       </div>
     </>
