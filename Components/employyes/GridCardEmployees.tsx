@@ -2,6 +2,7 @@ import { Flex } from "components/User/Flex";
 import styled from "styled-components";
 import router from "next/router";
 import { UserText } from "components/User/UserForm";
+import { ImageContainer } from "components/ImageContainer";
 
 const UserTitle = styled.div`
   color: rgb(25, 118, 186);
@@ -33,7 +34,10 @@ export default function GridCardEmployees({ filteredEmployees }) {
     <GridMarkup>
       {filteredEmployees.map((user) => (
         <GridUserCard key={user.id}>
-          <Flex>
+          <Flex align="center">
+            <ImageContainer width="100px" height="100px" margin="0 20px 0 0">
+              <img src={user.image} alt="User" />
+            </ImageContainer>
             <UserTitle
               onClick={() => {
                 router.push(`/employees/${user.id}`);

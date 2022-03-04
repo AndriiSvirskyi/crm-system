@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Flex } from "components/User/Flex";
 import router from "next/router";
+import { ImageContainer } from "components/ImageContainer";
 
 const TableCard = styled.div`
   margin-bottom: 1.25rem;
@@ -28,7 +29,7 @@ const TD = styled.td`
   border-top: 1px solid #ddd;
 `;
 const Anchor = styled.span`
-cursor: pointer;
+  cursor: pointer;
   a {
     color: rgb(25, 118, 186);
     text-decoration: none;
@@ -50,7 +51,7 @@ export const ProjectContainer = ({ project }) => {
     <Flex direction="column" padding="10px">
       <span>
         <Anchor onClick={() => router.push("/projects")}>
-            <a>Teams </a>
+          <a>Teams </a>
         </Anchor>
         / {project.name}
       </span>
@@ -63,9 +64,22 @@ export const ProjectContainer = ({ project }) => {
             <tbody>
               <tr>
                 <TD>
-                  <Anchor onClick={() => router.push(`/employees/${project.lead.id}`)}>
+                  <Flex align="center">
+                    <ImageContainer
+                      width="35px"
+                      height="35px"
+                      margin="0 10px 0 0"
+                    >
+                      <img src={project.lead.image} alt="Lead" />
+                    </ImageContainer>
+                    <Anchor
+                      onClick={() =>
+                        router.push(`/employees/${project.lead.id}`)
+                      }
+                    >
                       <a>{`${project.lead.name} ${project.lead.surname}`}</a>
-                  </Anchor>
+                    </Anchor>
+                  </Flex>
                 </TD>
                 <TD>{project.lead.role}</TD>
                 <TD>{project.lead.department}</TD>
@@ -84,13 +98,24 @@ export const ProjectContainer = ({ project }) => {
             {tHead}
             <tbody>
               {project.team.map(
-                ({ name, surname, role, department, unit, address, id }) => {
+                ({ name, surname, role, department, unit, address, id, image }) => {
                   return (
                     <tr key={id}>
                       <TD>
-                        <Anchor onClick={() => router.push(`/employees/${id}`)}>
+                        <Flex align="center">
+                          <ImageContainer
+                            width="35px"
+                            height="35px"
+                            margin="0 10px 0 0"
+                          >
+                            <img src={image} alt="Member" />
+                          </ImageContainer>
+                          <Anchor
+                            onClick={() => router.push(`/employees/${id}`)}
+                          >
                             <a>{`${name} ${surname}`}</a>
-                        </Anchor>
+                          </Anchor>
+                        </Flex>
                       </TD>
                       <TD>{role}</TD>
                       <TD>{department}</TD>

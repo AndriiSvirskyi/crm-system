@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
-import { Input } from "components/form/Input";
-import { Label, FlexContainer } from "./Label&FlexContainer";
+import { Label } from "./Label";
+import { InputComponent } from "components/InputComponent";
+import { Flex } from "../Flex";
 
 export const PersonalInfo = ({ user }) => {
   const {
+    id: idUser,
     name: nameUser,
     surname: surnameUser,
     email: emailUser,
     birth: birthUser,
     gender: genderUser,
   } = user;
+  const [id, setId] = useState(idUser);
   const [name, setName] = useState(nameUser);
   const [surname, setSurname] = useState(surnameUser);
   const [email, setEmail] = useState(emailUser);
@@ -51,8 +54,8 @@ export const PersonalInfo = ({ user }) => {
   };
 
   return (
-    <UserBlockItem >
-      <FlexContainer justify="space-between">
+    <UserBlockItem>
+      <Flex justify="space-between" align="center">
         <UserTitle>Personal</UserTitle>
         {
           <Button
@@ -70,101 +73,108 @@ export const PersonalInfo = ({ user }) => {
             EDIT
           </Button>
         }
-      </FlexContainer>
-      <FlexContainer justify="space-between">
+      </Flex>
+      <Flex justify="space-between">
         <Label htmlFor="employee_id">Employee ID</Label>
-        <Input
-          value=""
-          outline={personalInfoEdit ? "1px solid grey" : "none"}
-          type="text"
+        <InputComponent
           id="employee_id"
+          outline={personalInfoEdit ? "1px solid grey" : "none"}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setId(e.target.value)
+          }
+          value={id}
+          type="text"
           background="transparent"
           height="30px"
+          width="100%"
           readonly={personalInfoEdit ? false : true}
         />
-      </FlexContainer>
-      <FlexContainer justify="space-between">
-        <FlexContainer>
+      </Flex>
+      <Flex justify="space-between" >
+        <Flex align="center">
           <Label htmlFor="last_name">First name</Label>
-          <Input
+          <InputComponent
+            id="last_name"
             outline={personalInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setName(e.target.value)
             }
             value={name}
             type="text"
-            id="last_name"
             background="transparent"
             margin="0 30px 0 0"
-            width="auto"
+            width="100%"
             height="30px"
             readonly={personalInfoEdit ? false : true}
           />
-        </FlexContainer>
-        <FlexContainer>
+        </Flex>
+        <Flex align="center">
           <Label htmlFor="first_name">Last name</Label>
-          <Input
+          <InputComponent
+            id="first_name"
             outline={personalInfoEdit ? "1px solid grey" : "none"}
-            setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setSurname(e.target.value)
             }
             value={surname}
             type="text"
-            id="first_name"
             background="transparent"
-            width="auto"
+            width="100%"
             height="30px"
             readonly={personalInfoEdit ? false : true}
           />
-        </FlexContainer>
-      </FlexContainer>
-      <FlexContainer justify="space-between">
+        </Flex>
+      </Flex>
+      <Flex justify="space-between">
         <Label htmlFor="email">Email</Label>
-        <Input
+        <InputComponent
+          id="email"
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setEmail(e.target.value)
           }
           value={email}
           type="text"
-          id="email"
           background="transparent"
+          width="100%"
           height="30px"
           readonly={personalInfoEdit ? false : true}
         />
-      </FlexContainer>
-      <FlexContainer justify="space-between">
+      </Flex>
+      <Flex justify="space-between">
         <Label htmlFor="birthday">Date of birth</Label>
-        <Input
+        <InputComponent
+          id="birthday"
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setBirth(e.target.value)
           }
           value={birth}
           type="text"
-          id="birthday"
           background="transparent"
+          width="100%"
           height="30px"
           readonly={personalInfoEdit ? false : true}
         />
-      </FlexContainer>
-      <FlexContainer justify="space-between" margin="0 0 40px 0">
+      </Flex>
+      <Flex justify="space-between" margin="0 0 40px 0">
         <Label htmlFor="gender">Gender</Label>
-        <Input
+        <InputComponent
+          id="gender"
           outline={personalInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setGender(e.target.value)
           }
           value={gender}
           type="text"
-          id="gender"
           background="transparent"
+          width="100%"
           height="30px"
           readonly={personalInfoEdit ? false : true}
         />
-      </FlexContainer>
+      </Flex>
       {personalInfoEdit ? (
-        <FlexContainer padding="0 0 10px 0" justify="end">
+        <Flex padding="0 0 10px 0" justify="end">
           <Button
             margin=" 0 20px 0 0"
             onClick={() => {
@@ -182,7 +192,7 @@ export const PersonalInfo = ({ user }) => {
           <Button margin=" 0 20px 0 0" onClick={updatePersonal}>
             SAVE
           </Button>
-        </FlexContainer>
+        </Flex>
       ) : (
         ""
       )}

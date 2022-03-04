@@ -6,6 +6,8 @@ type StyledInputProps = {
   width: string;
   list?: string;
   error?: string;
+  outline?: string;
+  background?: string;
 };
 
 type InputWrapProps = {
@@ -28,14 +30,19 @@ const Error = styled.div`
 `;
 
 const StyledInput = styled.input<StyledInputProps>`
-  outline: none;
+  outline: ${({ outline }) => outline || "none"};
   height: ${({ height }) => height || "auto"};
   width: ${({ width }) => `calc(${width} - 25px)` || "auto"};
-  background: #d0d0d0;
+  background: ${({ background }) => background || "#d0d0d0"};
   border: ${({ error }) =>
     error ? "1px solid #fe5959c9" : "1px solid transparent"};
   border-radius: 8px;
   padding: 0 0 0 25px;
+
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 `;
 
 type InputProps = {
@@ -49,6 +56,10 @@ type InputProps = {
   mediaMargin?: string;
   margin?: string;
   onChange?: any;
+  outline?: string;
+  readonly?: boolean;
+  background?: string;
+  id?: string;
 };
 
 export const InputComponent = ({
@@ -61,10 +72,18 @@ export const InputComponent = ({
   margin,
   onChange,
   value,
+  outline,
+  readonly,
+  background,
+  id,
 }: InputProps) => {
   return (
     <InputWrap width={width} margin={margin}>
       <StyledInput
+        id={id}
+        outline={outline}
+        readOnly={readonly}
+        background={background}
         list={list}
         width={width}
         error={error}

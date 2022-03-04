@@ -1,5 +1,6 @@
 import router from "next/router";
 import styled from "styled-components";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
@@ -10,14 +11,8 @@ import { FaSitemap, FaUserCheck, FaUsers, FaUserTie } from "react-icons/fa";
 import { useRecoilValue } from "recoil";
 import { usersState } from "state/atoms";
 import { Anchor } from "pages/projects";
+import { ImageContainer } from "components/ImageContainer";
 
-const IconContainer = styled.div`
-  width: 235px;
-  height: 235px;
-  border-radius: 50%;
-  background: #d0d0d0;
-  margin: 0 80px 0 0;
-`;
 const ReportsContainer = styled.div`
   cursor: pointer;
   padding: 0 0 10px 0;
@@ -45,9 +40,10 @@ const UnitContainer = styled.p`
   font-size: 14px;
   font-weight: 400;
   padding: 0 0 10px 0;
-  border-bottom: 1px solid #d5d6d699;
 `;
-
+const Wrapper = styled.div`
+  border-bottom: 1px solid #d5d6d6;
+`;
 export default function UserProfile({ user }) {
   const [askToRemove, setAskToRemove] = useState(false);
   const currentUser =
@@ -103,7 +99,10 @@ export default function UserProfile({ user }) {
         <UserBlockItem>
           <Flex height="300px" justify="space-between">
             <Flex align="center">
-              <IconContainer></IconContainer>
+              <ImageContainer width="235px" height="235px" margin="0 80px 0 0">
+                <img src={user.image} alt="User" />
+                {/* <Image src= alt="" /> */}
+              </ImageContainer>
               <div>
                 <UserTitle margin="0" padding="0" size="37px">
                   {user.name} {user.surname}
@@ -157,14 +156,24 @@ export default function UserProfile({ user }) {
             <ReportsContainer>
               <FaUserTie size="25" /> <span>Reports to</span>
             </ReportsContainer>
-            <Anchor
-              onClick={() => router.push(`/employees/${superintendent.id}`)}
-            >
-              <UserText padding="0">
-                <a>{`${superintendent.name} ${superintendent.surname}`}</a>
-              </UserText>
-              <UnitContainer>{superintendent.unit}</UnitContainer>
-            </Anchor>
+            <Wrapper>
+              <Flex align="center">
+                <ImageContainer width="60px" height="60px" margin="0 20px 0 0">
+                  <img src={superintendent.image} alt="User" />
+                </ImageContainer>
+                <Anchor>
+                  <UserText
+                    onClick={() =>
+                      router.push(`/employees/${superintendent.id}`)
+                    }
+                    padding="0"
+                  >
+                    <a>{`${superintendent.name} ${superintendent.surname}`}</a>
+                  </UserText>
+                  <UnitContainer>{superintendent.unit}</UnitContainer>
+                </Anchor>
+              </Flex>
+            </Wrapper>
           </UserBlockItem>
           <UserBlockItem>
             <ReportsContainer>
@@ -172,17 +181,28 @@ export default function UserProfile({ user }) {
               <span>Direct reports</span>
             </ReportsContainer>
             {subordinates?.members &&
-              subordinates.members.map(({ name, surname, id, unit }) => {
+              subordinates.members.map(({ name, surname, id, unit, image }) => {
                 return (
-                  <Anchor
-                    key={id}
-                    onClick={() => router.push(`/employees/${id}`)}
-                  >
-                    <UserText padding="0">
-                      <a>{`${name} ${surname}`}</a>
-                    </UserText>
-                    <UnitContainer>{unit}</UnitContainer>
-                  </Anchor>
+                  <Wrapper key={id}>
+                    <Flex align="center">
+                      <ImageContainer
+                        width="60px"
+                        height="60px"
+                        margin="0 20px 0 0"
+                      >
+                        <img src={image} alt="User" />
+                      </ImageContainer>
+                      <Anchor>
+                        <UserText
+                          padding="0"
+                          onClick={() => router.push(`/employees/${id}`)}
+                        >
+                          <a>{`${name} ${surname}`}</a>
+                        </UserText>
+                        <UnitContainer>{unit}</UnitContainer>
+                      </Anchor>
+                    </Flex>
+                  </Wrapper>
                 );
               })}
           </UserBlockItem>
@@ -194,11 +214,11 @@ export default function UserProfile({ user }) {
             {subordinates?.members &&
               user.projects.map(({ name, role, id }) => {
                 return (
-                  <Anchor
-                    key={id}
-                    onClick={() => router.push(`/projects/${id}`)}
-                  >
-                    <UserText padding="0">
+                  <Anchor key={id}>
+                    <UserText
+                      padding="0"
+                      onClick={() => router.push(`/projects/${id}`)}
+                    >
                       <a>{name}</a>
                     </UserText>
                     <UnitContainer>{role}</UnitContainer>

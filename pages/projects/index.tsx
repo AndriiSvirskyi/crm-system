@@ -13,6 +13,7 @@ import {
 } from "components/User/UserForm";
 import router from "next/router";
 import Loader from "components/Loader";
+import { ImageContainer } from "components/ImageContainer";
 
 type projectsProps = {
   [key: string]: {
@@ -23,11 +24,10 @@ type projectsProps = {
 };
 
 export const Anchor = styled.span`
-  cursor: pointer;
   a {
+    cursor: pointer;
     color: rgb(25, 118, 186);
     text-decoration: none;
-    display: block;
   }
   :hover {
     a {
@@ -118,20 +118,38 @@ const Projects = () => {
                   </UserText>
                   <UserText>Team Lead:</UserText>
                   <hr />
-                  <Anchor
-                    onClick={() =>
-                      router.push(
-                        `/employees/${
+                  <Flex align="center">
+                    <ImageContainer
+                      width="50px"
+                      height="50px"
+                      margin="0 20px 0 0"
+                    >
+                      <img
+                        src={
                           users.find(
                             (user) =>
                               user.name + " " + user.surname === project[1].lead
-                          ).id
-                        }`
-                      )
-                    }
-                  >
-                    <a>{project[1].lead}</a>
-                  </Anchor>
+                          ).image
+                        }
+                        alt="User"
+                      />
+                    </ImageContainer>
+                    <Anchor
+                      onClick={() =>
+                        router.push(
+                          `/employees/${
+                            users.find(
+                              (user) =>
+                                user.name + " " + user.surname ===
+                                project[1].lead
+                            ).id
+                          }`
+                        )
+                      }
+                    >
+                      <a>{project[1].lead}</a>
+                    </Anchor>
+                  </Flex>
                 </UserBlockItem>
               ))}
           </Flex>

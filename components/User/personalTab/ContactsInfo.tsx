@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button } from "components/Button";
-import { Label, FlexContainer } from "./Label&FlexContainer";
+import { Label} from "./Label";
 import { UserBlockItem, UserTitle } from "../UserForm";
-import { Input } from "components/form/Input";
+import { InputComponent } from "components/InputComponent";
+import { Flex } from "../Flex";
 
 export const ContactsInfo = ({ user }) => {
   const {
@@ -48,7 +49,7 @@ export const ContactsInfo = ({ user }) => {
   };
   return (
     <UserBlockItem>
-      <FlexContainer justify="space-between">
+      <Flex justify="space-between" align="center">
         <UserTitle>Contact</UserTitle>
         <Button
           height="25px"
@@ -63,54 +64,57 @@ export const ContactsInfo = ({ user }) => {
         >
           EDIT
         </Button>
-      </FlexContainer>
-      <FlexContainer>
+      </Flex>
+      <Flex>
         <Label htmlFor="number">
           Mobile number
         </Label>
-        <Input
+        <InputComponent
           id="number"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setMobile(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMobile(e.target.value)}
           value={mobile}
           type="text"
           background="transparent"
+          width="100%"
           height="30px"
           readonly={contactsInfoEdit ? false : true}
         />
-      </FlexContainer>
-      <FlexContainer>
+      </Flex>
+      <Flex>
         <Label htmlFor="username">
           Slack Username
         </Label>
-        <Input
+        <InputComponent
           id="username"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
           value={username}
           type="text"
           background="transparent"
+          width="100%"
           height="30px"
           readonly={contactsInfoEdit ? false : true}
         />
-      </FlexContainer>
-      <FlexContainer margin="0 0 40px 0">
+      </Flex>
+      <Flex margin="0 0 40px 0">
         <Label htmlFor="address">
           Address
         </Label>
-        <Input
+        <InputComponent
           id="address"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          setValue={(e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)}
           value={address}
           type="text"
           background="transparent"
+          width="100%"
           height="30px"
           readonly={contactsInfoEdit ? false : true}
         />
-      </FlexContainer>
+      </Flex>
       {contactsInfoEdit ? (
-        <FlexContainer padding="0 0 10px 0" justify="end">
+        <Flex padding="0 0 10px 0" justify="end">
           <Button
             margin=" 0 20px 0 0"
             onClick={() => {
@@ -126,7 +130,7 @@ export const ContactsInfo = ({ user }) => {
           <Button margin=" 0 20px 0 0" onClick={updateContacts}>
             SAVE
           </Button>
-        </FlexContainer>
+        </Flex>
       ) : (
         ""
       )}

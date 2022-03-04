@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Button } from "components/Button";
-import { FlexContainer } from "./Label&FlexContainer";
 import { ContactsInfo } from "./ContactsInfo";
 import { SocialInfo } from "./SocialInfo";
 import { PersonalInfo } from "./PersonalInfo";
+import { Flex } from "../Flex";
 
 
 export const Personal = ({ user }) => {
@@ -18,28 +18,28 @@ export const Personal = ({ user }) => {
       {ContactsInfoMemo}
       {SocialInfoMemo}
       <UserBlockItem >
-        <FlexContainer justify="space-between">
+        <Flex justify="space-between" align="center">
           <UserTitle>Skills</UserTitle>
           <Button height="25px" margin=" 0 20px 0 0">
             ADD
           </Button>
-        </FlexContainer>
+        </Flex>
       </UserBlockItem>
       <UserBlockItem >
-        <FlexContainer justify="space-between">
+        <Flex justify="space-between" align="center">
           <UserTitle>Education</UserTitle>
           <Button height="25px" margin=" 0 20px 0 0">
             ADD
           </Button>
-        </FlexContainer>
+        </Flex>
       </UserBlockItem>
       <UserBlockItem >
-        <FlexContainer justify="space-between">
+        <Flex justify="space-between" align="center">
           <UserTitle>Licenses and certificates</UserTitle>
           <Button height="25px" margin=" 0 20px 0 0">
             ADD
           </Button>
-        </FlexContainer>
+        </Flex>
       </UserBlockItem>
     </>
   );
