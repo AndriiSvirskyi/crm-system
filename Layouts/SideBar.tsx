@@ -16,6 +16,7 @@ import { useRecoilValue } from "recoil";
 import { hamburgerState } from "state/atoms";
 import router from "next/router";
 import { useEffect, useState } from "react";
+import { ImageContainer } from "components/ImageContainer";
 
 type PropsSideBar = {
   background: string;

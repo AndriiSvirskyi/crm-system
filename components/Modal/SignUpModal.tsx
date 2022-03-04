@@ -1,11 +1,8 @@
-import styled, { keyframes } from "styled-components";
 import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { Form } from "components/form/Form";
-import { Input } from "components/form/Input";
 import { Button } from "components/Button";
 import router from "next/router";
-import { UserText } from "components/User/UserForm";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "components/User/Flex";
 import Modal from "./Modal";
@@ -104,15 +101,15 @@ export const SignUpModal = ({ users, closeModal }) => {
   );
   const NameInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
+      <InputComponent
         value={name}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setName(e.target.value)
         }
         type="text"
         placeholder="Name"
         height="40px"
+        width="100%"
         margin="0 10px 10px 0"
       />
     ),
@@ -120,15 +117,15 @@ export const SignUpModal = ({ users, closeModal }) => {
   );
   const SurnameInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
+      <InputComponent
         value={surname}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setSurname(e.target.value)
         }
         type="text"
         placeholder="Surname"
         height="40px"
+        width="100%"
         margin="0 0 10px 0"
       />
     ),
@@ -136,15 +133,15 @@ export const SignUpModal = ({ users, closeModal }) => {
   );
   const PhoneInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
+      <InputComponent
         value={phone}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setPhone(e.target.value)
         }
         type="number"
         placeholder="Phone"
         height="40px"
+        width="100%"
         margin="0 0 10px 0"
       />
     ),
@@ -152,16 +149,16 @@ export const SignUpModal = ({ users, closeModal }) => {
   );
   const RoleInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
+      <InputComponent
+        list="roles"
         value={role}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setRole(e.target.value)
         }
         type="text"
         placeholder="Work position"
         height="40px"
-        list="roles"
+        width="100%"
         margin="0 0 10px 0"
       />
     ),
@@ -169,15 +166,15 @@ export const SignUpModal = ({ users, closeModal }) => {
   );
   const StartDateInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
+      <InputComponent
         value={startDate}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setStartDate(e.target.value)
         }
         type="date"
-        width="60%"
+        placeholder="Password"
         height="40px"
+        width="100%"
         margin="0 0 10px 0"
       />
     ),
@@ -185,15 +182,15 @@ export const SignUpModal = ({ users, closeModal }) => {
   );
   const PasswordInput: JSX.Element = useMemo(
     () => (
-      <Input
-        outline="none"
+      <InputComponent
         value={userPassword}
-        setValue={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setUserPassword(e.target.value)
         }
         type="password"
         placeholder="Password"
         height="40px"
+        width="100%"
         margin="0 0 10px 0"
       />
     ),
@@ -220,11 +217,7 @@ export const SignUpModal = ({ users, closeModal }) => {
 
   return (
     <Modal close={closeModal}>
-      <Form
-        
-        submit={getInformation}
-        content="Create account"
-      >
+      <Form submit={getInformation} content="Create account">
         <Flex justify="space-between" width="100%">
           {NameInput}
           {SurnameInput}
@@ -237,7 +230,7 @@ export const SignUpModal = ({ users, closeModal }) => {
           ))}
         </datalist>
         <Flex justify="space-between" width="100%">
-          <UserText size="15px">Start work since: </UserText>
+          Start work since:
           {StartDateInput}
         </Flex>
         {EmailInput}

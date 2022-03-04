@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ButtonStyled } from "components/ButtonStyled";
 import styled from "styled-components";
 import Modal from "components/Modal/Modal";
@@ -11,6 +11,7 @@ import { FiAlignJustify } from "react-icons/fi";
 import { useSetRecoilState } from "recoil";
 import { hamburgerState } from "state/atoms";
 import { Flex } from "components/User/Flex";
+import { ImageContainer } from "components/ImageContainer";
 
 type PropsHeader = {
   background?: string;
@@ -33,6 +34,13 @@ export default function Header() {
     setBellModalVisible(!bellModalVisible);
   };
   const setHamburger = useSetRecoilState(hamburgerState);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (localStorage.user) {
+      setUser(JSON.parse(localStorage.user));
+    }
+  }, []);
   return (
     <HeaderStyles>
       <Flex>
@@ -76,9 +84,9 @@ export default function Header() {
               <UserText>Нових сповіщень немає!</UserText>
             </Modal>
           )}
-          <ButtonStyled width="100px" height="50px">
-            Icon Profille
-          </ButtonStyled>
+          <ImageContainer width="50px" height="50px" margin="0">
+            <img src={user && user.image} alt="User" />
+          </ImageContainer>
         </Flex>
       </Flex>
     </HeaderStyles>
