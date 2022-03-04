@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "components/Button";
+import { ButtonStyled } from "components/ButtonStyled";
 const RemoveContainer = styled.div`
   position: fixed;
   left: 50%;
@@ -20,12 +20,12 @@ export const RemoveUserModal = ({ yes, no }) => {
     <RemoveContainer>
       <p>Are you sure you want to remove this user?</p>
       <div>
-        <Button margin="0 10px 0 0" width="100px" onClick={no}>
+        <ButtonStyled padding="5px 0" margin="0 10px 0 0" width="100px" onClick={no}>
           NO
-        </Button>
-        <Button width="100px" onClick={yes}>
+        </ButtonStyled>
+        <ButtonStyled padding="5px 0" width="100px" onClick={yes}>
           YES
-        </Button>
+        </ButtonStyled>
       </div>
     </RemoveContainer>
   );

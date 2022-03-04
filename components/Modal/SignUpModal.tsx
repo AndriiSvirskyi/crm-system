@@ -1,11 +1,11 @@
 import moment from "moment";
 import { useEffect, useMemo, useState } from "react";
 import { Form } from "components/form/Form";
-import { Button } from "components/Button";
 import router from "next/router";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "components/User/Flex";
 import Modal from "./Modal";
+import { ButtonStyled } from "components/ButtonStyled";
 
 type Errors = {
   [key: string]: string;
@@ -236,9 +236,9 @@ export const SignUpModal = ({ users, closeModal }) => {
         {EmailInput}
         {PasswordInput}
         {CheckPasswordInput}
-        <Button width="30%" height="50px">
+        <ButtonStyled width="30%" height="50px">
           Create account
-        </Button>
+        </ButtonStyled>
       </Form>
     </Modal>
   );

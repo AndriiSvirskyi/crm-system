@@ -4,13 +4,13 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import MainLayout from "Layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
 import { SignUpModal } from "components/Modal/SignUpModal";
-import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
 import GridCardEmployees from "components/employyes/GridCardEmployees";
 import TableCardEmployees from "components/employyes/TableCardEmployees";
 import Pagination from "components/employyes/Pagination";
 import Loader from "components/Loader";
+import { ButtonStyled } from "components/ButtonStyled";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -77,15 +77,16 @@ export default function Employee() {
       </UserWindow>
       {userRole === "admin" && (
         <>
-          <Button
+          <ButtonStyled
             position="fixed"
-            right="0"
-            bottom="0"
-            margin="0 20px 20px 0"
+            right="20px"
+            bottom="20px"
+            width="60px"
+            height="50px"
             onClick={() => setShowModal(!showModal)}
           >
             <FaUserPlus size={30}></FaUserPlus>
-          </Button>
+          </ButtonStyled>
           {showModal && (
             <SignUpModal closeModal={() => setShowModal(false)} users={users} />
           )}

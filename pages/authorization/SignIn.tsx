@@ -6,6 +6,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import router from "next/router";
 import { InputComponent } from "components/InputComponent";
+import { ButtonStyled } from "components/ButtonStyled";
 
 const SignInPage = styled.div`
   display: flex;
@@ -95,9 +96,9 @@ const SignIn = () => {
             error={errors?.invalidPassword}
           />
           {/* <Button width="40%">Log in with Google</Button> */}
-          <Button width={"30%"} height="50px">
+          <ButtonStyled width={"30%"} height="50px">
             Log in
-          </Button>
+          </ButtonStyled>
         </Form>
       </SignInPageWrap>
     </SignInPage>

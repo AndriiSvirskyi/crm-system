@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Button } from "components/Button";
 import { Label} from "./Label";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "../Flex";
+import { ButtonStyled } from "components/ButtonStyled";
 
 export const ContactsInfo = ({ user }) => {
   const {
@@ -51,8 +51,9 @@ export const ContactsInfo = ({ user }) => {
     <UserBlockItem>
       <Flex justify="space-between" align="center">
         <UserTitle>Contact</UserTitle>
-        <Button
+        <ButtonStyled
           height="25px"
+          padding="5px 10px"
           margin=" 0 20px 0 0"
           onClick={() => {
             setContactsInfoEdit({
@@ -63,7 +64,7 @@ export const ContactsInfo = ({ user }) => {
           }}
         >
           EDIT
-        </Button>
+        </ButtonStyled>
       </Flex>
       <Flex>
         <Label htmlFor="number">
@@ -115,8 +116,9 @@ export const ContactsInfo = ({ user }) => {
       </Flex>
       {contactsInfoEdit ? (
         <Flex padding="0 0 10px 0" justify="end">
-          <Button
-            margin=" 0 20px 0 0"
+          <ButtonStyled
+          padding="5px 10px"
+            margin="0 20px 0 0"
             onClick={() => {
               const { mobile, username, address } = contactsInfoEdit;
               setMobile(mobile);
@@ -126,10 +128,10 @@ export const ContactsInfo = ({ user }) => {
             }}
           >
             CANCEL
-          </Button>
-          <Button margin=" 0 20px 0 0" onClick={updateContacts}>
+          </ButtonStyled>
+          <ButtonStyled   padding="5px 10px" margin=" 0 20px 0 0" onClick={updateContacts}>
             SAVE
-          </Button>
+          </ButtonStyled>
         </Flex>
       ) : (
         ""

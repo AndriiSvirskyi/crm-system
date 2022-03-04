@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Label } from "./Label";
 import router from "next/router";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "../Flex";
+import { ButtonStyled } from "components/ButtonStyled";
 
 const Anchor = styled.a`
   text-decoration: none;
@@ -64,7 +64,8 @@ export const SocialInfo = ({ user }) => {
     <UserBlockItem>
       <Flex justify="space-between" align="center">
         <UserTitle>Social</UserTitle>
-        <Button
+        <ButtonStyled
+          padding="5px 10px"
           height="25px"
           margin=" 0 20px 0 0"
           onClick={() => {
@@ -76,7 +77,7 @@ export const SocialInfo = ({ user }) => {
           }}
         >
           ADD
-        </Button>
+        </ButtonStyled>
       </Flex>
       <Flex>
         <Label htmlFor="facebook">Facebook URL</Label>
@@ -146,7 +147,8 @@ export const SocialInfo = ({ user }) => {
       </Flex>
       {socialInfoEdit ? (
         <Flex padding="0 0 10px 0" justify="end">
-          <Button
+          <ButtonStyled
+            padding="5px 10px"
             margin=" 0 20px 0 0"
             onClick={() => {
               const { facebook, linkedin, twitter } = socialInfoEdit;
@@ -157,10 +159,14 @@ export const SocialInfo = ({ user }) => {
             }}
           >
             CANCEL
-          </Button>
-          <Button margin=" 0 20px 0 0" onClick={updateSocial}>
+          </ButtonStyled>
+          <ButtonStyled
+            padding="5px 10px"
+            margin=" 0 20px 0 0"
+            onClick={updateSocial}
+          >
             SAVE
-          </Button>
+          </ButtonStyled>
         </Flex>
       ) : (
         ""
