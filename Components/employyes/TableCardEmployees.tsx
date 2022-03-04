@@ -18,15 +18,18 @@ const TableGridMarkup = styled.div`
   border: 1px solid #ddd;
 `;
 const TableGridMarkupTitle = styled.div`
-  padding-top: 10px;
+  display: flex;
+  align-items: center;
   font-weight: bold;
-
+  padding-left: 5px;
 `;
 
 const TableGridMarkupUserCard = styled.div`
+  display: flex;
+  align-items: center;
   border-top: 1px solid #ddd;
   font-size: 15px;
-  padding-top: 10px;
+  padding-left: 5px;
 `;
 
 export default function TableCardEmployees({ filteredEmployees }) {

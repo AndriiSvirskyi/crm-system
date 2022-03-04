@@ -1,9 +1,9 @@
 import { UserWindow } from "components/User/UserForm";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import InputFilter from "components/employyes/InputFilter";
-import { SignUpModal } from "components/modal/SignUpModal";
+import { SignUpModal } from "components/Modal/SignUpModal";
 import { Button } from "components/Button";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
@@ -11,20 +11,21 @@ import GridCardEmployees from "components/employyes/GridCardEmployees";
 import TableCardEmployees from "components/employyes/TableCardEmployees";
 import Pagination from "components/employyes/Pagination";
 import Loader from "components/Loader";
-import { Flex } from "components/User/Flex";
-
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [activeTabRender, setActiveTabRender] = useState("block");
-// pagination
-const [currentPage, setCurrentPage] = useState(1)
-const employeesPerPage = 12;
-const indexOfLastEmployee = currentPage * employeesPerPage;
-const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
-const paginate = (pageNumber) => setCurrentPage(pageNumber)
-// pagination
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const employeesPerPage = 12;
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = filteredEmployees.slice(
+    indexOfFirstEmployee,
+    indexOfLastEmployee
+  );
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  // pagination
   const [showModal, setShowModal] = useState(false);
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
@@ -55,19 +56,24 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber)
           allEmployees={users || []}
           setFilteredEmployees={setFilteredEmployees}
         />
-        {users ? (
+        {!users ? (
+          <Loader />
+        ) : (
           <>
             {activeTabRender === "block" && (
               <GridCardEmployees filteredEmployees={currentEmployees} />
-              )}
+            )}
             {activeTabRender === "table" && (
               <TableCardEmployees filteredEmployees={currentEmployees} />
-              )}
+            )}
           </>
-        ) : (
-          <Loader />
-          )}
-      <Pagination employeesPerPage={employeesPerPage} totalEmployees={filteredEmployees.length} paginate={paginate} currentPage={currentPage} />
+        )}
+        <Pagination
+          employeesPerPage={employeesPerPage}
+          totalEmployees={filteredEmployees.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
       </UserWindow>
       {userRole === "admin" && (
         <>
@@ -82,7 +88,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber)
           </Button>
           {showModal && (
             <SignUpModal closeModal={() => setShowModal(false)} users={users} />
-            )}
+          )}
         </>
       )}
     </MainLayout>
