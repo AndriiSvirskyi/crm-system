@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Label } from "./Label";
 import { InputComponent } from "components/InputComponent";
@@ -6,21 +6,29 @@ import { Flex } from "../Flex";
 import { ButtonStyled } from "components/ButtonStyled";
 
 export const PersonalInfo = ({ user }) => {
-  const {
-    id: idUser,
-    name: nameUser,
-    surname: surnameUser,
-    email: emailUser,
-    birth: birthUser,
-    gender: genderUser,
-  } = user;
-  const [id, setId] = useState(idUser);
-  const [name, setName] = useState(nameUser);
-  const [surname, setSurname] = useState(surnameUser);
-  const [email, setEmail] = useState(emailUser);
-  const [birth, setBirth] = useState(birthUser);
-  const [gender, setGender] = useState(genderUser);
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [birth, setBirth] = useState("");
+  const [gender, setGender] = useState("");
   const [personalInfoEdit, setPersonalInfoEdit] = useState<any>();
+  useEffect(() => {
+    const {
+      id: idUser,
+      name: nameUser,
+      surname: surnameUser,
+      email: emailUser,
+      birth: birthUser,
+      gender: genderUser,
+    } = user;
+    setId(idUser || "");
+    setName(nameUser || "");
+    setSurname(surnameUser || "");
+    setEmail(emailUser || "");
+    setBirth(birthUser || "");
+    setGender(genderUser || "");
+  }, [user]);
 
   const updatePersonal = async () => {
     setPersonalInfoEdit(false);
