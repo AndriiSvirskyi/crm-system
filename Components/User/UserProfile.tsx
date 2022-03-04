@@ -6,7 +6,7 @@ import { ButtonStyled } from "components/ButtonStyled";
 import { Flex } from "components/User/Flex";
 import Tabs from "components/User/TabsUser";
 import { UserBlockItem, UserText, UserTitle } from "./UserForm";
-import { RemoveUserModal } from "components/modal/RemoveUserModal";
+import { RemoveUserModal } from "components/Modal/RemoveUserModal";
 import { FaSitemap, FaUserCheck, FaUsers, FaUserTie } from "react-icons/fa";
 import { useRecoilValue } from "recoil";
 import { usersState } from "state/atoms";
@@ -99,10 +99,7 @@ export default function UserProfile({ user }) {
         <UserBlockItem>
           <Flex height="300px" justify="space-between">
             <Flex align="center">
-              <ImageContainer width="235px" height="235px" margin="0 80px 0 0">
-                <img src={user.image} alt="User" />
-                {/* <Image src= alt="" /> */}
-              </ImageContainer>
+              <ImageContainer image={user.image} width="235px" height="235px" margin="0 80px 0 0"/>
               <div>
                 <UserTitle margin="0" padding="0" size="37px">
                   {user.name} {user.surname}
@@ -158,9 +155,7 @@ export default function UserProfile({ user }) {
             </ReportsContainer>
             <Wrapper>
               <Flex align="center">
-                <ImageContainer width="60px" height="60px" margin="0 20px 0 0">
-                  <img src={superintendent.image} alt="User" />
-                </ImageContainer>
+                <ImageContainer image={superintendent.image} width="60px" height="60px" margin="0 20px 0 0"/>
                 <Anchor>
                   <UserText
                     onClick={() =>
@@ -186,12 +181,11 @@ export default function UserProfile({ user }) {
                   <Wrapper key={id}>
                     <Flex align="center">
                       <ImageContainer
+                      image={image}
                         width="60px"
                         height="60px"
                         margin="0 20px 0 0"
-                      >
-                        <img src={image} alt="User" />
-                      </ImageContainer>
+                      />
                       <Anchor>
                         <UserText
                           padding="0"
