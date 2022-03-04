@@ -12,7 +12,6 @@ import { useSetRecoilState } from "recoil";
 import { hamburgerState } from "state/atoms";
 import { Flex } from "components/User/Flex";
 import { ImageContainer } from "components/ImageContainer";
-
 type PropsHeader = {
   background?: string;
 };
@@ -84,9 +83,12 @@ export default function Header() {
               <UserText>Нових сповіщень немає!</UserText>
             </Modal>
           )}
-          <ImageContainer width="50px" height="50px" margin="0">
-            <img src={user && user.image} alt="User" />
-          </ImageContainer>
+          <ImageContainer
+            image={user && user.image}
+            width="50px"
+            height="50px"
+            margin="0"
+          />
         </Flex>
       </Flex>
     </HeaderStyles>

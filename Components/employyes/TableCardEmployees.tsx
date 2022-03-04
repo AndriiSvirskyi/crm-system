@@ -1,6 +1,7 @@
 import React from "react";
 import router from "next/router";
 import styled from "styled-components";
+import { ImageContainer } from "components/ImageContainer";
 
 const UserTitle = styled.div`
   color: rgb(25, 118, 186);
@@ -44,10 +45,14 @@ export default function TableCardEmployees({ filteredEmployees }) {
 
       {filteredEmployees.map((user) => (
         <>
-          <TableGridMarkupUserCard
-            onClick={() => router.push(`/employees/${user.id}`)}
-          >
-            <UserTitle>
+          <TableGridMarkupUserCard>
+            <ImageContainer
+              image={user.image}
+              width="25px"
+              height="25px"
+              margin="0 5px 0 0"
+            />
+            <UserTitle onClick={() => router.push(`/employees/${user.id}`)}>
               {user.name} {user.surname}
             </UserTitle>
           </TableGridMarkupUserCard>

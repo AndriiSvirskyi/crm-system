@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Button } from "components/Button";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Label } from "./Label";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "../Flex";
+import { ButtonStyled } from "components/ButtonStyled";
 
 export const PersonalInfo = ({ user }) => {
   const {
@@ -58,7 +58,8 @@ export const PersonalInfo = ({ user }) => {
       <Flex justify="space-between" align="center">
         <UserTitle>Personal</UserTitle>
         {
-          <Button
+          <ButtonStyled
+            padding="5px 10px"
             height="25px"
             onClick={() => {
               setPersonalInfoEdit({
@@ -71,7 +72,7 @@ export const PersonalInfo = ({ user }) => {
             }}
           >
             EDIT
-          </Button>
+          </ButtonStyled>
         }
       </Flex>
       <Flex justify="space-between">
@@ -90,7 +91,7 @@ export const PersonalInfo = ({ user }) => {
           readonly={personalInfoEdit ? false : true}
         />
       </Flex>
-      <Flex justify="space-between" >
+      <Flex justify="space-between">
         <Flex align="center">
           <Label htmlFor="last_name">First name</Label>
           <InputComponent
@@ -175,7 +176,8 @@ export const PersonalInfo = ({ user }) => {
       </Flex>
       {personalInfoEdit ? (
         <Flex padding="0 0 10px 0" justify="end">
-          <Button
+          <ButtonStyled
+            padding="5px 10px"
             margin=" 0 20px 0 0"
             onClick={() => {
               const { name, surname, birth, email, gender } = personalInfoEdit;
@@ -188,10 +190,14 @@ export const PersonalInfo = ({ user }) => {
             }}
           >
             CANCEL
-          </Button>
-          <Button margin=" 0 20px 0 0" onClick={updatePersonal}>
+          </ButtonStyled>
+          <ButtonStyled
+            padding="5px 10px"
+            margin=" 0 20px 0 0"
+            onClick={updatePersonal}
+          >
             SAVE
-          </Button>
+          </ButtonStyled>
         </Flex>
       ) : (
         ""

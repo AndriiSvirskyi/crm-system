@@ -24,6 +24,8 @@ const GridMarkup = styled.div`
   }
 `;
 const GridUserCard = styled.div`
+  display: flex;
+  align-items: center;
   border: 1px solid grey;
   border-radius: 8px;
   padding: 10px;
@@ -35,20 +37,25 @@ export default function GridCardEmployees({ filteredEmployees }) {
       {filteredEmployees.map((user) => (
         <GridUserCard key={user.id}>
           <Flex align="center">
-            <ImageContainer width="100px" height="100px" margin="0 20px 0 0">
-              <img src={user.image} alt="User" />
-            </ImageContainer>
-            <UserTitle
-              onClick={() => {
-                router.push(`/employees/${user.id}`);
-              }}
-            >
-              {user.name} {user.surname}
-            </UserTitle>
+            <ImageContainer
+              image={user.image}
+              width="80px"
+              height="80px"
+              margin="0"
+            />
+            <Flex direction="column" padding="10px 0 0 15px">
+              <UserTitle
+                onClick={() => {
+                  router.push(`/employees/${user.id}`);
+                }}
+              >
+                {user.name} {user.surname}
+              </UserTitle>
+              <UserText>
+                {user.role} in {user.address}
+              </UserText>
+            </Flex>
           </Flex>
-          <UserText>
-            {user.role} in {user.address}
-          </UserText>
         </GridUserCard>
       ))}
     </GridMarkup>

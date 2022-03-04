@@ -120,20 +120,16 @@ const Projects = () => {
                   <hr />
                   <Flex align="center">
                     <ImageContainer
+                      image={
+                        users.find(
+                          (user) =>
+                            user.name + " " + user.surname === project[1].lead
+                        ).image
+                      }
                       width="50px"
                       height="50px"
                       margin="0 20px 0 0"
-                    >
-                      <img
-                        src={
-                          users.find(
-                            (user) =>
-                              user.name + " " + user.surname === project[1].lead
-                          ).image
-                        }
-                        alt="User"
-                      />
-                    </ImageContainer>
+                    />
                     <Anchor
                       onClick={() =>
                         router.push(

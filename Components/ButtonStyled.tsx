@@ -8,11 +8,18 @@ type ButtonProps = {
   width: string;
   height: string;
   padding: string;
+  position?: string;
+  right?: string;
+  bottom?: string;
 };
 
 const StyledButton = styled.button<ButtonProps>`
-  border: none;
+  position: ${({ position }) => position};
+  right: ${({ right }) => right};
+  bottom: ${({ bottom }) => bottom};
   cursor: pointer;
+  border: none;
+  user-select: none;
   align-self: center;
   padding: ${(props) => props.padding || ""};
   margin: ${(props) => props.margin || ""};

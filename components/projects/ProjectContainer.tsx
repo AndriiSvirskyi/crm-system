@@ -66,12 +66,11 @@ export const ProjectContainer = ({ project }) => {
                 <TD>
                   <Flex align="center">
                     <ImageContainer
+                      image={project.lead.image}
                       width="35px"
                       height="35px"
                       margin="0 10px 0 0"
-                    >
-                      <img src={project.lead.image} alt="Lead" />
-                    </ImageContainer>
+                    />
                     <Anchor
                       onClick={() =>
                         router.push(`/employees/${project.lead.id}`)
@@ -98,18 +97,26 @@ export const ProjectContainer = ({ project }) => {
             {tHead}
             <tbody>
               {project.team.map(
-                ({ name, surname, role, department, unit, address, id, image }) => {
+                ({
+                  name,
+                  surname,
+                  role,
+                  department,
+                  unit,
+                  address,
+                  id,
+                  image,
+                }) => {
                   return (
                     <tr key={id}>
                       <TD>
                         <Flex align="center">
                           <ImageContainer
+                            image={image}
                             width="35px"
                             height="35px"
                             margin="0 10px 0 0"
-                          >
-                            <img src={image} alt="Member" />
-                          </ImageContainer>
+                          />
                           <Anchor
                             onClick={() => router.push(`/employees/${id}`)}
                           >
