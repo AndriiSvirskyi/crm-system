@@ -11,6 +11,7 @@ type ButtonProps = {
   position?: string;
   right?: string;
   bottom?: string;
+  hoverBack?: string;
 };
 
 const StyledButton = styled.button<ButtonProps>`
@@ -20,7 +21,6 @@ const StyledButton = styled.button<ButtonProps>`
   cursor: pointer;
   border: none;
   user-select: none;
-  align-self: center;
   padding: ${(props) => props.padding || ""};
   margin: ${(props) => props.margin || ""};
   border-radius: 8px;
@@ -30,7 +30,7 @@ const StyledButton = styled.button<ButtonProps>`
   width: ${(props) => props.width || ""};
   height: ${(props) => props.height || ""};
   &:hover {
-    background: #eeeeee;
+    background: ${(props) => props.hoverBack || "#eeeeee"};
   }
 `;
 

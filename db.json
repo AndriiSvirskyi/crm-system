@@ -27,7 +27,7 @@
             "unit": "Frontend",
             "amount": "$10000.00 USD",
             "team": "Andriy",
-            "birth": "24 Mar",
+            "birth": "06.03",
             "gender": "man",
             "mobile": "380931234567",
             "username": "user",
@@ -79,11 +79,22 @@
                         "count": "9",
                         "startTime": "",
                         "endTime": "",
-                        "reviewers": [
-                            { "name": "Andrii", "status": "reject" },
-                            { "name": "Andrii", "status": "pending" },
-                            { "name": "Andrii", "status": "pending" },
-                            { "name": "Anastasia", "status": "pending" }
+                        "reviewers": [{
+                                "name": "Andrii",
+                                "status": "reject"
+                            },
+                            {
+                                "name": "Andrii",
+                                "status": "pending"
+                            },
+                            {
+                                "name": "Andrii",
+                                "status": "pending"
+                            },
+                            {
+                                "name": "Anastasia",
+                                "status": "pending"
+                            }
                         ]
                     },
                     {
@@ -92,11 +103,22 @@
                         "count": "9",
                         "startTime": "",
                         "endTime": "",
-                        "reviewers": [
-                            { "name": "Andrii", "status": "accept" },
-                            { "name": "Anastasia", "status": "inProcess" },
-                            { "name": "Anastasia", "status": "pending" },
-                            { "name": "Anastasia", "status": "pending" }
+                        "reviewers": [{
+                                "name": "Andrii",
+                                "status": "accept"
+                            },
+                            {
+                                "name": "Anastasia",
+                                "status": "inProcess"
+                            },
+                            {
+                                "name": "Anastasia",
+                                "status": "pending"
+                            },
+                            {
+                                "name": "Anastasia",
+                                "status": "pending"
+                            }
                         ]
                     }
                 ],
@@ -139,7 +161,7 @@
             "department": "UI",
             "unit": "Frontend",
             "team": "Andriy",
-            "birth": "24 Mar",
+            "birth": "06.03",
             "gender": "man",
             "mobile": "380931234567",
             "username": "fedosieievaa",
@@ -168,7 +190,7 @@
             "department": "UI",
             "unit": "Frontend",
             "team": "Andriy",
-            "birth": "24.07",
+            "birth": "06.03",
             "gender": "female",
             "mobile": "380931234567",
             "username": "fedosieievaa",
@@ -197,7 +219,7 @@
             "department": "",
             "unit": "",
             "team": "",
-            "birth": "",
+            "birth": "07.03",
             "gender": "",
             "mobile": "123456789",
             "username": "",
@@ -226,7 +248,7 @@
             "department": "",
             "unit": "",
             "team": "",
-            "birth": "",
+            "birth": "07.03",
             "gender": "",
             "mobile": "123456789",
             "username": "",
@@ -255,7 +277,7 @@
             "department": "",
             "unit": "",
             "team": "",
-            "birth": "",
+            "birth": "07.03",
             "gender": "",
             "mobile": "123456789",
             "username": "",
@@ -284,7 +306,7 @@
             "department": "",
             "unit": "",
             "team": "",
-            "birth": "",
+            "birth": "08.03",
             "gender": "",
             "mobile": "123456789",
             "username": "",
@@ -313,7 +335,7 @@
             "department": "",
             "unit": "",
             "team": "",
-            "birth": "",
+            "birth": "08.03",
             "gender": "",
             "mobile": "123456789",
             "username": "",
@@ -342,7 +364,7 @@
             "department": "",
             "unit": "",
             "team": "",
-            "birth": "",
+            "birth": "08.03",
             "gender": "",
             "mobile": "123456789",
             "username": "",

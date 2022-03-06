@@ -1,20 +1,26 @@
-import { useState } from "react";
-import { Label} from "./Label";
+import { useEffect, useState } from "react";
+import { Label } from "./Label";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "../Flex";
 import { ButtonStyled } from "components/ButtonStyled";
 
 export const ContactsInfo = ({ user }) => {
-  const {
-    mobile: mobileUser,
-    username: usernameUser,
-    address: addressUser,
-  } = user;
-  const [mobile, setMobile] = useState(mobileUser);
-  const [username, setUsername] = useState(usernameUser);
-  const [address, setAddress] = useState(addressUser);
-  
+  const [mobile, setMobile] = useState("");
+  const [username, setUsername] = useState("");
+  const [address, setAddress] = useState("");
+
+  useEffect(() => {
+    const {
+      mobile: mobileUser,
+      username: usernameUser,
+      address: addressUser,
+    } = user;
+    setMobile(mobileUser || "");
+    setUsername(usernameUser || "");
+    setAddress(addressUser || "");
+  }, [user]);
+
   const [contactsInfoEdit, setContactsInfoEdit] = useState<any>();
 
   const updateContacts = async () => {
@@ -67,13 +73,13 @@ export const ContactsInfo = ({ user }) => {
         </ButtonStyled>
       </Flex>
       <Flex>
-        <Label htmlFor="number">
-          Mobile number
-        </Label>
+        <Label htmlFor="number">Mobile number</Label>
         <InputComponent
           id="number"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMobile(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setMobile(e.target.value)
+          }
           value={mobile}
           type="text"
           background="transparent"
@@ -83,13 +89,13 @@ export const ContactsInfo = ({ user }) => {
         />
       </Flex>
       <Flex>
-        <Label htmlFor="username">
-          Slack Username
-        </Label>
+        <Label htmlFor="username">Slack Username</Label>
         <InputComponent
           id="username"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setUsername(e.target.value)
+          }
           value={username}
           type="text"
           background="transparent"
@@ -99,13 +105,13 @@ export const ContactsInfo = ({ user }) => {
         />
       </Flex>
       <Flex margin="0 0 40px 0">
-        <Label htmlFor="address">
-          Address
-        </Label>
+        <Label htmlFor="address">Address</Label>
         <InputComponent
           id="address"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAddress(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setAddress(e.target.value)
+          }
           value={address}
           type="text"
           background="transparent"
@@ -117,7 +123,7 @@ export const ContactsInfo = ({ user }) => {
       {contactsInfoEdit ? (
         <Flex padding="0 0 10px 0" justify="end">
           <ButtonStyled
-          padding="5px 10px"
+            padding="5px 10px"
             margin="0 20px 0 0"
             onClick={() => {
               const { mobile, username, address } = contactsInfoEdit;
@@ -129,7 +135,11 @@ export const ContactsInfo = ({ user }) => {
           >
             CANCEL
           </ButtonStyled>
-          <ButtonStyled   padding="5px 10px" margin=" 0 20px 0 0" onClick={updateContacts}>
+          <ButtonStyled
+            padding="5px 10px"
+            margin=" 0 20px 0 0"
+            onClick={updateContacts}
+          >
             SAVE
           </ButtonStyled>
         </Flex>

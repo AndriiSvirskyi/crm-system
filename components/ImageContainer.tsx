@@ -10,7 +10,7 @@ const ImageContainerStyle = styled.div<ImageContainerProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   border-radius: 50%;
-  background: ${({ image }) => `url(${image})`} no-repeat;;
+  background: ${({ image }) => `url(${image})`} no-repeat;
   background-size: contain;
   background-position: center;
   margin: ${({ margin }) => margin};;

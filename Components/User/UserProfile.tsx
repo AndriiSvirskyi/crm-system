@@ -8,7 +8,7 @@ import Tabs from "components/User/TabsUser";
 import { UserBlockItem, UserText, UserTitle } from "./UserForm";
 import { RemoveUserModal } from "components/Modal/RemoveUserModal";
 import { FaSitemap, FaUserCheck, FaUsers, FaUserTie } from "react-icons/fa";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import { Anchor } from "pages/projects";
 import { ImageContainer } from "components/ImageContainer";
@@ -49,6 +49,7 @@ export default function UserProfile({ user }) {
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
+  const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
 
   useEffect(() => {
