@@ -1,11 +1,8 @@
-// TODO: - add true links for getGreetingImage;
-//       - add slider ?;
-//       - add timeout(3000ms) to slider ?;
-
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import router from "next/router";
+import moment from "moment";
 import { usersState } from "state/atoms";
 import {
   FaBirthdayCake,
@@ -24,6 +21,9 @@ import { UserWindow, UserBlockItem } from "components/User/UserForm";
 import { Flex } from "components/User/Flex";
 import { ButtonStyled } from "components/ButtonStyled";
 import { ImageContainer } from "components/ImageContainer";
+import Modal from "components/Modal/Modal";
+import { Form } from "components/form/Form";
+import { InputComponent } from "components/InputComponent";
 
 const GreetingContainer = styled.div`
   height: 100px;
@@ -76,9 +76,38 @@ const CakeIcon = styled.span`
 `;
 const BirthdayContainer = styled.div`
   cursor: pointer;
+  p {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+  }
+  &:hover p {
+    visibility: visible;
+  }
 `;
 const ArrowContainer = styled.div`
   cursor: ${(props: { cursor: string }) => props.cursor};
+`;
+const Label = styled.label`
+  width: 100px;
+  text-align: start;
+`;
+const Select = styled.select`
+  height: "auto";
+  height: 40px;
+  width: 302px;
+  border-radius: 8px;
+  padding: 0 0 0 25px;
+
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
 `;
 
 export default function Home() {
@@ -86,7 +115,11 @@ export default function Home() {
   const users = useRecoilValue(usersState);
   const [user, setUser] = useState(null);
   const [showSickLeave, setShowSickLeave] = useState(true);
-  const [showUnpaidLeave, setShowUnpaidLeave] = useState(false);
+  const [showRequest, setShowRequest] = useState(false);
+
+  const [typeLeave, setTypeLeave] = useState("");
+  const [startLeave, setStartLeave] = useState(moment().format("YYYY-MM-DD"));
+  const [endLeave, setEndLeave] = useState(moment().format("YYYY-MM-DD"));
 
   useEffect(() => {
     if (!users) {
@@ -104,10 +137,9 @@ export default function Home() {
     }
   }, []);
 
-  // setTimeout(() => {
-  //   setShowSickLeave(!showSickLeave);
-  //   setShowUnpaidLeave(!showUnpaidLeave);
-  // }, 3500);
+  setTimeout(() => {
+    setShowSickLeave(!showSickLeave);
+  }, 5000);
 
   const getCurrentDate = () => {
     const date = new Date();
@@ -150,14 +182,17 @@ export default function Home() {
 
   const getGreetingImage = () => {
     if (getGreetingText() === "Good morning") {
-      return "https://i.tribune.com.pk/media/images/5-59555_photo-wallpaper-the-sun-dawn-coffee-mornin1626689182-0/5-59555_photo-wallpaper-the-sun-dawn-coffee-mornin1626689182-0.jpg";
+      return "https://app.peopleforce.io/assets/morning-11e07711ca4e47f8a59830c82f958beea0c28f15ce938194e1856bd75b623826.png";
     } else if (getGreetingText() === "Good afternoon") {
       return "https://upload.wikimedia.org/wikipedia/commons/d/d9/Spotted_deer_grazing_under_the_tree_in_afternoon_sun.jpg";
     } else {
       return "https://app.peopleforce.io/assets/night-caf4e6bb8f31c6b2c7a30d08b8b08c7ed467d1a3c11c43ae5a21248374f744ea.png";
     }
   };
-
+  const saveLeave = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(startLeave + " | " + endLeave + " | " + typeLeave);
+  };
   return (
     <MainLayout>
       <UserWindow>
@@ -181,7 +216,11 @@ export default function Home() {
                 color="white"
                 align="center"
               >
-                <RequestBtnContent>
+                <RequestBtnContent
+                  onClick={() => {
+                    setShowRequest(true);
+                  }}
+                >
                   <FaPlane size="16" />
                   <span>Request Time Off</span>
                 </RequestBtnContent>
@@ -197,12 +236,20 @@ export default function Home() {
                     fill={showSickLeave ? "#f6dbcb" : "#ff9f69"}
                     onClick={() => {
                       setShowSickLeave(true);
-                      setShowUnpaidLeave(false);
                     }}
                   />
                 </ArrowContainer>
 
-                {showSickLeave && (
+                {!showSickLeave ? (
+                  <Flex direction="column" align="center">
+                    <div>
+                      <FaStarOfLife size="30" fill="#0036b6" />
+                    </div>
+                    <b>Unpaid leave</b>
+                    <div>17.97</div>
+                    <div>AVAILABLE DAYS</div>
+                  </Flex>
+                ) : (
                   <Flex direction="column" align="center">
                     <div>
                       <FaBriefcaseMedical size="30" fill="#ff6666" />
@@ -212,32 +259,19 @@ export default function Home() {
                     <div>AVAILABLE DAYS</div>
                   </Flex>
                 )}
-                {showUnpaidLeave && (
-                  <Flex direction="column" align="center">
-                    <div>
-                      <FaStarOfLife size="30" fill="#0036b6" />
-                    </div>
-                    <b>Unpaid leave</b>
-                    <div>17.97</div>
-                    <div>AVAILABLE DAYS</div>
-                  </Flex>
-                )}
-                <ArrowContainer cursor={showUnpaidLeave ? "" : "pointer"}>
+                <ArrowContainer cursor={!showSickLeave ? "" : "pointer"}>
                   <BiChevronRight
                     size="50"
-                    fill={showUnpaidLeave ? "#f6dbcb" : "#ff9f69"}
+                    fill={!showSickLeave ? "#f6dbcb" : "#ff9f69"}
                     onClick={() => {
                       setShowSickLeave(false);
-                      setShowUnpaidLeave(true);
                     }}
                   />
                 </ArrowContainer>
               </Flex>
               <Flex justify="center" margin="0 0 30px 0">
                 <GoPrimitiveDot fill={showSickLeave ? "#252980" : "#d3d3d3"} />
-                <GoPrimitiveDot
-                  fill={showUnpaidLeave ? "#252980" : "#d3d3d3"}
-                />
+                <GoPrimitiveDot fill={!showSickLeave ? "#252980" : "#d3d3d3"} />
               </Flex>
             </UserBlockItem>
             <UserBlockItem>
@@ -254,12 +288,15 @@ export default function Home() {
                 </Flex>
               </TitleContainer>
               <Flex>
-                {getBirthdays.birthdays.map(({ id, image }) => {
+                {getBirthdays.birthdays.map(({ id, image, name, surname }) => {
                   return (
                     <BirthdayContainer
                       key={id}
                       onClick={() => router.push(`/employees/${id}`)}
                     >
+                      <p>
+                        {name} {surname}
+                      </p>
                       <ImageContainer
                         image={image}
                         width="40px"
@@ -267,7 +304,7 @@ export default function Home() {
                         margin="0 10px 0 0"
                       />
                       <CakeIcon>
-                        <FaBirthdayCake fill="#ffc0cb" />
+                        <FaBirthdayCake fill="#eba2ae" />
                       </CakeIcon>
                     </BirthdayContainer>
                   );
@@ -316,6 +353,55 @@ export default function Home() {
               </Flex>
             </UserBlockItem>
           </Flex>
+          {showRequest && (
+            <Modal close={() => setShowRequest(false)}>
+              <Form submit={(e) => saveLeave(e)} content="Time Off Request">
+                <Flex align="center" margin="0 0 10px 0">
+                  <Label htmlFor="type">Leave type:</Label>
+                  <Select
+                    value={typeLeave}
+                    onChange={(e) => setTypeLeave(e.target.value)}
+                    id="type"
+                  >
+                    <option value="select">Select</option>
+                    <option value="Sick leave">Sick leave</option>
+                    <option value="Unpaid leave">Unpaid leave</option>
+                  </Select>
+                </Flex>
+                <Flex align="center" margin="0 0 10px 0">
+                  <Label htmlFor="from">From:</Label>
+                  <InputComponent
+                    id="from"
+                    value={startLeave}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setStartLeave(e.target.value)
+                    }
+                    type="date"
+                    height="35px"
+                    width="300px"
+                    background="transparent"
+                    outline="0.5px solid black"
+                  />
+                </Flex>
+                <Flex align="center" margin="0 0 30px 0">
+                  <Label htmlFor="to">To:</Label>
+                  <InputComponent
+                    id="to"
+                    value={endLeave}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setEndLeave(e.target.value)
+                    }
+                    type="date"
+                    height="35px"
+                    width="300px"
+                    background="transparent"
+                    outline="0.5px solid black"
+                  />
+                </Flex>
+                <ButtonStyled padding="10px 30px">Save</ButtonStyled>
+              </Form>
+            </Modal>
+          )}
         </Flex>
       </UserWindow>
     </MainLayout>

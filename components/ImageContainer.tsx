@@ -14,6 +14,7 @@ const ImageContainerStyle = styled.div<ImageContainerProps>`
   background-size: contain;
   background-position: center;
   margin: ${({ margin }) => margin};;
+  border: 1px solid black;
 `;
 
 export const ImageContainer = ({image, width, height, margin }) => {
