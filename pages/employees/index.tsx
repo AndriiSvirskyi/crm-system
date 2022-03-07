@@ -11,6 +11,7 @@ import TableCardEmployees from "components/employyes/TableCardEmployees";
 import Pagination from "components/employyes/Pagination";
 import Loader from "components/Loader";
 import { ButtonStyled } from "components/ButtonStyled";
+import SignUpSteper from "components/Steper/SignUpSteper";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -88,7 +89,7 @@ export default function Employee() {
             <FaUserPlus size={30}></FaUserPlus>
           </ButtonStyled>
           {showModal && (
-            <SignUpModal closeModal={() => setShowModal(false)} users={users} />
+            <SignUpSteper closeModal={() => setShowModal(false)} />
           )}
         </>
       )}

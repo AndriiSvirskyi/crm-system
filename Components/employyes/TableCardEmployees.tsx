@@ -9,7 +9,7 @@ const UserTitle = styled.div`
 `;
 
 const TableGridMarkup = styled.div`
-  height: 398px;
+  height: 478px;
 
   display: grid;
   grid-auto-columns: minmax(100px, 350px);
@@ -45,7 +45,7 @@ export default function TableCardEmployees({ filteredEmployees }) {
 
       {filteredEmployees.map((user) => (
         <>
-          <TableGridMarkupUserCard>
+          <TableGridMarkupUserCard key={user.id}>
             <ImageContainer
               image={user.image}
               width="25px"
