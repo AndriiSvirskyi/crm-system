@@ -6,16 +6,12 @@ import moment from "moment";
 import { usersState } from "state/atoms";
 import {
   FaBirthdayCake,
-  FaBriefcaseMedical,
   FaBullhorn,
   FaCalendarAlt,
   FaGifts,
   FaLink,
   FaPlane,
-  FaStarOfLife,
 } from "react-icons/fa";
-import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { GoPrimitiveDot } from "react-icons/go";
 import MainLayout from "../Layouts/MainLayout";
 import { UserWindow, UserBlockItem } from "components/User/UserForm";
 import { Flex } from "components/User/Flex";
@@ -24,6 +20,7 @@ import { ImageContainer } from "components/ImageContainer";
 import Modal from "components/Modal/Modal";
 import { Form } from "components/form/Form";
 import { InputComponent } from "components/InputComponent";
+import Slider from "components/SliderTimeOff";
 
 const GreetingContainer = styled.div`
   height: 100px;
@@ -90,9 +87,6 @@ const BirthdayContainer = styled.div`
     visibility: visible;
   }
 `;
-const ArrowContainer = styled.div`
-  cursor: ${(props: { cursor: string }) => props.cursor};
-`;
 const Label = styled.label`
   width: 100px;
   text-align: start;
@@ -114,9 +108,7 @@ export default function Home() {
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
   const [user, setUser] = useState(null);
-  const [showSickLeave, setShowSickLeave] = useState(true);
   const [showRequest, setShowRequest] = useState(false);
-
   const [typeLeave, setTypeLeave] = useState("");
   const [startLeave, setStartLeave] = useState(moment().format("YYYY-MM-DD"));
   const [endLeave, setEndLeave] = useState(moment().format("YYYY-MM-DD"));
@@ -137,10 +129,6 @@ export default function Home() {
     }
   }, []);
 
-  setTimeout(() => {
-    setShowSickLeave(!showSickLeave);
-  }, 5000);
-
   const getCurrentDate = () => {
     const date = new Date();
     const month =
@@ -151,7 +139,6 @@ export default function Home() {
       date.getUTCDate() < 10 ? "0" + date.getUTCDate() : date.getUTCDate();
     return day + "." + month;
   };
-
   const getBirthdays = users
     ? users.reduce((acc, cur) => {
         if (cur.birth === getCurrentDate()) {
@@ -164,12 +151,10 @@ export default function Home() {
         return acc;
       }, {})
     : { birthdays: [] };
-
   const getCurrentHour = () => {
     const date = new Date();
     return date.getHours();
   };
-
   const getGreetingText = () => {
     if (getCurrentHour() >= 6 && getCurrentHour() < 12) {
       return "Good morning";
@@ -179,7 +164,6 @@ export default function Home() {
       return "Good evening";
     }
   };
-
   const getGreetingImage = () => {
     if (getGreetingText() === "Good morning") {
       return "https://app.peopleforce.io/assets/morning-11e07711ca4e47f8a59830c82f958beea0c28f15ce938194e1856bd75b623826.png";
@@ -193,6 +177,7 @@ export default function Home() {
     e.preventDefault();
     console.log(startLeave + " | " + endLeave + " | " + typeLeave);
   };
+
   return (
     <MainLayout>
       <UserWindow>
@@ -215,63 +200,17 @@ export default function Home() {
                 padding="7px 14px"
                 color="white"
                 align="center"
+                onClick={() => {
+                  setShowRequest(true);
+                }}
               >
-                <RequestBtnContent
-                  onClick={() => {
-                    setShowRequest(true);
-                  }}
-                >
+                <RequestBtnContent>
                   <FaPlane size="16" />
                   <span>Request Time Off</span>
                 </RequestBtnContent>
               </ButtonStyled>
-              <Flex
-                justify="space-between"
-                align="center"
-                margin="30px 0 30px 0"
-              >
-                <ArrowContainer cursor={showSickLeave ? "" : "pointer"}>
-                  <BiChevronLeft
-                    size="50"
-                    fill={showSickLeave ? "#f6dbcb" : "#ff9f69"}
-                    onClick={() => {
-                      setShowSickLeave(true);
-                    }}
-                  />
-                </ArrowContainer>
-
-                {!showSickLeave ? (
-                  <Flex direction="column" align="center">
-                    <div>
-                      <FaStarOfLife size="30" fill="#0036b6" />
-                    </div>
-                    <b>Unpaid leave</b>
-                    <div>17.97</div>
-                    <div>AVAILABLE DAYS</div>
-                  </Flex>
-                ) : (
-                  <Flex direction="column" align="center">
-                    <div>
-                      <FaBriefcaseMedical size="30" fill="#ff6666" />
-                    </div>
-                    <b>Sick leave</b>
-                    <div>8.0</div>
-                    <div>AVAILABLE DAYS</div>
-                  </Flex>
-                )}
-                <ArrowContainer cursor={!showSickLeave ? "" : "pointer"}>
-                  <BiChevronRight
-                    size="50"
-                    fill={!showSickLeave ? "#f6dbcb" : "#ff9f69"}
-                    onClick={() => {
-                      setShowSickLeave(false);
-                    }}
-                  />
-                </ArrowContainer>
-              </Flex>
-              <Flex justify="center" margin="0 0 30px 0">
-                <GoPrimitiveDot fill={showSickLeave ? "#252980" : "#d3d3d3"} />
-                <GoPrimitiveDot fill={!showSickLeave ? "#252980" : "#d3d3d3"} />
+              <Flex justify="center">
+                <Slider />
               </Flex>
             </UserBlockItem>
             <UserBlockItem>
@@ -364,6 +303,7 @@ export default function Home() {
                     id="type"
                   >
                     <option value="select">Select</option>
+                    <option value="Vacation">Vacation</option>
                     <option value="Sick leave">Sick leave</option>
                     <option value="Unpaid leave">Unpaid leave</option>
                   </Select>

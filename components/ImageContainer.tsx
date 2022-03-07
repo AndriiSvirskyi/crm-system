@@ -13,8 +13,7 @@ const ImageContainerStyle = styled.div<ImageContainerProps>`
   background: ${({ image }) => `url(${image})`} no-repeat;
   background-size: contain;
   background-position: center;
-  margin: ${({ margin }) => margin};;
-  border: 1px solid black;
+  margin: ${({ margin }) => margin};
 `;
 
 export const ImageContainer = ({image, width, height, margin }) => {

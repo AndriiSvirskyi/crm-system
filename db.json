@@ -7,7 +7,7 @@
             "surname": "Svirskyi",
             "role": "admin",
             "startDate": "2021-04-20",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/ulipixex0lz56iu9imqt21q5f5hg/355cf1e0b0da33170541bd8f88fb23498fb61904424a203a8e21c2ed8e4ae047?response-content-disposition=inline%3B%20filename%3D%22Andrii%20Svirskyi.png%22%3B%20filename%2A%3DUTF-8%27%27Andrii%2520Svirskyi.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T132712Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=37bdf79faa7c6470b632e1244aded34a1dbeaf67af4e12ab4de983644f779b5b",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                     "id": "3fdffs",
                     "name": "Blackchain",
@@ -150,7 +150,7 @@
             "name": "Viktor",
             "surname": "Malinovskyi",
             "role": "manager",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/f5eoqpduqimh3v2otn4f3hzlexkq/90ee992d9764c8854efc0a6e130fc7b7007906f77450427a88f6d26bf849a908?response-content-disposition=inline%3B%20filename%3D%22Viktor%20Malinovskyi.jpg%22%3B%20filename%2A%3DUTF-8%27%27Viktor%2520Malinovskyi.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T102354Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=8a756af3603dc7b78fd29778e28e2b5a9a96ee50b1d660dd55c334d2dae9ad2c",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "156575",
                 "name": "Bench",
@@ -179,7 +179,7 @@
             "name": "Anastasiia",
             "surname": "Fedosyeyeva",
             "role": "manager",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/csu3gkxb260obmcs600gwyyca7pw/a6f8a4d722fa63f3f3ce4fb4e4c7264baaf29aa3dfcb281b63003f0bf9d88685?response-content-disposition=inline%3B%20filename%3D%22nastya.jpeg%22%3B%20filename%2A%3DUTF-8%27%27nastya.jpeg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T141715Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=3d76bda148e6ad3a6b4d02b2898826d9c6777b1fbec5290e6dea6978c66e8b18",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "156575",
                 "name": "Bench",
@@ -208,7 +208,7 @@
             "name": "Pavel",
             "surname": "Adamenko",
             "role": "user",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/p9k3d2iyzpvqtntq03p5wpaovfz4/355cf1e0b0da33170541bd8f88fb23498fb61904424a203a8e21c2ed8e4ae047?response-content-disposition=inline%3B%20filename%3D%22Pavel%20Adamenko.png%22%3B%20filename%2A%3DUTF-8%27%27Pavel%2520Adamenko.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T085010Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=8b903a04a431093105fa222414b4fdeefc44333d360ad497f7cfcfad9f148037",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "ffsd2",
                 "name": "Arterra",
@@ -237,7 +237,7 @@
             "name": "Artem",
             "surname": "Andreev",
             "role": "user",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/kvc925qfvvqxh6z3ifnly3si4dch/74c19686a97822c01bb7e2c37b8e33a4e6cb36a17a62d47e62de13c3753bbac8?response-content-disposition=inline%3B%20filename%3D%22photo_2022-01-05_17-42-24.jpg%22%3B%20filename%2A%3DUTF-8%27%27photo_2022-01-05_17-42-24.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T085010Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=4dd9a0536ef996a741d2c76fc46c7e7c2a881764a1bef1d0bc7bb56b1af9846e",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "ffsd2",
                 "name": "Arterra",
@@ -266,7 +266,7 @@
             "name": "Dmytro",
             "surname": "Andriushyn",
             "role": "user",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/scw5w8imm9n6dfaehfkbfs6dfqlv/355cf1e0b0da33170541bd8f88fb23498fb61904424a203a8e21c2ed8e4ae047?response-content-disposition=inline%3B%20filename%3D%22Dmitriy%20Andriushyn.png%22%3B%20filename%2A%3DUTF-8%27%27Dmitriy%2520Andriushyn.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T084952Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=5665653afe079eacf7ca97781566c8bcf625ba3bfd32258afb6f623139154671",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "ffsd2",
                 "name": "Arterra",
@@ -295,7 +295,7 @@
             "name": "Andrii",
             "surname": "Anisimov",
             "role": "user",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/qlfbl6puxjfrngppywudwqa22u7c/355cf1e0b0da33170541bd8f88fb23498fb61904424a203a8e21c2ed8e4ae047?response-content-disposition=inline%3B%20filename%3D%22Andrii%20Anisimov%20.png%22%3B%20filename%2A%3DUTF-8%27%27Andrii%2520Anisimov%2520.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T085010Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=b766f19d7c42dabca44644e611edbbc23ae96a3db8a2c674aaaf862a9c96ee0d",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "3fdffs",
                 "name": "Blackchain",
@@ -324,7 +324,7 @@
             "name": "Volodymyr",
             "surname": "Antonov",
             "role": "user",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/jg8wiho5yrcyz9hj7bvu3g6xjs1p/355cf1e0b0da33170541bd8f88fb23498fb61904424a203a8e21c2ed8e4ae047?response-content-disposition=inline%3B%20filename%3D%22Volodymyr%20Antonov.png%22%3B%20filename%2A%3DUTF-8%27%27Volodymyr%2520Antonov.png&response-content-type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T120221Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=d46afad48d7337e90e448e108506257ab87d08429b364a888df41ea0384a9ee4",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "3fdffs",
                 "name": "Blackchain",
@@ -353,7 +353,7 @@
             "name": "Eva Maria",
             "surname": "Areshina",
             "role": "user",
-            "image": "https://s3.eu-central-1.amazonaws.com/eu.peopleforce.io/variants/7fa1mjjpicemf7liesjqat11nhen/a6f8a4d722fa63f3f3ce4fb4e4c7264baaf29aa3dfcb281b63003f0bf9d88685?response-content-disposition=inline%3B%20filename%3D%22Eva-Mariia%20Areshina.jpeg%22%3B%20filename%2A%3DUTF-8%27%27Eva-Mariia%2520Areshina.jpeg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA4L5NWT3XV5H4MYNH%2F20220304%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20220304T085010Z&X-Amz-Expires=172800&X-Amz-SignedHeaders=host&X-Amz-Signature=c06c95e959c3b5747199ca50cf191ae40f96404d195af089c062203e6d637e88",
+            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
             "projects": [{
                 "id": "3fdffs",
                 "name": "Blackchain",
