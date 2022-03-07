@@ -5,7 +5,7 @@ import { Personal } from "./personalTab";
 import PDPTime from "./pdpTimeTab.tsx/PDPTime";
 import TimeOffTab from "./timeOffTab.tsx/TimeOffTab";
 import JobTab from "./jobTab/JobTab";
-import { TabComponent } from "components/tabs/TabComponent";
+import { TabComponent } from "components/Tabs/TabComponent";
 
 export default function Tabs({ user }) {
   const [activeTab, setActiveTab] = useState("personal");

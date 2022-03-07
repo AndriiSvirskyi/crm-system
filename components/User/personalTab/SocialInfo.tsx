@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { UserBlockItem, UserTitle } from "../UserForm";
 import { Label } from "./Label";
@@ -18,16 +18,21 @@ const Anchor = styled.a`
 `;
 
 export const SocialInfo = ({ user }) => {
-  const {
-    facebook: facebookUser,
-    linkedin: linkedinUser,
-    twitter: twitterUser,
-  } = user.links;
-  const [facebook, setFacebook] = useState(facebookUser);
-  const [linkedin, setLinkedin] = useState(linkedinUser);
-  const [twitter, setTwitter] = useState(twitterUser);
-
+  const [facebook, setFacebook] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [twitter, setTwitter] = useState("");
   const [socialInfoEdit, setSocialInfoEdit] = useState<any>();
+
+  useEffect(() => {
+    const {
+      facebook: facebookUser,
+      linkedin: linkedinUser,
+      twitter: twitterUser,
+    } = user.links;
+    setFacebook(facebookUser || "");
+    setLinkedin(linkedinUser || "");
+    setTwitter(twitterUser || "");
+  }, [user]);
 
   const updateSocial = async () => {
     setSocialInfoEdit(false);

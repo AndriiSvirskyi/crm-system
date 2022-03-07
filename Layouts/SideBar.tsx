@@ -78,7 +78,7 @@ export default function SideBar(props) {
           </SidebarLink>
           <SidebarLink onClick={() => router.push("/")}>
             <FaHome size="25" />
-            {!hamburger && <span>Main page</span>}
+            {!hamburger && <span>Home</span>}
           </SidebarLink>
           <SidebarLink onClick={() => router.push("/tasks")}>
             <FaRegCheckCircle size="25" />
