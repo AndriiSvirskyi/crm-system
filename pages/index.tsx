@@ -12,15 +12,18 @@ import {
   FaLink,
   FaPlane,
 } from "react-icons/fa";
-import MainLayout from "../layouts/MainLayout";
-import { UserWindow, UserBlockItem } from "styled-components/UserForm";
-import { Flex } from "styled-components/Flex";
+import MainLayout from "../Layouts/MainLayout";
+import { UserWindow, UserBlockItem } from "components/User/UserForm";
+import { Flex } from "components/User/Flex";
+import { ButtonStyled } from "components/ButtonStyled";
+import { ImageContainer } from "components/ImageContainer";
+import Modal from "components/Modal/Modal";
+import { Form } from "components/form/Form";
+import { InputComponent } from "components/InputComponent";
+import Slider from "components/SliderTimeOff";
+import { Label } from "components/User/personalTab/Label";
 import { Button } from "components/Button";
-import { ImageContainer } from "styled-components/ImageContainer";
-import Modal from "components/Modal";
-import { Form } from "styled-components/Form";
 import { Input } from "components/Input";
-import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
 
 const GreetingContainer = styled.div`
   height: 100px;
@@ -87,11 +90,7 @@ const BirthdayContainer = styled.div`
     visibility: visible;
   }
 `;
-const Label = styled.label`
-  width: 100px;
-  text-align: start;
-`;
-const Select = styled.select`
+export const Select = styled.select`
   height: "auto";
   height: 40px;
   width: 302px;
