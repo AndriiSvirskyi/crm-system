@@ -184,7 +184,7 @@ export default function Home() {
     if (getGreetingText() === "Good morning") {
       return "https://app.peopleforce.io/assets/morning-11e07711ca4e47f8a59830c82f958beea0c28f15ce938194e1856bd75b623826.png";
     } else if (getGreetingText() === "Good afternoon") {
-      return "https://upload.wikimedia.org/wikipedia/commons/d/d9/Spotted_deer_grazing_under_the_tree_in_afternoon_sun.jpg";
+      return "https://app.peopleforce.io/assets/afternoon-c24bd801c0998a3ceaa6e07dfb571bf2bf27ede9a7366a4620ec5bc9d3eb79fc.png";
     } else {
       return "https://app.peopleforce.io/assets/night-caf4e6bb8f31c6b2c7a30d08b8b08c7ed467d1a3c11c43ae5a21248374f744ea.png";
     }
