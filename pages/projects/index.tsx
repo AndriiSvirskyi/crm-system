@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
-import MainLayout from "Layouts/MainLayout";
-import { InputComponent } from "components/InputComponent";
-import { Flex } from "components/User/Flex";
+import MainLayout from "layouts/MainLayout";
+import { Input } from "components/Input";
+import { Flex } from "styled-components/Flex";
 import {
   UserBlockItem,
   UserText,
   UserTitle,
   UserWindow,
-} from "components/User/UserForm";
+} from "styled-components/UserForm";
 import router from "next/router";
-import Loader from "components/Loader";
-import { ImageContainer } from "components/ImageContainer";
+import Loader from "styled-components/Loader";
+import { ImageContainer } from "styled-components/ImageContainer";
 
 type projectsProps = {
   [key: string]: {
@@ -81,7 +81,7 @@ const Projects = () => {
           <UserTitle size="40px" margin="0 60px 0 0">
             Teams
           </UserTitle>
-          <InputComponent
+          <Input
             height="50px"
             placeholder="Search team"
             type="search"

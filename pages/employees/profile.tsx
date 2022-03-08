@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { UserTitle, UserWindow } from "components/User/UserForm";
-import MainLayout from "Layouts/MainLayout";
+import { UserTitle, UserWindow } from "styled-components/UserForm";
+import MainLayout from "layouts/MainLayout";
 
 export default function Profile() {
   const [user, setUser] = useState(null);

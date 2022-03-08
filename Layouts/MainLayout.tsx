@@ -2,10 +2,11 @@ import { useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 
+
 export default function MainLayout({ children }) {
   return (
     <>
-      <Header  />
+      <Header />
       <SideBar />
       {children}
     </>

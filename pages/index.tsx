@@ -12,15 +12,15 @@ import {
   FaLink,
   FaPlane,
 } from "react-icons/fa";
-import MainLayout from "../Layouts/MainLayout";
-import { UserWindow, UserBlockItem } from "components/User/UserForm";
-import { Flex } from "components/User/Flex";
-import { ButtonStyled } from "components/ButtonStyled";
-import { ImageContainer } from "components/ImageContainer";
-import Modal from "components/Modal/Modal";
-import { Form } from "components/form/Form";
-import { InputComponent } from "components/InputComponent";
-import Slider from "components/SliderTimeOff";
+import MainLayout from "../layouts/MainLayout";
+import { UserWindow, UserBlockItem } from "styled-components/UserForm";
+import { Flex } from "styled-components/Flex";
+import { Button } from "components/Button";
+import { ImageContainer } from "styled-components/ImageContainer";
+import Modal from "components/Modal";
+import { Form } from "styled-components/Form";
+import { Input } from "components/Input";
+import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
 
 const GreetingContainer = styled.div`
   height: 100px;
@@ -192,7 +192,7 @@ export default function Home() {
                   </p>
                 </Flex>
               </GreetingContainer>
-              <ButtonStyled
+              <Button
                 background="#ff9f69"
                 hoverBack="#ff9f69CC"
                 width="100%"
@@ -208,7 +208,7 @@ export default function Home() {
                   <FaPlane size="16" />
                   <span>Request Time Off</span>
                 </RequestBtnContent>
-              </ButtonStyled>
+              </Button>
               <Flex justify="center">
                 <Slider />
               </Flex>
@@ -310,7 +310,7 @@ export default function Home() {
                 </Flex>
                 <Flex align="center" margin="0 0 10px 0">
                   <Label htmlFor="from">From:</Label>
-                  <InputComponent
+                  <Input
                     id="from"
                     value={startLeave}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -325,7 +325,7 @@ export default function Home() {
                 </Flex>
                 <Flex align="center" margin="0 0 30px 0">
                   <Label htmlFor="to">To:</Label>
-                  <InputComponent
+                  <Input
                     id="to"
                     value={endLeave}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -338,7 +338,7 @@ export default function Home() {
                     outline="0.5px solid black"
                   />
                 </Flex>
-                <ButtonStyled padding="10px 30px">Save</ButtonStyled>
+                <Button padding="10px 30px">Save</Button>
               </Form>
             </Modal>
           )}

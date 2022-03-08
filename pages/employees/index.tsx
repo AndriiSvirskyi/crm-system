@@ -1,17 +1,16 @@
-import { UserWindow } from "components/User/UserForm";
+import { UserWindow } from "styled-components/UserForm";
 import { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "Layouts/MainLayout";
-import InputFilter from "components/employyes/InputFilter";
-import { SignUpModal } from "components/Modal/SignUpModal";
+import MainLayout from "layouts/MainLayout";
+import InputFilter from "containers/employees/InputFilter";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
-import GridCardEmployees from "components/employyes/GridCardEmployees";
-import TableCardEmployees from "components/employyes/TableCardEmployees";
-import Pagination from "components/employyes/Pagination";
-import Loader from "components/Loader";
-import { ButtonStyled } from "components/ButtonStyled";
-import SignUpSteper from "components/Steper/SignUpSteper";
+import GridCardEmployees from "containers/employees/GridCardEmployees";
+import TableCardEmployees from "containers/employees/TableCardEmployees";
+import Pagination from "containers/employees/Pagination";
+import Loader from "styled-components/Loader";
+import { Button } from "components/Button";
+import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -78,7 +77,7 @@ export default function Employee() {
       </UserWindow>
       {userRole === "admin" && (
         <>
-          <ButtonStyled
+          <Button
             position="fixed"
             right="20px"
             bottom="20px"
@@ -87,7 +86,7 @@ export default function Employee() {
             onClick={() => setShowModal(!showModal)}
           >
             <FaUserPlus size={30}></FaUserPlus>
-          </ButtonStyled>
+          </Button>
           {showModal && (
             <SignUpSteper closeModal={() => setShowModal(false)} />
           )}

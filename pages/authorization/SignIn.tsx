@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Button } from "components/Button";
-import { Form } from "components/form/Form";
+import { Form } from "styled-components/Form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import router from "next/router";
-import { InputComponent } from "components/InputComponent";
-import { ButtonStyled } from "components/ButtonStyled";
+import { Input } from "components/Input";
+import { Button } from "components/Button";
 
 const SignInPage = styled.div`
   display: flex;
@@ -71,7 +70,7 @@ const SignIn = () => {
     <SignInPage>
       <SignInPageWrap>
         <Form submit={checkUser} content="Log in">
-          <InputComponent
+          <Input
             value={emailInput}
             width="100%"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -83,7 +82,7 @@ const SignIn = () => {
             height="50px"
             error={errors?.invalidEmail}
           />
-          <InputComponent
+          <Input
             value={passwordInput}
             width="100%"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -96,9 +95,9 @@ const SignIn = () => {
             error={errors?.invalidPassword}
           />
           {/* <Button width="40%">Log in with Google</Button> */}
-          <ButtonStyled width={"30%"} height="50px">
+          <Button width={"30%"} height="50px">
             Log in
-          </ButtonStyled>
+          </Button>
         </Form>
       </SignInPageWrap>
     </SignInPage>

@@ -10,13 +10,13 @@ import {
   FaRegChartBar,
   FaListOl,
 } from "react-icons/fa";
-import { Flex } from "components/User/Flex";
-import { UserTitle } from "components/User/UserForm";
+import { Flex } from "styled-components/Flex";
+import { UserTitle } from "styled-components/UserForm";
 import { useRecoilValue } from "recoil";
 import { hamburgerState } from "state/atoms";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import { ImageContainer } from "components/ImageContainer";
+import { ImageContainer } from "styled-components/ImageContainer";
 
 type PropsSideBar = {
   background: string;

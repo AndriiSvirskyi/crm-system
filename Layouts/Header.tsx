@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { ButtonStyled } from "components/ButtonStyled";
+import { Button } from "components/Button";
 import styled from "styled-components";
-import Modal from "components/Modal/Modal";
-import { InputComponent } from "components/InputComponent";
-import { UserText } from "components/User/UserForm";
+import Modal from "components/Modal";
+import { Input } from "components/Input";
+import { UserText } from "styled-components/UserForm";
 import { AiFillBell } from "react-icons/ai";
 import { CgAddR } from "react-icons/cg";
 import { VscAccount } from "react-icons/vsc";
 import { FiAlignJustify } from "react-icons/fi";
 import { useSetRecoilState } from "recoil";
 import { hamburgerState } from "state/atoms";
-import { Flex } from "components/User/Flex";
-import { ImageContainer } from "components/ImageContainer";
+import { Flex } from "styled-components/Flex";
+import { ImageContainer } from "styled-components/ImageContainer";
 type PropsHeader = {
   background?: string;
 };
@@ -44,7 +44,7 @@ export default function Header() {
     <HeaderStyles>
       <Flex>
         <Flex width="350px" padding="10px 5px 0 15px">
-          <ButtonStyled
+          <Button
             onClick={() => {
               setHamburger((oldHamburger) => !oldHamburger);
             }}
@@ -52,7 +52,7 @@ export default function Header() {
             width="50px"
           >
             <FiAlignJustify size="20" />
-          </ButtonStyled>
+          </Button>
         </Flex>
         <Flex
           width="100%"
@@ -60,12 +60,12 @@ export default function Header() {
           align-items="center"
           padding="10px 15px 0 0"
         >
-          <ButtonStyled height="50px" width="50px">
+          <Button height="50px" width="50px">
             <VscAccount size="20" />
-          </ButtonStyled>
+          </Button>
           <Flex margin="0 10px">
             <CgAddR size="40" onClick={openCloseModalBells} />
-            <InputComponent
+            <Input
               type="text"
               placeholder="Search"
               width="100%"
