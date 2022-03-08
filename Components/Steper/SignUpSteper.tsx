@@ -30,7 +30,6 @@ export default function SignUpSteper({ closeModal }) {
   };
 
   const submit = async () => {
-    console.log("asdsad");
     await fetch(`http://localhost:4200/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

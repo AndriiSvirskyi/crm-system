@@ -16,11 +16,14 @@ const ActiveCircleStyled = styled(CircleStyled)`
 `;
 
 const DoneStep = styled(ActiveCircleStyled)`
+  cursor: pointer;
   background-color: green;
   border-radius: 20px;
   line-height: 40px;
 `;
-const StepBlock = styled.div``;
+const StepBlock = styled.div`
+  user-select: none;
+`;
 
 export default function Step({ label, index, goToStep, currentStep }) {
   const stepNumber = index + 1;
@@ -44,7 +47,11 @@ export default function Step({ label, index, goToStep, currentStep }) {
       )}
       {previousStep && (
         <label>
-          <DoneStep>
+          <DoneStep
+            onClick={() => {
+              if (currentStep !== 4) goToStep(index + 1);
+            }}
+          >
             <AiOutlineCheck size={20} color="white"></AiOutlineCheck>
           </DoneStep>
           {label}

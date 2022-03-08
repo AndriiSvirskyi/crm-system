@@ -1,9 +1,14 @@
-import { ButtonStyled } from "components/ButtonStyled";
-import { Form } from "components/form/Form";
 import { InputComponent } from "components/InputComponent";
 import { Flex } from "components/User/Flex";
 import React, { useCallback, useMemo, useState } from "react";
+import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
+
+const Label = styled.label`
+  width: 50%;
+  font-size: 15px;
+  text-align: start;
+`;
 
 export default function JobInfo({
   data,
@@ -20,7 +25,18 @@ export default function JobInfo({
   const [division, setDivision] = useState(data.division || "");
   const [startDate, setStartDate] = useState(data.startDate || "");
   const [errors, setErrors] = useState<any>({});
-
+  const positionsList = ["Team Lead", "Junior", "Midle", "Trainee", "Seniour"];
+  const departmentsList = ["Design", "HR", "Marketing", "Tech", "Finance"];
+  const reportsToList = ["Andriy", "Ivan", "Petro"];
+  const divisionsList = [
+    "Backend",
+    "Frontend",
+    "DevOps",
+    "Business Analysis",
+    "Frontend",
+    "FullStack",
+    "Recruitment",
+  ];
   const validateFields = useCallback(
     ({ position, departments, reportsTo, division, startDate }) => {
       const MIN_LENGTH = 3;
@@ -72,11 +88,12 @@ export default function JobInfo({
           }
           setPosition(e.target.value);
         }}
-        type="text"
-        placeholder="position"
+        type="select"
+        placeholder="Position"
         height="40px"
         width="100%"
         margin="0 0 10px 0"
+        list="positions"
         error={errors.position}
       />
     ),
@@ -95,10 +112,11 @@ export default function JobInfo({
           setDepartments(e.target.value);
         }}
         type="text"
-        placeholder="departments"
+        placeholder="Departments"
         height="40px"
         width="100%"
         margin="0 0 10px 0"
+        list="departments"
         error={errors.departments}
       />
     ),
@@ -121,6 +139,7 @@ export default function JobInfo({
         height="40px"
         width="100%"
         margin="0 0 10px 0"
+        list="reportsTo"
         error={errors.reportsTo}
       />
     ),
@@ -139,10 +158,11 @@ export default function JobInfo({
           setDivision(e.target.value);
         }}
         type="text"
-        placeholder="division"
+        placeholder="Division"
         height="40px"
         width="100%"
         margin="0 0 10px 0"
+        list="divisions"
         error={errors.division}
       />
     ),
@@ -173,10 +193,33 @@ export default function JobInfo({
   return (
     <InputContainer>
       {PositionInput}
+      <datalist id="positions">
+        {positionsList.map((position) => (
+          <option key={position} value={position} />
+        ))}
+      </datalist>
       {DepartmentsInput}
+      <datalist id="departments">
+        {departmentsList.map((department) => (
+          <option key={department} value={department} />
+        ))}
+      </datalist>
       {ReportsToInput}
+      <datalist id="reportsTo">
+        {reportsToList.map((head) => (
+          <option key={head} value={head} />
+        ))}
+      </datalist>
       {DivisionInput}
-      {StartDateInput}
+      <datalist id="divisions">
+        {divisionsList.map((division) => (
+          <option key={division} value={division} />
+        ))}
+      </datalist>
+      <Flex>
+        <Label>Start work since:</Label>
+        {StartDateInput}
+      </Flex>
       {currentStep === 3 && (
         <>
           <StepButton onClick={goToThePreviousStep}>Previus</StepButton>

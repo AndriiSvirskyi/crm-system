@@ -28,12 +28,14 @@ export default function LocationInfo({
   const [gender, setGender] = useState(data.gender || "");
   const [country, setCountry] = useState(data.country || "");
   const [city, setCity] = useState(data.city || "");
-  const [street, setStreet] = useState(data.street || "");
   const [index, setIndex] = useState(data.index || "");
+  const [role, setRole] = useState(data.role || "");
   const [errors, setErrors] = useState<any>({});
 
+  const roles = ["admin", "manager", "user"];
+
   const validateFields = useCallback(
-    ({ gender, country, city, street, index, birthday }) => {
+    ({ gender, country, city, role, index, birthday }) => {
       const MIN_LENGTH = 3;
       const MAX_LENGTH = 15;
       let countErrors = 0;
@@ -42,8 +44,8 @@ export default function LocationInfo({
         ["gender", gender],
         ["country", country],
         ["city", city],
-        ["street", street],
         ["index", index],
+        ["role", role],
       ];
       for (let i = 0; i < simpleData.length; i++) {
         if (simpleData[i][1].length < MIN_LENGTH) {
@@ -85,7 +87,6 @@ export default function LocationInfo({
             });
           }
           setBirthday(e.target.value);
-          console.log(birthday);
         }}
         placeholder="Date"
         height="26px"
@@ -97,7 +98,7 @@ export default function LocationInfo({
   const GenderInput: JSX.Element = useMemo(
     () => (
       <InputComponent
-        id="gender"
+        list="gender"
         value={gender}
         onChange={(e) => {
           if (errors.gender) {
@@ -160,28 +161,6 @@ export default function LocationInfo({
     ),
     [city, errors.city]
   );
-  const StreetInput: JSX.Element = useMemo(
-    () => (
-      <InputComponent
-        value={street}
-        onChange={(e) => {
-          if (errors.street) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, street: false };
-            });
-          }
-          setStreet(e.target.value);
-        }}
-        type="text"
-        placeholder="Street"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        error={errors.street}
-      />
-    ),
-    [street, errors.street]
-  );
   const IndexInput: JSX.Element = useMemo(
     () => (
       <InputComponent
@@ -204,6 +183,29 @@ export default function LocationInfo({
     ),
     [index, errors.index]
   );
+  const RoleInput: JSX.Element = useMemo(
+    () => (
+      <InputComponent
+        value={role}
+        onChange={(e) => {
+          if (errors.role) {
+            setErrors((oldErrors) => {
+              return { ...oldErrors, role: false };
+            });
+          }
+          setRole(e.target.value);
+        }}
+        type="text"
+        placeholder="Role"
+        height="40px"
+        width="100%"
+        margin="0 0 10px 0"
+        list="role"
+        error={errors.role}
+      />
+    ),
+    [role, errors.role]
+  );
 
   return (
     <InputContainer>
@@ -213,12 +215,21 @@ export default function LocationInfo({
           {BirthInput}
         </Label>
         <Label>Gender{GenderInput}</Label>
+        <datalist id="gender">
+          <option value="Male" />
+          <option value="Female" />
+        </datalist>
       </Flex>
       {CountryInput}
       {CityInput}
       <Flex justify="" width="100%"></Flex>
-      {StreetInput}
       {IndexInput}
+      {RoleInput}
+      <datalist id="role">
+        {roles.map((role) => (
+          <option key={role} value={role} />
+        ))}
+      </datalist>
       <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
       <StepButton
         onClick={(e) => {
@@ -229,8 +240,8 @@ export default function LocationInfo({
               gender,
               country,
               city,
-              street,
               index,
+              role,
             })
           ) {
             setData({
@@ -239,8 +250,8 @@ export default function LocationInfo({
               gender,
               country,
               city,
-              street,
               index,
+              role,
             });
             goToTheNextStep();
           }
