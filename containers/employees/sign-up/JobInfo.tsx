@@ -3,7 +3,6 @@ import { Flex } from "styled-components/Flex";
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
-import { FaYoutubeSquare } from "react-icons/fa";
 
 const Label = styled.label`
   width: 50%;
@@ -28,7 +27,6 @@ export default function JobInfo({
   const [errors, setErrors] = useState<any>({});
   const positionsList = ["Team Lead", "Junior", "Midle", "Trainee", "Seniour"];
   const departmentsList = ["Design", "HR", "Marketing", "Tech", "Finance"];
-  const reportsToList = ["Andriy", "Ivan", "Petro"];
   const divisionsList = [
     "Backend",
     "Frontend",
