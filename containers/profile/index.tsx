@@ -80,13 +80,13 @@ export default function UserProfile({ user }) {
     router.push("/employees");
   };
 
-  const superintendent = users
-    ? users.find((person) => person.id === user.superintendent)
+  const reportsTo = users
+    ? users.find((person) => person.id === user.reportsTo)
     : [];
 
   const subordinates = users
     ? users.reduce((acc, cur) => {
-        if (user.id === cur.superintendent) {
+        if (user.id === cur.reportsTo) {
           if (acc.members) {
             acc.members.push(cur);
           } else {
@@ -132,7 +132,10 @@ export default function UserProfile({ user }) {
           </Flex>
           {askToRemove && (
             <RemoveUserModal
-              yes={() => removeUser()}
+              yes={() => {
+                removeUser();
+              
+              }}
               no={() => setAskToRemove(false)}
             ></RemoveUserModal>
           )}
@@ -165,23 +168,19 @@ export default function UserProfile({ user }) {
             <Wrapper>
               <Flex align="center">
                 <ImageContainer
-                  image={superintendent.image}
+                  image={reportsTo.image}
                   width="60px"
                   height="60px"
                   margin="0 20px 0 0"
                 />
                 <Anchor>
                   <UserText
-                    onClick={() =>
-                      router.push(`/employees/${superintendent.id}`)
-                    }
+                    onClick={() => router.push(`/employees/${reportsTo.id}`)}
                     padding="0"
                   >
-                    <a>{`${superintendent.name} ${superintendent.surname}`}</a>
+                    <a>{`${reportsTo.name} ${reportsTo.surname}`}</a>
                   </UserText>
-                  <DivisionContainer>
-                    {superintendent.division}
-                  </DivisionContainer>
+                  <DivisionContainer>{reportsTo.division}</DivisionContainer>
                 </Anchor>
               </Flex>
             </Wrapper>

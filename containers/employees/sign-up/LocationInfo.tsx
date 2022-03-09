@@ -5,10 +5,9 @@ import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
 
 const Label = styled.label`
-  width: 196px;
+  width: 220px;
   height: 42px;
   font-size: 12px;
-  margin: 0 0 10px 0;
 `;
 
 export default function LocationInfo({
@@ -25,11 +24,20 @@ export default function LocationInfo({
   const [role, setRole] = useState(data.role || "");
   const [errors, setErrors] = useState<any>({});
 
-  const roles = ["admin", "manager", "user"];
+  const roleList = useMemo(
+    () => (
+      <datalist id="role">
+        {["admin", "manager", "user"].map((role) => (
+          <option key={role} value={role} />
+        ))}
+      </datalist>
+    ),
+    []
+  );
 
   const validateFields = useCallback(
     ({ gender, country, city, role, index, birthday }) => {
-      const MIN_LENGTH = 3;
+      const MIN_LENGTH = 2;
       const MAX_LENGTH = 15;
       let countErrors = 0;
       const inputErrors: any = {};
@@ -42,20 +50,16 @@ export default function LocationInfo({
       ];
       for (let i = 0; i < simpleData.length; i++) {
         if (simpleData[i][1].length < MIN_LENGTH) {
-          inputErrors[
-            simpleData[i][0]
-          ] = `${simpleData[i][0]} should have more than ${MIN_LENGTH} symbols`;
+          inputErrors[simpleData[i][0]] = `Too short or empty`;
           countErrors++;
         }
         if (simpleData[i][1].length > MAX_LENGTH) {
-          inputErrors[
-            simpleData[i][0]
-          ] = `${simpleData[i][0]} should have less than ${MAX_LENGTH} symbols`;
+          inputErrors[simpleData[i][0]] = `Too many letters`;
           countErrors++;
         }
       }
       if (!birthday) {
-        inputErrors.birthday = `please select a date`;
+        inputErrors.birthday = true;
         countErrors++;
       }
       if (countErrors) {
@@ -74,6 +78,7 @@ export default function LocationInfo({
         type="date"
         value={birthday}
         onChange={(e) => {
+          console.log(e);
           if (errors.birthday) {
             setErrors((oldErrors) => {
               return { ...oldErrors, birthday: false };
@@ -202,7 +207,7 @@ export default function LocationInfo({
 
   return (
     <InputContainer>
-      <Flex justify="space-between" width="100%">
+      <Flex justify="space-between" width="100%" margin="0 0 10px 0">
         <Label>
           Birthday
           {BirthInput}
@@ -218,11 +223,8 @@ export default function LocationInfo({
       <Flex justify="" width="100%"></Flex>
       {IndexInput}
       {RoleInput}
-      <datalist id="role">
-        {roles.map((role) => (
-          <option key={role} value={role} />
-        ))}
-      </datalist>
+      {roleList}
+
       <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
       <StepButton
         onClick={(e) => {

@@ -21,7 +21,7 @@
           "role": "Team Lead"
         }
       ],
-      "superintendent": "2",
+      "reportsTo": "2",
       "company": "4ire",
       "position": "Team Lead",
       "typeOfWork": "Frontend Developer",
@@ -151,6 +151,68 @@
       }
     },
     {
+      "id": "2",
+      "email": "viktor.m@4irelabs.com",
+      "password": "1234",
+      "name": "Viktor",
+      "surname": "Malinovskyi",
+      "role": "manager",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "department": "UI",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "06.03",
+      "gender": "man",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Monako",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
+    },
+    {
+      "id": "3",
+      "email": "anastasia.f@4irelabs.com",
+      "password": "1234",
+      "name": "Anastasiia",
+      "surname": "Fedosyeyeva",
+      "role": "manager",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "department": "UI",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "06.03",
+      "gender": "female",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Monako",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
+    },
+    {
       "id": "UYvGjL-",
       "email": "adamenko@gmail.com",
       "password": "1234",
@@ -165,7 +227,7 @@
           "role": "Team Lead"
         }
       ],
-      "superintendent": "1",
+      "reportsTo": "1",
       "company": "",
       "department": "",
       "division": "",
@@ -196,7 +258,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "1",
+      "reportsTo": "1",
       "company": "",
       "department": "",
       "division": "",
@@ -224,10 +286,10 @@
         {
           "id": "3fdffs",
           "name": "Blackchain",
-          "role": "manager"
+          "role": "Team Lead"
         }
       ],
-      "superintendent": "3",
+      "reportsTo": "3",
       "company": "",
       "department": "",
       "division": "",
@@ -258,7 +320,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "2",
+      "reportsTo": "2",
       "company": "",
       "department": "",
       "division": "",
@@ -290,7 +352,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "3",
+      "reportsTo": "3",
       "company": "4ire",
       "position": "Junior",
       "typeOfWork": "???",
@@ -303,7 +365,11 @@
       "mobile": "37324234235",
       "username": "???",
       "address": "Yorkshire, England",
-      "reportsTo": "Ivan"
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
       "id": "qNfhOTE",
@@ -321,7 +387,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "????",
+      "reportsTo": "1",
       "company": "4ire",
       "position": "Team Lead",
       "typeOfWork": "???",
@@ -334,7 +400,11 @@
       "mobile": "123",
       "username": "???",
       "address": "123, 123",
-      "reportsTo": "Anastasiia"
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
       "id": "drUJTJG",
@@ -352,7 +422,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "????",
+      "reportsTo": "1",
       "company": "4ire",
       "position": "Junior",
       "typeOfWork": "???",
@@ -365,7 +435,11 @@
       "mobile": "1231",
       "username": "???",
       "address": "12321, 31231",
-      "reportsTo": "Andrii Svirskyi"
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
       "id": "zKhNnRk",
@@ -383,7 +457,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "????",
+      "reportsTo": "1",
       "company": "4ire",
       "position": "Team Lead",
       "typeOfWork": "???",
@@ -396,7 +470,11 @@
       "mobile": "123",
       "username": "???",
       "address": "asdasd, asdas",
-      "reportsTo": "Viktor Malino"
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
       "id": "dbvgKAS",
@@ -414,7 +492,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "????",
+      "reportsTo": "1",
       "company": "4ire",
       "position": "Seniour",
       "typeOfWork": "???",
@@ -427,7 +505,11 @@
       "mobile": "123",
       "username": "???",
       "address": "awdawd, wsaawd",
-      "reportsTo": "Viktor Malinoi"
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     },
     {
       "id": "YSaZzEA",
@@ -445,7 +527,7 @@
           "role": "manager"
         }
       ],
-      "superintendent": "????",
+      "reportsTo": "1",
       "company": "4ire",
       "position": "Midle",
       "typeOfWork": "???",
@@ -458,7 +540,11 @@
       "mobile": "1232",
       "username": "???",
       "address": "aaa, aaaa",
-      "reportsTo": "Andrii Svirskyi"
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
     }
   ]
 }

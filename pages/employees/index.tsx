@@ -11,6 +11,7 @@ import Pagination from "containers/employees/Pagination";
 import Loader from "styled-components/Loader";
 import { Button } from "components/Button";
 import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
+import SnackBar from "containers/SnackBar";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -47,8 +48,8 @@ export default function Employee() {
   };
 
   const successCreateUser = () => {
-    getEmployees();
     setShowSnackbar(true);
+    getEmployees();
   };
 
   useEffect(() => {
@@ -83,6 +84,7 @@ export default function Employee() {
           paginate={paginate}
           currentPage={currentPage}
         />
+      <button onClick={()=> setShowSnackbar(true)}> show snackBar</button>
       </UserWindow>
       {userRole === "admin" && (
         <>
@@ -105,6 +107,7 @@ export default function Employee() {
           )}
         </>
       )}
+      {showSnackbar && <SnackBar setShowSnackbar={setShowSnackbar}  />}
     </MainLayout>
   );
 }

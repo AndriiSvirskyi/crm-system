@@ -4,8 +4,7 @@ import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
-  width: 400px;
-  height: 300px;
+  width: 450px;
   margin: 20px;
 `;
 export const StepButton = styled.button`
@@ -37,7 +36,7 @@ export default function EmployeeInfoStep({ data, setData, goToTheNextStep }) {
 
   const validateFields = useCallback(
     ({ name, surname, phone, email, password, confirmPassword }) => {
-      const MIN_LENGTH = 3;
+      const MIN_LENGTH = 2;
       const MAX_LENGTH = 25;
       let countErrors = 0;
       const inputErrors: any = {};
@@ -51,13 +50,13 @@ export default function EmployeeInfoStep({ data, setData, goToTheNextStep }) {
         if (simpleData[i][1].length < MIN_LENGTH) {
           inputErrors[
             simpleData[i][0]
-          ] = `${simpleData[i][0]} should have more than ${MIN_LENGTH} symbols`;
+          ] = `Too short or empty`;
           countErrors++;
         }
         if (simpleData[i][1].length > MAX_LENGTH) {
           inputErrors[
             simpleData[i][0]
-          ] = `${simpleData[i][0]} should have less than ${MAX_LENGTH} symbols`;
+          ] = `Too many letters`;
           countErrors++;
         }
       }
@@ -232,7 +231,6 @@ export default function EmployeeInfoStep({ data, setData, goToTheNextStep }) {
       {EmailInput}
       {PasswordInput}
       {CheckPasswordInput}
-      <StepButton disabled>Previus</StepButton>
       <StepButton
         onClick={(e) => {
           e.preventDefault();

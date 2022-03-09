@@ -61,7 +61,7 @@ export default function SignUpSteper({ closeModal, users, successCreateUser }) {
         image:
           "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
         projects: [{ id: "3fdffs", name: "Blackchain", role: "manager" }],
-        superintendent: "????",
+        reportsTo: "1",
         company: "4ire",
         position: dataJob.position,
         typeOfWork: "???",
@@ -74,7 +74,11 @@ export default function SignUpSteper({ closeModal, users, successCreateUser }) {
         mobile: data.phone,
         username: "???",
         address: `${data.city}, ${data.country}`,
-        reportsTo: dataJob.reportsTo,
+        links: {
+          facebook: "",
+          linkedin: "",
+          twitter: "",
+        },
       }),
     }).then(() => {
       successCreateUser();

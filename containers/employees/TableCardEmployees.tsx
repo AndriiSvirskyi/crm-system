@@ -9,7 +9,7 @@ const UserTitle = styled.div`
 `;
 
 const TableGridMarkup = styled.div`
-  height: 478px;
+  height: 518px;
 
   display: grid;
   grid-auto-columns: minmax(100px, 350px);

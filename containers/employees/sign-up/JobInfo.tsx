@@ -24,19 +24,63 @@ export default function JobInfo({
   const [division, setDivision] = useState("");
   const [startDate, setStartDate] = useState("");
   const [errors, setErrors] = useState<any>({});
-  const positionsList = ["Team Lead", "Junior", "Midle", "Trainee", "Seniour"];
-  const departmentsList = ["Design", "HR", "Marketing", "Tech", "Finance"];
-  const divisionsList = [
-    "Backend",
-    "DevOps",
-    "Business Analysis",
-    "Frontend",
-    "FullStack",
-    "Recruitment",
-  ];
+  const positionsList = useMemo(
+    () => (
+      <datalist id="positions">
+        {["Team Lead", "Junior", "Midle", "Trainee", "Seniour"].map(
+          (position) => (
+            <option key={position} value={position} />
+          )
+        )}
+      </datalist>
+    ),
+    []
+  );
+
+  const departmentsList = useMemo(
+    () => (
+      <datalist id="departments">
+        {["Design", "HR", "Marketing", "Tech", "Finance"].map((department) => (
+          <option key={department} value={department} />
+        ))}
+      </datalist>
+    ),
+    []
+  );
+
+  const divisionsList = useMemo(
+    () => (
+      <datalist id="divisions">
+        {[
+          "Backend",
+          "DevOps",
+          "Business Analysis",
+          "Frontend",
+          "FullStack",
+          "Recruitment",
+        ].map((division) => {
+          return <option key={division} value={division} />;
+        })}
+      </datalist>
+    ),
+    []
+  );
+
+  const reportToList = useMemo(
+    () => (
+      <datalist id="reportsTo">
+        {Object.values(users).map((user: any) => {
+          return (
+            <option key={user.id} value={`${user.name} ${user.surname}`} />
+          );
+        })}
+      </datalist>
+    ),
+    []
+  );
   const validateFields = useCallback(
     ({ position, department, reportsTo, division, startDate }) => {
-      const MIN_LENGTH = 3;
+      const MIN_LENGTH = 2;
       const MAX_LENGTH = 15;
       let countErrors = 0;
       const inputErrors: any = {};
@@ -48,20 +92,16 @@ export default function JobInfo({
       ];
       for (let i = 0; i < simpleData.length; i++) {
         if (simpleData[i][1].length < MIN_LENGTH) {
-          inputErrors[
-            simpleData[i][0]
-          ] = `${simpleData[i][0]} should have more than ${MIN_LENGTH} symbols`;
+          inputErrors[simpleData[i][0]] = `Too short or empty`;
           countErrors++;
         }
         if (simpleData[i][1].length > MAX_LENGTH) {
-          inputErrors[
-            simpleData[i][0]
-          ] = `${simpleData[i][0]} should have less than ${MAX_LENGTH} symbols`;
+          inputErrors[simpleData[i][0]] = `Too many letters`;
           countErrors++;
         }
       }
       if (!startDate) {
-        inputErrors.startDate = `please select a date`;
+        inputErrors.startDate = true;
         countErrors++;
       }
       if (countErrors) {
@@ -190,31 +230,13 @@ export default function JobInfo({
   return (
     <InputContainer>
       {PositionInput}
-      <datalist id="positions">
-        {positionsList.map((position) => (
-          <option key={position} value={position} />
-        ))}
-      </datalist>
+      {positionsList}
       {DepartmentInput}
-      <datalist id="departments">
-        {departmentsList.map((department) => (
-          <option key={department} value={department} />
-        ))}
-      </datalist>
+      {departmentsList}
       {ReportsToInput}
-      <datalist id="reportsTo">
-        {Object.values(users).map((user: any) => {
-          return (
-            <option key={user.id} value={`${user.name} ${user.surname}`} />
-          );
-        })}
-      </datalist>
+      {reportToList}
       {DivisionInput}
-      <datalist id="divisions">
-        {divisionsList.map((division) => (
-          <option key={division} value={division} />
-        ))}
-      </datalist>
+      {divisionsList}
       <Flex>
         <Label>Start work since:</Label>
         {StartDateInput}
@@ -244,7 +266,7 @@ export default function JobInfo({
             }
           }}
         >
-          Submit
+          Create
         </StepButton>
       </>
     </InputContainer>

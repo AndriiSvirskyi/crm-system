@@ -5,7 +5,7 @@ type StyledInputProps = {
   height: string;
   width: string;
   list?: string;
-  error?: string;
+  error?: string | boolean;
   outline?: string;
   background?: string;
 };
@@ -47,7 +47,7 @@ const StyledInput = styled.input<StyledInputProps>`
 
 type InputProps = {
   value?: string;
-  error?: string;
+  error?: string | boolean;
   list?: string;
   height?: string;
   width?: string;
