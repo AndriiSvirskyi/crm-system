@@ -56,12 +56,10 @@ const Tasks = () => {
   const uid = () =>
     Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-  const getTask = async (e: { preventDefault: () => void }) => {
+  const updateEmployeeTasks = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const randomId = uid();
-    const createdBy = users
-      ? users.find(({ id }) => id === user.id)
-      : [{ tasks: [] }];
+    const createdBy = user;
 
     const assignedTo = users
       ? users.find(
@@ -69,27 +67,14 @@ const Tasks = () => {
         )
       : [{ tasks: [] }];
     await fetch(`http://localhost:4200/users/${user.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: createdBy?.id,
-        email: createdBy?.email,
-        password: createdBy?.password,
-        name: createdBy?.name,
-        surname: createdBy?.surname,
-        role: createdBy?.role,
-        startDate: createdBy?.startDate,
-        image: createdBy?.image,
-        projects: [...createdBy?.projects],
         tasks: [
           ...createdBy?.tasks,
           {
             id: randomId,
-            assignedTo: users
-              ? users.find(
-                  ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
-                ).id
-              : [],
+            assignedTo: assignedTo.id,
             createdBy: user.id,
             starts: taskStarts,
             end: taskEnds,
@@ -98,64 +83,18 @@ const Tasks = () => {
             status: "new",
           },
         ],
-        reportTo: createdBy?.reportTo,
-        company: createdBy?.company,
-        position: createdBy?.position,
-        typeOfWork: createdBy?.typeOfWork,
-        department: createdBy?.department,
-        division: createdBy?.division,
-        amount: createdBy?.amount,
-        team: createdBy?.team,
-        birth: createdBy?.birth,
-        gender: createdBy?.gender,
-        mobile: createdBy?.mobile,
-        username: createdBy?.username,
-        address: createdBy?.address,
-        links: {
-          facebook: createdBy?.links.facebook,
-          linkedin: createdBy?.links.linkedin,
-          twitter: createdBy?.links.twitter,
-        },
-        timeoff: {
-          type: {
-            vacation: {
-              days: createdBy?.timeoff.type.vacation.days,
-            },
-            paid: {
-              days: createdBy?.timeoff.type.paid.days,
-            },
-            hospital: {
-              days: createdBy?.timeoff.type.hospital.days,
-            },
-          },
-          requests: [...createdBy?.timeoff.requests],
-          history: [...createdBy?.timeoff.history],
-        },
       }),
     });
 
     await fetch(`http://localhost:4200/users/${assignedTo?.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: assignedTo?.id,
-        email: assignedTo?.email,
-        password: assignedTo?.password,
-        name: assignedTo?.name,
-        surname: assignedTo?.surname,
-        role: assignedTo?.role,
-        startDate: assignedTo?.startDate,
-        image: assignedTo?.image,
-        projects: [...assignedTo?.projects],
         tasks: [
           ...assignedTo?.tasks,
           {
             id: randomId,
-            assignedTo: users
-              ? users.find(
-                  ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
-                ).id
-              : [],
+            assignedTo: assignedTo.id,
             createdBy: user.id,
             starts: taskStarts,
             end: taskEnds,
@@ -164,39 +103,6 @@ const Tasks = () => {
             status: "new",
           },
         ],
-        reportTo: assignedTo?.reportTo,
-        company: assignedTo?.company,
-        position: assignedTo?.position,
-        typeOfWork: assignedTo?.typeOfWork,
-        department: assignedTo?.department,
-        division: assignedTo?.division,
-        amount: assignedTo?.amount,
-        team: assignedTo?.team,
-        birth: assignedTo?.birth,
-        gender: assignedTo?.gender,
-        mobile: assignedTo?.mobile,
-        username: assignedTo?.username,
-        address: assignedTo?.address,
-        links: {
-          facebook: assignedTo?.links.facebook,
-          linkedin: assignedTo?.links.linkedin,
-          twitter: assignedTo?.links.twitter,
-        },
-        timeoff: {
-          type: {
-            vacation: {
-              days: assignedTo?.timeoff.type.vacation.days,
-            },
-            paid: {
-              days: assignedTo?.timeoff.type.paid.days,
-            },
-            hospital: {
-              days: assignedTo?.timeoff.type.hospital.days,
-            },
-          },
-          requests: [...assignedTo?.timeoff.requests],
-          history: [...assignedTo?.timeoff.history],
-        },
       }),
     });
 
@@ -506,7 +412,9 @@ const Tasks = () => {
         {createTask && (
           <Modal close={() => setCreateTask(false)}>
             <Form
-              submit={(e: { preventDefault: () => void }) => getTask(e)}
+              submit={(e: { preventDefault: () => void }) =>
+                updateEmployeeTasks(e)
+              }
               content="New task"
             >
               <Input
