@@ -18,8 +18,7 @@ import { Flex } from "components/User/Flex";
 import { ButtonStyled } from "components/ButtonStyled";
 import { ImageContainer } from "components/ImageContainer";
 import Modal from "components/Modal/Modal";
-import { Form } from "components/form/Form";
-import { InputComponent } from "components/InputComponent";
+import { Form } from "components/form/Form";=
 import Slider from "components/SliderTimeOff";
 import { Label } from "components/User/personalTab/Label";
 import { Button } from "components/Button";
@@ -295,7 +294,9 @@ export default function Home() {
             <Modal close={() => setShowRequest(false)}>
               <Form submit={(e) => saveLeave(e)} content="Time Off Request">
                 <Flex align="center" margin="0 0 10px 0">
-                  <Label htmlFor="type">Leave type:</Label>
+                  <Label width="130px" htmlFor="type">
+                    Leave type:
+                  </Label>
                   <Select
                     value={typeLeave}
                     onChange={(e) => setTypeLeave(e.target.value)}
@@ -308,7 +309,9 @@ export default function Home() {
                   </Select>
                 </Flex>
                 <Flex align="center" margin="0 0 10px 0">
-                  <Label htmlFor="from">From:</Label>
+                  <Label width="130px" htmlFor="from">
+                    From:
+                  </Label>
                   <Input
                     id="from"
                     value={startLeave}
@@ -323,7 +326,9 @@ export default function Home() {
                   />
                 </Flex>
                 <Flex align="center" margin="0 0 30px 0">
-                  <Label htmlFor="to">To:</Label>
+                  <Label width="130px" htmlFor="to">
+                    To:
+                  </Label>
                   <Input
                     id="to"
                     value={endLeave}

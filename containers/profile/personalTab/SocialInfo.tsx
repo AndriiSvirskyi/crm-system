@@ -85,7 +85,9 @@ export const SocialInfo = ({ user }) => {
         </Button>
       </Flex>
       <Flex>
-        <Label htmlFor="facebook">Facebook URL</Label>
+        <Label width="130px" htmlFor="facebook">
+          Facebook URL
+        </Label>
         {socialInfoEdit ? (
           <Input
             id="facebook"
@@ -107,7 +109,9 @@ export const SocialInfo = ({ user }) => {
         )}
       </Flex>
       <Flex>
-        <Label htmlFor="linkedin">LinkedIn URL</Label>
+        <Label width="130px" htmlFor="linkedin">
+          LinkedIn URL
+        </Label>
         {socialInfoEdit ? (
           <Input
             id="linkedin"
@@ -129,7 +133,9 @@ export const SocialInfo = ({ user }) => {
         )}
       </Flex>
       <Flex margin="0 0 40px 0">
-        <Label htmlFor="twitter">Twitter Username</Label>
+        <Label width="130px" htmlFor="twitter">
+          Twitter Username
+        </Label>
         {socialInfoEdit ? (
           <Input
             id="twitter"

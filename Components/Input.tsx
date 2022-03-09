@@ -60,6 +60,7 @@ type InputProps = {
   readonly?: boolean;
   background?: string;
   id?: string;
+  required?: boolean
 };
 
 export const Input = ({
@@ -76,6 +77,7 @@ export const Input = ({
   readonly,
   background,
   id,
+  required
 }: InputProps) => {
   return (
     <InputWrap width={width} margin={margin}>
@@ -92,6 +94,7 @@ export const Input = ({
         placeholder={placeholder}
         onChange={onChange}
         value={value}
+        required
       />
       {error && <Error>{error}</Error>}
     </InputWrap>

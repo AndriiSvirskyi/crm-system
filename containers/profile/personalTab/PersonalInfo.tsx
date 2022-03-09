@@ -84,7 +84,9 @@ export const PersonalInfo = ({ user }) => {
         }
       </Flex>
       <Flex justify="space-between">
-        <Label htmlFor="employee_id">Employee ID</Label>
+        <Label width="130px" htmlFor="employee_id">
+          Employee ID
+        </Label>
         <Input
           id="employee_id"
           outline={personalInfoEdit ? "1px solid grey" : "none"}
@@ -101,7 +103,9 @@ export const PersonalInfo = ({ user }) => {
       </Flex>
       <Flex justify="space-between">
         <Flex align="center">
-          <Label htmlFor="last_name">First name</Label>
+          <Label width="130px" htmlFor="last_name">
+            First name
+          </Label>
           <Input
             id="last_name"
             outline={personalInfoEdit ? "1px solid grey" : "none"}
@@ -118,7 +122,9 @@ export const PersonalInfo = ({ user }) => {
           />
         </Flex>
         <Flex align="center">
-          <Label htmlFor="first_name">Last name</Label>
+          <Label width="130px" htmlFor="first_name">
+            Last name
+          </Label>
           <Input
             id="first_name"
             outline={personalInfoEdit ? "1px solid grey" : "none"}
@@ -135,7 +141,9 @@ export const PersonalInfo = ({ user }) => {
         </Flex>
       </Flex>
       <Flex justify="space-between">
-        <Label htmlFor="email">Email</Label>
+        <Label width="130px" htmlFor="email">
+          Email
+        </Label>
         <Input
           id="email"
           outline={personalInfoEdit ? "1px solid grey" : "none"}
@@ -151,7 +159,9 @@ export const PersonalInfo = ({ user }) => {
         />
       </Flex>
       <Flex justify="space-between">
-        <Label htmlFor="birthday">Date of birth</Label>
+        <Label width="130px" htmlFor="birthday">
+          Date of birth
+        </Label>
         <Input
           id="birthday"
           outline={personalInfoEdit ? "1px solid grey" : "none"}
@@ -167,7 +177,9 @@ export const PersonalInfo = ({ user }) => {
         />
       </Flex>
       <Flex justify="space-between" margin="0 0 40px 0">
-        <Label htmlFor="gender">Gender</Label>
+        <Label width="130px" htmlFor="gender">
+          Gender
+        </Label>
         <Input
           id="gender"
           outline={personalInfoEdit ? "1px solid grey" : "none"}

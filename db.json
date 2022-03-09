@@ -22,11 +22,78 @@
         }
       ],
       "reportsTo": "2",
+      "tasks": [
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add modal",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Change modal",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add test",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add button",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add title",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-04-07",
+          "title": "fdfsdf",
+          "description": "fsdfsdfs",
+          "status": "new"
+        },
+        {
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-16",
+          "end": "2022-03-17",
+          "title": "new",
+          "description": "ewrwerew",
+          "status": "new"
+        }
+      ],
+
       "company": "4ire",
       "position": "Team Lead",
       "typeOfWork": "Frontend Developer",
       "department": "Tech",
       "division": "Frontend",
+      "unit": "Frontend",
       "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "06.03",
@@ -166,6 +233,18 @@
         }
       ],
       "reportsTo": "1",
+      "tasks": [
+        {
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-04-07",
+          "title": "fdfsdf",
+          "description": "fsdfsdfs",
+          "status": "new"
+        }
+      ],
+
       "company": "4ire",
       "department": "UI",
       "unit": "Frontend",
@@ -197,6 +276,54 @@
         }
       ],
       "reportsTo": "1",
+      "tasks": [
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add modal",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Change modal",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add test",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add button",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        },
+        {
+          "assignedTo": "3",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Add title",
+          "description": "Lorem imsum blablabla",
+          "status": "new"
+        }
+      ],
+
       "company": "4ire",
       "department": "UI",
       "unit": "Frontend",
@@ -268,6 +395,70 @@
       "mobile": "123456789",
       "username": "",
       "address": "Zaporizhzhya",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "D02UaF_",
+      "email": "andriushyn@gmail.com",
+      "password": "1234",
+      "name": "Dmytro",
+      "surname": "Andriushyn",
+      "role": "user",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "ffsd2",
+          "name": "Arterra",
+          "role": "manager"
+        }
+      ],
+      "tasks": [],
+
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "07.03",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Odessa",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "yLrw5VR",
+      "email": "anisimov@gmail.com",
+      "password": "1234",
+      "name": "Andrii",
+      "surname": "Anisimov",
+      "role": "user",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "Team Lead"
+        }
+      ],
+      "tasks": [],
+
+      "company": "",
+      "department": "",
+      "unit": "",
+      "team": "",
+      "birth": "08.03",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Lviv",
       "links": {
         "facebook": "",
         "linkedin": "",
