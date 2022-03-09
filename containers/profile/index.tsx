@@ -79,9 +79,9 @@ export default function UserProfile({ user }) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-    
+
     router.push("/employees");
-    snackBar.openSnackBar({message:'User has been deleted!', type: 'error'})
+    snackBar.openSnackBar({ message: "User has been deleted!", type: "error" });
   };
 
   const reportsTo = users

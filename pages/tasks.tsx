@@ -1,10 +1,10 @@
 import MainLayout from "Layouts/MainLayout";
-import { UserBlockItem, UserTitle, UserWindow } from "Components/User/UserForm";
-import { Flex } from "Components/User/Flex";
-import { ButtonStyled } from "Components/ButtonStyled";
+import { UserBlockItem, UserTitle, UserWindow } from "components/User/UserForm";
+import { Flex } from "components/User/Flex";
+import { ButtonStyled } from "components/ButtonStyled";
 import { FaPlus } from "react-icons/fa";
 import { SetStateAction, useEffect, useState } from "react";
-import Modal from "Components/Modal/Modal";
+import Modal from "components/Modal/Modal";
 import { Form } from "components/form/Form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
@@ -206,6 +206,7 @@ const Tasks = () => {
     setTaskStarts(moment().format("YYYY-MM-DD"));
     setTaskEnds(moment().format("YYYY-MM-DD"));
   };
+
   const changeStatus = async (id, taskAssignedTo) => {
     const createdBy = users
       ? users.find(({ id }) => id === user.id)
