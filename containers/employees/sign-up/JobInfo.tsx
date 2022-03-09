@@ -8,7 +8,7 @@ const Label = styled.label`
   width: 50%;
   font-size: 15px;
   text-align: start;
-  line-height: 40px ;
+  line-height: 40px;
 `;
 
 export default function JobInfo({
@@ -16,11 +16,10 @@ export default function JobInfo({
   currentStep,
   submit,
   closeModal,
-  users
+  users,
 }) {
-  console.log(Object.values(users))
   const [position, setPosition] = useState("");
-  const [department, setDepartment] = useState( "");
+  const [department, setDepartment] = useState("");
   const [reportsTo, setReportsTo] = useState("");
   const [division, setDivision] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -29,7 +28,6 @@ export default function JobInfo({
   const departmentsList = ["Design", "HR", "Marketing", "Tech", "Finance"];
   const divisionsList = [
     "Backend",
-    "Frontend",
     "DevOps",
     "Business Analysis",
     "Frontend",
@@ -205,9 +203,11 @@ export default function JobInfo({
       </datalist>
       {ReportsToInput}
       <datalist id="reportsTo">
-        {Object.values(users).map((user:any) => (
-          <option key={user.id} value={`${user.name} ${user.surname}`}/>
-        ))}
+        {Object.values(users).map((user: any) => {
+          return (
+            <option key={user.id} value={`${user.name} ${user.surname}`} />
+          );
+        })}
       </datalist>
       {DivisionInput}
       <datalist id="divisions">
@@ -219,35 +219,34 @@ export default function JobInfo({
         <Label>Start work since:</Label>
         {StartDateInput}
       </Flex>
-      {currentStep === 3 && (
-        <>
-          <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
-          <StepButton
-            onClick={(e) => {
-              e.preventDefault();
-              if (
-                validateFields({
-                  position,
-                  department,
-                  reportsTo,
-                  division,
-                  startDate,
-                })
-              ) {
-                
-                submit({position,
-                  department,
-                  reportsTo,
-                  division,
-                  startDate,})
-                closeModal()
-              }
-            }}
-          >
-            Submit
-          </StepButton>
-        </>
-      )}
+      <>
+        <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
+        <StepButton
+          onClick={(e) => {
+            e.preventDefault();
+            if (
+              validateFields({
+                position,
+                department,
+                reportsTo,
+                division,
+                startDate,
+              })
+            ) {
+              submit({
+                position,
+                department,
+                reportsTo,
+                division,
+                startDate,
+              });
+              closeModal();
+            }
+          }}
+        >
+          Submit
+        </StepButton>
+      </>
     </InputContainer>
   );
 }

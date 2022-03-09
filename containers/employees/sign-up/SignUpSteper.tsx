@@ -24,7 +24,7 @@ type NewEmployeeProps = {
   reportsTo: string;
 };
 
-export default function SignUpSteper({ closeModal, users }) {
+export default function SignUpSteper({ closeModal, users, successCreateUser }) {
   const [data, setData] = useState<any>({});
   useEffect(() => {
     if (!localStorage.user) {
@@ -76,6 +76,8 @@ export default function SignUpSteper({ closeModal, users }) {
         address: `${data.city}, ${data.country}`,
         reportsTo: dataJob.reportsTo,
       }),
+    }).then(() => {
+      successCreateUser();
     });
   };
 

@@ -14,6 +14,7 @@ import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
+  const [showSnackbar, setShowSnackbar] = useState(false);
   const [activeTabRender, setActiveTabRender] = useState("block");
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -32,18 +33,26 @@ export default function Employee() {
   const [userRole, setUserRole] = useState();
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
+
+  const getEmployees = async () => {
+    return fetch(`http://localhost:4200/users`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setUsersToRecoil(res);
+        setFilteredEmployees(res);
+        return res;
+      });
+  };
+
+  const successCreateUser = () => {
+    getEmployees();
+    setShowSnackbar(true);
+  };
+
   useEffect(() => {
-    if (!users) {
-      const responce = fetch(`http://localhost:4200/users`);
-      responce
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          setUsersToRecoil(res);
-          setFilteredEmployees(res);
-        });
-    }
+    getEmployees();
     setUserRole(JSON.parse(currentUser).role);
   }, []);
 
@@ -88,7 +97,11 @@ export default function Employee() {
             <FaUserPlus size={30}></FaUserPlus>
           </Button>
           {showModal && (
-            <SignUpSteper closeModal={() => setShowModal(false)} users={users}/>
+            <SignUpSteper
+              closeModal={() => setShowModal(false)}
+              successCreateUser={successCreateUser}
+              users={users}
+            />
           )}
         </>
       )}
