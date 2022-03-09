@@ -3,6 +3,7 @@ import { Flex } from "styled-components/Flex";
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
+import { FaYoutubeSquare } from "react-icons/fa";
 
 const Label = styled.label`
   width: 50%;
@@ -16,7 +17,9 @@ export default function JobInfo({
   currentStep,
   submit,
   closeModal,
+  users
 }) {
+  console.log(Object.values(users))
   const [position, setPosition] = useState("");
   const [department, setDepartment] = useState( "");
   const [reportsTo, setReportsTo] = useState("");
@@ -204,8 +207,8 @@ export default function JobInfo({
       </datalist>
       {ReportsToInput}
       <datalist id="reportsTo">
-        {reportsToList.map((head) => (
-          <option key={head} value={head} />
+        {Object.values(users).map((user:any) => (
+          <option key={user.id} value={`${user.name} ${user.surname}`}/>
         ))}
       </datalist>
       {DivisionInput}

@@ -7,26 +7,25 @@ import LocationInfo from "./LocationInfo";
 import JobInfo from "./JobInfo";
 
 type NewEmployeeProps = {
-  email:string;
-  password:string;
-  name:string;
-  surname:string;
-  role:string;
-  startDate:string;
-  position:string;
-  department:string;
-  division:string;
-  birthday:string;
-  gender:string;
-  phone:string;
-  city:string;
-  country:string;
-  reportsTo:string;
-}
+  email: string;
+  password: string;
+  name: string;
+  surname: string;
+  role: string;
+  startDate: string;
+  position: string;
+  department: string;
+  division: string;
+  birthday: string;
+  gender: string;
+  phone: string;
+  city: string;
+  country: string;
+  reportsTo: string;
+};
 
-export default function SignUpSteper({ closeModal }) {
+export default function SignUpSteper({ closeModal, users }) {
   const [data, setData] = useState<any>({});
-
   useEffect(() => {
     if (!localStorage.user) {
       router.push("/forbidden");
@@ -105,6 +104,7 @@ export default function SignUpSteper({ closeModal }) {
         )}
         {currentStep === 3 && (
           <JobInfo
+            users={users}
             goToThePreviousStep={goToThePreviousStep}
             currentStep={currentStep}
             submit={submit}
@@ -115,4 +115,3 @@ export default function SignUpSteper({ closeModal }) {
     </Modal>
   );
 }
-

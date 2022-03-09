@@ -88,7 +88,7 @@ export default function Employee() {
             <FaUserPlus size={30}></FaUserPlus>
           </Button>
           {showModal && (
-            <SignUpSteper closeModal={() => setShowModal(false)} />
+            <SignUpSteper closeModal={() => setShowModal(false)} users={users}/>
           )}
         </>
       )}
