@@ -7,6 +7,8 @@ const SnackBarContainer = styled.div`
   width: 200px;
   border: 1px solid green;
   border-radius: 8px;
+  margin: 0 ;
+  padding:0;
   bottom: 20px;
   left: 20px;
   background-color: green;
