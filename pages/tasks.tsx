@@ -1,10 +1,10 @@
 import MainLayout from "Layouts/MainLayout";
-import { UserBlockItem, UserTitle, UserWindow } from "components/User/UserForm";
-import { Flex } from "components/User/Flex";
-import { ButtonStyled } from "components/ButtonStyled";
+import { UserBlockItem, UserTitle, UserWindow } from "Components/User/UserForm";
+import { Flex } from "Components/User/Flex";
+import { ButtonStyled } from "Components/ButtonStyled";
 import { FaPlus } from "react-icons/fa";
 import { SetStateAction, useEffect, useState } from "react";
-import Modal from "components/Modal/Modal";
+import Modal from "Components/Modal/Modal";
 import { Form } from "components/form/Form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
@@ -56,18 +56,18 @@ const Tasks = () => {
   const uid = () =>
     Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-  const createdBy = users
-    ? users.find(({ id }) => id === user.id)
-    : [{ tasks: [] }];
-
-  const assignedTo = users
-    ? users.find(({ name, surname }) => `${name} ${surname}` === taskAssignedTo)
-    : [{ tasks: [] }];
-
   const getTask = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const randomId = uid();
+    const createdBy = users
+      ? users.find(({ id }) => id === user.id)
+      : [{ tasks: [] }];
 
+    const assignedTo = users
+      ? users.find(
+          ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
+        )
+      : [{ tasks: [] }];
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -206,7 +206,15 @@ const Tasks = () => {
     setTaskStarts(moment().format("YYYY-MM-DD"));
     setTaskEnds(moment().format("YYYY-MM-DD"));
   };
-  const changeStatus = async (id) => {
+  const changeStatus = async (id, taskAssignedTo) => {
+    const createdBy = users
+      ? users.find(({ id }) => id === user.id)
+      : [{ tasks: [] }];
+
+    const assignedTo = users
+      ? users.find(({ id }) => id === taskAssignedTo)
+      : [{ tasks: [] }];
+
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -257,8 +265,8 @@ const Tasks = () => {
               days: createdBy?.timeoff.type.hospital.days,
             },
           },
-          requests: [...createdBy?.timeoff.requests],
-          history: [...createdBy?.timeoff.history],
+          requests: createdBy?.timeoff.requests,
+          history: createdBy?.timeoff.history,
         },
       }),
     });
@@ -313,13 +321,13 @@ const Tasks = () => {
               days: assignedTo?.timeoff.type.hospital.days,
             },
           },
-          requests: [...assignedTo?.timeoff.requests],
-          history: [...assignedTo?.timeoff.history],
+          requests: assignedTo?.timeoff.requests,
+          history: assignedTo?.timeoff.history,
         },
       }),
     });
-    console.log("status has changed");
   };
+
   return (
     <MainLayout>
       <UserWindow>
@@ -416,7 +424,7 @@ const Tasks = () => {
                           createdBy={createdBy}
                           assignedTo={assignedTo}
                           users={users}
-                          changeStatus={changeStatus}
+                          changeStatus={() => changeStatus(id, assignedTo)}
                         />
                       );
                     }
@@ -451,7 +459,7 @@ const Tasks = () => {
                           createdBy={createdBy}
                           assignedTo={assignedTo}
                           users={users}
-                          changeStatus={() => changeStatus(id)}
+                          changeStatus={() => changeStatus(id, assignedTo)}
                         />
                       );
                     }
