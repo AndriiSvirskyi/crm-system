@@ -24,6 +24,7 @@
       "reportsTo": "2",
       "tasks": [
         {
+          "id": "1",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -33,6 +34,7 @@
           "status": "new"
         },
         {
+          "id": "2",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -42,6 +44,7 @@
           "status": "new"
         },
         {
+          "id": "3",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -51,6 +54,7 @@
           "status": "new"
         },
         {
+          "id": "4",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -60,6 +64,7 @@
           "status": "new"
         },
         {
+          "id": "5",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -69,15 +74,17 @@
           "status": "new"
         },
         {
+          "id": "6",
           "assignedTo": "2",
           "createdBy": "1",
           "starts": "2022-03-09",
           "end": "2022-04-07",
-          "title": "fdfsdf",
+          "title": "test",
           "description": "fsdfsdfs",
           "status": "new"
         },
         {
+          "id": "7",
           "assignedTo": "2",
           "createdBy": "1",
           "starts": "2022-03-16",
@@ -85,15 +92,73 @@
           "title": "new",
           "description": "ewrwerew",
           "status": "new"
+        },
+        {
+          "id": "8",
+          "assignedTo": "1",
+          "createdBy": "2",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Lorem",
+          "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+          "status": "new"
+        },
+        {
+          "id": "9",
+          "assignedTo": "1",
+          "createdBy": "2",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Ipsum",
+          "description": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+          "status": "new"
+        },
+        {
+          "id": "l0jji7888gopxzto58",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "task",
+          "description": "tasktask",
+          "status": "new"
+        },
+        {
+          "id": "l0jjixfywds48jf2u5s",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "task2",
+          "description": "task2task2",
+          "status": "new"
+        },
+        {
+          "id": "l0jkgbhg59q9olm2y73",
+          "assignedTo": "1",
+          "createdBy": "3",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "new",
+          "description": "newnewnewnewnewnewnewnew",
+          "status": "new"
+        },
+        {
+          "id": "l0jkjgppxkrjtojm0y",
+          "assignedTo": "1",
+          "createdBy": "3",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "QWERTY",
+          "description": "QWERTYQWERTYQWERTYQWERTYQWERTY",
+          "status": "new"
         }
       ],
-
       "company": "4ire",
       "position": "Team Lead",
       "typeOfWork": "Frontend Developer",
       "department": "Tech",
       "division": "Frontend",
-      "unit": "Frontend",
       "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "06.03",
@@ -224,6 +289,7 @@
       "name": "Viktor",
       "surname": "Malinovskyi",
       "role": "manager",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -235,6 +301,7 @@
       "reportsTo": "1",
       "tasks": [
         {
+          "id": "6",
           "assignedTo": "2",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -242,12 +309,74 @@
           "title": "fdfsdf",
           "description": "fsdfsdfs",
           "status": "new"
+        },
+        {
+          "id": "7",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-16",
+          "end": "2022-03-17",
+          "title": "new",
+          "description": "ewrwerew",
+          "status": "new"
+        },
+        {
+          "id": "8",
+          "assignedTo": "1",
+          "createdBy": "2",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Lorem",
+          "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+          "status": "new"
+        },
+        {
+          "id": "9",
+          "assignedTo": "1",
+          "createdBy": "2",
+          "starts": "2022-03-09",
+          "end": "2022-03-10",
+          "title": "Ipsum",
+          "description": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+          "status": "new"
+        },
+        {
+          "id": "l0jji7888gopxzto58",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "task",
+          "description": "tasktask",
+          "status": "new"
+        },
+        {
+          "id": "l0jjixfywds48jf2u5s",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "task2",
+          "description": "task2task2",
+          "status": "new"
+        },
+        {
+          "id": "l0jkh51irdjp6pshv",
+          "assignedTo": "2",
+          "createdBy": "3",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "trarararrarra",
+          "description": "trarararrarratrarararrarratrarararrarratrarararrarratrarararrarra",
+          "status": "new"
         }
       ],
-
       "company": "4ire",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "UI",
-      "unit": "Frontend",
+      "division": "Frontend",
+      "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "06.03",
       "gender": "man",
@@ -258,6 +387,116 @@
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
         "twitter": "https://twitter.com/?lang=en"
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -267,6 +506,7 @@
       "name": "Anastasiia",
       "surname": "Fedosyeyeva",
       "role": "manager",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -278,6 +518,7 @@
       "reportsTo": "1",
       "tasks": [
         {
+          "id": "1",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -287,6 +528,7 @@
           "status": "new"
         },
         {
+          "id": "2",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -296,6 +538,7 @@
           "status": "new"
         },
         {
+          "id": "3",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -305,6 +548,7 @@
           "status": "new"
         },
         {
+          "id": "4",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -314,6 +558,7 @@
           "status": "new"
         },
         {
+          "id": "5",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
@@ -321,12 +566,34 @@
           "title": "Add title",
           "description": "Lorem imsum blablabla",
           "status": "new"
+        },
+        {
+          "id": "l0jkh51irdjp6pshv",
+          "assignedTo": "2",
+          "createdBy": "3",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "trarararrarra",
+          "description": "trarararrarratrarararrarratrarararrarratrarararrarratrarararrarra",
+          "status": "new"
+        },
+        {
+          "id": "l0jkjgppxkrjtojm0y",
+          "assignedTo": "1",
+          "createdBy": "3",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "QWERTY",
+          "description": "QWERTYQWERTYQWERTYQWERTYQWERTY",
+          "status": "new"
         }
       ],
-
       "company": "4ire",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "UI",
-      "unit": "Frontend",
+      "division": "Frontend",
+      "amount": "$10000.00 USD",
       "team": "Andriy",
       "birth": "06.03",
       "gender": "female",
@@ -337,6 +604,116 @@
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
         "twitter": "https://twitter.com/?lang=en"
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -346,6 +723,7 @@
       "name": "Pavel",
       "surname": "Adamenko",
       "role": "user",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -355,7 +733,10 @@
         }
       ],
       "reportsTo": "1",
+      "tasks": [],
       "company": "",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "",
       "division": "",
       "team": "",
@@ -368,6 +749,116 @@
         "facebook": "",
         "linkedin": "",
         "twitter": ""
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -377,6 +868,7 @@
       "name": "Artem",
       "surname": "Andreev",
       "role": "user",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -386,7 +878,10 @@
         }
       ],
       "reportsTo": "1",
+      "tasks": [],
       "company": "",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "",
       "division": "",
       "team": "",
@@ -399,6 +894,116 @@
         "facebook": "",
         "linkedin": "",
         "twitter": ""
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -408,6 +1013,7 @@
       "name": "Dmytro",
       "surname": "Andriushyn",
       "role": "user",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -417,10 +1023,12 @@
         }
       ],
       "tasks": [],
-
       "company": "",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "",
-      "unit": "",
+      "division": "",
+      "amount": "$10000.00 USD",
       "team": "",
       "birth": "07.03",
       "gender": "",
@@ -431,6 +1039,116 @@
         "facebook": "",
         "linkedin": "",
         "twitter": ""
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -440,6 +1158,7 @@
       "name": "Andrii",
       "surname": "Anisimov",
       "role": "user",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -449,10 +1168,12 @@
         }
       ],
       "tasks": [],
-
       "company": "",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "",
-      "unit": "",
+      "division": "",
+      "amount": "$10000.00 USD",
       "team": "",
       "birth": "08.03",
       "gender": "",
@@ -463,6 +1184,116 @@
         "facebook": "",
         "linkedin": "",
         "twitter": ""
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -472,6 +1303,7 @@
       "name": "Volodymyr",
       "surname": "Antonov",
       "role": "user",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -481,7 +1313,10 @@
         }
       ],
       "reportsTo": "3",
+      "tasks": [],
       "company": "",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "",
       "division": "",
       "team": "",
@@ -494,6 +1329,116 @@
         "facebook": "",
         "linkedin": "",
         "twitter": ""
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {
@@ -503,6 +1448,7 @@
       "name": "Eva Maria",
       "surname": "Areshina",
       "role": "user",
+      "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
       "projects": [
         {
@@ -512,7 +1458,10 @@
         }
       ],
       "reportsTo": "2",
+      "tasks": [],
       "company": "",
+      "position": "developer",
+      "typeOfWork": "Frontend Developer",
       "department": "",
       "division": "",
       "team": "",
@@ -525,6 +1474,116 @@
         "facebook": "",
         "linkedin": "",
         "twitter": ""
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
       }
     },
     {

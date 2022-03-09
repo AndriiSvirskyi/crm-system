@@ -11,10 +11,8 @@ import { usersState } from "state/atoms";
 import { Label } from "components/User/personalTab/Label";
 import styled from "styled-components";
 import moment from "moment";
-import { BiCalendar, BiCheck } from "react-icons/bi";
-import { ImageContainer } from "components/ImageContainer";
-import router, { Router } from "next/router";
 import { Input } from "components/Input";
+import { Task } from "components/Task";
 
 const Textarea = styled.textarea`
   resize: none;
@@ -26,52 +24,18 @@ const Textarea = styled.textarea`
   padding: 10px 25px;
   border: 1px solid black;
 `;
-const Task = styled.div`
-  cursor: pointer;
-  border: 1px solid black;
-  border-radius: 8px;
-  margin: 0 0 10px 0;
-  padding: 10px;
-  h3 {
-    min-width: 150px;
-    font-size: 16px;
-    display: inline;
-    margin: 0 30px 0 0;
-  }
-  :hover {
-    background: #d9d9ff36;
-  }
-`;
 
-const TaskInfo = styled.div`
-  border: 1px solid black;
-  border-radius: 8px;
-  margin: 0 0 10px 0;
-  padding: 10px;
-`;
-
-const Fullname = styled.span`
-  cursor: pointer;
-  color: #0d74bc;
-  &:hover {
-    color: #2196f3;
-  }
-`;
 const Tasks = () => {
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
   const [user, setUser] = useState(null);
   const [createTask, setCreateTask] = useState(false);
-  const [byMe, setByMe] = useState(true);
-  const [toMe, setToMe] = useState(false);
-  const [completed, setCompleted] = useState(false);
-  const [future, setFuture] = useState(false);
+  const [tabContent, setTabContent] = useState("byMe");
   const [taskTitle, setTaskTitle] = useState("");
   const [taskAssignedTo, setTaskAssignedTo] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
   const [taskStarts, setTaskStarts] = useState(moment().format("YYYY-MM-DD"));
   const [taskEnds, setTaskEnds] = useState(moment().format("YYYY-MM-DD"));
-  const [showTask, setShowTask] = useState("");
 
   useEffect(() => {
     if (!users) {
@@ -89,25 +53,38 @@ const Tasks = () => {
     }
   }, []);
 
+  const uid = () =>
+    Date.now().toString(36) + Math.random().toString(36).substring(2);
+
+  const createdBy = users
+    ? users.find(({ id }) => id === user.id)
+    : [{ tasks: [] }];
+
+  const assignedTo = users
+    ? users.find(({ name, surname }) => `${name} ${surname}` === taskAssignedTo)
+    : [{ tasks: [] }];
+
   const getTask = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const randomId = uid();
 
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: user.id,
-        email: user.email,
-        password: user.password,
-        name: user.name,
-        surname: user.surname,
-        role: user.role,
-        startDate: user.startDate,
-        image: user.image,
-        projects: [...user.projects],
+        id: createdBy?.id,
+        email: createdBy?.email,
+        password: createdBy?.password,
+        name: createdBy?.name,
+        surname: createdBy?.surname,
+        role: createdBy?.role,
+        startDate: createdBy?.startDate,
+        image: createdBy?.image,
+        projects: [...createdBy?.projects],
         tasks: [
-          ...user.tasks,
+          ...createdBy?.tasks,
           {
+            id: randomId,
             assignedTo: users
               ? users.find(
                   ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
@@ -121,38 +98,104 @@ const Tasks = () => {
             status: "new",
           },
         ],
-        superintendent: user.superintendent,
-        company: user.company,
-        position: user.position,
-        typeOfWork: user.typeOfWork,
-        department: user.department,
-        unit: user.unit,
-        amount: user.amount,
-        team: user.team,
-        birth: user.birth,
-        gender: user.gender,
-        mobile: user.mobile,
-        username: user.username,
-        address: user.address,
+        reportTo: createdBy?.reportTo,
+        company: createdBy?.company,
+        position: createdBy?.position,
+        typeOfWork: createdBy?.typeOfWork,
+        department: createdBy?.department,
+        division: createdBy?.division,
+        amount: createdBy?.amount,
+        team: createdBy?.team,
+        birth: createdBy?.birth,
+        gender: createdBy?.gender,
+        mobile: createdBy?.mobile,
+        username: createdBy?.username,
+        address: createdBy?.address,
         links: {
-          facebook: user.links.facebook,
-          linkedin: user.links.linkedin,
-          twitter: user.links.twitter,
+          facebook: createdBy?.links.facebook,
+          linkedin: createdBy?.links.linkedin,
+          twitter: createdBy?.links.twitter,
         },
         timeoff: {
           type: {
             vacation: {
-              days: user.timeoff.type.vacation.days,
+              days: createdBy?.timeoff.type.vacation.days,
             },
             paid: {
-              days: user.timeoff.type.paid.days,
+              days: createdBy?.timeoff.type.paid.days,
             },
             hospital: {
-              days: user.timeoff.type.hospital.days,
+              days: createdBy?.timeoff.type.hospital.days,
             },
           },
-          requests: [...user.timeoff.requests],
-          history: [...user.timeoff.history],
+          requests: [...createdBy?.timeoff.requests],
+          history: [...createdBy?.timeoff.history],
+        },
+      }),
+    });
+
+    await fetch(`http://localhost:4200/users/${assignedTo?.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: assignedTo?.id,
+        email: assignedTo?.email,
+        password: assignedTo?.password,
+        name: assignedTo?.name,
+        surname: assignedTo?.surname,
+        role: assignedTo?.role,
+        startDate: assignedTo?.startDate,
+        image: assignedTo?.image,
+        projects: [...assignedTo?.projects],
+        tasks: [
+          ...assignedTo?.tasks,
+          {
+            id: randomId,
+            assignedTo: users
+              ? users.find(
+                  ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
+                ).id
+              : [],
+            createdBy: user.id,
+            starts: taskStarts,
+            end: taskEnds,
+            title: taskTitle,
+            description: taskDescription,
+            status: "new",
+          },
+        ],
+        reportTo: assignedTo?.reportTo,
+        company: assignedTo?.company,
+        position: assignedTo?.position,
+        typeOfWork: assignedTo?.typeOfWork,
+        department: assignedTo?.department,
+        division: assignedTo?.division,
+        amount: assignedTo?.amount,
+        team: assignedTo?.team,
+        birth: assignedTo?.birth,
+        gender: assignedTo?.gender,
+        mobile: assignedTo?.mobile,
+        username: assignedTo?.username,
+        address: assignedTo?.address,
+        links: {
+          facebook: assignedTo?.links.facebook,
+          linkedin: assignedTo?.links.linkedin,
+          twitter: assignedTo?.links.twitter,
+        },
+        timeoff: {
+          type: {
+            vacation: {
+              days: assignedTo?.timeoff.type.vacation.days,
+            },
+            paid: {
+              days: assignedTo?.timeoff.type.paid.days,
+            },
+            hospital: {
+              days: assignedTo?.timeoff.type.hospital.days,
+            },
+          },
+          requests: [...assignedTo?.timeoff.requests],
+          history: [...assignedTo?.timeoff.history],
         },
       }),
     });
@@ -163,7 +206,120 @@ const Tasks = () => {
     setTaskStarts(moment().format("YYYY-MM-DD"));
     setTaskEnds(moment().format("YYYY-MM-DD"));
   };
+  const changeStatus = async (id) => {
+    await fetch(`http://localhost:4200/users/${user.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: createdBy?.id,
+        email: createdBy?.email,
+        password: createdBy?.password,
+        name: createdBy?.name,
+        surname: createdBy?.surname,
+        role: createdBy?.role,
+        startDate: createdBy?.startDate,
+        image: createdBy?.image,
+        projects: [...createdBy?.projects],
+        tasks: [
+          ...createdBy?.tasks.forEach((task) => {
+            if (task.id === id) {
+              task.status = "completed";
+            }
+          }),
+        ],
+        reportTo: createdBy?.reportTo,
+        company: createdBy?.company,
+        position: createdBy?.position,
+        typeOfWork: createdBy?.typeOfWork,
+        department: createdBy?.department,
+        division: createdBy?.division,
+        amount: createdBy?.amount,
+        team: createdBy?.team,
+        birth: createdBy?.birth,
+        gender: createdBy?.gender,
+        mobile: createdBy?.mobile,
+        username: createdBy?.username,
+        address: createdBy?.address,
+        links: {
+          facebook: createdBy?.links.facebook,
+          linkedin: createdBy?.links.linkedin,
+          twitter: createdBy?.links.twitter,
+        },
+        timeoff: {
+          type: {
+            vacation: {
+              days: createdBy?.timeoff.type.vacation.days,
+            },
+            paid: {
+              days: createdBy?.timeoff.type.paid.days,
+            },
+            hospital: {
+              days: createdBy?.timeoff.type.hospital.days,
+            },
+          },
+          requests: [...createdBy?.timeoff.requests],
+          history: [...createdBy?.timeoff.history],
+        },
+      }),
+    });
 
+    await fetch(`http://localhost:4200/users/${assignedTo?.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: assignedTo?.id,
+        email: assignedTo?.email,
+        password: assignedTo?.password,
+        name: assignedTo?.name,
+        surname: assignedTo?.surname,
+        role: assignedTo?.role,
+        startDate: assignedTo?.startDate,
+        image: assignedTo?.image,
+        projects: [...assignedTo?.projects],
+        tasks: [
+          ...assignedTo?.tasks.forEach((task) => {
+            if (task.id === id) {
+              task.status = "completed";
+            }
+          }),
+        ],
+        reportTo: assignedTo?.reportTo,
+        company: assignedTo?.company,
+        position: assignedTo?.position,
+        typeOfWork: assignedTo?.typeOfWork,
+        department: assignedTo?.department,
+        division: assignedTo?.division,
+        amount: assignedTo?.amount,
+        team: assignedTo?.team,
+        birth: assignedTo?.birth,
+        gender: assignedTo?.gender,
+        mobile: assignedTo?.mobile,
+        username: assignedTo?.username,
+        address: assignedTo?.address,
+        links: {
+          facebook: assignedTo?.links.facebook,
+          linkedin: assignedTo?.links.linkedin,
+          twitter: assignedTo?.links.twitter,
+        },
+        timeoff: {
+          type: {
+            vacation: {
+              days: assignedTo?.timeoff.type.vacation.days,
+            },
+            paid: {
+              days: assignedTo?.timeoff.type.paid.days,
+            },
+            hospital: {
+              days: assignedTo?.timeoff.type.hospital.days,
+            },
+          },
+          requests: [...assignedTo?.timeoff.requests],
+          history: [...assignedTo?.timeoff.history],
+        },
+      }),
+    });
+    console.log("status has changed");
+  };
   return (
     <MainLayout>
       <UserWindow>
@@ -190,12 +346,9 @@ const Tasks = () => {
             width="25%"
             height="40px"
             margin="10px"
-            background={byMe && "#9C9C9C"}
+            background={tabContent === "byMe" && "#9C9C9C"}
             onClick={() => {
-              setToMe(false);
-              setCompleted(false);
-              setFuture(false);
-              setByMe(true);
+              setTabContent("byMe");
             }}
           >
             <b>Created by me</b>
@@ -204,12 +357,9 @@ const Tasks = () => {
             width="25%"
             height="40px"
             margin="10px"
-            background={toMe && "#9C9C9C"}
+            background={tabContent === "toMe" && "#9C9C9C"}
             onClick={() => {
-              setCompleted(false);
-              setFuture(false);
-              setByMe(false);
-              setToMe(true);
+              setTabContent("toMe");
             }}
           >
             <b>Assigned to me</b>
@@ -218,12 +368,9 @@ const Tasks = () => {
             width="25%"
             height="40px"
             margin="10px"
-            background={completed && "#9C9C9C"}
+            background={tabContent === "completed" && "#9C9C9C"}
             onClick={() => {
-              setFuture(false);
-              setByMe(false);
-              setToMe(false);
-              setCompleted(true);
+              setTabContent("completed");
             }}
           >
             <b>Completed</b>
@@ -232,351 +379,23 @@ const Tasks = () => {
             width="25%"
             height="40px"
             margin="10px"
-            background={future && "#9C9C9C"}
+            background={tabContent === "future" && "#9C9C9C"}
             onClick={() => {
-              setByMe(false);
-              setToMe(false);
-              setCompleted(false);
-              setFuture(true);
+              setTabContent("future");
             }}
           >
             <b>Future</b>
           </ButtonStyled>
         </Flex>
         <Flex>
-          {byMe && (
+          {tabContent === "byMe" && (
             <UserBlockItem>
               {user &&
                 user.tasks
                   .filter(({ createdBy }) => createdBy === user.id)
                   .map(
-                    (
-                      {
-                        title,
-                        end,
-                        description,
-                        starts,
-                        status,
-                        createdBy,
-                        assignedTo,
-                      },
-                      i
-                    ) => {
-                      return (
-                        <div key={i}>
-                          <Task onClick={() => setShowTask(title)}>
-                            <Flex justify="space-between">
-                              <h3>{title} </h3>
-                              <Flex
-                                width="105px"
-                                align="center"
-                                justify="space-between"
-                              >
-                                <BiCalendar /> {end}
-                              </Flex>
-                            </Flex>
-                          </Task>
-                          {showTask === title && (
-                            <TaskInfo>
-                              <Flex justify="space-between">
-                                <ButtonStyled
-                                  background="#fffcd0"
-                                  hoverBack="#dfddc6"
-                                >
-                                  <Flex width="120px" align="center">
-                                    <BiCheck size="25" />
-                                    {status === "new"
-                                      ? "Mark complete"
-                                      : "completed"}
-                                  </Flex>
-                                </ButtonStyled>
-                                <ButtonStyled
-                                  padding="3px 7px"
-                                  color="#FFFFFF"
-                                  background="#ff9f69"
-                                  hoverBack="#ff9f69CC"
-                                  onClick={() => setShowTask("")}
-                                >
-                                  Close
-                                </ButtonStyled>
-                              </Flex>
-                              <Flex justify="space-between">
-                                <Flex direction="column">
-                                  <h3>{title}</h3>
-                                  <p>{description}</p>
-                                </Flex>
-                                <Flex direction="column">
-                                  <div>
-                                    <b>Assigned to</b>
-                                    <Flex align="center" margin="10px 0 20px 0">
-                                      <ImageContainer
-                                        image={
-                                          users
-                                            ? users.find(
-                                                ({ id }) => id === assignedTo
-                                              ).image
-                                            : []
-                                        }
-                                        width="30px"
-                                        height="30px"
-                                        margin="0 10px 0 0"
-                                      />
-                                      <Fullname
-                                        onClick={() =>
-                                          router.push(
-                                            `/employees/${
-                                              users
-                                                ? users.find(
-                                                    ({ id }) =>
-                                                      id === assignedTo
-                                                  ).id
-                                                : []
-                                            }`
-                                          )
-                                        }
-                                      >
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === assignedTo
-                                            ).name
-                                          : []}{" "}
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === assignedTo
-                                            ).surname
-                                          : []}
-                                      </Fullname>
-                                    </Flex>
-                                  </div>
-                                  <div>
-                                    <b>Starts on</b>
-                                    <p>{starts}</p>
-                                  </div>
-                                  <div>
-                                    <b>Ends on</b>
-                                    <p>{end}</p>
-                                  </div>
-                                  <div>
-                                    <b>Created by</b>
-                                    <Flex align="center" margin="10px 0 20px 0">
-                                      <ImageContainer
-                                        image={
-                                          users
-                                            ? users.find(
-                                                ({ id }) => id === createdBy
-                                              ).image
-                                            : []
-                                        }
-                                        width="30px"
-                                        height="30px"
-                                        margin="0 10px 0 0"
-                                      />
-                                      <Fullname
-                                        onClick={() =>
-                                          router.push(
-                                            `/employees/${
-                                              users
-                                                ? users.find(
-                                                    ({ id }) => id === createdBy
-                                                  ).id
-                                                : []
-                                            }`
-                                          )
-                                        }
-                                      >
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === createdBy
-                                            ).name
-                                          : []}{" "}
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === createdBy
-                                            ).surname
-                                          : []}
-                                      </Fullname>
-                                    </Flex>
-                                  </div>
-                                </Flex>
-                              </Flex>
-                            </TaskInfo>
-                          )}
-                        </div>
-                      );
-                    }
-                  )}
-            </UserBlockItem>
-          )}
-          {toMe && (
-            <UserBlockItem>
-              {user &&
-                user.tasks
-                  .filter(({ assignedTo }) => assignedTo === user.id)
-                  .map(
-                    (
-                      {
-                        title,
-                        end,
-                        description,
-                        starts,
-                        status,
-                        createdBy,
-                        assignedTo,
-                      },
-                      i
-                    ) => {
-                      return (
-                        <div key={i}>
-                          <Task onClick={() => setShowTask(title)}>
-                            <Flex justify="space-between">
-                              <h3>{title} </h3>
-                              <Flex
-                                width="105px"
-                                align="center"
-                                justify="space-between"
-                              >
-                                <BiCalendar /> {end}
-                              </Flex>
-                            </Flex>
-                          </Task>
-                          {showTask === title && (
-                            <TaskInfo>
-                              <Flex justify="space-between">
-                                <ButtonStyled
-                                  background="#fffcd0"
-                                  hoverBack="#dfddc6"
-                                >
-                                  <Flex width="120px" align="center">
-                                    <BiCheck size="25" />
-                                    {status === "new"
-                                      ? "Mark complete"
-                                      : "completed"}
-                                  </Flex>
-                                </ButtonStyled>
-                                <ButtonStyled
-                                  padding="3px 7px"
-                                  color="#FFFFFF"
-                                  background="#ff9f69"
-                                  hoverBack="#ff9f69CC"
-                                  onClick={() => setShowTask("")}
-                                >
-                                  Close
-                                </ButtonStyled>
-                              </Flex>
-                              <Flex justify="space-between">
-                                <Flex direction="column">
-                                  <h3>{title}</h3>
-                                  <p>{description}</p>
-                                </Flex>
-                                <Flex direction="column">
-                                  <div>
-                                    <b>Assigned to</b>
-                                    <Flex align="center" margin="10px 0 20px 0">
-                                      <ImageContainer
-                                        image={
-                                          users
-                                            ? users.find(
-                                                ({ id }) => id === assignedTo
-                                              ).image
-                                            : []
-                                        }
-                                        width="30px"
-                                        height="30px"
-                                        margin="0 10px 0 0"
-                                      />
-                                      <Fullname
-                                        onClick={() =>
-                                          router.push(
-                                            `/employees/${
-                                              users
-                                                ? users.find(
-                                                    ({ id }) =>
-                                                      id === assignedTo
-                                                  ).id
-                                                : []
-                                            }`
-                                          )
-                                        }
-                                      >
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === assignedTo
-                                            ).name
-                                          : []}{" "}
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === assignedTo
-                                            ).surname
-                                          : []}
-                                      </Fullname>
-                                    </Flex>
-                                  </div>
-                                  <div>
-                                    <b>Starts on</b>
-                                    <p>{starts}</p>
-                                  </div>
-                                  <div>
-                                    <b>Ends on</b>
-                                    <p>{end}</p>
-                                  </div>
-                                  <div>
-                                    <b>Created by</b>
-                                    <Flex align="center" margin="10px 0 20px 0">
-                                      <ImageContainer
-                                        image={
-                                          users
-                                            ? users.find(
-                                                ({ id }) => id === createdBy
-                                              ).image
-                                            : []
-                                        }
-                                        width="30px"
-                                        height="30px"
-                                        margin="0 10px 0 0"
-                                      />
-                                      <Fullname
-                                        onClick={() =>
-                                          router.push(
-                                            `/employees/${
-                                              users
-                                                ? users.find(
-                                                    ({ id }) => id === createdBy
-                                                  ).id
-                                                : []
-                                            }`
-                                          )
-                                        }
-                                      >
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === createdBy
-                                            ).name
-                                          : []}{" "}
-                                        {users
-                                          ? users.find(
-                                              ({ id }) => id === createdBy
-                                            ).surname
-                                          : []}
-                                      </Fullname>
-                                    </Flex>
-                                  </div>
-                                </Flex>
-                              </Flex>
-                            </TaskInfo>
-                          )}
-                        </div>
-                      );
-                    }
-                  )}
-            </UserBlockItem>
-          )}
-          {completed && (
-            <UserBlockItem>
-              {user.tasks
-                .filter(({ status }) => status === "completed")
-                .map(
-                  (
-                    {
+                    ({
+                      id,
                       title,
                       end,
                       description,
@@ -584,144 +403,96 @@ const Tasks = () => {
                       status,
                       createdBy,
                       assignedTo,
-                    },
-                    i
-                  ) => {
+                    }) => {
+                      return (
+                        <Task
+                          key={id}
+                          id={id}
+                          title={title}
+                          end={end}
+                          starts={starts}
+                          status={status}
+                          description={description}
+                          createdBy={createdBy}
+                          assignedTo={assignedTo}
+                          users={users}
+                          changeStatus={changeStatus}
+                        />
+                      );
+                    }
+                  )}
+            </UserBlockItem>
+          )}
+          {tabContent === "toMe" && (
+            <UserBlockItem>
+              {user &&
+                user.tasks
+                  .filter(({ assignedTo }) => assignedTo === user.id)
+                  .map(
+                    ({
+                      id,
+                      title,
+                      end,
+                      description,
+                      starts,
+                      status,
+                      createdBy,
+                      assignedTo,
+                    }) => {
+                      return (
+                        <Task
+                          key={id}
+                          id={id}
+                          title={title}
+                          end={end}
+                          starts={starts}
+                          status={status}
+                          description={description}
+                          createdBy={createdBy}
+                          assignedTo={assignedTo}
+                          users={users}
+                          changeStatus={() => changeStatus(id)}
+                        />
+                      );
+                    }
+                  )}
+            </UserBlockItem>
+          )}
+          {tabContent === "completed" && (
+            <UserBlockItem>
+              {user.tasks
+                .filter(({ status }) => status === "completed")
+                .map(
+                  ({
+                    id,
+                    title,
+                    end,
+                    description,
+                    starts,
+                    status,
+                    createdBy,
+                    assignedTo,
+                  }) => {
                     return (
-                      <>
-                        <Task key={i} onClick={() => setShowTask(title)}>
-                          <Flex justify="space-between">
-                            <h3>{title} </h3>
-                            <Flex
-                              width="105px"
-                              align="center"
-                              justify="space-between"
-                            >
-                              <BiCalendar /> {end}
-                            </Flex>
-                          </Flex>
-                        </Task>
-                        {showTask === title && (
-                          <TaskInfo>
-                            <Flex justify="space-between">
-                              <ButtonStyled>{status}</ButtonStyled>
-                              <ButtonStyled
-                                padding="3px 7px"
-                                color="#FFFFFF"
-                                background="#ff9f69"
-                                hoverBack="#ff9f69CC"
-                                onClick={() => setShowTask("")}
-                              >
-                                Close
-                              </ButtonStyled>
-                            </Flex>
-                            <Flex justify="space-between">
-                              <Flex direction="column">
-                                <h3>{title}</h3>
-                                <p>{description}</p>
-                              </Flex>
-                              <Flex direction="column">
-                                <div>
-                                  <b>Assigned to</b>
-                                  <Flex align="center" margin="10px 0 20px 0">
-                                    <ImageContainer
-                                      image={
-                                        users
-                                          ? users.find(
-                                              ({ id }) => id === assignedTo
-                                            ).image
-                                          : []
-                                      }
-                                      width="30px"
-                                      height="30px"
-                                      margin="0 10px 0 0"
-                                    />
-                                    <Fullname
-                                      onClick={() =>
-                                        router.push(
-                                          `/employees/${
-                                            users
-                                              ? users.find(
-                                                  ({ id }) => id === assignedTo
-                                                ).id
-                                              : []
-                                          }`
-                                        )
-                                      }
-                                    >
-                                      {users
-                                        ? users.find(
-                                            ({ id }) => id === assignedTo
-                                          ).name
-                                        : []}{" "}
-                                      {users
-                                        ? users.find(
-                                            ({ id }) => id === assignedTo
-                                          ).surname
-                                        : []}
-                                    </Fullname>
-                                  </Flex>
-                                </div>
-                                <div>
-                                  <b>Starts on</b>
-                                  <p>{starts}</p>
-                                </div>
-                                <div>
-                                  <b>Ends on</b>
-                                  <p>{end}</p>
-                                </div>
-                                <div>
-                                  <b>Created by</b>
-                                  <Flex align="center" margin="10px 0 20px 0">
-                                    <ImageContainer
-                                      image={
-                                        users
-                                          ? users.find(
-                                              ({ id }) => id === createdBy
-                                            ).image
-                                          : []
-                                      }
-                                      width="30px"
-                                      height="30px"
-                                      margin="0 10px 0 0"
-                                    />
-                                    <Fullname
-                                      onClick={() =>
-                                        router.push(
-                                          `/employees/${
-                                            users
-                                              ? users.find(
-                                                  ({ id }) => id === createdBy
-                                                ).id
-                                              : []
-                                          }`
-                                        )
-                                      }
-                                    >
-                                      {users
-                                        ? users.find(
-                                            ({ id }) => id === createdBy
-                                          ).name
-                                        : []}{" "}
-                                      {users
-                                        ? users.find(
-                                            ({ id }) => id === createdBy
-                                          ).surname
-                                        : []}
-                                    </Fullname>
-                                  </Flex>
-                                </div>
-                              </Flex>
-                            </Flex>
-                          </TaskInfo>
-                        )}
-                      </>
+                      <Task
+                        key={id}
+                        id={id}
+                        title={title}
+                        end={end}
+                        starts={starts}
+                        status={status}
+                        description={description}
+                        createdBy={createdBy}
+                        assignedTo={assignedTo}
+                        users={users}
+                        changeStatus={changeStatus}
+                      />
                     );
                   }
                 )}
             </UserBlockItem>
           )}
-          {future && <UserBlockItem>Future</UserBlockItem>}
+          {tabContent === "future" && <UserBlockItem></UserBlockItem>}
         </Flex>
         {createTask && (
           <Modal close={() => setCreateTask(false)}>
