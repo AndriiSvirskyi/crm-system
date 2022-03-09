@@ -227,7 +227,7 @@ export default function Home() {
                 </Flex>
               </TitleContainer>
               <Flex>
-                {getBirthdays.birthdays.map(({ id, image, name, surname }) => {
+                {getBirthdays.birthdays?.map(({ id, image, name, surname }) => {
                   return (
                     <BirthdayContainer
                       key={id}

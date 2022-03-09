@@ -23,7 +23,7 @@ type NewEmployeeProps = {
   country:string;
   reportsTo:string;
 }
-// ?????
+
 export default function SignUpSteper({ closeModal }) {
   const [data, setData] = useState<any>({});
 
@@ -39,7 +39,7 @@ export default function SignUpSteper({ closeModal }) {
     setCurrentStep(numberOfStep);
   };
   const goToTheNextStep = () => {
-    if (currentStep === 4) return;
+    if (currentStep === 3) return;
     if (currentStep >= 1) setCurrentStep(currentStep + 1);
   };
   const goToThePreviousStep = () => {
@@ -47,7 +47,7 @@ export default function SignUpSteper({ closeModal }) {
     setCurrentStep(currentStep - 1);
   };
 
-  const submit = async () => {
+  const submit = async (dataJob) => {
     await fetch(`http://localhost:4200/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,16 +58,16 @@ export default function SignUpSteper({ closeModal }) {
         name: data.name,
         surname: data.surname,
         role: data.role,
-        startDate: data.startDate,
+        startDate: dataJob.startDate,
         image:
           "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
         projects: [{ id: "3fdffs", name: "Blackchain", role: "manager" }],
         superintendent: "????",
         company: "4ire",
-        position: data.position,
+        position: dataJob.position,
         typeOfWork: "???",
-        department: data.department,
-        division: data.division,
+        department: dataJob.department,
+        division: dataJob.division,
         amount: "???",
         team: "???",
         birth: data.birthday,
@@ -75,7 +75,7 @@ export default function SignUpSteper({ closeModal }) {
         mobile: data.phone,
         username: "???",
         address: `${data.city}, ${data.country}`,
-        reportsTo: data.reportsTo,
+        reportsTo: dataJob.reportsTo,
       }),
     });
   };
@@ -103,11 +103,8 @@ export default function SignUpSteper({ closeModal }) {
             goToTheNextStep={goToTheNextStep}
           />
         )}
-        {currentStep >= 3 && (
+        {currentStep === 3 && (
           <JobInfo
-            data={data}
-            setData={setData}
-            goToTheNextStep={goToTheNextStep}
             goToThePreviousStep={goToThePreviousStep}
             currentStep={currentStep}
             submit={submit}

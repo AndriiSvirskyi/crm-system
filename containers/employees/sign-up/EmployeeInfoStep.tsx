@@ -18,11 +18,7 @@ export const StepButton = styled.button`
   background-color: #dbd1d1;
 `;
 
-export default function EmployeeInfoStep({
-  data,
-  setData,
-  goToTheNextStep,
-}) {
+export default function EmployeeInfoStep({ data, setData, goToTheNextStep }) {
   const [email, setEmail] = useState(data.email || "");
   const [name, setName] = useState(data.name || "");
   const [surname, setSurname] = useState(data.surname || "");
@@ -254,9 +250,10 @@ export default function EmployeeInfoStep({
               ...data,
               name,
               surname,
-              password,
               phone,
               email,
+              password,
+              confirmPassword,
             });
             goToTheNextStep();
           }

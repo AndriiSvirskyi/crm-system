@@ -8,22 +8,20 @@ const Label = styled.label`
   width: 50%;
   font-size: 15px;
   text-align: start;
+  line-height: 40px ;
 `;
 
 export default function JobInfo({
-  data,
-  setData,
-  goToTheNextStep,
   goToThePreviousStep,
   currentStep,
   submit,
   closeModal,
 }) {
-  const [position, setPosition] = useState(data.position || "");
-  const [department, setDepartment] = useState(data.department || "");
-  const [reportsTo, setReportsTo] = useState(data.reportsTo || "");
-  const [division, setDivision] = useState(data.division || "");
-  const [startDate, setStartDate] = useState(data.startDate || "");
+  const [position, setPosition] = useState("");
+  const [department, setDepartment] = useState( "");
+  const [reportsTo, setReportsTo] = useState("");
+  const [division, setDivision] = useState("");
+  const [startDate, setStartDate] = useState("");
   const [errors, setErrors] = useState<any>({});
   const positionsList = ["Team Lead", "Junior", "Midle", "Trainee", "Seniour"];
   const departmentsList = ["Design", "HR", "Marketing", "Tech", "Finance"];
@@ -235,37 +233,14 @@ export default function JobInfo({
                   startDate,
                 })
               ) {
-                setData({
-                  ...data,
-                  position,
+                
+                submit({position,
                   department,
                   reportsTo,
                   division,
-                  startDate,
-                });
-                goToTheNextStep();
+                  startDate,})
+                closeModal()
               }
-            }}
-          >
-            Finish
-          </StepButton>
-        </>
-      )}
-      {currentStep === 4 && (
-        <>
-          <StepButton
-            onClick={(e) => {
-              e.preventDefault();
-              goToThePreviousStep();
-            }}
-          >
-            Make Changes
-          </StepButton>
-          <StepButton
-            onClick={(e) => {
-              e.preventDefault();
-              submit();
-              closeModal();
             }}
           >
             Submit
