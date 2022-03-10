@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import styled, { keyframes } from "styled-components";
 import { FiCheckCircle, FiXCircle } from "react-icons/fi";
+import { ImNotification } from "react-icons/im";
 
 type SnackbarProps = {
   message: string;
@@ -8,10 +9,10 @@ type SnackbarProps = {
 };
 
 const backgrounds = {
-  info: "#333",
-  success: "#14973b",
-  warning: "#e0d31ab9",
-  error: "#d60909",
+  info: "#333333cf",
+  success: "#0ca83bd4",
+  warning: "#c9bb01e0",
+  error: "#be0707d1",
 };
 
 const MovementSnackBar = keyframes`
@@ -27,28 +28,41 @@ const MovementSnackBar = keyframes`
   }
 
 `;
-
 const StylesSnackBar = styled.div`
   min-width: 250px;
   color: #fff;
-  text-align: center;
   border-radius: 4px;
   padding: 16px;
   position: fixed;
+  display: flex;
+  justify-content: space-around;
   z-index: 1;
   background: ${(props: { type: string }) => backgrounds[props.type]};
   font-size: 1rem;
   animation: ${MovementSnackBar};
   animation-duration: 1s;
   animation-fill-mode: forwards;
+  span {
+    font-size: 16px;
+    margin: 4px 0  0 16px;
+    text-align: center ;
+  }
 `;
 
 export const Snackbar = (props: SnackbarProps) => {
   const { message, type } = props;
-
+  const icons = {
+    info: "",
+    success: <FiCheckCircle size={25} />,
+    warning: <ImNotification size={25} />,
+    error: <FiXCircle size={30} />,
+  };
   return (
     <>
-      <StylesSnackBar type={type}>{message}</StylesSnackBar>
+      <StylesSnackBar type={type}>
+        {icons[type]}
+        <span>{message}</span>
+      </StylesSnackBar>
     </>
   );
 };

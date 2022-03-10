@@ -11,7 +11,7 @@ import Pagination from "containers/employees/Pagination";
 import Loader from "styled-components/Loader";
 import { Button } from "components/Button";
 import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
-import useSnackBars, { SnackbarContext } from "providers/useSnackbar";
+import { SnackbarContext } from "providers/useSnackbar";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
@@ -28,7 +28,7 @@ export default function Employee() {
   );
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   // pagination
-  const [showModal, setShowModal] = useState(false);
+  const [showModalSignUp, setShowModalSignUp] = useState(false);
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
@@ -49,6 +49,7 @@ export default function Employee() {
   };
 
   const successCreateUser = () => {
+    snackBar.openSnackBar({ message: "User was created!", type: "success" });
     getEmployees();
   };
 
@@ -94,15 +95,14 @@ export default function Employee() {
             width="60px"
             height="50px"
             onClick={() => {
-              snackBar.openSnackBar({ message: "Good", type: "success" });
-              // setShowModal(!showModal);
+              setShowModalSignUp(!showModalSignUp);
             }}
           >
             <FaUserPlus size={30}></FaUserPlus>
           </Button>
-          {showModal && (
+          {showModalSignUp && (
             <SignUpSteper
-              closeModal={() => setShowModal(false)}
+              closeModal={() => setShowModalSignUp(false)}
               successCreateUser={successCreateUser}
               users={users}
             />

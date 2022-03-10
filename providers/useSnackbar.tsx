@@ -1,5 +1,4 @@
-import { createContext, useEffect, useState, useContext } from "react";
-import { Snackbar } from "../Layouts/Snackbar";
+import { createContext, useState } from "react";
 
 export const SnackbarContext = createContext({
   snackBar: {
@@ -22,7 +21,7 @@ export function SnackBarContextProvider({ children }) {
   const setSnackBarValues = ({ message, type }) => {
     const timer = setTimeout(() => {
       closeHandler();
-    }, 33000);
+    }, 3000);
     setSnackBar({ message, type, isActive: true });
     setTimer(timer);
   };

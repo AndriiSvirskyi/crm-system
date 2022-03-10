@@ -1,6 +1,6 @@
 import router from "next/router";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "components/Button";
 import { Flex } from "styled-components/Flex";
 import Tabs from "containers/profile/TabsUser";
@@ -15,6 +15,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import { Anchor } from "pages/projects";
 import { ImageContainer } from "styled-components/ImageContainer";
+import { SnackbarContext } from "providers/useSnackbar";
 
 const ReportsContainer = styled.div`
   cursor: pointer;
@@ -52,12 +53,10 @@ export default function UserProfile({ user }) {
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
-  const showSnackbarHandler = () => {
-    console.log("here");
-  };
+
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
-
+  const snackBar = useContext(SnackbarContext);
   useEffect(() => {
     setUserRole(JSON.parse(currentUser).role);
   }, [currentUser]);
@@ -80,8 +79,9 @@ export default function UserProfile({ user }) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-    showSnackbarHandler();
+    
     router.push("/employees");
+    snackBar.openSnackBar({message:'User has been deleted!', type: 'error'})
   };
 
   const reportsTo = users
@@ -103,11 +103,6 @@ export default function UserProfile({ user }) {
 
   return (
     <Flex direction="column" padding="0 20px 0 0">
-      <button
-        onClick={() => {
-          showSnackbarHandler();
-        }}
-      ></button>
       <Flex width="100%">
         <UserBlockItem>
           <Flex height="300px" justify="space-between">
@@ -143,7 +138,6 @@ export default function UserProfile({ user }) {
             <RemoveUserModal
               yes={() => {
                 removeUser();
-                showSnackbarHandler();
               }}
               no={() => setAskToRemove(false)}
             ></RemoveUserModal>

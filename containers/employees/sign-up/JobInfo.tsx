@@ -1,6 +1,6 @@
 import { Input } from "components/Input";
 import { Flex } from "styled-components/Flex";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
 
@@ -13,7 +13,6 @@ const Label = styled.label`
 
 export default function JobInfo({
   goToThePreviousStep,
-  currentStep,
   submit,
   closeModal,
   users,

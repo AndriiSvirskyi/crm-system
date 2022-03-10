@@ -4,6 +4,7 @@ import Header from "./Header";
 import SideBar from "./SideBar";
 import { Snackbar } from "./Snackbar";
 
+
 type MainLayoutProps = {
   children: any;
 };
