@@ -5,8 +5,11 @@ import { BiCalendar, BiCheck } from "react-icons/bi";
 import { ButtonStyled } from "./ButtonStyled";
 import { ImageContainer } from "./ImageContainer";
 import { Flex } from "./User/Flex";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const TaskContainer = styled.div`
+  width: 100%;
+  box-sizing: border-box;
   cursor: pointer;
   border: 1px solid black;
   border-radius: 8px;
@@ -23,6 +26,8 @@ const TaskContainer = styled.div`
   }
 `;
 const TaskInfo = styled.div`
+  width: 100%;
+  box-sizing: border-box;
   border: 1px solid black;
   border-radius: 8px;
   margin: 0 0 10px 0;
@@ -35,8 +40,21 @@ const Fullname = styled.span`
     color: #2196f3;
   }
 `;
+
+type TaskProps = {
+  title: string;
+  end: string;
+  starts: string;
+  status: string;
+  description: string;
+  createdBy: string;
+  assignedTo: string;
+  users: [{ id: string; image: string; name: string; surname: string }];
+  changeStatus: () => void;
+  removeTask?: () => void;
+  canRemove?: boolean;
+};
 export const Task = ({
-  id,
   title,
   end,
   starts,
@@ -46,17 +64,36 @@ export const Task = ({
   assignedTo,
   users,
   changeStatus,
-}) => {
+  removeTask,
+  canRemove,
+}: TaskProps) => {
   const [showTask, setShowTask] = useState(false);
 
   return (
-    <div>
-      <TaskContainer onClick={() => setShowTask(!showTask)}>
-        <Flex justify="space-between">
-          <h3>{title} </h3>
-          <Flex width="105px" align="center" justify="space-between">
-            <BiCalendar /> {end}
+    <>
+      <TaskContainer>
+        <Flex>
+          <Flex
+            width="100%"
+            justify="space-between"
+            onClick={() => setShowTask(!showTask)}
+          >
+            <h3>{title} </h3>
+            <Flex width={canRemove ? "180px" : "105"} align="center">
+              <Flex width="105px" justify="space-between">
+                <BiCalendar /> {end}
+              </Flex>
+            </Flex>
           </Flex>
+          {canRemove && (
+            <ButtonStyled
+              background="none"
+              hoverBack="#0d73bc4c"
+              padding="4px 10px 0 10px"
+            >
+              <RiDeleteBin5Line size="15" fill="#0d74bc" onClick={removeTask} />
+            </ButtonStyled>
+          )}
         </Flex>
       </TaskContainer>
       {showTask && (
@@ -154,6 +191,6 @@ export const Task = ({
           </Flex>
         </TaskInfo>
       )}
-    </div>
+    </>
   );
 };

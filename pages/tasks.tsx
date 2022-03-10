@@ -13,6 +13,7 @@ import styled from "styled-components";
 import moment from "moment";
 import { Input } from "components/Input";
 import { Task } from "components/Task";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Textarea = styled.textarea`
   resize: none;
@@ -34,8 +35,8 @@ const Tasks = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskAssignedTo, setTaskAssignedTo] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const [taskStarts, setTaskStarts] = useState(moment().format("YYYY-MM-DD"));
-  const [taskEnds, setTaskEnds] = useState(moment().format("YYYY-MM-DD"));
+  const [taskStarts, setTaskStarts] = useState("");
+  const [taskEnds, setTaskEnds] = useState("");
 
   useEffect(() => {
     if (!users) {
@@ -59,19 +60,18 @@ const Tasks = () => {
   const updateEmployeeTasks = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const randomId = uid();
-    const createdBy = user;
-
     const assignedTo = users
       ? users.find(
           ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
         )
       : [{ tasks: [] }];
+
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         tasks: [
-          ...createdBy?.tasks,
+          ...user?.tasks,
           {
             id: randomId,
             assignedTo: assignedTo.id,
@@ -113,128 +113,90 @@ const Tasks = () => {
     setTaskEnds(moment().format("YYYY-MM-DD"));
   };
 
-  const changeStatus = async (id, taskAssignedTo) => {
-    const createdBy = users
-      ? users.find(({ id }) => id === user.id)
-      : [{ tasks: [] }];
-
+  const changeTaskStatus = async (id, taskAssignedTo) => {
     const assignedTo = users
       ? users.find(({ id }) => id === taskAssignedTo)
       : [{ tasks: [] }];
 
     await fetch(`http://localhost:4200/users/${user.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: createdBy?.id,
-        email: createdBy?.email,
-        password: createdBy?.password,
-        name: createdBy?.name,
-        surname: createdBy?.surname,
-        role: createdBy?.role,
-        startDate: createdBy?.startDate,
-        image: createdBy?.image,
-        projects: [...createdBy?.projects],
-        tasks: [
-          ...createdBy?.tasks.forEach((task) => {
-            if (task.id === id) {
-              task.status = "completed";
-            }
-          }),
-        ],
-        reportTo: createdBy?.reportTo,
-        company: createdBy?.company,
-        position: createdBy?.position,
-        typeOfWork: createdBy?.typeOfWork,
-        department: createdBy?.department,
-        division: createdBy?.division,
-        amount: createdBy?.amount,
-        team: createdBy?.team,
-        birth: createdBy?.birth,
-        gender: createdBy?.gender,
-        mobile: createdBy?.mobile,
-        username: createdBy?.username,
-        address: createdBy?.address,
-        links: {
-          facebook: createdBy?.links.facebook,
-          linkedin: createdBy?.links.linkedin,
-          twitter: createdBy?.links.twitter,
-        },
-        timeoff: {
-          type: {
-            vacation: {
-              days: createdBy?.timeoff.type.vacation.days,
-            },
-            paid: {
-              days: createdBy?.timeoff.type.paid.days,
-            },
-            hospital: {
-              days: createdBy?.timeoff.type.hospital.days,
-            },
-          },
-          requests: createdBy?.timeoff.requests,
-          history: createdBy?.timeoff.history,
-        },
+        tasks: user?.tasks.reduce((acc, cur) => {
+          if (cur.id === id) {
+            acc.push({
+              id: cur.id,
+              assignedTo: cur.assignedTo,
+              createdBy: cur.createdBy,
+              starts: cur.starts,
+              end: cur.end,
+              title: cur.title,
+              description: cur.description,
+              status: "completed",
+            });
+          } else {
+            acc.push(cur);
+          }
+          return acc;
+        }, []),
       }),
     });
 
     await fetch(`http://localhost:4200/users/${assignedTo?.id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: assignedTo?.id,
-        email: assignedTo?.email,
-        password: assignedTo?.password,
-        name: assignedTo?.name,
-        surname: assignedTo?.surname,
-        role: assignedTo?.role,
-        startDate: assignedTo?.startDate,
-        image: assignedTo?.image,
-        projects: [...assignedTo?.projects],
-        tasks: [
-          ...assignedTo?.tasks.forEach((task) => {
-            if (task.id === id) {
-              task.status = "completed";
-            }
-          }),
-        ],
-        reportTo: assignedTo?.reportTo,
-        company: assignedTo?.company,
-        position: assignedTo?.position,
-        typeOfWork: assignedTo?.typeOfWork,
-        department: assignedTo?.department,
-        division: assignedTo?.division,
-        amount: assignedTo?.amount,
-        team: assignedTo?.team,
-        birth: assignedTo?.birth,
-        gender: assignedTo?.gender,
-        mobile: assignedTo?.mobile,
-        username: assignedTo?.username,
-        address: assignedTo?.address,
-        links: {
-          facebook: assignedTo?.links.facebook,
-          linkedin: assignedTo?.links.linkedin,
-          twitter: assignedTo?.links.twitter,
-        },
-        timeoff: {
-          type: {
-            vacation: {
-              days: assignedTo?.timeoff.type.vacation.days,
-            },
-            paid: {
-              days: assignedTo?.timeoff.type.paid.days,
-            },
-            hospital: {
-              days: assignedTo?.timeoff.type.hospital.days,
-            },
-          },
-          requests: assignedTo?.timeoff.requests,
-          history: assignedTo?.timeoff.history,
-        },
+        tasks: assignedTo?.tasks.reduce((acc, cur) => {
+          if (cur.id === id) {
+            acc.push({
+              id: cur.id,
+              assignedTo: cur.assignedTo,
+              createdBy: cur.createdBy,
+              starts: cur.starts,
+              end: cur.end,
+              title: cur.title,
+              description: cur.description,
+              status: "completed",
+            });
+          } else {
+            acc.push(cur);
+          }
+          return acc;
+        }, []),
       }),
     });
   };
+  const removeTask = async (taskId, taskAssignedTo) => {
+    const assignedTo = users
+      ? users.find(({ id }) => id === taskAssignedTo)
+      : [{ tasks: [] }];
 
+    await fetch(`http://localhost:4200/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tasks: user?.tasks.reduce((acc, cur) => {
+          if (cur.id !== taskId) {
+            acc.push(cur);
+          }
+          return acc;
+        }, []),
+      }),
+    });
+
+    await fetch(`http://localhost:4200/users/${assignedTo?.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tasks: assignedTo?.tasks.reduce((acc, cur) => {
+          if (cur.id !== taskId) {
+            acc.push(cur);
+          }
+          return acc;
+        }, []),
+      }),
+    });
+  };
   return (
     <MainLayout>
       <UserWindow>
@@ -304,7 +266,7 @@ const Tasks = () => {
         </Flex>
         <Flex>
           {tabContent === "byMe" && (
-            <UserBlockItem>
+            <UserBlockItem width="100%">
               {user &&
                 user.tasks
                   .filter(({ createdBy }) => createdBy === user.id)
@@ -322,7 +284,6 @@ const Tasks = () => {
                       return (
                         <Task
                           key={id}
-                          id={id}
                           title={title}
                           end={end}
                           starts={starts}
@@ -331,7 +292,9 @@ const Tasks = () => {
                           createdBy={createdBy}
                           assignedTo={assignedTo}
                           users={users}
-                          changeStatus={() => changeStatus(id, assignedTo)}
+                          changeStatus={() => changeTaskStatus(id, assignedTo)}
+                          canRemove={true}
+                          removeTask={() => removeTask(id, assignedTo)}
                         />
                       );
                     }
@@ -357,7 +320,6 @@ const Tasks = () => {
                       return (
                         <Task
                           key={id}
-                          id={id}
                           title={title}
                           end={end}
                           starts={starts}
@@ -366,7 +328,7 @@ const Tasks = () => {
                           createdBy={createdBy}
                           assignedTo={assignedTo}
                           users={users}
-                          changeStatus={() => changeStatus(id, assignedTo)}
+                          changeStatus={() => changeTaskStatus(id, assignedTo)}
                         />
                       );
                     }
@@ -391,7 +353,6 @@ const Tasks = () => {
                     return (
                       <Task
                         key={id}
-                        id={id}
                         title={title}
                         end={end}
                         starts={starts}
@@ -400,7 +361,7 @@ const Tasks = () => {
                         createdBy={createdBy}
                         assignedTo={assignedTo}
                         users={users}
-                        changeStatus={changeStatus}
+                        changeStatus={() => changeTaskStatus(id, assignedTo)}
                       />
                     );
                   }

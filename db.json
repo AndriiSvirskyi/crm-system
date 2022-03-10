@@ -34,16 +34,6 @@
           "status": "completed"
         },
         {
-          "id": "2",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Change modal",
-          "description": "Lorem imsum blablabla",
-          "status": "completed"
-        },
-        {
           "id": "3",
           "assignedTo": "3",
           "createdBy": "1",
@@ -91,7 +81,7 @@
           "end": "2022-03-17",
           "title": "new",
           "description": "ewrwerew",
-          "status": "new"
+          "status": "completed"
         },
         {
           "id": "8",
@@ -318,7 +308,7 @@
           "end": "2022-03-17",
           "title": "new",
           "description": "ewrwerew",
-          "status": "new"
+          "status": "completed"
         },
         {
           "id": "8",
@@ -368,6 +358,46 @@
           "end": "2022-03-09",
           "title": "trarararrarra",
           "description": "trarararrarratrarararrarratrarararrarratrarararrarratrarararrarra",
+          "status": "new"
+        },
+        {
+          "id": "l0jviflm9gb7x8gaza",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "erererererrerererererer",
+          "description": "erererererrerererererererererererrerererererererererererrerererererererererererrerererererererererererrerererererererererererrerererererererererererrerererererer",
+          "status": "new"
+        },
+        {
+          "id": "l0jvpr48p0cq88jccef",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "lalalalallalalalaallla",
+          "description": "lalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaallla",
+          "status": "new"
+        },
+        {
+          "id": "l0jvqa0f3t4u08fzd97",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-09",
+          "end": "2022-03-09",
+          "title": "lalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaallla",
+          "description": "lalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaallla",
+          "status": "new"
+        },
+        {
+          "id": "l0ks6b1wt3z10aaidnc",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-10",
+          "end": "2022-03-10",
+          "title": "Thursday",
+          "description": "ThursdayThursdayThursdayThursdayThursdayThursdayThursdayThursdayThursdayThursday",
           "status": "new"
         }
       ],
@@ -525,17 +555,7 @@
           "end": "2022-03-10",
           "title": "Add modal",
           "description": "Lorem imsum blablabla",
-          "status": "new"
-        },
-        {
-          "id": "2",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Change modal",
-          "description": "Lorem imsum blablabla",
-          "status": "new"
+          "status": "completed"
         },
         {
           "id": "3",

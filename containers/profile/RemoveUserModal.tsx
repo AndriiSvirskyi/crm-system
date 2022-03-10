@@ -14,6 +14,7 @@ const RemoveContainer = styled.div`
   font-size: 20px;
   background-color: #e9e9e9;
   border-radius: 8px;
+  z-index: 2;
 `;
 export const RemoveUserModal = ({ yes, no }) => {
   return (
