@@ -1,19 +1,21 @@
-import { UserWindow } from "components/User/UserForm";
-import { useEffect, useState } from "react";
+import { UserWindow } from "styled-components/UserForm";
+import { useContext, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "Layouts/MainLayout";
-import InputFilter from "components/employyes/InputFilter";
-import { SignUpModal } from "components/Modal/SignUpModal";
+import MainLayout from "layouts/MainLayout";
+import InputFilter from "containers/employees/InputFilter";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
-import GridCardEmployees from "components/employyes/GridCardEmployees";
-import TableCardEmployees from "components/employyes/TableCardEmployees";
-import Pagination from "components/employyes/Pagination";
-import Loader from "components/Loader";
-import { ButtonStyled } from "components/ButtonStyled";
+import GridCardEmployees from "containers/employees/GridCardEmployees";
+import TableCardEmployees from "containers/employees/TableCardEmployees";
+import Pagination from "containers/employees/Pagination";
+import Loader from "styled-components/Loader";
+import { Button } from "components/Button";
+import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
+import { SnackbarContext } from "providers/useSnackbar";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
+
   const [activeTabRender, setActiveTabRender] = useState("block");
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,24 +28,33 @@ export default function Employee() {
   );
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   // pagination
-  const [showModal, setShowModal] = useState(false);
+  const [showModalSignUp, setShowModalSignUp] = useState(false);
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
+  const snackBar = useContext(SnackbarContext);
+
+  const getEmployees = async () => {
+    return fetch(`http://localhost:4200/users`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setUsersToRecoil(res);
+        setFilteredEmployees(res);
+        return res;
+      });
+  };
+
+  const successCreateUser = () => {
+    snackBar.openSnackBar({ message: "User was created!", type: "success" });
+    getEmployees();
+  };
+
   useEffect(() => {
-    if (!users) {
-      const responce = fetch(`http://localhost:4200/users`);
-      responce
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          setUsersToRecoil(res);
-          setFilteredEmployees(res);
-        });
-    }
+    getEmployees();
     setUserRole(JSON.parse(currentUser).role);
   }, []);
 
@@ -77,18 +88,24 @@ export default function Employee() {
       </UserWindow>
       {userRole === "admin" && (
         <>
-          <ButtonStyled
+          <Button
             position="fixed"
             right="20px"
             bottom="20px"
             width="60px"
             height="50px"
-            onClick={() => setShowModal(!showModal)}
+            onClick={() => {
+              setShowModalSignUp(!showModalSignUp);
+            }}
           >
             <FaUserPlus size={30}></FaUserPlus>
-          </ButtonStyled>
-          {showModal && (
-            <SignUpModal closeModal={() => setShowModal(false)} users={users} />
+          </Button>
+          {showModalSignUp && (
+            <SignUpSteper
+              closeModal={() => setShowModalSignUp(false)}
+              successCreateUser={successCreateUser}
+              users={users}
+            />
           )}
         </>
       )}

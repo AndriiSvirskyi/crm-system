@@ -10,13 +10,12 @@ import {
   FaRegChartBar,
   FaListOl,
 } from "react-icons/fa";
-import { Flex } from "components/User/Flex";
-import { UserTitle } from "components/User/UserForm";
+import { Flex } from "styled-components/Flex";
+import { UserTitle } from "styled-components/UserForm";
 import { useRecoilValue } from "recoil";
 import { hamburgerState } from "state/atoms";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import { ImageContainer } from "components/ImageContainer";
 
 type PropsSideBar = {
   background: string;
@@ -27,7 +26,7 @@ export const SideBarStyles = styled.div<PropsSideBar>`
   left: 0;
   top: 0;
   padding-top: 70px;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary};
   width: ${(props) => (props.collapsed ? "60px" : "280px")};
   height: 100%;
   overflow: auto;

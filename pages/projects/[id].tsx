@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import MainLayout from "Layouts/MainLayout";
-import { UserWindow } from "components/User/UserForm";
-import { ProjectContainer } from "components/projects/ProjectContainer";
+import MainLayout from "layouts/MainLayout";
+import { UserWindow } from "styled-components/UserForm";
+import { ProjectContainer } from "containers/projects/ProjectContainer";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 

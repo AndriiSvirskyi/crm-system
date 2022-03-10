@@ -1,379 +1,445 @@
 {
-    "users": [{
-            "id": "1",
-            "email": "andrii.s@4irelabs.com",
-            "password": "1234",
-            "name": "Andrii",
-            "surname": "Svirskyi",
-            "role": "admin",
-            "startDate": "2021-04-20",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                    "id": "3fdffs",
-                    "name": "Blackchain",
-                    "role": "manager"
-                },
-                {
-                    "id": "156575",
-                    "name": "Bench",
-                    "role": "Team Lead"
-                }
-            ],
-            "superintendent": "2",
-            "company": "4ire",
-            "position": "Team Lead",
-            "typeOfWork": "Frontend Developer",
-            "department": "Tech",
-            "unit": "Frontend",
-            "amount": "$10000.00 USD",
-            "team": "Andriy",
-            "birth": "06.03",
-            "gender": "man",
-            "mobile": "380931234567",
-            "username": "user",
-            "address": "Hawaii , USA",
-            "links": {
-                "facebook": "https://www.google.com",
-                "linkedin": "https://www.linkedin.com/",
-                "twitter": "https://twitter.com/?lang=en"
-            },
-            "timeoff": {
-                "type": {
-                    "vacation": {
-                        "days": "25.0"
-                    },
-                    "paid": {
-                        "days": "30.0"
-                    },
-                    "hospital": {
-                        "days": "10.0"
-                    }
-                },
-                "requests": [{
-                        "id": "1",
-                        "type": "Hospital",
-                        "count": "20",
-                        "startTime": "",
-                        "endTime": "",
-                        "reviewers": [{
-                                "name": "Andrii",
-                                "status": "accept"
-                            },
-                            {
-                                "name": "Andrii",
-                                "status": "accept"
-                            },
-                            {
-                                "name": "Andrii",
-                                "status": "accept"
-                            },
-                            {
-                                "name": "Vitya",
-                                "status": "accept"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "2",
-                        "type": "Paid",
-                        "count": "9",
-                        "startTime": "",
-                        "endTime": "",
-                        "reviewers": [{
-                                "name": "Andrii",
-                                "status": "reject"
-                            },
-                            {
-                                "name": "Andrii",
-                                "status": "pending"
-                            },
-                            {
-                                "name": "Andrii",
-                                "status": "pending"
-                            },
-                            {
-                                "name": "Anastasia",
-                                "status": "pending"
-                            }
-                        ]
-                    },
-                    {
-                        "id": "3",
-                        "type": "Vacation",
-                        "count": "9",
-                        "startTime": "",
-                        "endTime": "",
-                        "reviewers": [{
-                                "name": "Andrii",
-                                "status": "accept"
-                            },
-                            {
-                                "name": "Anastasia",
-                                "status": "inProcess"
-                            },
-                            {
-                                "name": "Anastasia",
-                                "status": "pending"
-                            },
-                            {
-                                "name": "Anastasia",
-                                "status": "pending"
-                            }
-                        ]
-                    }
-                ],
-                "history": [{
-                        "id": "1",
-                        "type": "Paid",
-                        "data": "21.02.2013",
-                        "description": "some text",
-                        "availableDays": "4.0",
-                        "used": "10.0",
-                        "accured": "5.0"
-                    },
-                    {
-                        "id": "2",
-                        "type": "Vacation",
-                        "data": "21.02.2013",
-                        "description": "sasdasdas",
-                        "availableDays": "4.0",
-                        "used": "10.0",
-                        "accured": "5.0"
-                    }
-                ]
-            }
+  "users": [
+    {
+      "id": "1",
+      "email": "andrii.s@4irelabs.com",
+      "password": "1234",
+      "name": "Andrii",
+      "surname": "Svirskyi",
+      "role": "admin",
+      "startDate": "2021-04-20",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
         },
         {
-            "id": "2",
-            "email": "viktor.m@4irelabs.com",
-            "password": "1234",
-            "name": "Viktor",
-            "surname": "Malinovskyi",
-            "role": "manager",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "156575",
-                "name": "Bench",
-                "role": "manager"
-            }],
-            "superintendent": "1",
-            "company": "4ire",
-            "department": "UI",
-            "unit": "Frontend",
-            "team": "Andriy",
-            "birth": "06.03",
-            "gender": "man",
-            "mobile": "380931234567",
-            "username": "fedosieievaa",
-            "address": "Monako",
-            "links": {
-                "facebook": "https://www.google.com",
-                "linkedin": "https://www.linkedin.com/",
-                "twitter": "https://twitter.com/?lang=en"
-            }
-        },
-        {
-            "id": "3",
-            "email": "anastasia.f@4irelabs.com",
-            "password": "1234",
-            "name": "Anastasiia",
-            "surname": "Fedosyeyeva",
-            "role": "manager",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "156575",
-                "name": "Bench",
-                "role": "manager"
-            }],
-            "superintendent": "1",
-            "company": "4ire",
-            "department": "UI",
-            "unit": "Frontend",
-            "team": "Andriy",
-            "birth": "06.03",
-            "gender": "female",
-            "mobile": "380931234567",
-            "username": "fedosieievaa",
-            "address": "Monako",
-            "links": {
-                "facebook": "https://www.google.com",
-                "linkedin": "https://www.linkedin.com/",
-                "twitter": "https://twitter.com/?lang=en"
-            }
-        },
-        {
-            "id": "UYvGjL-",
-            "email": "adamenko@gmail.com",
-            "password": "1234",
-            "name": "Pavel",
-            "surname": "Adamenko",
-            "role": "user",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "ffsd2",
-                "name": "Arterra",
-                "role": "Team Lead"
-            }],
-            "superintendent": "1",
-            "company": "",
-            "department": "",
-            "unit": "",
-            "team": "",
-            "birth": "07.03",
-            "gender": "",
-            "mobile": "123456789",
-            "username": "",
-            "address": "Odessa",
-            "links": {
-                "facebook": "",
-                "linkedin": "",
-                "twitter": ""
-            }
-        },
-        {
-            "id": "M0tz6Jl",
-            "email": "andreev@gmail.com",
-            "password": "1234",
-            "name": "Artem",
-            "surname": "Andreev",
-            "role": "user",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "ffsd2",
-                "name": "Arterra",
-                "role": "manager"
-            }],
-            "superintendent": "1",
-            "company": "",
-            "department": "",
-            "unit": "",
-            "team": "",
-            "birth": "07.03",
-            "gender": "",
-            "mobile": "123456789",
-            "username": "",
-            "address": "Zaporizhzhya",
-            "links": {
-                "facebook": "",
-                "linkedin": "",
-                "twitter": ""
-            }
-        },
-        {
-            "id": "D02UaF_",
-            "email": "andriushyn@gmail.com",
-            "password": "1234",
-            "name": "Dmytro",
-            "surname": "Andriushyn",
-            "role": "user",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "ffsd2",
-                "name": "Arterra",
-                "role": "manager"
-            }],
-            "superintendent": "3",
-            "company": "",
-            "department": "",
-            "unit": "",
-            "team": "",
-            "birth": "07.03",
-            "gender": "",
-            "mobile": "123456789",
-            "username": "",
-            "address": "Odessa",
-            "links": {
-                "facebook": "",
-                "linkedin": "",
-                "twitter": ""
-            }
-        },
-        {
-            "id": "yLrw5VR",
-            "email": "anisimov@gmail.com",
-            "password": "1234",
-            "name": "Andrii",
-            "surname": "Anisimov",
-            "role": "user",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "3fdffs",
-                "name": "Blackchain",
-                "role": "Team Lead"
-            }],
-            "superintendent": "3",
-            "company": "",
-            "department": "",
-            "unit": "",
-            "team": "",
-            "birth": "08.03",
-            "gender": "",
-            "mobile": "123456789",
-            "username": "",
-            "address": "Lviv",
-            "links": {
-                "facebook": "",
-                "linkedin": "",
-                "twitter": ""
-            }
-        },
-        {
-            "id": "C8yBU7z",
-            "email": "antonov@gmail.com",
-            "password": "1234",
-            "name": "Volodymyr",
-            "surname": "Antonov",
-            "role": "user",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "3fdffs",
-                "name": "Blackchain",
-                "role": "manager"
-            }],
-            "superintendent": "3",
-            "company": "",
-            "department": "",
-            "unit": "",
-            "team": "",
-            "birth": "08.03",
-            "gender": "",
-            "mobile": "123456789",
-            "username": "",
-            "address": "Kyiv",
-            "links": {
-                "facebook": "",
-                "linkedin": "",
-                "twitter": ""
-            }
-        },
-        {
-            "id": "jdK6qe1",
-            "email": "areshina@gmail.com",
-            "password": "1234",
-            "name": "Eva Maria",
-            "surname": "Areshina",
-            "role": "user",
-            "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-            "projects": [{
-                "id": "3fdffs",
-                "name": "Blackchain",
-                "role": "manager"
-            }],
-            "superintendent": "2",
-            "company": "",
-            "department": "",
-            "unit": "",
-            "team": "",
-            "birth": "08.03",
-            "gender": "",
-            "mobile": "123456789",
-            "username": "",
-            "address": "Kyiv",
-            "links": {
-                "facebook": "",
-                "linkedin": "",
-                "twitter": ""
-            }
+          "id": "156575",
+          "name": "Bench",
+          "role": "Team Lead"
         }
-    ]
+      ],
+      "reportsTo": "2",
+      "company": "4ire",
+      "position": "Team Lead",
+      "typeOfWork": "Frontend Developer",
+      "department": "Tech",
+      "division": "Frontend",
+      "amount": "$10000.00 USD",
+      "team": "Andriy",
+      "birth": "06.03",
+      "gender": "man",
+      "mobile": "380931234567",
+      "username": "user",
+      "address": "Hawaii , USA",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      },
+      "timeoff": {
+        "type": {
+          "vacation": {
+            "days": "25.0"
+          },
+          "paid": {
+            "days": "30.0"
+          },
+          "hospital": {
+            "days": "10.0"
+          }
+        },
+        "requests": [
+          {
+            "id": "1",
+            "type": "Hospital",
+            "count": "20",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Vitya",
+                "status": "accept"
+              }
+            ]
+          },
+          {
+            "id": "2",
+            "type": "Paid",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "reject"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Andrii",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          },
+          {
+            "id": "3",
+            "type": "Vacation",
+            "count": "9",
+            "startTime": "",
+            "endTime": "",
+            "reviewers": [
+              {
+                "name": "Andrii",
+                "status": "accept"
+              },
+              {
+                "name": "Anastasia",
+                "status": "inProcess"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              },
+              {
+                "name": "Anastasia",
+                "status": "pending"
+              }
+            ]
+          }
+        ],
+        "history": [
+          {
+            "id": "1",
+            "type": "Paid",
+            "data": "21.02.2013",
+            "description": "some text",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          },
+          {
+            "id": "2",
+            "type": "Vacation",
+            "data": "21.02.2013",
+            "description": "sasdasdas",
+            "availableDays": "4.0",
+            "used": "10.0",
+            "accured": "5.0"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "email": "viktor.m@4irelabs.com",
+      "password": "1234",
+      "name": "Viktor",
+      "surname": "Malinovskyi",
+      "role": "manager",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "department": "UI",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "06.03",
+      "gender": "man",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Monako",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
+    },
+    {
+      "id": "3",
+      "email": "anastasia.f@4irelabs.com",
+      "password": "1234",
+      "name": "Anastasiia",
+      "surname": "Fedosyeyeva",
+      "role": "manager",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "156575",
+          "name": "Bench",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "department": "UI",
+      "unit": "Frontend",
+      "team": "Andriy",
+      "birth": "06.03",
+      "gender": "female",
+      "mobile": "380931234567",
+      "username": "fedosieievaa",
+      "address": "Monako",
+      "links": {
+        "facebook": "https://www.google.com",
+        "linkedin": "https://www.linkedin.com/",
+        "twitter": "https://twitter.com/?lang=en"
+      }
+    },
+    {
+      "id": "UYvGjL-",
+      "email": "adamenko@gmail.com",
+      "password": "1234",
+      "name": "Pavel",
+      "surname": "Adamenko",
+      "role": "user",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "ffsd2",
+          "name": "Arterra",
+          "role": "Team Lead"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "",
+      "department": "",
+      "division": "",
+      "team": "",
+      "birth": "07.03",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Odessa",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "M0tz6Jl",
+      "email": "andreev@gmail.com",
+      "password": "1234",
+      "name": "Artem",
+      "surname": "Andreev",
+      "role": "user",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "ffsd2",
+          "name": "Arterra",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "",
+      "department": "",
+      "division": "",
+      "team": "",
+      "birth": "07.03",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Zaporizhzhya",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "C8yBU7z",
+      "email": "antonov@gmail.com",
+      "password": "1234",
+      "name": "Volodymyr",
+      "surname": "Antonov",
+      "role": "user",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "Team Lead"
+        }
+      ],
+      "reportsTo": "3",
+      "company": "",
+      "department": "",
+      "division": "",
+      "team": "",
+      "birth": "08.03",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Kyiv",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "jdK6qe1",
+      "email": "areshina@gmail.com",
+      "password": "1234",
+      "name": "Eva Maria",
+      "surname": "Areshina",
+      "role": "user",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "2",
+      "company": "",
+      "department": "",
+      "division": "",
+      "team": "",
+      "birth": "08.03",
+      "gender": "",
+      "mobile": "123456789",
+      "username": "",
+      "address": "Kyiv",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "20sNL6h",
+      "email": "richardi@tiki-piki.com",
+      "password": "123",
+      "name": "Richard",
+      "surname": "Lion",
+      "role": "manager",
+      "startDate": "2022-03-11",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "3",
+      "company": "4ire",
+      "position": "Junior",
+      "typeOfWork": "???",
+      "department": "Design",
+      "division": "Frontend",
+      "amount": "???",
+      "team": "???",
+      "birth": "2022-06-21",
+      "gender": "Man",
+      "mobile": "37324234235",
+      "username": "???",
+      "address": "Yorkshire, England",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "wAUyngF",
+      "email": "123",
+      "password": "123",
+      "name": "qwe",
+      "surname": "qwe",
+      "role": "123",
+      "startDate": "2022-03-11",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "position": "Team Lead",
+      "typeOfWork": "???",
+      "department": "123",
+      "division": "123",
+      "amount": "???",
+      "team": "???",
+      "birth": "2022-03-11",
+      "gender": "Man",
+      "mobile": "123",
+      "username": "???",
+      "address": "123, 123",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "jYtJc-g",
+      "email": "3123213",
+      "password": "123",
+      "name": "12321321",
+      "surname": "213213",
+      "role": "123",
+      "startDate": "2022-03-25",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "position": "123",
+      "typeOfWork": "???",
+      "department": "123",
+      "division": "1223",
+      "amount": "???",
+      "team": "???",
+      "birth": "2022-03-12",
+      "gender": "Woman",
+      "mobile": "12321312",
+      "username": "???",
+      "address": "123, 123",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    }
+  ]
 }
