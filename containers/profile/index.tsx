@@ -140,6 +140,7 @@ export default function UserProfile({ user }) {
                 removeUser();
               }}
               no={() => setAskToRemove(false)}
+              question="Are you sure you want to remove this user?"
             ></RemoveUserModal>
           )}
         </UserBlockItem>

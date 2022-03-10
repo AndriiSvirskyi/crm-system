@@ -13,7 +13,6 @@ import styled from "styled-components";
 import moment from "moment";
 import { Input } from "components/Input";
 import { Task } from "components/Task";
-import { RiDeleteBin5Line } from "react-icons/ri";
 
 const Textarea = styled.textarea`
   resize: none;
@@ -37,7 +36,8 @@ const Tasks = () => {
   const [taskDescription, setTaskDescription] = useState("");
   const [taskStarts, setTaskStarts] = useState("");
   const [taskEnds, setTaskEnds] = useState("");
-
+  const [isEditable, setIsEditable] = useState(false);
+  const [taskToEdit, setTaskToEdit] = useState("");
   useEffect(() => {
     if (!users) {
       const response = fetch("http://localhost:4200/users");
@@ -197,6 +197,10 @@ const Tasks = () => {
       }),
     });
   };
+  const editTask = (e) => {
+    e.preventDefault()
+    console.log("edited");
+  };
   return (
     <MainLayout>
       <UserWindow>
@@ -282,20 +286,138 @@ const Tasks = () => {
                       assignedTo,
                     }) => {
                       return (
-                        <Task
-                          key={id}
-                          title={title}
-                          end={end}
-                          starts={starts}
-                          status={status}
-                          description={description}
-                          createdBy={createdBy}
-                          assignedTo={assignedTo}
-                          users={users}
-                          changeStatus={() => changeTaskStatus(id, assignedTo)}
-                          canRemove={true}
-                          removeTask={() => removeTask(id, assignedTo)}
-                        />
+                        <div key={id}>
+                          <Task
+                            title={title}
+                            end={end}
+                            starts={starts}
+                            status={status}
+                            description={description}
+                            createdBy={createdBy}
+                            assignedTo={assignedTo}
+                            users={users}
+                            isCreatedByMe={true}
+                            changeStatus={() => {
+                              changeTaskStatus(id, assignedTo);
+                            }}
+                            removeTask={() => {
+                              removeTask(id, assignedTo);
+                            }}
+                            editTask={() => {
+                              setIsEditable(true);
+                              setTaskToEdit(id);
+                            }}
+                          />
+                          {isEditable && (
+                            <Modal
+                              close={() => {
+                                setIsEditable(false);
+                              }}
+                            >
+                              <Form
+                                submit={(e) => {
+                                  editTask(e);
+                                }}
+                                content="Edit task"
+                              >
+                                <InputComponent
+                                  value={title}
+                                  onChange={(e: {
+                                    target: { value: SetStateAction<string> };
+                                  }) => setTaskTitle(e.target.value)}
+                                  width="100%"
+                                  height="40px"
+                                  outline="1px solid black"
+                                  background="none"
+                                  margin="0 0 10px 0"
+                                />
+                                <InputComponent
+                                  list="people"
+                                  value={
+                                    users
+                                      ? users.find(
+                                          ({ id }) => id === assignedTo
+                                        ).surname
+                                      : []
+                                  }
+                                  onChange={(e: {
+                                    target: { value: SetStateAction<string> };
+                                  }) => setTaskAssignedTo(e.target.value)}
+                                  width="100%"
+                                  height="40px"
+                                  outline="1px solid black"
+                                  background="none"
+                                  margin="0 0 10px 0"
+                                />
+                                <datalist id="people">
+                                  {users.map(({ name, surname, id }) => {
+                                    return (
+                                      <option key={id}>
+                                        {name} {surname}
+                                      </option>
+                                    );
+                                  })}
+                                </datalist>
+                                <Textarea
+                                  placeholder="Description"
+                                  value={description}
+                                  onChange={(e: {
+                                    target: { value: SetStateAction<string> };
+                                  }) => setTaskDescription(e.target.value)}
+                                />
+                                <Flex direction="column" width="100%">
+                                  <Flex margin="0 0 10px 0">
+                                    <Label width="70px" htmlFor="from">
+                                      Starts on:
+                                    </Label>
+                                    <InputComponent
+                                      value={starts}
+                                      onChange={(e: {
+                                        target: {
+                                          value: SetStateAction<string>;
+                                        };
+                                      }) => setTaskStarts(e.target.value)}
+                                      id="from"
+                                      type="date"
+                                      width="100%"
+                                      height="40px"
+                                      outline="1px solid black"
+                                      background="none"
+                                    />
+                                  </Flex>
+                                  <Flex margin="0 0 30px 0">
+                                    <Label width="70px" htmlFor="to">
+                                      Ends on:
+                                    </Label>
+                                    <InputComponent
+                                      value={end}
+                                      onChange={(e: {
+                                        target: {
+                                          value: SetStateAction<string>;
+                                        };
+                                      }) => setTaskEnds(e.target.value)}
+                                      id="to"
+                                      type="date"
+                                      width="100%"
+                                      height="40px"
+                                      outline="1px solid black"
+                                      background="none"
+                                    />
+                                  </Flex>
+                                  <ButtonStyled
+                                    height="35px"
+                                    padding="10px"
+                                    color="#FFFFFF"
+                                    background="#ff9f69"
+                                    hoverBack="#ff9f69CC"
+                                  >
+                                    <b>Save changes</b>
+                                  </ButtonStyled>
+                                </Flex>
+                              </Form>
+                            </Modal>
+                          )}
+                        </div>
                       );
                     }
                   )}
@@ -353,6 +475,7 @@ const Tasks = () => {
                     return (
                       <Task
                         key={id}
+                        completed={true}
                         title={title}
                         end={end}
                         starts={starts}

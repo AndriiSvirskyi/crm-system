@@ -24,12 +24,12 @@
       "reportsTo": "2",
       "tasks": [
         {
-          "id": "1",
+          "id": "2",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
           "end": "2022-03-10",
-          "title": "Add modal",
+          "title": "Change modal",
           "description": "Lorem imsum blablabla",
           "status": "completed"
         },
@@ -54,16 +54,6 @@
           "status": "new"
         },
         {
-          "id": "5",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add title",
-          "description": "Lorem imsum blablabla",
-          "status": "new"
-        },
-        {
           "id": "6",
           "assignedTo": "2",
           "createdBy": "1",
@@ -81,7 +71,7 @@
           "end": "2022-03-17",
           "title": "new",
           "description": "ewrwerew",
-          "status": "completed"
+          "status": "new"
         },
         {
           "id": "8",
@@ -548,42 +538,12 @@
       "reportsTo": "1",
       "tasks": [
         {
-          "id": "1",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add modal",
-          "description": "Lorem imsum blablabla",
-          "status": "completed"
-        },
-        {
-          "id": "3",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add test",
-          "description": "Lorem imsum blablabla",
-          "status": "completed"
-        },
-        {
           "id": "4",
           "assignedTo": "3",
           "createdBy": "1",
           "starts": "2022-03-09",
           "end": "2022-03-10",
           "title": "Add button",
-          "description": "Lorem imsum blablabla",
-          "status": "new"
-        },
-        {
-          "id": "5",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add title",
           "description": "Lorem imsum blablabla",
           "status": "new"
         },

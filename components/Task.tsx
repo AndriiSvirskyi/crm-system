@@ -5,10 +5,13 @@ import { BiCalendar, BiCheck } from "react-icons/bi";
 import { ButtonStyled } from "./ButtonStyled";
 import { ImageContainer } from "./ImageContainer";
 import { Flex } from "./User/Flex";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { HiDotsHorizontal } from "react-icons/hi";
+import { Options } from "./Options";
+import { RemoveUserModal } from "./Modal/RemoveModal";
 
 const TaskContainer = styled.div`
   width: 100%;
+  min-height: 45px;
   box-sizing: border-box;
   cursor: pointer;
   border: 1px solid black;
@@ -40,7 +43,14 @@ const Fullname = styled.span`
     color: #2196f3;
   }
 `;
+const Title = styled.h3`
+  font-weight: 500;
+  text-decoration: ${(props: { line: string }) => props.line || ""};
+`;
 
+const OptionsContainer = styled.div`
+  position: relative;
+`;
 type TaskProps = {
   title: string;
   end: string;
@@ -52,7 +62,9 @@ type TaskProps = {
   users: [{ id: string; image: string; name: string; surname: string }];
   changeStatus: () => void;
   removeTask?: () => void;
-  canRemove?: boolean;
+  completed?: boolean;
+  isCreatedByMe?: boolean;
+  editTask?: () => void;
 };
 export const Task = ({
   title,
@@ -65,34 +77,55 @@ export const Task = ({
   users,
   changeStatus,
   removeTask,
-  canRemove,
+  completed,
+  isCreatedByMe,
+  editTask
 }: TaskProps) => {
   const [showTask, setShowTask] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  const [askToRemove, setAskToRemove] = useState(false);
 
   return (
     <>
       <TaskContainer>
-        <Flex>
+        <Flex align="center">
           <Flex
             width="100%"
             justify="space-between"
             onClick={() => setShowTask(!showTask)}
           >
-            <h3>{title} </h3>
-            <Flex width={canRemove ? "180px" : "105"} align="center">
+            <Title line={completed && "line-through"}>{title}</Title>
+            <Flex width="200" align="center">
               <Flex width="105px" justify="space-between">
                 <BiCalendar /> {end}
               </Flex>
             </Flex>
           </Flex>
-          {canRemove && (
-            <ButtonStyled
-              background="none"
-              hoverBack="#0d73bc4c"
-              padding="4px 10px 0 10px"
-            >
-              <RiDeleteBin5Line size="15" fill="#0d74bc" onClick={removeTask} />
-            </ButtonStyled>
+          {isCreatedByMe && (
+            <OptionsContainer>
+              <ButtonStyled
+                background="none"
+                hoverBack="#0d73bc4c"
+                padding="4px 10px 0 10px"
+              >
+                <HiDotsHorizontal
+                  size="25"
+                  fill="#0d74bc"
+                  onClick={() => {
+                    setShowOptions(!showOptions);
+                  }}
+                />
+              </ButtonStyled>
+              {showOptions && (
+                <Options
+                  editTask={editTask}
+                  askToRemove={() => {
+                  
+                    setAskToRemove(true);
+                  }}
+                />
+              )}
+            </OptionsContainer>
           )}
         </Flex>
       </TaskContainer>
@@ -190,6 +223,18 @@ export const Task = ({
             </Flex>
           </Flex>
         </TaskInfo>
+      )}
+      {askToRemove && (
+        <RemoveUserModal
+          yes={() => {
+            removeTask();
+            setAskToRemove(false);
+          }}
+          no={() => {
+            setAskToRemove(false);
+          }}
+          question="Remove this task?"
+        />
       )}
     </>
   );
