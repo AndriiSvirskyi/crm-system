@@ -16,7 +16,7 @@ import { useRecoilValue } from "recoil";
 import { hamburgerState } from "state/atoms";
 import router from "next/router";
 import { useEffect, useState } from "react";
-import { ImageContainer } from "styled-components/ImageContainer";
+import { Snackbar } from "./Snackbar";
 
 type PropsSideBar = {
   background: string;
@@ -27,7 +27,7 @@ export const SideBarStyles = styled.div<PropsSideBar>`
   left: 0;
   top: 0;
   padding-top: 70px;
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${({theme}) => theme.colors.primary};
   width: ${(props) => (props.collapsed ? "60px" : "280px")};
   height: 100%;
   overflow: auto;
@@ -116,6 +116,7 @@ export default function SideBar(props) {
             {!hamburger && <span>Reports</span>}
           </SidebarLink>
         </Flex>
+        {props.isActive && <Snackbar  message = {props.message} type={props.type} />}
       </aside>
     </SideBarStyles>
   );

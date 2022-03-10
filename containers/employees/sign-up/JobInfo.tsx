@@ -81,7 +81,7 @@ export default function JobInfo({
   const validateFields = useCallback(
     ({ position, department, reportsTo, division, startDate }) => {
       const MIN_LENGTH = 2;
-      const MAX_LENGTH = 15;
+      const MAX_LENGTH = 30;
       let countErrors = 0;
       const inputErrors: any = {};
       const simpleData = [

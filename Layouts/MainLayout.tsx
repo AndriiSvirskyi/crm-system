@@ -1,13 +1,18 @@
-import { useState } from "react";
 import Header from "./Header";
 import SideBar from "./SideBar";
 
-
-export default function MainLayout({ children }) {
+type MainLayoutProps = {
+  children: any;
+  isActive?: boolean;
+  message?: string;
+  type?: string;
+}
+export default function MainLayout({ children, isActive, message, type }:MainLayoutProps) {
+  
   return (
     <>
       <Header />
-      <SideBar />
+      <SideBar isActive={isActive} message={message} type={type} />
       {children}
     </>
   );

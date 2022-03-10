@@ -11,11 +11,13 @@ import Pagination from "containers/employees/Pagination";
 import Loader from "styled-components/Loader";
 import { Button } from "components/Button";
 import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
-import SnackBar from "containers/SnackBar";
+
+import { useSnackbar } from "layouts/useSnackbar";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
-  const [showSnackbar, setShowSnackbar] = useState(false);
+  const { isActive, message, type, openSnackBar } = useSnackbar();
+   
   const [activeTabRender, setActiveTabRender] = useState("block");
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -48,7 +50,7 @@ export default function Employee() {
   };
 
   const successCreateUser = () => {
-    setShowSnackbar(true);
+    openSnackBar("Create", 'success');
     getEmployees();
   };
 
@@ -58,7 +60,7 @@ export default function Employee() {
   }, []);
 
   return (
-    <MainLayout>
+    <MainLayout isActive={isActive} message={message} type={type} >
       <UserWindow>
         <InputFilter
           activeTabRender={activeTabRender}
@@ -84,7 +86,6 @@ export default function Employee() {
           paginate={paginate}
           currentPage={currentPage}
         />
-      <button onClick={()=> setShowSnackbar(true)}> show snackBar</button>
       </UserWindow>
       {userRole === "admin" && (
         <>
@@ -107,7 +108,6 @@ export default function Employee() {
           )}
         </>
       )}
-      {showSnackbar && <SnackBar setShowSnackbar={setShowSnackbar}  />}
     </MainLayout>
   );
 }

@@ -47,7 +47,7 @@ const DivisionContainer = styled.p`
 const Wrapper = styled.div`
   border-bottom: 1px solid #d5d6d6;
 `;
-export default function UserProfile({ user }) {
+export default function UserProfile({ user, showSnackbarHandler }) {
   const [askToRemove, setAskToRemove] = useState(false);
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
@@ -78,6 +78,7 @@ export default function UserProfile({ user }) {
       headers: { "Content-Type": "application/json" },
     });
     router.push("/employees");
+    showSnackbarHandler();
   };
 
   const reportsTo = users
@@ -99,6 +100,11 @@ export default function UserProfile({ user }) {
 
   return (
     <Flex direction="column" padding="0 20px 0 0">
+      <button
+        onClick={() => {
+          showSnackbarHandler();
+        }}
+      ></button>
       <Flex width="100%">
         <UserBlockItem>
           <Flex height="300px" justify="space-between">
@@ -134,7 +140,7 @@ export default function UserProfile({ user }) {
             <RemoveUserModal
               yes={() => {
                 removeUser();
-              
+                showSnackbarHandler();
               }}
               no={() => setAskToRemove(false)}
             ></RemoveUserModal>
