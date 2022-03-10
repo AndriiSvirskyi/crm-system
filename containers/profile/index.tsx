@@ -47,11 +47,14 @@ const DivisionContainer = styled.p`
 const Wrapper = styled.div`
   border-bottom: 1px solid #d5d6d6;
 `;
-export default function UserProfile({ user, showSnackbarHandler }) {
+export default function UserProfile({ user }) {
   const [askToRemove, setAskToRemove] = useState(false);
   const currentUser =
     typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
+  const showSnackbarHandler = () => {
+    console.log("here");
+  };
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
 
@@ -77,8 +80,8 @@ export default function UserProfile({ user, showSnackbarHandler }) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-    router.push("/employees");
     showSnackbarHandler();
+    router.push("/employees");
   };
 
   const reportsTo = users

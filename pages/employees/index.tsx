@@ -1,5 +1,5 @@
 import { UserWindow } from "styled-components/UserForm";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import MainLayout from "layouts/MainLayout";
 import InputFilter from "containers/employees/InputFilter";
@@ -11,13 +11,11 @@ import Pagination from "containers/employees/Pagination";
 import Loader from "styled-components/Loader";
 import { Button } from "components/Button";
 import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
-
-import { useSnackbar } from "layouts/useSnackbar";
+import useSnackBars, { SnackbarContext } from "providers/useSnackbar";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
-  const { isActive, message, type, openSnackBar } = useSnackbar();
-   
+
   const [activeTabRender, setActiveTabRender] = useState("block");
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,6 +34,7 @@ export default function Employee() {
   const [userRole, setUserRole] = useState();
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
+  const snackBar = useContext(SnackbarContext);
 
   const getEmployees = async () => {
     return fetch(`http://localhost:4200/users`)
@@ -50,7 +49,6 @@ export default function Employee() {
   };
 
   const successCreateUser = () => {
-    openSnackBar("Create", 'success');
     getEmployees();
   };
 
@@ -60,7 +58,7 @@ export default function Employee() {
   }, []);
 
   return (
-    <MainLayout isActive={isActive} message={message} type={type} >
+    <MainLayout>
       <UserWindow>
         <InputFilter
           activeTabRender={activeTabRender}
@@ -95,7 +93,10 @@ export default function Employee() {
             bottom="20px"
             width="60px"
             height="50px"
-            onClick={() => setShowModal(!showModal)}
+            onClick={() => {
+              snackBar.openSnackBar({ message: "Good", type: "success" });
+              // setShowModal(!showModal);
+            }}
           >
             <FaUserPlus size={30}></FaUserPlus>
           </Button>

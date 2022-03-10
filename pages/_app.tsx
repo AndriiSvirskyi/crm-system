@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
+import { SnackBarContextProvider } from "providers/useSnackbar";
 
 const GlobalStyle = createGlobalStyle`
 html{
@@ -43,10 +44,12 @@ const theme = {
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <SnackBarContextProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </SnackBarContextProvider>
     </RecoilRoot>
   );
 }

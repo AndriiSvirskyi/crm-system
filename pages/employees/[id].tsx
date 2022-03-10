@@ -2,18 +2,12 @@ import React from "react";
 import MainLayout from "layouts/MainLayout";
 import UserProfile from "containers/profile";
 import { UserWindow } from "styled-components/UserForm";
-import { useSnackbar } from "layouts/useSnackbar";
 
 export default function User({ user }) {
-  const { isActive, message, type, openSnackBar } = useSnackbar();
-  const showSnackbarHandler = () => {
-    openSnackBar("Test", 'success');
-    
-  };
   return (
-    <MainLayout isActive={isActive} message={message} type={type}>
+    <MainLayout>
       <UserWindow>
-        <UserProfile user={user} showSnackbarHandler={showSnackbarHandler} ></UserProfile>
+        <UserProfile user={user}></UserProfile>
       </UserWindow>
     </MainLayout>
   );

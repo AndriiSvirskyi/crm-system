@@ -1,6 +1,19 @@
-import React, { PureComponent } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { PureComponent } from "react";
+import styled, { keyframes } from "styled-components";
 import { FiCheckCircle, FiXCircle } from "react-icons/fi";
+
+type SnackbarProps = {
+  message: string;
+  type: string;
+};
+
+const backgrounds = {
+  info: "#333",
+  success: "#14973b",
+  warning: "#e0d31ab9",
+  error: "#d60909",
+};
+
 const MovementSnackBar = keyframes`
 
 0% {
@@ -13,53 +26,29 @@ const MovementSnackBar = keyframes`
     bottom:25px;
   }
 
-`
+`;
 
 const StylesSnackBar = styled.div`
-    min-width: 250px;
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    
-    font-size: 1rem;
-    animation: ${MovementSnackBar};
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-`
-const InfoBar = styled(StylesSnackBar)`
-    background-color: #333;
-    
-`
-const SuccessBar = styled(StylesSnackBar)`
-    background-color: #14973b;
-    
-`
-const WarningBar = styled(StylesSnackBar)`
-    background-color: #e0d31ab9;
-    
-`
-const ErrorBar = styled(StylesSnackBar)`
-    background-color: #d60909;
-    
-`
+  min-width: 250px;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  background: ${(props: { type: string }) => backgrounds[props.type]};
+  font-size: 1rem;
+  animation: ${MovementSnackBar};
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+`;
 
-export class Snackbar extends PureComponent {
-    render() {
-        const { message, type} = this.props;
+export const Snackbar = (props: SnackbarProps) => {
+  const { message, type } = props;
 
-         return (  
-            <>
-            {type === 'info' && <InfoBar>{message}</InfoBar>}  
-            {type === 'success' && <SuccessBar><FiCheckCircle />{message}</SuccessBar>}  
-            {type === 'warning' && <WarningBar>{message}</WarningBar>}  
-            {type === 'error' && <ErrorBar><FiXCircle />{message}</ErrorBar>}  
-            </> 
-        )
-    }
-}
-
-
-
+  return (
+    <>
+      <StylesSnackBar type={type}>{message}</StylesSnackBar>
+    </>
+  );
+};
