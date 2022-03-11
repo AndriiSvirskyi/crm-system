@@ -12,15 +12,16 @@ import {
   FaLink,
   FaPlane,
 } from "react-icons/fa";
-import MainLayout from "../layouts/MainLayout";
+import MainLayout from "../Layouts/MainLayout";
 import { UserWindow, UserBlockItem } from "styled-components/UserForm";
 import { Flex } from "styled-components/Flex";
-import { Button } from "components/Button";
 import { ImageContainer } from "styled-components/ImageContainer";
 import Modal from "components/Modal";
 import { Form } from "styled-components/Form";
-import { Input } from "components/Input";
 import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
+import { Label } from "styled-components/Label";
+import { Button } from "components/Button";
+import { Input } from "components/Input";
 
 const GreetingContainer = styled.div`
   height: 100px;
@@ -87,11 +88,7 @@ const BirthdayContainer = styled.div`
     visibility: visible;
   }
 `;
-const Label = styled.label`
-  width: 100px;
-  text-align: start;
-`;
-const Select = styled.select`
+export const Select = styled.select`
   height: "auto";
   height: 40px;
   width: 302px;
@@ -296,7 +293,9 @@ export default function Home() {
             <Modal close={() => setShowRequest(false)}>
               <Form submit={(e) => saveLeave(e)} content="Time Off Request">
                 <Flex align="center" margin="0 0 10px 0">
-                  <Label htmlFor="type">Leave type:</Label>
+                  <Label width="130px" htmlFor="type">
+                    Leave type:
+                  </Label>
                   <Select
                     value={typeLeave}
                     onChange={(e) => setTypeLeave(e.target.value)}
@@ -309,7 +308,9 @@ export default function Home() {
                   </Select>
                 </Flex>
                 <Flex align="center" margin="0 0 10px 0">
-                  <Label htmlFor="from">From:</Label>
+                  <Label width="130px" htmlFor="from">
+                    From:
+                  </Label>
                   <Input
                     id="from"
                     value={startLeave}
@@ -324,7 +325,9 @@ export default function Home() {
                   />
                 </Flex>
                 <Flex align="center" margin="0 0 30px 0">
-                  <Label htmlFor="to">To:</Label>
+                  <Label width="130px" htmlFor="to">
+                    To:
+                  </Label>
                   <Input
                     id="to"
                     value={endLeave}

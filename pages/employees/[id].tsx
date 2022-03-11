@@ -1,5 +1,5 @@
 import React from "react";
-import MainLayout from "layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import UserProfile from "containers/profile";
 import { UserWindow } from "styled-components/UserForm";
 

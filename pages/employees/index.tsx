@@ -1,7 +1,7 @@
 import { UserWindow } from "styled-components/UserForm";
 import { useContext, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "layouts/MainLayout";
+import MainLayout from "Layouts/MainLayout";
 import InputFilter from "containers/employees/InputFilter";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";

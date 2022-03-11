@@ -14,11 +14,12 @@ const RemoveContainer = styled.div`
   font-size: 20px;
   background-color: #e9e9e9;
   border-radius: 8px;
+  z-index: 2;
 `;
-export const RemoveUserModal = ({ yes, no }) => {
+export const RemoveModal = ({ yes, no, question }) => {
   return (
     <RemoveContainer>
-      <p>Are you sure you want to remove this user?</p>
+      <p>{question}</p>
       <div>
         <Button padding="5px 0" margin="0 10px 0 0" width="100px" onClick={no}>
           NO

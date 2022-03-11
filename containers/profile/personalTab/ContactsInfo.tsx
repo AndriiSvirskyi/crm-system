@@ -73,7 +73,9 @@ export const ContactsInfo = ({ user }) => {
         </Button>
       </Flex>
       <Flex>
-        <Label htmlFor="number">Mobile number</Label>
+        <Label width="130px" htmlFor="number">
+          Mobile number
+        </Label>
         <Input
           id="number"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
@@ -89,7 +91,9 @@ export const ContactsInfo = ({ user }) => {
         />
       </Flex>
       <Flex>
-        <Label htmlFor="username">Slack Username</Label>
+        <Label width="130px" htmlFor="username">
+          Slack Username
+        </Label>
         <Input
           id="username"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}
@@ -105,7 +109,9 @@ export const ContactsInfo = ({ user }) => {
         />
       </Flex>
       <Flex margin="0 0 40px 0">
-        <Label htmlFor="address">Address</Label>
+        <Label width="130px" htmlFor="address">
+          Address
+        </Label>
         <Input
           id="address"
           outline={contactsInfoEdit ? "1px solid grey" : "none"}

@@ -9,7 +9,7 @@ import {
   UserText,
   UserTitle,
 } from "../../styled-components/UserForm";
-import { RemoveUserModal } from "containers/profile/RemoveUserModal";
+import { RemoveModal } from "./RemoveModal";
 import { FaSitemap, FaUserCheck, FaUsers, FaUserTie } from "react-icons/fa";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
@@ -79,9 +79,9 @@ export default function UserProfile({ user }) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
-    
+
     router.push("/employees");
-    snackBar.openSnackBar({message:'User has been deleted!', type: 'error'})
+    snackBar.openSnackBar({ message: "User has been deleted!", type: "error" });
   };
 
   const reportsTo = users
@@ -135,12 +135,13 @@ export default function UserProfile({ user }) {
             )}
           </Flex>
           {askToRemove && (
-            <RemoveUserModal
+            <RemoveModal
               yes={() => {
                 removeUser();
               }}
               no={() => setAskToRemove(false)}
-            ></RemoveUserModal>
+              question="Are you sure you want to remove this user?"
+            ></RemoveModal>
           )}
         </UserBlockItem>
       </Flex>
