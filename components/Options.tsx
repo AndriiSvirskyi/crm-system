@@ -1,8 +1,9 @@
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBack2Line } from "react-icons/ri";
 import styled from "styled-components";
-import { ButtonStyled } from "./ButtonStyled";
-import { Flex } from "./User/Flex";
+import { Button } from "./Button";
+import { Flex } from "styled-components/Flex";
+
 const OptionsWrapper = styled.div`
   position: absolute;
   right: 0;
@@ -11,11 +12,12 @@ const OptionsWrapper = styled.div`
   border: 0.5px solid #0d74bc;
   border-radius: 3px;
 `;
+
 export const Options = ({ editTask, askToRemove }) => {
   return (
     <OptionsWrapper>
       <Flex width="180px" direction="column">
-        <ButtonStyled
+        <Button
           background="transparent"
           onClick={editTask}
           padding="5px 10px"
@@ -25,8 +27,8 @@ export const Options = ({ editTask, askToRemove }) => {
             <b>Edit</b>
             <FaEdit fill="#0d74bc" />
           </Flex>
-        </ButtonStyled>
-        <ButtonStyled
+        </Button>
+        <Button
           background="transparent"
           onClick={askToRemove}
           padding="5px 10px"
@@ -36,7 +38,7 @@ export const Options = ({ editTask, askToRemove }) => {
             <b>Remove</b>
             <RiDeleteBack2Line fill="#0d74bc" />
           </Flex>
-        </ButtonStyled>
+        </Button>
       </Flex>
     </OptionsWrapper>
   );

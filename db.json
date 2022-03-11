@@ -24,113 +24,43 @@
       "reportsTo": "2",
       "tasks": [
         {
-          "id": "2",
-          "assignedTo": "3",
+          "id": "l0mew68e67lx4xoquoc",
+          "assignedTo": "2",
           "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Change modal",
-          "description": "Lorem imsum blablabla",
+          "starts": "2022-03-12",
+          "end": "2022-03-13",
+          "title": "TASK 2",
+          "description": "TASK 2",
+          "status": "new"
+        },
+        {
+          "id": "l0mexny3372akp7d499",
+          "assignedTo": "2",
+          "createdBy": "1",
+          "starts": "2022-03-12",
+          "end": "2022-03-13",
+          "title": "TASK 1",
+          "description": "TASK 1TASK 1TASK 1",
           "status": "completed"
         },
         {
-          "id": "3",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add test",
-          "description": "Lorem imsum blablabla",
-          "status": "completed"
-        },
-        {
-          "id": "4",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add button",
-          "description": "Lorem imsum blablabla",
-          "status": "new"
-        },
-        {
-          "id": "6",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-04-07",
-          "title": "test",
-          "description": "fsdfsdfs",
-          "status": "new"
-        },
-        {
-          "id": "7",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-16",
-          "end": "2022-03-17",
-          "title": "new",
-          "description": "ewrwerew",
-          "status": "new"
-        },
-        {
-          "id": "8",
+          "id": "l0mfncyggimjk23fonl",
           "assignedTo": "1",
           "createdBy": "2",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Lorem",
-          "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+          "starts": "2022-03-26",
+          "end": "2022-03-27",
+          "title": "TASK 3",
+          "description": "TASK 3TASK 3TASK 3TASK 3",
           "status": "new"
         },
         {
-          "id": "9",
-          "assignedTo": "1",
-          "createdBy": "2",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Ipsum",
-          "description": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
-          "status": "new"
-        },
-        {
-          "id": "l0jji7888gopxzto58",
+          "id": "l0mibutlfndzyt8qkqk",
           "assignedTo": "2",
           "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "task",
-          "description": "tasktask",
-          "status": "new"
-        },
-        {
-          "id": "l0jjixfywds48jf2u5s",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "task2",
-          "description": "task2task2",
-          "status": "new"
-        },
-        {
-          "id": "l0jkgbhg59q9olm2y73",
-          "assignedTo": "1",
-          "createdBy": "3",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "new",
-          "description": "newnewnewnewnewnewnewnew",
-          "status": "new"
-        },
-        {
-          "id": "l0jkjgppxkrjtojm0y",
-          "assignedTo": "1",
-          "createdBy": "3",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "QWERTY",
-          "description": "QWERTYQWERTYQWERTYQWERTYQWERTY",
+          "starts": "2022-03-20",
+          "end": "2022-03-27",
+          "title": "NEW TASK",
+          "description": "fkdbfkd",
           "status": "new"
         }
       ],
@@ -281,113 +211,43 @@
       "reportsTo": "1",
       "tasks": [
         {
-          "id": "6",
+          "id": "l0mew68e67lx4xoquoc",
           "assignedTo": "2",
           "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-04-07",
-          "title": "fdfsdf",
-          "description": "fsdfsdfs",
+          "starts": "2022-03-12",
+          "end": "2022-03-13",
+          "title": "TASK 2 lalalaalalalal",
+          "description": "TASK 2 aalalalalala",
           "status": "new"
         },
         {
-          "id": "7",
+          "id": "l0mexny3372akp7d499",
           "assignedTo": "2",
           "createdBy": "1",
-          "starts": "2022-03-16",
-          "end": "2022-03-17",
-          "title": "new",
-          "description": "ewrwerew",
+          "starts": "2022-03-12",
+          "end": "2022-03-13",
+          "title": "TASK 1",
+          "description": "TASK 1TASK 1TASK 1",
           "status": "completed"
         },
         {
-          "id": "8",
+          "id": "l0mfncyggimjk23fonl",
           "assignedTo": "1",
           "createdBy": "2",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Lorem",
-          "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+          "starts": "2022-03-26",
+          "end": "2022-03-27",
+          "title": "TASK 3",
+          "description": "TASK 3TASK 3TASK 3TASK 3",
           "status": "new"
         },
         {
-          "id": "9",
-          "assignedTo": "1",
-          "createdBy": "2",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Ipsum",
-          "description": "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
-          "status": "new"
-        },
-        {
-          "id": "l0jji7888gopxzto58",
+          "id": "l0mibutlfndzyt8qkqk",
           "assignedTo": "2",
           "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "task",
-          "description": "tasktask",
-          "status": "new"
-        },
-        {
-          "id": "l0jjixfywds48jf2u5s",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "task2",
-          "description": "task2task2",
-          "status": "new"
-        },
-        {
-          "id": "l0jkh51irdjp6pshv",
-          "assignedTo": "2",
-          "createdBy": "3",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "trarararrarra",
-          "description": "trarararrarratrarararrarratrarararrarratrarararrarratrarararrarra",
-          "status": "new"
-        },
-        {
-          "id": "l0jviflm9gb7x8gaza",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "erererererrerererererer",
-          "description": "erererererrerererererererererererrerererererererererererrerererererererererererrerererererererererererrerererererererererererrerererererererererererrerererererer",
-          "status": "new"
-        },
-        {
-          "id": "l0jvpr48p0cq88jccef",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "lalalalallalalalaallla",
-          "description": "lalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaallla",
-          "status": "new"
-        },
-        {
-          "id": "l0jvqa0f3t4u08fzd97",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "lalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaallla",
-          "description": "lalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaalllalalalalallalalalaallla",
-          "status": "new"
-        },
-        {
-          "id": "l0ks6b1wt3z10aaidnc",
-          "assignedTo": "2",
-          "createdBy": "1",
-          "starts": "2022-03-10",
-          "end": "2022-03-10",
-          "title": "Thursday",
-          "description": "ThursdayThursdayThursdayThursdayThursdayThursdayThursdayThursdayThursdayThursday",
+          "starts": "2022-03-20",
+          "end": "2022-03-27",
+          "title": "NEW TASK",
+          "description": "fkdbfkd",
           "status": "new"
         }
       ],
@@ -536,38 +396,7 @@
         }
       ],
       "reportsTo": "1",
-      "tasks": [
-        {
-          "id": "4",
-          "assignedTo": "3",
-          "createdBy": "1",
-          "starts": "2022-03-09",
-          "end": "2022-03-10",
-          "title": "Add button",
-          "description": "Lorem imsum blablabla",
-          "status": "new"
-        },
-        {
-          "id": "l0jkh51irdjp6pshv",
-          "assignedTo": "2",
-          "createdBy": "3",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "trarararrarra",
-          "description": "trarararrarratrarararrarratrarararrarratrarararrarratrarararrarra",
-          "status": "new"
-        },
-        {
-          "id": "l0jkjgppxkrjtojm0y",
-          "assignedTo": "1",
-          "createdBy": "3",
-          "starts": "2022-03-09",
-          "end": "2022-03-09",
-          "title": "QWERTY",
-          "description": "QWERTYQWERTYQWERTYQWERTYQWERTY",
-          "status": "new"
-        }
-      ],
+      "tasks": [],
       "company": "4ire",
       "position": "developer",
       "typeOfWork": "Frontend Developer",
@@ -1665,6 +1494,41 @@
       "mobile": "12321312",
       "username": "???",
       "address": "123, 123",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "9sGYB90",
+      "email": "nastyabarabakh@gmail.com",
+      "password": "1",
+      "name": "lalala",
+      "surname": "lalal",
+      "role": "21",
+      "startDate": "2022-03-12",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "1",
+      "company": "4ire",
+      "position": "Trainee",
+      "typeOfWork": "???",
+      "department": "Marketing",
+      "division": "Frontend",
+      "amount": "???",
+      "team": "???",
+      "birth": "2000-03-24",
+      "gender": "Woman",
+      "mobile": "1213",
+      "username": "???",
+      "address": "gfhcfgg, ghh",
       "links": {
         "facebook": "",
         "linkedin": "",

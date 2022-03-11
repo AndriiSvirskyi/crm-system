@@ -13,14 +13,13 @@ import {
   FaPlane,
 } from "react-icons/fa";
 import MainLayout from "../Layouts/MainLayout";
-import { UserWindow, UserBlockItem } from "components/User/UserForm";
-import { Flex } from "components/User/Flex";
-import { ButtonStyled } from "components/ButtonStyled";
-import { ImageContainer } from "components/ImageContainer";
-import Modal from "components/Modal/Modal";
-import { Form } from "components/form/Form";=
-import Slider from "components/SliderTimeOff";
-import { Label } from "components/User/personalTab/Label";
+import { UserWindow, UserBlockItem } from "styled-components/UserForm";
+import { Flex } from "styled-components/Flex";
+import { ImageContainer } from "styled-components/ImageContainer";
+import Modal from "components/Modal";
+import { Form } from "styled-components/Form";
+import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
+import { Label } from "styled-components/Label";
 import { Button } from "components/Button";
 import { Input } from "components/Input";
 

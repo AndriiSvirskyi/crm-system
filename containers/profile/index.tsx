@@ -9,7 +9,7 @@ import {
   UserText,
   UserTitle,
 } from "../../styled-components/UserForm";
-import { RemoveUserModal } from "containers/profile/RemoveUserModal";
+import { RemoveModal } from "./RemoveModal";
 import { FaSitemap, FaUserCheck, FaUsers, FaUserTie } from "react-icons/fa";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
@@ -135,13 +135,13 @@ export default function UserProfile({ user }) {
             )}
           </Flex>
           {askToRemove && (
-            <RemoveUserModal
+            <RemoveModal
               yes={() => {
                 removeUser();
               }}
               no={() => setAskToRemove(false)}
               question="Are you sure you want to remove this user?"
-            ></RemoveUserModal>
+            ></RemoveModal>
           )}
         </UserBlockItem>
       </Flex>

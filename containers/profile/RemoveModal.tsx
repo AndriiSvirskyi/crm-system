@@ -16,7 +16,7 @@ const RemoveContainer = styled.div`
   border-radius: 8px;
   z-index: 2;
 `;
-export const RemoveUserModal = ({ yes, no, question }) => {
+export const RemoveModal = ({ yes, no, question }) => {
   return (
     <RemoveContainer>
       <p>{question}</p>

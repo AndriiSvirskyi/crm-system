@@ -2,12 +2,12 @@ import router from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import { BiCalendar, BiCheck } from "react-icons/bi";
-import { ButtonStyled } from "./ButtonStyled";
-import { ImageContainer } from "./ImageContainer";
-import { Flex } from "./User/Flex";
+import { Button } from "../../components/Button";
+import { Flex } from "styled-components/Flex";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { Options } from "./Options";
-import { RemoveUserModal } from "./Modal/RemoveModal";
+import { Options } from "../../components/Options";
+import { RemoveModal } from "containers/profile/RemoveModal";
+import { ImageContainer } from "styled-components/ImageContainer";
 
 const TaskContainer = styled.div`
   width: 100%;
@@ -45,46 +45,51 @@ const Fullname = styled.span`
 `;
 const Title = styled.h3`
   font-weight: 500;
-  text-decoration: ${(props: { line: string }) => props.line || ""};
+  text-decoration: ${(props: { line?: string }) => props.line || ""};
 `;
-
 const OptionsContainer = styled.div`
   position: relative;
 `;
+
+type UserProps = { id: string; image: string; name: string; surname: string };
+
 type TaskProps = {
-  title: string;
-  end: string;
-  starts: string;
-  status: string;
-  description: string;
-  createdBy: string;
   assignedTo: string;
-  users: [{ id: string; image: string; name: string; surname: string }];
+  starts: string;
+  end: string;
+  title: string;
+  description: string;
+  status: string;
+  users: [UserProps];
   changeStatus: () => void;
   removeTask?: () => void;
-  completed?: boolean;
+  setTaskInfoToEdit?: () => void;
   isCreatedByMe?: boolean;
-  editTask?: () => void;
+  setIsEditable?: any;
+  user: UserProps;
 };
+
 export const Task = ({
-  title,
-  end,
-  starts,
-  status,
-  description,
-  createdBy,
   assignedTo,
+  starts,
+  end,
+  title,
+  description,
+  status,
   users,
   changeStatus,
   removeTask,
-  completed,
   isCreatedByMe,
-  editTask
+  setIsEditable,
+  setTaskInfoToEdit,
+  user,
 }: TaskProps) => {
   const [showTask, setShowTask] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [askToRemove, setAskToRemove] = useState(false);
-
+  const assignedToUser: UserProps | [] = users
+    ? users.find(({ id }) => id === assignedTo)
+    : { id: "", image: "", name: "", surname: "" };
   return (
     <>
       <TaskContainer>
@@ -92,9 +97,13 @@ export const Task = ({
           <Flex
             width="100%"
             justify="space-between"
-            onClick={() => setShowTask(!showTask)}
+            onClick={() => {
+              setShowTask(!showTask);
+            }}
           >
-            <Title line={completed && "line-through"}>{title}</Title>
+            <Title line={status === "completed" && "line-through"}>
+              {title}
+            </Title>
             <Flex width="200" align="center">
               <Flex width="105px" justify="space-between">
                 <BiCalendar /> {end}
@@ -103,7 +112,7 @@ export const Task = ({
           </Flex>
           {isCreatedByMe && (
             <OptionsContainer>
-              <ButtonStyled
+              <Button
                 background="none"
                 hoverBack="#0d73bc4c"
                 padding="4px 10px 0 10px"
@@ -115,13 +124,17 @@ export const Task = ({
                     setShowOptions(!showOptions);
                   }}
                 />
-              </ButtonStyled>
+              </Button>
               {showOptions && (
                 <Options
-                  editTask={editTask}
+                  editTask={() => {
+                    setIsEditable(true);
+                    setShowOptions(false);
+                    setTaskInfoToEdit();
+                  }}
                   askToRemove={() => {
-                  
                     setAskToRemove(true);
+                    setShowOptions(false);
                   }}
                 />
               )}
@@ -133,17 +146,17 @@ export const Task = ({
         <TaskInfo>
           <Flex justify="space-between">
             <Flex direction="column" width="70%">
-              <ButtonStyled
+              <Button
                 width="130px"
-                background="#fffcd0"
-                hoverBack="#dfddc6"
+                background={status === "new" ? "#fffcd0" : "#b5f7a2"}
+                hoverBack={status === "new" ? "#fffcd0" : "#b5f7a2"}
                 onClick={changeStatus}
               >
-                <Flex width="100%" align="center">
+                <Flex width="100%" align="center" justify="space-evenly">
                   <BiCheck size="25" />
-                  {status === "new" ? "Mark complete" : "completed"}
+                  {status === "new" ? "mark complete" : "completed"}
                 </Flex>
-              </ButtonStyled>
+              </Button>
               <h3>{title}</h3>
               <p>{description}</p>
             </Flex>
@@ -152,32 +165,18 @@ export const Task = ({
                 <b>Assigned to</b>
                 <Flex align="center" margin="10px 0 20px 0">
                   <ImageContainer
-                    image={
-                      users
-                        ? users.find(({ id }) => id === assignedTo).image
-                        : []
-                    }
+                    image={assignedToUser.image}
                     width="30px"
                     height="30px"
                     margin="0 10px 0 0"
                   />
                   <Fullname
                     onClick={() =>
-                      router.push(
-                        `/employees/${
-                          users
-                            ? users.find(({ id }) => id === assignedTo).id
-                            : []
-                        }`
-                      )
+                      router.push(`/employees/${assignedToUser.id}`)
                     }
                   >
-                    {users
-                      ? users.find(({ id }) => id === assignedTo).name
-                      : []}{" "}
-                    {users
-                      ? users.find(({ id }) => id === assignedTo).surname
-                      : []}
+                    {assignedToUser.name}
+                    {assignedToUser.surname}
                   </Fullname>
                 </Flex>
               </div>
@@ -193,30 +192,15 @@ export const Task = ({
                 <b>Created by</b>
                 <Flex align="center" margin="10px 0 20px 0">
                   <ImageContainer
-                    image={
-                      users
-                        ? users.find(({ id }) => id === createdBy).image
-                        : []
-                    }
+                    image={user.image}
                     width="30px"
                     height="30px"
                     margin="0 10px 0 0"
                   />
                   <Fullname
-                    onClick={() =>
-                      router.push(
-                        `/employees/${
-                          users
-                            ? users.find(({ id }) => id === createdBy).id
-                            : []
-                        }`
-                      )
-                    }
+                    onClick={() => router.push(`/employees/${user.id}`)}
                   >
-                    {users ? users.find(({ id }) => id === createdBy).name : []}{" "}
-                    {users
-                      ? users.find(({ id }) => id === createdBy).surname
-                      : []}
+                    {user.name} {user.surname}
                   </Fullname>
                 </Flex>
               </div>
@@ -225,7 +209,7 @@ export const Task = ({
         </TaskInfo>
       )}
       {askToRemove && (
-        <RemoveUserModal
+        <RemoveModal
           yes={() => {
             removeTask();
             setAskToRemove(false);
