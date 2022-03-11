@@ -84,7 +84,6 @@ export default function InputFilter({
     setFilteredEmployees(
       allEmployees.filter((employee) => {
         for (let i = 0; i < filterKeys.length; i++) {
-          console.log(!employee[filterKeys[i]]);
           if (
             !employee[filterKeys[i]]
               .toLowerCase()

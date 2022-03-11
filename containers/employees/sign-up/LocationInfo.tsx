@@ -78,7 +78,6 @@ export default function LocationInfo({
         type="date"
         value={birthday}
         onChange={(e) => {
-          console.log(e);
           if (errors.birthday) {
             setErrors((oldErrors) => {
               return { ...oldErrors, birthday: false };

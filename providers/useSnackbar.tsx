@@ -17,7 +17,6 @@ export function SnackBarContextProvider({ children }) {
     type: "",
     isActive: false,
   });
-  console.log(snackBar);
   const setSnackBarValues = ({ message, type }) => {
     const timer = setTimeout(() => {
       closeHandler();

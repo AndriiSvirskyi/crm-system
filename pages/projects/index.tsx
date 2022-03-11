@@ -15,6 +15,7 @@ import router from "next/router";
 import Loader from "styled-components/Loader";
 import { ImageContainer } from "styled-components/ImageContainer";
 
+
 type projectsProps = {
   [key: string]: {
     id: string;

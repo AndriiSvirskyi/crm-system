@@ -23,6 +23,7 @@ import { Label } from "styled-components/Label";
 import { Button } from "components/Button";
 import { Input } from "components/Input";
 
+
 const GreetingContainer = styled.div`
   height: 100px;
   margin: 0 0 20px 0;
@@ -172,7 +173,6 @@ export default function Home() {
   };
   const saveLeave = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(startLeave + " | " + endLeave + " | " + typeLeave);
   };
 
   return (
@@ -345,6 +345,7 @@ export default function Home() {
               </Form>
             </Modal>
           )}
+
         </Flex>
       </UserWindow>
     </MainLayout>

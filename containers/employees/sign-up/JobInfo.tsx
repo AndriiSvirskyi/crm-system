@@ -1,8 +1,9 @@
 import { Input } from "components/Input";
 import { Flex } from "styled-components/Flex";
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
+import InputDropDown from "components/DropDown/InputDropDown";
 
 const Label = styled.label`
   width: 50%;
@@ -65,18 +66,6 @@ export default function JobInfo({
     []
   );
 
-  const reportToList = useMemo(
-    () => (
-      <datalist id="reportsTo">
-        {Object.values(users).map((user: any) => {
-          return (
-            <option key={user.id} value={`${user.name} ${user.surname}`} />
-          );
-        })}
-      </datalist>
-    ),
-    []
-  );
   const validateFields = useCallback(
     ({ position, department, reportsTo, division, startDate }) => {
       const MIN_LENGTH = 2;
@@ -158,29 +147,24 @@ export default function JobInfo({
     ),
     [department, errors.department]
   );
-  const ReportsToInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={reportsTo}
-        onChange={(e) => {
-          if (errors.reportsTo) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, reportsTo: false };
-            });
-          }
-          setReportsTo(e.target.value);
-        }}
-        type="text"
+  
+  const ReportsToInput: JSX.Element = useMemo(() => {
+    const reportToList = users.reduce((acc, cur) => {
+      acc.push({ id: cur.id, value: `${cur.name} ${cur.surname}` });
+      return acc;
+    }, []);
+    console.log(reportsTo);
+    return (
+      <InputDropDown
+        setState={setReportsTo}
+        list={reportToList}
         placeholder="Reports to"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        list="reportsTo"
         error={errors.reportsTo}
       />
-    ),
-    [reportsTo, errors.reportsTo]
-  );
+    );
+  }, [reportsTo, users, errors.reportsTo]);
+
+
   const DivisionInput: JSX.Element = useMemo(
     () => (
       <Input
@@ -233,7 +217,6 @@ export default function JobInfo({
       {DepartmentInput}
       {departmentsList}
       {ReportsToInput}
-      {reportToList}
       {DivisionInput}
       {divisionsList}
       <Flex>

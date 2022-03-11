@@ -56,6 +56,7 @@ type InputProps = {
   mediaMargin?: string;
   margin?: string;
   onChange?: any;
+  onClick?:any;
   outline?: string;
   readonly?: boolean;
   background?: string;
@@ -72,6 +73,7 @@ export const Input = ({
   error,
   margin,
   onChange,
+  onClick,
   value,
   outline,
   readonly,
@@ -93,6 +95,7 @@ export const Input = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
+        onClick={onClick}
         value={value}
         required
       />
