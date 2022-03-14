@@ -9,7 +9,7 @@ const OptionsContainer = styled.div`
   position: absolute;
   background-color: white;
   overflow-y: auto;
-  max-height: 250px;
+  max-height: 230px;
   width: 180px;
   text-align: left;
   z-index: 1;
@@ -23,7 +23,7 @@ const Option = styled.div`
     background-color: #ddd;
   }
 `;
-
+let tagName;
 type DropDownProps = {
   setState: any;
   list: any;
@@ -38,7 +38,16 @@ export default function InputDropDown({
 }: DropDownProps) {
   const [isDropBox, setDropBox] = useState(false);
   const [valueInput, setValueInput] = useState("");
-
+  function setCurrentValue(name) {
+    for (let i = 0; i < list.length; i++) {
+      if (name === list[i].label) {
+        setValueInput(name);
+        setState(list[i].value);
+        setDropBox(false);
+        return;
+      }
+    }
+  }
   return (
     <Container>
       <Input
@@ -49,27 +58,33 @@ export default function InputDropDown({
         error={error}
         value={valueInput}
         onChange={(e) => {
+          setState("");
           setDropBox(true);
           setValueInput(e.target.value);
         }}
         onClick={() => setDropBox(!isDropBox)}
       />
       {isDropBox && (
-        <OptionsContainer>
+        <OptionsContainer
+          onClick={(e: any) => {
+            tagName = e.target.textContent;
+            setCurrentValue(tagName);
+          }}
+        >
           {list
-            .filter((el) =>
-              el.value.toLowerCase().includes(valueInput.toLocaleLowerCase())
-            )
+            .filter((el) => {
+              for (let i = 0; i < el.parts.length; i++) {
+                if (el.parts[i].startsWith(valueInput.toLowerCase())) {
+                  return true;
+                }
+              }
+            })
             .map((el) => (
               <Option
-                onClick={() => {
-                  setValueInput(el.value);
-                  setState(el);
-                  setDropBox(false);
-                }}
-                key={el.id}
+                // data-atribute={el.label}
+                key={el.value}
               >
-                {el.value}
+                {el.label}
               </Option>
             ))}
         </OptionsContainer>

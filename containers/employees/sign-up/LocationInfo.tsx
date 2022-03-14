@@ -3,6 +3,7 @@ import { Flex } from "styled-components/Flex";
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
+import InputDropDown from "components/DropDown/InputDropDown";
 
 const Label = styled.label`
   width: 220px;
@@ -24,17 +25,6 @@ export default function LocationInfo({
   const [role, setRole] = useState(data.role || "");
   const [errors, setErrors] = useState<any>({});
 
-  const roleList = useMemo(
-    () => (
-      <datalist id="role">
-        {["admin", "manager", "user"].map((role) => (
-          <option key={role} value={role} />
-        ))}
-      </datalist>
-    ),
-    []
-  );
-
   const validateFields = useCallback(
     ({ gender, country, city, role, index, birthday }) => {
       const MIN_LENGTH = 2;
@@ -46,7 +36,6 @@ export default function LocationInfo({
         ["country", country],
         ["city", city],
         ["index", index],
-        ["role", role],
       ];
       for (let i = 0; i < simpleData.length; i++) {
         if (simpleData[i][1].length < MIN_LENGTH) {
@@ -57,6 +46,9 @@ export default function LocationInfo({
           inputErrors[simpleData[i][0]] = `Too many letters`;
           countErrors++;
         }
+      }
+      if (!role) {
+        inputErrors.role = `Empty or not correct`;
       }
       if (!birthday) {
         inputErrors.birthday = true;
@@ -180,29 +172,30 @@ export default function LocationInfo({
     ),
     [index, errors.index]
   );
-  const RoleInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={role}
-        onChange={(e) => {
-          if (errors.role) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, role: false };
-            });
-          }
-          setRole(e.target.value);
-        }}
-        type="text"
+  const RoleInput: JSX.Element = useMemo(() => {
+    if (role) {
+      setErrors((oldErrors) => {
+        return { ...oldErrors, role: false };
+      });
+    }
+    const roles = ["admin", "manager", "user"];
+    const roleList = roles.reduce((acc, cur) => {
+      acc.push({
+        value: cur,
+        label: cur,
+        parts: cur.toLowerCase().split(" "),
+      });
+      return acc;
+    }, []);
+    return (
+      <InputDropDown
+        setState={setRole}
+        list={roleList}
         placeholder="Role"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        list="role"
         error={errors.role}
       />
-    ),
-    [role, errors.role]
-  );
+    );
+  }, [role, errors.role]);
 
   return (
     <InputContainer>
@@ -222,7 +215,6 @@ export default function LocationInfo({
       <Flex justify="" width="100%"></Flex>
       {IndexInput}
       {RoleInput}
-      {roleList}
 
       <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
       <StepButton
