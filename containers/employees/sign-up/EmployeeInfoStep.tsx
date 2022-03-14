@@ -1,4 +1,4 @@
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "styled-components/Flex";
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";

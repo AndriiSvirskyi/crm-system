@@ -1,4 +1,4 @@
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const OptionsContainer = styled.div`
   background-color: white;
   overflow-y: auto;
   max-height: 230px;
-  width: 180px;
+  width: 100%;
   text-align: left;
   z-index: 1;
   border: 1px solid #ddd;
@@ -23,31 +23,46 @@ const Option = styled.div`
     background-color: #ddd;
   }
 `;
-let tagName;
+
 type DropDownProps = {
-  setState: any;
+  callback: any;
   list: any;
   placeholder: string;
   error?: any;
 };
-export default function InputDropDown({
-  setState,
+export default function InputSelect({
+  callback,
   list,
   placeholder,
   error,
 }: DropDownProps) {
   const [isDropBox, setDropBox] = useState(false);
   const [valueInput, setValueInput] = useState("");
-  function setCurrentValue(name) {
+  function setCurrentValue(selectedTagContent) {
     for (let i = 0; i < list.length; i++) {
-      if (name === list[i].label) {
-        setValueInput(name);
-        setState(list[i].value);
+      if (selectedTagContent === list[i].label) {
+        setValueInput(selectedTagContent);
+        callback(list[i].value);
         setDropBox(false);
         return;
       }
     }
   }
+  const filteredOptions = (listOfItem) => {
+    return listOfItem.filter((el) => {
+      for (let i = 0; i < el.parts.length; i++) {
+        if (el.parts[i].startsWith(valueInput.toLowerCase())) {
+          return true;
+        }
+      }
+    });
+  };
+  const renderOptions = (filteredArrayOfOptions) => {
+    return filteredArrayOfOptions.map((el) => (
+      <Option key={el.value}>{el.label}</Option>
+    ));
+  };
+
   return (
     <Container>
       <Input
@@ -58,7 +73,7 @@ export default function InputDropDown({
         error={error}
         value={valueInput}
         onChange={(e) => {
-          setState("");
+          callback("");
           setDropBox(true);
           setValueInput(e.target.value);
         }}
@@ -67,26 +82,11 @@ export default function InputDropDown({
       {isDropBox && (
         <OptionsContainer
           onClick={(e: any) => {
-            tagName = e.target.textContent;
+            let tagName = e.target.textContent;
             setCurrentValue(tagName);
           }}
         >
-          {list
-            .filter((el) => {
-              for (let i = 0; i < el.parts.length; i++) {
-                if (el.parts[i].startsWith(valueInput.toLowerCase())) {
-                  return true;
-                }
-              }
-            })
-            .map((el) => (
-              <Option
-                // data-atribute={el.label}
-                key={el.value}
-              >
-                {el.label}
-              </Option>
-            ))}
+          {renderOptions(filteredOptions(list))}
         </OptionsContainer>
       )}
     </Container>

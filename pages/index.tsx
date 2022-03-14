@@ -21,7 +21,7 @@ import { Form } from "styled-components/Form";
 import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
 import { Label } from "styled-components/Label";
 import { Button } from "components/Button";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 
 
 const GreetingContainer = styled.div`

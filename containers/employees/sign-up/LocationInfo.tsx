@@ -1,9 +1,9 @@
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "styled-components/Flex";
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
-import InputDropDown from "components/DropDown/InputDropDown";
+import InputSelect from "components/Inputs/InputSelect";
 
 const Label = styled.label`
   width: 220px;
@@ -49,6 +49,8 @@ export default function LocationInfo({
       }
       if (!role) {
         inputErrors.role = `Empty or not correct`;
+        countErrors++;
+
       }
       if (!birthday) {
         inputErrors.birthday = true;
@@ -188,8 +190,8 @@ export default function LocationInfo({
       return acc;
     }, []);
     return (
-      <InputDropDown
-        setState={setRole}
+      <InputSelect
+        callback={setRole}
         list={roleList}
         placeholder="Role"
         error={errors.role}

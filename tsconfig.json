@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "baseUrl": "./"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "components/Input.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_app.tsx", "components/Inputs/Input.tsx"],
   "exclude": ["node_modules"]
 }

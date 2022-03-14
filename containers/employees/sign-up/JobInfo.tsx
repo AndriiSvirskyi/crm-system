@@ -1,9 +1,10 @@
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "styled-components/Flex";
 import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
-import InputDropDown from "components/DropDown/InputDropDown";
+import InputSelect from "components/Inputs/InputSelect";
+
 
 const Label = styled.label`
   width: 50%;
@@ -76,8 +77,8 @@ export default function JobInfo({
       return acc;
     }, []);
     return (
-      <InputDropDown
-        setState={setPosition}
+      <InputSelect
+        callback={setPosition}
         list={positionList}
         placeholder="Position"
         error={errors.position}
@@ -101,8 +102,8 @@ export default function JobInfo({
       return acc;
     }, []);
     return (
-      <InputDropDown
-        setState={setDepartment}
+      <InputSelect
+        callback={setDepartment}
         list={departmentList}
         placeholder="Department"
         error={errors.department}
@@ -124,8 +125,8 @@ export default function JobInfo({
       return acc;
     }, []);
     return (
-      <InputDropDown
-        setState={setReportsTo}
+      <InputSelect
+        callback={setReportsTo}
         list={reportToList}
         placeholder="reportsTo"
         error={errors.reportsTo}
@@ -156,8 +157,8 @@ export default function JobInfo({
       return acc;
     }, []);
     return (
-      <InputDropDown
-        setState={setDivision}
+      <InputSelect
+        callback={setDivision}
         list={divisionList}
         placeholder="Division"
         error={errors.division}

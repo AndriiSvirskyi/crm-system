@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { UserBlockItem, UserTitle } from "../../../styled-components/UserForm";
 import { Label } from "../../../styled-components/Label";
 import router from "next/router";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "../../../styled-components/Flex";
 import { Button } from "components/Button";
 
