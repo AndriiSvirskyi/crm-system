@@ -1,18 +1,35 @@
 import { Input } from "components/Inputs/Input";
 import React, { useState } from "react";
 import styled from "styled-components";
-
 const Container = styled.div`
   margin: 0 0 10px 0;
+  width: 100%;
 `;
+type ArrowProps = {
+  active:boolean;
+}
+const Arrow = styled.label<ArrowProps>`
+  position: absolute;
+  cursor: text;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid grey;
+  border-right: 2px solid grey;
+  z-index: 1;
+  right: 67px;
+  margin-top: 15px;
+  transform: ${({active})=> active ? `rotate(135deg)` : `rotate(-45deg)`}; 
+`;
+
 const OptionsContainer = styled.div`
   position: absolute;
   background-color: white;
   overflow-y: auto;
   max-height: 230px;
-  width: 100%;
+  width: 79%;
   text-align: left;
-  z-index: 1;
+  z-index: 2;
   border: 1px solid #ddd;
   border-radius: 8px;
 `;
@@ -23,7 +40,6 @@ const Option = styled.div`
     background-color: #ddd;
   }
 `;
-
 type DropDownProps = {
   callback: any;
   list: any;
@@ -51,7 +67,7 @@ export default function InputSelect({
   const filteredOptions = (listOfItem) => {
     return listOfItem.filter((el) => {
       for (let i = 0; i < el.parts.length; i++) {
-        if (el.parts[i].startsWith(valueInput.toLowerCase())) {
+        if (el.parts[i].startsWith(valueInput.toLowerCase()) || (el.label.startsWith(valueInput))) {
           return true;
         }
       }
@@ -65,6 +81,7 @@ export default function InputSelect({
 
   return (
     <Container>
+      <Arrow active={isDropBox} />
       <Input
         type="text"
         placeholder={placeholder}
