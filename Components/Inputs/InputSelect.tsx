@@ -1,25 +1,22 @@
 import { Input } from "components/Inputs/Input";
 import React, { useState } from "react";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import styled from "styled-components";
+
 const Container = styled.div`
+  position: relative;
   margin: 0 0 10px 0;
   width: 100%;
 `;
-type ArrowProps = {
-  active:boolean;
-}
-const Arrow = styled.label<ArrowProps>`
+
+const IconWrap = styled.label`
   position: absolute;
-  cursor: text;
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-top: 2px solid grey;
-  border-right: 2px solid grey;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  right: 10px;
+  cursor: pointer;
   z-index: 1;
-  right: 67px;
-  margin-top: 15px;
-  transform: ${({active})=> active ? `rotate(135deg)` : `rotate(-45deg)`}; 
 `;
 
 const OptionsContainer = styled.div`
@@ -27,7 +24,7 @@ const OptionsContainer = styled.div`
   background-color: white;
   overflow-y: auto;
   max-height: 230px;
-  width: 79%;
+  width: 100%;
   text-align: left;
   z-index: 2;
   border: 1px solid #ddd;
@@ -46,6 +43,7 @@ type DropDownProps = {
   placeholder: string;
   error?: any;
 };
+
 export default function InputSelect({
   callback,
   list,
@@ -54,6 +52,7 @@ export default function InputSelect({
 }: DropDownProps) {
   const [isDropBox, setDropBox] = useState(false);
   const [valueInput, setValueInput] = useState("");
+
   function setCurrentValue(selectedTagContent) {
     for (let i = 0; i < list.length; i++) {
       if (selectedTagContent === list[i].label) {
@@ -64,15 +63,20 @@ export default function InputSelect({
       }
     }
   }
+
   const filteredOptions = (listOfItem) => {
     return listOfItem.filter((el) => {
       for (let i = 0; i < el.parts.length; i++) {
-        if (el.parts[i].startsWith(valueInput.toLowerCase()) || (el.label.startsWith(valueInput))) {
+        if (
+          el.parts[i].startsWith(valueInput.toLowerCase()) ||
+          el.label.startsWith(valueInput)
+        ) {
           return true;
         }
       }
     });
   };
+
   const renderOptions = (filteredArrayOfOptions) => {
     return filteredArrayOfOptions.map((el) => (
       <Option key={el.value}>{el.label}</Option>
@@ -81,7 +85,9 @@ export default function InputSelect({
 
   return (
     <Container>
-      <Arrow active={isDropBox} />
+      <IconWrap onClick={() => setDropBox(!isDropBox)}>
+        {isDropBox ? <AiFillCaretUp /> : <AiFillCaretDown />}
+      </IconWrap>
       <Input
         type="text"
         placeholder={placeholder}
