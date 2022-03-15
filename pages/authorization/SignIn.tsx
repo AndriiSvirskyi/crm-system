@@ -4,7 +4,7 @@ import { Form } from "styled-components/Form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import router from "next/router";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Button } from "components/Button";
 
 const SignInPage = styled.div`

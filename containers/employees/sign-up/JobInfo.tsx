@@ -1,8 +1,10 @@
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "styled-components/Flex";
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
+import InputSelect from "components/Inputs/InputSelect";
+
 
 const Label = styled.label`
   width: 50%;
@@ -23,63 +25,9 @@ export default function JobInfo({
   const [division, setDivision] = useState("");
   const [startDate, setStartDate] = useState("");
   const [errors, setErrors] = useState<any>({});
-  const positionsList = useMemo(
-    () => (
-      <datalist id="positions">
-        {["Team Lead", "Junior", "Midle", "Trainee", "Seniour"].map(
-          (position) => (
-            <option key={position} value={position} />
-          )
-        )}
-      </datalist>
-    ),
-    []
-  );
-
-  const departmentsList = useMemo(
-    () => (
-      <datalist id="departments">
-        {["Design", "HR", "Marketing", "Tech", "Finance"].map((department) => (
-          <option key={department} value={department} />
-        ))}
-      </datalist>
-    ),
-    []
-  );
-
-  const divisionsList = useMemo(
-    () => (
-      <datalist id="divisions">
-        {[
-          "Backend",
-          "DevOps",
-          "Business Analysis",
-          "Frontend",
-          "FullStack",
-          "Recruitment",
-        ].map((division) => {
-          return <option key={division} value={division} />;
-        })}
-      </datalist>
-    ),
-    []
-  );
-
-  const reportToList = useMemo(
-    () => (
-      <datalist id="reportsTo">
-        {Object.values(users).map((user: any) => {
-          return (
-            <option key={user.id} value={`${user.name} ${user.surname}`} />
-          );
-        })}
-      </datalist>
-    ),
-    []
-  );
   const validateFields = useCallback(
     ({ position, department, reportsTo, division, startDate }) => {
-      const MIN_LENGTH = 2;
+      const MIN_LENGTH = 1;
       const MAX_LENGTH = 30;
       let countErrors = 0;
       const inputErrors: any = {};
@@ -91,7 +39,7 @@ export default function JobInfo({
       ];
       for (let i = 0; i < simpleData.length; i++) {
         if (simpleData[i][1].length < MIN_LENGTH) {
-          inputErrors[simpleData[i][0]] = `Too short or empty`;
+          inputErrors[simpleData[i][0]] = `Emplty or not correct`;
           countErrors++;
         }
         if (simpleData[i][1].length > MAX_LENGTH) {
@@ -112,98 +60,112 @@ export default function JobInfo({
     []
   );
 
-  const PositionInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={position}
-        onChange={(e) => {
-          if (errors.position) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, position: false };
-            });
-          }
-          setPosition(e.target.value);
-        }}
-        type="select"
+  const PositionInput: JSX.Element = useMemo(() => {
+    if (position) {
+      setErrors((oldErrors) => {
+        return { ...oldErrors, role: false };
+      });
+    }
+    const positions = ["Team Lead", "Junior", "Midle", "Trainee", "Seniour"];
+
+    const positionList = positions.reduce((acc, cur) => {
+      acc.push({
+        value: cur,
+        label: cur,
+        parts: cur.toLowerCase().split(" "),
+      });
+      return acc;
+    }, []);
+    return (
+      <InputSelect
+        callback={setPosition}
+        list={positionList}
         placeholder="Position"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        list="positions"
         error={errors.position}
       />
-    ),
-    [position, errors.position]
-  );
-  const DepartmentInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={department}
-        onChange={(e) => {
-          if (errors.department) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, department: false };
-            });
-          }
-          setDepartment(e.target.value);
-        }}
-        type="text"
+    );
+  }, [position, errors.position]);
+  const DepartmentInput: JSX.Element = useMemo(() => {
+    if (department) {
+      setErrors((oldErrors) => {
+        return { ...oldErrors, role: false };
+      });
+    }
+    const departments = ["Design", "HR", "Marketing", "Tech", "Finance"];
+
+    const departmentList = departments.reduce((acc, cur) => {
+      acc.push({
+        value: cur,
+        label: cur,
+        parts: cur.toLowerCase().split(" "),
+      });
+      return acc;
+    }, []);
+    return (
+      <InputSelect
+        callback={setDepartment}
+        list={departmentList}
         placeholder="Department"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        list="departments"
         error={errors.department}
       />
-    ),
-    [department, errors.department]
-  );
-  const ReportsToInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={reportsTo}
-        onChange={(e) => {
-          if (errors.reportsTo) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, reportsTo: false };
-            });
-          }
-          setReportsTo(e.target.value);
-        }}
-        type="text"
-        placeholder="Reports to"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        list="reportsTo"
+    );
+  }, [department, errors.department]);
+  const ReportsToInput: JSX.Element = useMemo(() => {
+    if (reportsTo) {
+      setErrors((oldErrors) => {
+        return { ...oldErrors, role: false };
+      });
+    }
+    const reportToList = users.reduce((acc, cur) => {
+      acc.push({
+        value: cur.id,
+        label: `${cur.name} ${cur.surname}`,
+        parts: [cur.name.toLowerCase(), cur.surname.toLowerCase()],
+      });
+      return acc;
+    }, []);
+    return (
+      <InputSelect
+        callback={setReportsTo}
+        list={reportToList}
+        placeholder="reportsTo"
         error={errors.reportsTo}
       />
-    ),
-    [reportsTo, errors.reportsTo]
-  );
-  const DivisionInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={division}
-        onChange={(e) => {
-          if (errors.division) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, division: false };
-            });
-          }
-          setDivision(e.target.value);
-        }}
-        type="text"
+    );
+  }, [reportsTo, users, errors.reportsTo]);
+
+  const DivisionInput: JSX.Element = useMemo(() => {
+    if (division) {
+      setErrors((oldErrors) => {
+        return { ...oldErrors, role: false };
+      });
+    }
+    const divisions = [
+      "Backend",
+      "DevOps",
+      "Business Analysis",
+      "Frontend",
+      "FullStack",
+      "Recruitment",
+    ];
+    const divisionList = divisions.reduce((acc, cur) => {
+      acc.push({
+        value: cur,
+        label: cur,
+        parts: cur.toLowerCase().split(" "),
+      });
+      return acc;
+    }, []);
+    return (
+      <InputSelect
+        callback={setDivision}
+        list={divisionList}
         placeholder="Division"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        list="divisions"
         error={errors.division}
       />
-    ),
-    [division, errors.division]
-  );
+    );
+  }, [division, errors.division]);
+
   const StartDateInput: JSX.Element = useMemo(
     () => (
       <Input
@@ -229,13 +191,9 @@ export default function JobInfo({
   return (
     <InputContainer>
       {PositionInput}
-      {positionsList}
       {DepartmentInput}
-      {departmentsList}
       {ReportsToInput}
-      {reportToList}
       {DivisionInput}
-      {divisionsList}
       <Flex>
         <Label>Start work since:</Label>
         {StartDateInput}

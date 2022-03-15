@@ -1,5 +1,5 @@
 import { Button } from "components/Button";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import Modal from "components/Modal";
 import { Flex } from "styled-components/Flex";
 import { Form } from "styled-components/Form";

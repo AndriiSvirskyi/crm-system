@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserBlockItem, UserTitle } from "../../../styled-components/UserForm";
 import { Label } from "../../../styled-components/Label";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "../../../styled-components/Flex";
 import { Button } from "components/Button";
 

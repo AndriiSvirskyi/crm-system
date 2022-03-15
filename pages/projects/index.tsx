@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import MainLayout from "layouts/MainLayout";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { Flex } from "styled-components/Flex";
 import {
   UserBlockItem,
@@ -14,6 +14,7 @@ import {
 import router from "next/router";
 import Loader from "styled-components/Loader";
 import { ImageContainer } from "styled-components/ImageContainer";
+
 
 type projectsProps = {
   [key: string]: {

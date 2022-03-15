@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "components/Button";
 import styled from "styled-components";
 import Modal from "components/Modal";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import { UserText } from "styled-components/UserForm";
 import { AiFillBell } from "react-icons/ai";
 import { CgAddR } from "react-icons/cg";

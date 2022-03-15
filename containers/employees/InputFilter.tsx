@@ -3,7 +3,7 @@ import { Flex } from "styled-components/Flex";
 import { UserTitle } from "styled-components/UserForm";
 import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
 import styled from "styled-components";
 import EmployeeTabs from "./EmployeeTabs";
 
@@ -84,7 +84,6 @@ export default function InputFilter({
     setFilteredEmployees(
       allEmployees.filter((employee) => {
         for (let i = 0; i < filterKeys.length; i++) {
-          console.log(!employee[filterKeys[i]]);
           if (
             !employee[filterKeys[i]]
               .toLowerCase()

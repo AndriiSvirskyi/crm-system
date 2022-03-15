@@ -61,7 +61,7 @@ export default function SignUpSteper({ closeModal, users, successCreateUser }) {
         image:
           "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
         projects: [{ id: "3fdffs", name: "Blackchain", role: "manager" }],
-        reportsTo: "1",
+        reportsTo: dataJob.reportsTo,
         company: "4ire",
         position: dataJob.position,
         typeOfWork: "???",
@@ -112,7 +112,6 @@ export default function SignUpSteper({ closeModal, users, successCreateUser }) {
           <JobInfo
             users={users}
             goToThePreviousStep={goToThePreviousStep}
-            currentStep={currentStep}
             submit={submit}
             closeModal={closeModal}
           />

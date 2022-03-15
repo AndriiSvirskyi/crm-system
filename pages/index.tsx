@@ -21,7 +21,8 @@ import { Form } from "styled-components/Form";
 import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
 import { Label } from "styled-components/Label";
 import { Button } from "components/Button";
-import { Input } from "components/Input";
+import { Input } from "components/Inputs/Input";
+
 
 const GreetingContainer = styled.div`
   height: 100px;
@@ -172,7 +173,6 @@ export default function Home() {
   };
   const saveLeave = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log(startLeave + " | " + endLeave + " | " + typeLeave);
   };
 
   return (
@@ -345,6 +345,7 @@ export default function Home() {
               </Form>
             </Modal>
           )}
+
         </Flex>
       </UserWindow>
     </MainLayout>
