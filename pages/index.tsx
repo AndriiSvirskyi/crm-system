@@ -12,7 +12,6 @@ import {
   FaLink,
   FaPlane,
 } from "react-icons/fa";
-import MainLayout from "../Layouts/MainLayout";
 import { UserWindow, UserBlockItem } from "styled-components/UserForm";
 import { Flex } from "styled-components/Flex";
 import { ImageContainer } from "styled-components/ImageContainer";
@@ -22,6 +21,7 @@ import Slider from "containers/profile/timeOffTab.tsx/SliderTimeOff";
 import { Label } from "styled-components/Label";
 import { Button } from "components/Button";
 import { Input } from "components/Inputs/Input";
+import MainLayout from "layouts/MainLayout";
 
 
 const GreetingContainer = styled.div`
