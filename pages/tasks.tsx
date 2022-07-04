@@ -4,7 +4,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import { SnackbarContext } from "providers/useSnackbar";
 import { FaPlus } from "react-icons/fa";
-import MainLayout from "Layouts/MainLayout";
+import MainLayout from "layouts/MainLayout";
 import {
   UserTitle,
   UserWindow,
