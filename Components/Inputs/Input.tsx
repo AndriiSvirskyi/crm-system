@@ -8,6 +8,8 @@ type StyledInputProps = {
   error?: string | boolean;
   outline?: string;
   background?: string;
+  type?: string;
+  float?: string;
 };
 
 type InputWrapProps = {
@@ -32,13 +34,13 @@ const Error = styled.div`
 const StyledInput = styled.input<StyledInputProps>`
   outline: ${({ outline }) => outline || "none"};
   height: ${({ height }) => height || "auto"};
-  width: ${({ width }) => `calc(${width} - 25px)` || "auto"};
+  width: ${({ width, type }) => (type === "date" ? "160px" : `calc(${width} - 25px)` || "auto")};
   background: ${({ background }) => background || "#d0d0d0"};
-  border: ${({ error }) =>
-    error ? "1px solid #fe5959c9" : "1px solid transparent"};
+  border: ${({ error }) => (error ? "1px solid #fe5959c9" : "1px solid transparent")};
   border-radius: 8px;
   padding: 0 0 0 25px;
-
+  font-size: 16px;
+  float: ${({ float }) => float || ""};
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -56,12 +58,13 @@ type InputProps = {
   mediaMargin?: string;
   margin?: string;
   onChange?: any;
-  onClick?:any;
+  onClick?: any;
   outline?: string;
   readonly?: boolean;
   background?: string;
   id?: string;
-  required?: boolean
+  required?: boolean;
+  float?: string;
 };
 
 export const Input = ({
@@ -79,7 +82,7 @@ export const Input = ({
   readonly,
   background,
   id,
-  required
+  float,
 }: InputProps) => {
   return (
     <InputWrap width={width} margin={margin}>
@@ -97,7 +100,7 @@ export const Input = ({
         onChange={onChange}
         onClick={onClick}
         value={value}
-        required
+        float={float}
       />
       {error && <Error>{error}</Error>}
     </InputWrap>

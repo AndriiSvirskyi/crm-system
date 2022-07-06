@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 500px;
+  width: 600px;
   background: #ffffff;
-  border-radius: 8px;
 
   @media all and (max-width: 850px) {
-    width: 90%;
+    width: 400px;
   }
 `;
 
@@ -14,7 +13,7 @@ const Title = styled.h2`
   font-weight: normal;
   font-size: 25px;
   line-height: 30px;
-  text-align: center;
+  text-align: left;
   margin: 0 0 30px 0;
   @media all and (max-width: 470px) {
     margin: 0 0 15px 0;
@@ -32,7 +31,7 @@ export const Form = ({ submit, children, content }) => {
   return (
     <Container>
       <Title>{content}</Title>
-      <InputsForm onSubmit={submit} action="">
+      <InputsForm onSubmit={submit} action=''>
         {children}
       </InputsForm>
     </Container>

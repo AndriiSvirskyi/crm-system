@@ -55,7 +55,11 @@ const SignIn = () => {
       } else {
         localStorage.setItem(
           "user",
-          JSON.stringify(users.find(({ email }) => email === emailInput))
+          JSON.stringify(
+            {id: users.find(({ email }) => email === emailInput).id,
+            role: users.find(({ email }) => email === emailInput).role
+          }
+            )
         );
         router.push(
           `/employees/${users.find(({ email }) => email === emailInput).id}`
