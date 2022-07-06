@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import { Flex } from "styled-components/Flex";
 import router from "next/router";
-import { ImageContainer } from "styled-components/ImageContainer";
+import { Button } from "Components/Button";
+import ProjectTableRow from "./ProjectTableRow";
+import { useState } from "react";
+import Modal from "Components/Modal";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { usersState } from "state/atoms";
+import ProjectAddForm from "./ProjectAddForm";
 
 const TableCard = styled.div`
   margin-bottom: 1.25rem;
@@ -24,10 +30,6 @@ const TH = styled.th`
   text-align: inherit;
 `;
 
-const TD = styled.td`
-  padding: 0.75rem 1.25rem;
-  border-top: 1px solid #ddd;
-`;
 const Anchor = styled.span`
   cursor: pointer;
   a {
@@ -35,6 +37,13 @@ const Anchor = styled.span`
     text-decoration: none;
   }
 `;
+
+const StyledButton = styled(Button)`
+  height: 30px;
+  font-size: 16px;
+  padding: 0 10px;
+`;
+
 const tHead = (
   <thead>
     <tr>
@@ -46,9 +55,92 @@ const tHead = (
     </tr>
   </thead>
 );
+
 export const ProjectContainer = ({ project }) => {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isChangeModalOpen, setIsChangeModalOpen] = useState(false);
+  const users = useRecoilValue(usersState);
+  const setUsersToRecoil = useSetRecoilState(usersState);
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+
+  const getUsers = () => {
+    const response = fetch("http://localhost:4200/users");
+    response
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setUsersToRecoil(res);
+      });
+  };
+
+  const handleOpenAddModal = (e) => {
+    e.preventDefault();
+    setIsAddModalOpen(true);
+  };
+  const handleOpenChangeModal = (e) => {
+    e.preventDefault();
+    setIsChangeModalOpen(true);
+  };
+  const handleAddMember = async (e) => {
+    e.preventDefault();
+    const user = users.find((user) => `${user.name} ${user.surname}` === name);
+    await fetch(`http://localhost:4200/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        projects: user.projects.find((item) => item.id === project.id)
+          ? user.projects.map((item) => (item.id === project.id ? { ...item, role: position } : item))
+          : [
+              ...user.projects,
+              {
+                id: project.id,
+                name: project.name,
+                role: position,
+              },
+            ],
+      }),
+    });
+    getUsers();
+    setIsAddModalOpen(false);
+    setName("");
+    setPosition("");
+  };
+
+  const handleChangeLead = async (e) => {
+    e.preventDefault();
+    const user = users.find((user) => `${user.name} ${user.surname}` === name);
+    await fetch(`http://localhost:4200/users/${project.lead.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        projects: project.lead.projects.filter((item) => item.id !== project.id),
+      }),
+    });
+    await fetch(`http://localhost:4200/users/${user.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        projects: user.projects.find((item) => item.id === project.id)
+          ? user.projects.map((item) => (item.id === project.id ? { ...item, role: "Team Lead" } : item))
+          : [
+              ...user.projects,
+              {
+                id: project.id,
+                name: project.name,
+                role: "Team Lead",
+              },
+            ],
+      }),
+    });
+    getUsers();
+    setIsChangeModalOpen(false);
+    setName("");
+  };
+
   return (
-    <Flex direction="column" padding="10px">
+    <Flex direction='column' padding='10px'>
       <span>
         <Anchor onClick={() => router.push("/projects")}>
           <a>Teams </a>
@@ -57,81 +149,84 @@ export const ProjectContainer = ({ project }) => {
       </span>
       <h1>{project.name}</h1>
       <div>
-        <h2>Team Lead</h2>
-        <TableCard>
-          <Table>
-            {tHead}
-            <tbody>
-              <tr>
-                <TD>
-                  <Flex align="center">
-                    <ImageContainer
-                      image={project.lead.image}
-                      width="35px"
-                      height="35px"
-                      margin="0 10px 0 0"
-                    />
-                    <Anchor
-                      onClick={() =>
-                        router.push(`/employees/${project.lead.id}`)
-                      }
-                    >
-                      <a>{`${project.lead.name} ${project.lead.surname}`}</a>
-                    </Anchor>
-                  </Flex>
-                </TD>
-                <TD>{project.lead.role}</TD>
-                <TD>{project.lead.department}</TD>
-                <TD>{project.lead.division}</TD>
-                <TD>{project.lead.address}</TD>
-              </tr>
-            </tbody>
-          </Table>
-        </TableCard>
+        <Flex justify='space-between' align='center'>
+          <h2>Team Lead</h2>
+          <StyledButton onClick={handleOpenChangeModal}>Change</StyledButton>
+        </Flex>
+        {isChangeModalOpen && (
+          <Modal close={() => setIsChangeModalOpen(false)}>
+            <ProjectAddForm
+              onSubmit={handleChangeLead}
+              name={name}
+              setName={setName}
+              position='Lead'
+              setPosition={setPosition}
+              title='Change Team Lead'
+            />
+          </Modal>
+        )}
+        {project.lead && (
+          <TableCard>
+            <Table>
+              {tHead}
+              <tbody>
+                <ProjectTableRow
+                  key={project.lead.id}
+                  name={project.lead.name}
+                  surname={project.lead.surname}
+                  role='Team Lead'
+                  department={project.lead.department}
+                  division={project.lead.division}
+                  address={project.lead.address}
+                  id={project.lead.id}
+                  image={project.lead.image}
+                />
+              </tbody>
+            </Table>
+          </TableCard>
+        )}
       </div>
 
       <div>
-        <h2>Members</h2>
+        <Flex justify='space-between' align='center'>
+          <h2>Members</h2>
+          <StyledButton onClick={handleOpenAddModal}>+</StyledButton>
+        </Flex>{" "}
+        {isAddModalOpen && (
+          <Modal
+            close={() => {
+              setIsAddModalOpen(false), setName(""), setPosition("");
+            }}
+          >
+            <ProjectAddForm
+              onSubmit={handleAddMember}
+              name={name}
+              setName={setName}
+              position={position}
+              setPosition={setPosition}
+              title={"New Member"}
+            />
+          </Modal>
+        )}
         <TableCard>
           <Table>
             {tHead}
             <tbody>
-              {project.team.map(
-                ({
-                  name,
-                  surname,
-                  role,
-                  department,
-                  division,
-                  address,
-                  id,
-                  image,
-                }) => {
-                  return (
-                    <tr key={id}>
-                      <TD>
-                        <Flex align="center">
-                          <ImageContainer
-                            image={image}
-                            width="35px"
-                            height="35px"
-                            margin="0 10px 0 0"
-                          />
-                          <Anchor
-                            onClick={() => router.push(`/employees/${id}`)}
-                          >
-                            <a>{`${name} ${surname}`}</a>
-                          </Anchor>
-                        </Flex>
-                      </TD>
-                      <TD>{role}</TD>
-                      <TD>{department}</TD>
-                      <TD>{division}</TD>
-                      <TD>{address}</TD>
-                    </tr>
-                  );
-                }
-              )}
+              {project.team.map(({ name, surname, department, division, address, id, image, projects }) => {
+                return (
+                  <ProjectTableRow
+                    key={id}
+                    name={name}
+                    surname={surname}
+                    role={projects.find((item) => item.id === project.id).role}
+                    department={department}
+                    division={division}
+                    address={address}
+                    id={id}
+                    image={image}
+                  />
+                );
+              })}
             </tbody>
           </Table>
         </TableCard>
