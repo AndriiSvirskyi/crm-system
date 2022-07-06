@@ -1,7 +1,6 @@
 import { UserWindow } from "styled-components/UserForm";
 import { useContext, useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import MainLayout from "Layouts/MainLayout";
 import InputFilter from "containers/employees/InputFilter";
 import { FaUserPlus } from "react-icons/fa";
 import { usersState } from "state/atoms";
@@ -12,6 +11,7 @@ import Loader from "styled-components/Loader";
 import { Button } from "components/Button";
 import SignUpSteper from "containers/employees/sign-up/SignUpSteper";
 import { SnackbarContext } from "providers/useSnackbar";
+import MainLayout from "layouts/MainLayout";
 
 export default function Employee() {
   const [filteredEmployees, setFilteredEmployees] = useState([]);
