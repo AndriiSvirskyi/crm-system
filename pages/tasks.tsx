@@ -367,8 +367,12 @@ const Tasks = () => {
               setTaskFiles={setFiles}
             />
           )}
-          {tabContent === "toMe" && <ToMeTab user={user} users={users} changeTaskStatus={changeTaskStatus} />}
-          {tabContent === "completed" && <CompletedTab user={user} users={users} changeTaskStatus={changeTaskStatus} />}
+          {tabContent === "toMe" && (
+            <ToMeTab user={user} users={users} changeTaskStatus={changeTaskStatus} setTaskFiles={setFiles} />
+          )}
+          {tabContent === "completed" && (
+            <CompletedTab user={user} users={users} changeTaskStatus={changeTaskStatus} setTaskFiles={setFiles} />
+          )}
           {tabContent === "future" && <FutureTab />}
         </Flex>
         {createTask && (

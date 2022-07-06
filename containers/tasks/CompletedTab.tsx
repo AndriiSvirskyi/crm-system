@@ -1,12 +1,12 @@
 import { UserBlockItem } from "styled-components/UserForm";
 import { Task } from "./Task";
 
-export const CompletedTab = ({ user, users, changeTaskStatus }) => {
+export const CompletedTab = ({ user, users, changeTaskStatus, setTaskFiles }) => {
   return (
     <UserBlockItem>
       {user.tasks
         .filter(({ status }) => status === "completed")
-        .map(({ id, title, end, description, starts, status, assignedTo }) => {
+        .map(({ id, title, end, description, starts, status, assignedTo, files }) => {
           return (
             <Task
               key={id}
@@ -18,6 +18,8 @@ export const CompletedTab = ({ user, users, changeTaskStatus }) => {
               description={description}
               assignedTo={assignedTo}
               users={users}
+              files={files}
+              setFiles={setTaskFiles}
               changeStatus={() => changeTaskStatus(id, assignedTo)}
             />
           );
