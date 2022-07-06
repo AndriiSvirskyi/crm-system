@@ -1,16 +1,13 @@
-import {useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import { SnackbarContext } from "providers/useSnackbar";
 import { FaPlus } from "react-icons/fa";
 import MainLayout from "Layouts/MainLayout";
-import {
-  UserTitle,
-  UserWindow,
-} from "styled-components/UserForm";
+import { UserTitle, UserWindow } from "styled-components/UserForm";
 import { Flex } from "styled-components/Flex";
-import { Button } from "components/Button";
+import { Button } from "Components/Button";
 import { ByMeTab } from "containers/tasks/ByMeTab";
 import { ToMeTab } from "containers/tasks/ToMeTab";
 import { CompletedTab } from "containers/tasks/CompletedTab";
@@ -28,12 +25,13 @@ const Tasks = () => {
   const [taskTitle, setTaskTitle] = useState("");
   const [taskAssignedTo, setTaskAssignedTo] = useState("");
   const [taskDescription, setTaskDescription] = useState("");
-  const [taskStarts, setTaskStarts] = useState("");
-  const [taskEnds, setTaskEnds] = useState("");
+  const [dataRange, setDateRange] = useState([null, null]);
+  const [files, setFiles] = useState([]);
+  const [startDate, endDate] = dataRange;
   const snackBar = useContext(SnackbarContext);
 
-  useEffect(() => {
-    if (!users) {
+  const getTasks = () => {
+    if (localStorage.user) {
       const response = fetch("http://localhost:4200/users");
       response
         .then((res) => {
@@ -41,23 +39,22 @@ const Tasks = () => {
         })
         .then((res) => {
           setUsersToRecoil(res);
+          setUser(res.find(({ id }) => id === JSON.parse(localStorage.user).id));
         });
     }
-    if (localStorage.user) {
-      setUser(JSON.parse(localStorage.user));
-    }
+  };
+
+  useEffect(() => {
+    getTasks();
   }, []);
 
-  const uid = () =>
-    Date.now().toString(36) + Math.random().toString(36).substring(2);
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
   const updateEmployeeTasks = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const randomId = uid();
     const assignedTo = users
-      ? users.find(
-          ({ name, surname }) => `${name} ${surname}` === taskAssignedTo
-        )
+      ? users.find(({ name, surname }) => `${name} ${surname}` === taskAssignedTo)
       : [{ tasks: [] }];
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PATCH",
@@ -69,11 +66,12 @@ const Tasks = () => {
             id: randomId,
             assignedTo: assignedTo.id,
             createdBy: user.id,
-            starts: taskStarts,
-            end: taskEnds,
+            starts: moment(startDate).format("YYYY-MM-DD"),
+            end: moment(endDate).format("YYYY-MM-DD"),
             title: taskTitle,
             description: taskDescription,
             status: "new",
+            files: files,
           },
         ],
       }),
@@ -88,11 +86,12 @@ const Tasks = () => {
             id: randomId,
             assignedTo: assignedTo.id,
             createdBy: user.id,
-            starts: taskStarts,
-            end: taskEnds,
+            starts: moment(startDate).format("YYYY-MM-DD"),
+            end: moment(endDate).format("YYYY-MM-DD"),
             title: taskTitle,
             description: taskDescription,
             status: "new",
+            files: files,
           },
         ],
       }),
@@ -100,8 +99,10 @@ const Tasks = () => {
     setTaskTitle("");
     setTaskAssignedTo("");
     setTaskDescription("");
-    setTaskStarts(moment().format("YYYY-MM-DD"));
-    setTaskEnds(moment().format("YYYY-MM-DD"));
+    setDateRange([startDate, endDate]);
+    setFiles([]);
+    getTasks();
+
     snackBar.openSnackBar({
       message: "Task added successfully!",
       type: "success",
@@ -109,9 +110,7 @@ const Tasks = () => {
   };
 
   const changeTaskStatus = async (id, taskAssignedTo) => {
-    const assignedTo = users
-      ? users.find(({ id }) => id === taskAssignedTo)
-      : [{ tasks: [] }];
+    const assignedTo = users ? users.find(({ id }) => id === taskAssignedTo) : [{ tasks: [] }];
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -126,7 +125,8 @@ const Tasks = () => {
               end: cur.end,
               title: cur.title,
               description: cur.description,
-              status: "completed",
+              files: cur.files,
+              status: cur.status === "new" ? "completed" : "new",
             });
           } else {
             acc.push(cur);
@@ -149,7 +149,8 @@ const Tasks = () => {
               end: cur.end,
               title: cur.title,
               description: cur.description,
-              status: "completed",
+              files: cur.files,
+              status: cur.status === "new" ? "completed" : "new",
             });
           } else {
             acc.push(cur);
@@ -158,6 +159,7 @@ const Tasks = () => {
         }, []),
       }),
     });
+    getTasks();
     snackBar.openSnackBar({
       message: "Task's status changed!",
       type: "success",
@@ -165,9 +167,7 @@ const Tasks = () => {
   };
 
   const removeTask = async (taskId, taskAssignedTo) => {
-    const assignedTo = users
-      ? users.find(({ id }) => id === taskAssignedTo)
-      : [{ tasks: [] }];
+    const assignedTo = users ? users.find(({ id }) => id === taskAssignedTo) : [{ tasks: [] }];
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -192,30 +192,22 @@ const Tasks = () => {
         }, []),
       }),
     });
+    getTasks();
     snackBar.openSnackBar({ message: "Task removed!", type: "error" });
   };
 
-  const setTaskInfoToEdit = ({
-    id,
-    assignedTo,
-    starts,
-    end,
-    title,
-    description,
-  }) => {
+  const setTaskInfoToEdit = ({ id, assignedTo, starts, end, title, description, files }) => {
     setTaskId(id);
     setTaskTitle(title);
     setTaskAssignedTo(assignedTo);
     setTaskDescription(description);
-    setTaskStarts(starts);
-    setTaskEnds(end);
+    setDateRange([new Date(starts), new Date(end)]);
+    setFiles(files);
   };
 
   const editTaskInfo = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    const assignedTo = users
-      ? users.find(({ id }) => id === taskAssignedTo)
-      : [{ tasks: [] }];
+    const assignedTo = users ? users.find(({ id }) => id === taskAssignedTo) : [{ tasks: [] }];
     await fetch(`http://localhost:4200/users/${user.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -226,10 +218,11 @@ const Tasks = () => {
               id: cur.id,
               assignedTo: taskAssignedTo,
               createdBy: cur.createdBy,
-              starts: taskStarts,
-              end: taskEnds,
+              starts: moment(startDate).format("YYYY-MM-DD"),
+              end: moment(endDate).format("YYYY-MM-DD"),
               title: taskTitle,
               description: taskDescription,
+              files: files,
               status: cur.status,
             });
           } else {
@@ -249,10 +242,11 @@ const Tasks = () => {
               id: cur.id,
               assignedTo: taskAssignedTo,
               createdBy: cur.createdBy,
-              starts: taskStarts,
-              end: taskEnds,
+              starts: moment(startDate).format("YYYY-MM-DD"),
+              end: moment(endDate).format("YYYY-MM-DD"),
               title: taskTitle,
               description: taskDescription,
+              files: files,
               status: cur.status,
             });
           } else {
@@ -266,8 +260,9 @@ const Tasks = () => {
     setTaskTitle("");
     setTaskAssignedTo("");
     setTaskDescription("");
-    setTaskStarts(moment().format("YYYY-MM-DD"));
-    setTaskEnds(moment().format("YYYY-MM-DD"));
+    setDateRange([startDate, endDate]);
+    setFiles([]);
+    getTasks();
     snackBar.openSnackBar({
       message: "Task edited successfully!",
       type: "success",
@@ -277,29 +272,36 @@ const Tasks = () => {
   return (
     <MainLayout>
       <UserWindow>
-        <Flex justify="space-between" align="center" padding="0 10px 0 0">
-          <UserTitle size="40px" margin="0 60px 0 0">
+        <Flex justify='space-between' align='center' padding='0 10px 0 0'>
+          <UserTitle size='40px' margin='0 60px 0 0'>
             Tasks
           </UserTitle>
           <Button
-            height="35px"
-            padding="10px 9px"
-            color="#FFFFFF"
-            background="#ff9f69"
-            hoverBack="#ff9f69CC"
-            onClick={() => setCreateTask(true)}
+            height='35px'
+            padding='10px 9px'
+            color='#FFFFFF'
+            background='#ff9f69'
+            hoverBack='#ff9f69CC'
+            onClick={() => {
+              setDateRange([null, null]);
+              setTaskTitle("");
+              setTaskAssignedTo("");
+              setTaskDescription("");
+              setCreateTask(true);
+              setFiles([]);
+            }}
           >
-            <Flex width="80px" justify="space-between">
+            <Flex width='80px' justify='space-between'>
               <FaPlus />
               <b>Add Task</b>
             </Flex>
           </Button>
         </Flex>
-        <Flex width="100%">
+        <Flex width='100%'>
           <Button
-            width="25%"
-            height="40px"
-            margin="10px"
+            width='25%'
+            height='40px'
+            margin='10px'
             background={tabContent === "byMe" && "#9C9C9C"}
             onClick={() => {
               setTabContent("byMe");
@@ -308,9 +310,9 @@ const Tasks = () => {
             <b>Created by me</b>
           </Button>
           <Button
-            width="25%"
-            height="40px"
-            margin="10px"
+            width='25%'
+            height='40px'
+            margin='10px'
             background={tabContent === "toMe" && "#9C9C9C"}
             onClick={() => {
               setTabContent("toMe");
@@ -319,9 +321,9 @@ const Tasks = () => {
             <b>Assigned to me</b>
           </Button>
           <Button
-            width="25%"
-            height="40px"
-            margin="10px"
+            width='25%'
+            height='40px'
+            margin='10px'
             background={tabContent === "completed" && "#9C9C9C"}
             onClick={() => {
               setTabContent("completed");
@@ -330,9 +332,9 @@ const Tasks = () => {
             <b>Completed</b>
           </Button>
           <Button
-            width="25%"
-            height="40px"
-            margin="10px"
+            width='25%'
+            height='40px'
+            margin='10px'
             background={tabContent === "future" && "#9C9C9C"}
             onClick={() => {
               setTabContent("future");
@@ -358,26 +360,15 @@ const Tasks = () => {
               setTaskAssignedTo={setTaskAssignedTo}
               taskDescription={taskDescription}
               setTaskDescription={setTaskDescription}
-              taskStarts={taskStarts}
-              setTaskStarts={setTaskStarts}
-              taskEnds={taskEnds}
-              setTaskEnds={setTaskEnds}
+              taskStarts={startDate}
+              taskEnds={endDate}
+              setDateRange={setDateRange}
+              taskFiles={files}
+              setTaskFiles={setFiles}
             />
           )}
-          {tabContent === "toMe" && (
-            <ToMeTab
-              user={user}
-              users={users}
-              changeTaskStatus={changeTaskStatus}
-            />
-          )}
-          {tabContent === "completed" && (
-            <CompletedTab
-              user={user}
-              users={users}
-              changeTaskStatus={changeTaskStatus}
-            />
-          )}
+          {tabContent === "toMe" && <ToMeTab user={user} users={users} changeTaskStatus={changeTaskStatus} />}
+          {tabContent === "completed" && <CompletedTab user={user} users={users} changeTaskStatus={changeTaskStatus} />}
           {tabContent === "future" && <FutureTab />}
         </Flex>
         {createTask && (
@@ -389,12 +380,13 @@ const Tasks = () => {
             setTaskAssignedTo={setTaskAssignedTo}
             taskDescription={taskDescription}
             setTaskDescription={setTaskDescription}
-            taskStarts={taskStarts}
-            setTaskStarts={setTaskStarts}
-            taskEnds={taskEnds}
-            setTaskEnds={setTaskEnds}
+            taskStarts={startDate}
+            taskEnds={endDate}
+            setDateRange={setDateRange}
             setCreateTask={setCreateTask}
             updateEmployeeTasks={updateEmployeeTasks}
+            files={files}
+            setFiles={setFiles}
           />
         )}
       </UserWindow>

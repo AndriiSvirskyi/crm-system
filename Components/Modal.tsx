@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Flex } from "styled-components/Flex";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const ModalContainer = styled.div`
@@ -20,6 +19,7 @@ const ModalBody = styled.div`
   position: relative;
   padding: 40px;
   background: white;
+  border-radius: 10px;
 `;
 
 const CloseIcon = styled.div`
@@ -34,7 +34,7 @@ export default function Modal({ close, children }) {
     <ModalContainer>
       <ModalBody>
         <CloseIcon>
-          <AiFillCloseCircle size="30" onClick={close} />
+          <AiFillCloseCircle size='30' onClick={close} />
         </CloseIcon>
         {children}
       </ModalBody>
