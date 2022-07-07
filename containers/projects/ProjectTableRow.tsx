@@ -3,8 +3,21 @@ import React from "react";
 import styled from "styled-components";
 import { Flex } from "styled-components/Flex";
 import { ImageContainer } from "styled-components/ImageContainer";
+import { BiEditAlt } from "react-icons/bi";
 
-export default function ProjectTableRow({ id, image, name, surname, role, department, division, address }) {
+export default function ProjectTableRow({
+  id,
+  image,
+  name,
+  surname,
+  role,
+  department,
+  division,
+  address,
+  onDelete,
+  setIsModalOpen,
+  setUserToEditId = (id) => {},
+}) {
   return (
     <tr>
       <TD>
@@ -19,6 +32,25 @@ export default function ProjectTableRow({ id, image, name, surname, role, depart
       <TD>{department}</TD>
       <TD>{division}</TD>
       <TD>{address}</TD>
+      {role !== "Team Lead" && (
+        <TD
+          onClick={(e) => {
+            e.preventDefault();
+            setUserToEditId(id);
+            setIsModalOpen(true);
+          }}
+        >
+          <BiEditAlt />
+        </TD>
+      )}
+      <TD
+        onClick={(e) => {
+          e.preventDefault();
+          onDelete(id);
+        }}
+      >
+        x
+      </TD>
     </tr>
   );
 }

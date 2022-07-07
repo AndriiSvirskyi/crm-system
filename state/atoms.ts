@@ -9,3 +9,8 @@ export const usersState = atom({
   key: "users",
   default: null,
 });
+
+export const projectsState = atom({
+  key: "projects",
+  default: null,
+});

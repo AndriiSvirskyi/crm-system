@@ -102,7 +102,6 @@ export const ByMeTab = ({
                           Assigned to
                         </Label>
                         <Input
-                          id='assign'
                           list='people'
                           value={taskAssignedTo}
                           onChange={(e) => setTaskAssignedTo(e.target.value)}

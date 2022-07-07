@@ -5,16 +5,10 @@ import { usersState } from "state/atoms";
 import MainLayout from "layouts/MainLayout";
 import { Input } from "components/Inputs/Input";
 import { Flex } from "styled-components/Flex";
-import {
-  UserBlockItem,
-  UserText,
-  UserTitle,
-  UserWindow,
-} from "styled-components/UserForm";
+import { UserBlockItem, UserText, UserTitle, UserWindow } from "styled-components/UserForm";
 import router from "next/router";
 import Loader from "styled-components/Loader";
 import { ImageContainer } from "styled-components/ImageContainer";
-
 
 type projectsProps = {
   [key: string]: {
@@ -59,14 +53,10 @@ const Projects = () => {
     ? users.reduce((acc, cur) => {
         for (let i = 0; i < cur.projects.length; i++) {
           if (acc[cur.projects[i].name]) {
-            acc[cur.projects[i].name].members.push(
-              cur.name + " " + cur.surname
-            );
+            acc[cur.projects[i].name].members.push(cur.name + " " + cur.surname);
           } else {
             acc[cur.projects[i].name] = { id: cur.projects[i].id, members: [] };
-            acc[cur.projects[i].name].members.push(
-              cur.name + " " + cur.surname
-            );
+            acc[cur.projects[i].name].members.push(cur.name + " " + cur.surname);
           }
           if (cur.projects[i].role === "Team Lead") {
             acc[cur.projects[i].name].lead = cur.name + " " + cur.surname;
@@ -78,74 +68,60 @@ const Projects = () => {
   return (
     <MainLayout>
       <UserWindow>
-        <Flex justify="left" align="center" margin="100px 0 60px 0">
-          <UserTitle size="40px" margin="0 60px 0 0">
+        <Flex justify='left' align='center' margin='100px 0 60px 0'>
+          <UserTitle size='40px' margin='0 60px 0 0'>
             Teams
           </UserTitle>
           <Input
-            height="50px"
-            placeholder="Search team"
-            type="search"
+            height='50px'
+            placeholder='Search team'
+            type='search'
             onChange={(e) => setSearchProject(e.target.value)}
           />
         </Flex>
         {!users ? (
           <Loader />
         ) : (
-          <Flex wrap="wrap">
+          <Flex wrap='wrap'>
             {Object.entries(projects)
               .filter((project) => {
-                if (
-                  project[0].toLowerCase().includes(searchProject.toLowerCase())
-                ) {
+                if (project[0].toLowerCase().includes(searchProject.toLowerCase())) {
                   return project;
                 }
               })
               .map((project) => (
-                <UserBlockItem
-                  key={project[1].id}
-                  padding="0 0 20px 15px"
-                  width="30%"
-                >
-                  <Anchor
-                    onClick={() => router.push(`/projects/${project[1].id}`)}
-                  >
-                    <UserTitle padding="0">
+                <UserBlockItem key={project[1].id} padding='0 0 20px 15px' width='30%'>
+                  <Anchor onClick={() => router.push(`/projects/${project[1].id}`)}>
+                    <UserTitle padding='0'>
                       <a>{project[0]}</a>
                     </UserTitle>
                   </Anchor>
-                  <UserText size="16px">
-                    Members({project[1].members.length})
-                  </UserText>
+                  <UserText size='16px'>Members({project[1].members.length})</UserText>
                   <UserText>Team Lead:</UserText>
                   <hr />
-                  <Flex align="center">
-                    <ImageContainer
-                      image={
-                        users.find(
-                          (user) =>
-                            user.name + " " + user.surname === project[1].lead
-                        ).image
-                      }
-                      width="50px"
-                      height="50px"
-                      margin="0 20px 0 0"
-                    />
-                    <Anchor
-                      onClick={() =>
-                        router.push(
-                          `/employees/${
-                            users.find(
-                              (user) =>
-                                user.name + " " + user.surname ===
-                                project[1].lead
-                            ).id
-                          }`
-                        )
-                      }
-                    >
-                      <a>{project[1].lead}</a>
-                    </Anchor>
+                  <Flex align='center'>
+                    {project[1].lead && (
+                      <>
+                        {" "}
+                        <ImageContainer
+                          image={users.find((user) => user.name + " " + user.surname === project[1].lead).image}
+                          width='50px'
+                          height='50px'
+                          margin='0 20px 0 0'
+                        />
+                        <Anchor
+                          onClick={() =>
+                            router.push(
+                              `/employees/${
+                                users.find((user) => user.name + " " + user.surname === project[1].lead).id
+                              }`,
+                            )
+                          }
+                        >
+                          <a>{project[1].lead}</a>
+                        </Anchor>
+                      </>
+                    )}
                   </Flex>
                 </UserBlockItem>
               ))}
