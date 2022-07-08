@@ -3,11 +3,12 @@ import { Flex } from "styled-components/Flex";
 import router from "next/router";
 import { Button } from "Components/Button";
 import ProjectTableRow from "./ProjectTableRow";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Modal from "Components/Modal";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { usersState } from "state/atoms";
 import ProjectAddForm from "./ProjectAddForm";
+import { SnackbarContext } from "providers/useSnackbar";
 
 const TableCard = styled.div`
   margin-bottom: 1.25rem;
@@ -59,11 +60,13 @@ const tHead = (
 export const ProjectContainer = ({ project }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isChangeModalOpen, setIsChangeModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [userToEditId, setUserToEditId] = useState("");
   const users = useRecoilValue(usersState);
   const setUsersToRecoil = useSetRecoilState(usersState);
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
-
+  const snackBar = useContext(SnackbarContext);
   const getUsers = () => {
     const response = fetch("http://localhost:4200/users");
     response
@@ -83,60 +86,120 @@ export const ProjectContainer = ({ project }) => {
     e.preventDefault();
     setIsChangeModalOpen(true);
   };
+  const handleOpenEditModal = (e) => {
+    e.preventDefault();
+    setIsEditModalOpen(true);
+  };
+
   const handleAddMember = async (e) => {
     e.preventDefault();
-    const user = users.find((user) => `${user.name} ${user.surname}` === name);
-    await fetch(`http://localhost:4200/users/${user.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        projects: user.projects.find((item) => item.id === project.id)
-          ? user.projects.map((item) => (item.id === project.id ? { ...item, role: position } : item))
-          : [
-              ...user.projects,
-              {
-                id: project.id,
-                name: project.name,
-                role: position,
-              },
-            ],
-      }),
-    });
-    getUsers();
-    setIsAddModalOpen(false);
+    try {
+      const user = users.find((user) => `${user.name} ${user.surname}` === name);
+      await fetch(`http://localhost:4200/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          projects: [
+            ...user.projects,
+            {
+              id: project.id,
+              name: project.name,
+              role: position,
+            },
+          ],
+        }),
+      });
+      getUsers();
+      setIsAddModalOpen(false);
+    } catch (e) {
+      snackBar.openSnackBar({
+        message: "Oops, something went wrong",
+        type: "error",
+      });
+    }
     setName("");
     setPosition("");
   };
 
   const handleChangeLead = async (e) => {
     e.preventDefault();
-    const user = users.find((user) => `${user.name} ${user.surname}` === name);
-    await fetch(`http://localhost:4200/users/${project.lead.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        projects: project.lead.projects.filter((item) => item.id !== project.id),
-      }),
-    });
-    await fetch(`http://localhost:4200/users/${user.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        projects: user.projects.find((item) => item.id === project.id)
-          ? user.projects.map((item) => (item.id === project.id ? { ...item, role: "Team Lead" } : item))
-          : [
-              ...user.projects,
-              {
-                id: project.id,
-                name: project.name,
-                role: "Team Lead",
-              },
-            ],
-      }),
-    });
-    getUsers();
-    setIsChangeModalOpen(false);
+    try {
+      const user = users.find((user) => `${user.name} ${user.surname}` === name);
+      project.lead &&
+        (await fetch(`http://localhost:4200/users/${project.lead.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            projects: project.lead.projects.filter((item) => item.id !== project.id),
+          }),
+        }));
+      await fetch(`http://localhost:4200/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          projects: user.projects.find((item) => item.id === project.id)
+            ? user.projects.map((item) => (item.id === project.id ? { ...item, role: "Team Lead" } : item))
+            : [
+                ...user.projects,
+                {
+                  id: project.id,
+                  name: project.name,
+                  role: "Team Lead",
+                },
+              ],
+        }),
+      });
+      getUsers();
+      setIsChangeModalOpen(false);
+    } catch (e) {
+      snackBar.openSnackBar({
+        message: "Oops, something went wrong",
+        type: "error",
+      });
+    }
+
     setName("");
+  };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = users.find((user) => `${user.id}` === userToEditId);
+      await fetch(`http://localhost:4200/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          projects: user.projects.map((item) => (item.id === project.id ? { ...item, role: position } : item)),
+        }),
+      });
+      getUsers();
+    } catch (e) {
+      snackBar.openSnackBar({
+        message: "Oops, something went wrong",
+        type: "error",
+      });
+    }
+    setIsEditModalOpen(false);
+    setPosition("");
+  };
+
+  const handleDeleteMember = async (id) => {
+    try {
+      const user = users.find((user) => `${user.id}` === id);
+      await fetch(`http://localhost:4200/users/${user.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          projects: user.projects.filter((item) => item.id !== project.id),
+        }),
+      });
+      getUsers();
+    } catch (e) {
+      snackBar.openSnackBar({
+        message: "Oops, something went wrong",
+        type: "error",
+      });
+    }
   };
 
   return (
@@ -162,6 +225,8 @@ export const ProjectContainer = ({ project }) => {
               position='Lead'
               setPosition={setPosition}
               title='Change Team Lead'
+              project={project}
+              type='change'
             />
           </Modal>
         )}
@@ -180,6 +245,8 @@ export const ProjectContainer = ({ project }) => {
                   address={project.lead.address}
                   id={project.lead.id}
                   image={project.lead.image}
+                  onDelete={handleDeleteMember}
+                  setIsModalOpen={setIsEditModalOpen}
                 />
               </tbody>
             </Table>
@@ -205,6 +272,25 @@ export const ProjectContainer = ({ project }) => {
               position={position}
               setPosition={setPosition}
               title={"New Member"}
+              project={project}
+            />
+          </Modal>
+        )}
+        {isEditModalOpen && (
+          <Modal
+            close={() => {
+              setIsEditModalOpen(false), setPosition("");
+            }}
+          >
+            <ProjectAddForm
+              onSubmit={handleEdit}
+              name={name}
+              setName={setName}
+              position={position}
+              setPosition={setPosition}
+              title={"Edit position"}
+              project={project}
+              type='edit'
             />
           </Modal>
         )}
@@ -212,7 +298,7 @@ export const ProjectContainer = ({ project }) => {
           <Table>
             {tHead}
             <tbody>
-              {project.team.map(({ name, surname, department, division, address, id, image, projects }) => {
+              {project.team?.map(({ name, surname, department, division, address, id, image, projects }) => {
                 return (
                   <ProjectTableRow
                     key={id}
@@ -224,6 +310,9 @@ export const ProjectContainer = ({ project }) => {
                     address={address}
                     id={id}
                     image={image}
+                    onDelete={handleDeleteMember}
+                    setIsModalOpen={setIsEditModalOpen}
+                    setUserToEditId={setUserToEditId}
                   />
                 );
               })}

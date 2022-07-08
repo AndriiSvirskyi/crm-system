@@ -1,4 +1,18 @@
 {
+  "projects": [
+    {
+      "id": "3fdffs",
+      "name": "Blackchain"
+    },
+    {
+      "id": "156575",
+      "name": "Bench"
+    },
+    {
+      "id": "ffsd2",
+      "name": "Arterra"
+    }
+  ],
   "users": [
     {
       "id": "1",
