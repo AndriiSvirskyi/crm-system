@@ -4,7 +4,8 @@ type ImageContainerProps = {
   width?: string;
   height?: string;
   margin?: string;
-  image: string
+  onClick?: () => void;
+  image: string;
 };
 const ImageContainerStyle = styled.div<ImageContainerProps>`
   width: ${({ width }) => width};
@@ -16,8 +17,6 @@ const ImageContainerStyle = styled.div<ImageContainerProps>`
   margin: ${({ margin }) => margin};
 `;
 
-export const ImageContainer = ({image, width, height, margin }) => {
-  return (
-    <ImageContainerStyle image={image} width={width} height={height} margin ={margin}/>
-  );
+export const ImageContainer = ({ image, width, height, margin, onClick }) => {
+  return <ImageContainerStyle image={image} width={width} height={height} margin={margin} onClick={onClick} />;
 };

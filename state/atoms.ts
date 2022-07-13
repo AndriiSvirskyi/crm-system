@@ -14,3 +14,8 @@ export const projectsState = atom({
   key: "projects",
   default: null,
 });
+
+export const projectState = atom({
+  key: "project",
+  default: null,
+});
