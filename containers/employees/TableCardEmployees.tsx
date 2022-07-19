@@ -17,6 +17,10 @@ const TableGridMarkup = styled.div`
   grid-template-columns: repeat(6, 1fr);
   margin: 10px;
   border: 1px solid #ddd;
+  @media (max-height: 800px) {
+    height: 398px;
+
+  }
 `;
 const TableGridMarkupTitle = styled.div`
   display: flex;

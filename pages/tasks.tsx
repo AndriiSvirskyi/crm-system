@@ -61,7 +61,6 @@ const Tasks = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         tasks: [
-          ...user.tasks,
           {
             id: randomId,
             assignedTo: assignedTo.id,

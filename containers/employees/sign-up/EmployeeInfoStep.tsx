@@ -37,7 +37,7 @@ export default function EmployeeInfoStep({ data, setData, goToTheNextStep }) {
   const validateFields = useCallback(
     ({ name, surname, phone, email, password, confirmPassword }) => {
       const MIN_LENGTH = 2;
-      const MAX_LENGTH = 25;
+      const MAX_LENGTH = 35;
       let countErrors = 0;
       const inputErrors: any = {};
       const simpleData = [

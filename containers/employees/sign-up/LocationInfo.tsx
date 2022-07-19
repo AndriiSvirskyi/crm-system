@@ -4,13 +4,43 @@ import React, { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import { InputContainer, StepButton } from "./EmployeeInfoStep";
 import InputSelect from "components/Inputs/InputSelect";
-
+import {
+  CountryDropdown,
+  RegionDropdown,
+  CountryRegionData,
+} from "react-country-region-selector";
 const Label = styled.label`
   width: 220px;
-  height: 42px;
   font-size: 12px;
 `;
-
+type StylesPtops = {
+  error: boolean;
+};
+const CountrySelector = styled(CountryDropdown)`
+  width: 100%;
+  height: 40px;
+  outline: none;
+  background-color: #d0d0d0;
+  border: ${({ error }: StylesPtops) =>
+    error ? "1px solid #fe5959c9" : "1px solid transparent"};
+  border-radius: 8px;
+  option {
+    background: #ffffff;
+  }
+`;
+const CitySelector = styled(RegionDropdown)`
+  height: 40px;
+  width: 100%;
+  outline: none;
+  background-color: #d0d0d0;
+  border: 1px solid transparent;
+  border: ${({ error }: StylesPtops) =>
+    error ? "1px solid #fe5959c9" : "1px solid transparent"};
+  border-radius: 8px;
+  option {
+    background: #ffffff;
+  }
+`;
 export default function LocationInfo({
   data,
   setData,
@@ -50,7 +80,6 @@ export default function LocationInfo({
       if (!role) {
         inputErrors.role = `Empty or not correct`;
         countErrors++;
-
       }
       if (!birthday) {
         inputErrors.birthday = true;
@@ -80,7 +109,7 @@ export default function LocationInfo({
           setBirthday(e.target.value);
         }}
         placeholder="Date"
-        height="26px"
+        height="40px"
         error={errors.birthday}
       />
     ),
@@ -101,57 +130,34 @@ export default function LocationInfo({
         }}
         type="text"
         placeholder="Gender"
-        height="26px"
+        height="40px"
         width="100%"
         error={errors.gender}
       />
     ),
     [gender, errors.gender]
   );
-  const CountryInput: JSX.Element = useMemo(
+  const LocationSelect: JSX.Element = useMemo(
     () => (
-      <Input
-        value={country}
-        onChange={(e) => {
-          if (errors.country) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, country: false };
-            });
-          }
-          setCountry(e.target.value);
-        }}
-        type="text"
-        placeholder="Country"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        error={errors.country}
-      />
+      <Flex margin="0 0 10px 0" gap="10px">
+        <CountrySelector
+          value={country}
+          onChange={(country) => setCountry(country)}
+          error={errors.country}
+        />
+        <CitySelector
+          country={country}
+          disabled={!country}
+          value={city}
+          error={errors.city}
+          onChange={(city) => setCity(city)}
+          defaultOptionLabel="Select City"
+        />
+      </Flex>
     ),
-    [country, errors.country]
+    [country, city, errors.country, errors.city]
   );
-  const CityInput: JSX.Element = useMemo(
-    () => (
-      <Input
-        value={city}
-        onChange={(e) => {
-          if (errors.city) {
-            setErrors((oldErrors) => {
-              return { ...oldErrors, city: false };
-            });
-          }
-          setCity(e.target.value);
-        }}
-        type="text"
-        placeholder="City"
-        height="40px"
-        width="100%"
-        margin="0 0 10px 0"
-        error={errors.city}
-      />
-    ),
-    [city, errors.city]
-  );
+
   const IndexInput: JSX.Element = useMemo(
     () => (
       <Input
@@ -195,6 +201,7 @@ export default function LocationInfo({
         list={roleList}
         placeholder="Role"
         error={errors.role}
+        value={role}
       />
     );
   }, [role, errors.role]);
@@ -212,41 +219,41 @@ export default function LocationInfo({
           <option value="Woman" />
         </datalist>
       </Flex>
-      {CountryInput}
-      {CityInput}
+      {LocationSelect}
       <Flex justify="" width="100%"></Flex>
       {IndexInput}
       {RoleInput}
-
-      <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
-      <StepButton
-        onClick={(e) => {
-          e.preventDefault();
-          if (
-            validateFields({
-              birthday,
-              gender,
-              country,
-              city,
-              index,
-              role,
-            })
-          ) {
-            setData({
-              ...data,
-              birthday,
-              gender,
-              country,
-              city,
-              index,
-              role,
-            });
-            goToTheNextStep();
-          }
-        }}
-      >
-        Go Next
-      </StepButton>
+      <Flex justify="center" margin="50px 0 0 0">
+        <StepButton onClick={goToThePreviousStep}>Previus</StepButton>
+        <StepButton
+          onClick={(e) => {
+            e.preventDefault();
+            if (
+              validateFields({
+                birthday,
+                gender,
+                country,
+                city,
+                index,
+                role,
+              })
+            ) {
+              setData({
+                ...data,
+                birthday,
+                gender,
+                country,
+                city,
+                index,
+                role,
+              });
+              goToTheNextStep();
+            }
+          }}
+        >
+          Go Next
+        </StepButton>
+      </Flex>
     </InputContainer>
   );
 }

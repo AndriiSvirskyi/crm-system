@@ -157,7 +157,7 @@ export default function UserProfile({ user }) {
             <GeneralInfoTitle>Employment type</GeneralInfoTitle>
             <GeneralInfoP>Fulltime</GeneralInfoP>
             <GeneralInfoTitle>Position</GeneralInfoTitle>
-            <GeneralInfoP>{user?.typeOfWork || "Developer"}</GeneralInfoP>
+            <GeneralInfoP>{user?.position || "Developer"}</GeneralInfoP>
             <GeneralInfoTitle>Department</GeneralInfoTitle>
             <GeneralInfoP>{user.department}</GeneralInfoP>
             <GeneralInfoTitle>Division</GeneralInfoTitle>
