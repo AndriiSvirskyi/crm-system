@@ -109,8 +109,8 @@ export default function InputFilter({
   };
   return (
     <>
-      <Flex justify="space-between" margin="">
-        <UserTitle size="40px">Directory</UserTitle>
+      <Flex>
+        <UserTitle size="25px">Directory</UserTitle>
       </Flex>
       <div>
         <Flex justify="space-between">

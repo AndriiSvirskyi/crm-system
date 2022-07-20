@@ -302,7 +302,6 @@
           "end": "2022-03-13",
           "title": "TASK 2",
           "description": "TASK 2",
-          "files": [],
           "status": "new"
         },
         {
@@ -313,7 +312,6 @@
           "end": "2022-03-13",
           "title": "TASK 1",
           "description": "TASK 1TASK 1TASK 1",
-          "files": [],
           "status": "completed"
         },
         {
@@ -324,7 +322,6 @@
           "end": "2022-03-27",
           "title": "TASK 3",
           "description": "TASK 3TASK 3TASK 3TASK 3",
-          "files": [],
           "status": "new"
         },
         {
@@ -335,7 +332,6 @@
           "end": "2022-03-27",
           "title": "NEW TASK",
           "description": "fkdbfkd",
-          "files": [],
           "status": "new"
         }
       ],
@@ -355,6 +351,50 @@
         "facebook": "https://www.google.com",
         "linkedin": "https://www.linkedin.com/",
         "twitter": "https://twitter.com/?lang=en"
+      },
+      "timeTracker": {
+        "2022-07-19": [
+          {
+            "id": "2 + 16:48 +  + 16:46",
+            "workTitle": "2",
+            "project": "Other",
+            "startTime": "16:48",
+            "endTime": "16:46",
+            "date": "2022-07-19",
+            "durationOfTime": "00:00:06"
+          },
+          {
+            "id": "5 + 19:48 +  + 20:50",
+            "workTitle": "5",
+            "project": "Other",
+            "startTime": "19:48",
+            "endTime": "20:50",
+            "date": "2022-07-19",
+            "durationOfTime": "01:02:00"
+          }
+        ],
+        "2022-07-08": [
+          {
+            "id": "4 + 16:48",
+            "workTitle": "4",
+            "project": "Other",
+            "startTime": "16:48",
+            "endTime": "16:48",
+            "date": "2022-07-08",
+            "durationOfTime": "00:00:00"
+          }
+        ],
+        "2022-07-01": [
+          {
+            "id": "3 + 16:49",
+            "workTitle": "3",
+            "project": "Blackchain",
+            "startTime": "16:49",
+            "endTime": "22:49",
+            "date": "2022-07-01",
+            "durationOfTime": "06:00:00"
+          }
+        ]
       },
       "timeoff": {
         "type": {
@@ -465,7 +505,98 @@
             "accured": "5.0"
           }
         ]
-      }
+      },
+      "2022-07-15": {
+        "0": {
+          "id": "1111 + 02:33",
+          "workTitle": "1111",
+          "project": "",
+          "startTime": "02:33",
+          "endTime": "02:33",
+          "date": "2022-07-15",
+          "durationOfTime": "00:00:04"
+        },
+        "1": {
+          "id": "11112222 + 02:33",
+          "workTitle": "11112222",
+          "project": "",
+          "startTime": "02:33",
+          "endTime": "02:33",
+          "date": "2022-07-15",
+          "durationOfTime": "00:00:02"
+        },
+        "2": {
+          "id": "asdasdsad + 16:45",
+          "workTitle": "asdasdsad",
+          "project": "",
+          "startTime": "16:45",
+          "endTime": "21:12",
+          "date": "2022-07-15",
+          "durationOfTime": "04:27:03"
+        }
+      },
+      "Thu, Jul 14": [
+        {
+          "id": "3333 + 02:33",
+          "workTitle": "3333",
+          "project": "",
+          "startTime": "02:33",
+          "endTime": "02:33",
+          "date": "Thu, Jul 14",
+          "durationOfTime": "00:00:10"
+        }
+      ],
+      "Thu, Jul 05": [
+        {
+          "id": "333344444 + 02:33",
+          "workTitle": "333344444",
+          "project": "",
+          "startTime": "02:33",
+          "endTime": "02:33",
+          "date": "Thu, Jul 05",
+          "durationOfTime": "00:00:02"
+        }
+      ],
+      "Sun, Aug 07": [
+        {
+          "id": "asdasdsad + 13:09",
+          "workTitle": "asdasdsad",
+          "project": "",
+          "startTime": "13:09",
+          "endTime": "13:09",
+          "date": "Sun, Aug 07",
+          "durationOfTime": "00:00:05"
+        },
+        {
+          "id": "asdasdsaddsadawda2da2asd + 13:09",
+          "workTitle": "asdasdsaddsadawda2da2asd",
+          "project": "",
+          "startTime": "13:09",
+          "endTime": "13:09",
+          "date": "Sun, Aug 07",
+          "durationOfTime": "00:00:02"
+        },
+        {
+          "id": "asfasdsa + 13:09",
+          "workTitle": "asfasdsa",
+          "project": "",
+          "startTime": "13:09",
+          "endTime": "13:09",
+          "date": "Sun, Aug 07",
+          "durationOfTime": "00:00:03"
+        }
+      ],
+      "Fri, Aug 10": [
+        {
+          "id": "asfasdsa + 13:09",
+          "workTitle": "asfasdsa",
+          "project": "",
+          "startTime": "13:09",
+          "endTime": "13:09",
+          "date": "Fri, Aug 10",
+          "durationOfTime": "00:00:06"
+        }
+      ]
     },
     {
       "id": "2",
@@ -664,13 +795,7 @@
       "role": "manager",
       "startDate": "2021-04-20",
       "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
-      "projects": [
-        {
-          "id": "156575",
-          "name": "Bench",
-          "role": "manager"
-        }
-      ],
+      "projects": [],
       "reportsTo": "1",
       "tasks": [],
       "company": "4ire",
@@ -1690,7 +1815,7 @@
       "reportsTo": "3",
       "company": "4ire",
       "position": "Junior",
-      "typeOfWork": "???",
+      "typeOfWork": "Backend Developer",
       "department": "Design",
       "division": "Frontend",
       "amount": "???",
@@ -1725,7 +1850,7 @@
       "reportsTo": "1",
       "company": "4ire",
       "position": "Team Lead",
-      "typeOfWork": "???",
+      "typeOfWork": "Frontend Developer",
       "department": "123",
       "division": "123",
       "amount": "???",
@@ -1760,7 +1885,7 @@
       "reportsTo": "1",
       "company": "4ire",
       "position": "123",
-      "typeOfWork": "???",
+      "typeOfWork": "Backend Developer",
       "department": "123",
       "division": "1223",
       "amount": "???",
@@ -1795,7 +1920,7 @@
       "reportsTo": "1",
       "company": "4ire",
       "position": "Trainee",
-      "typeOfWork": "???",
+      "typeOfWork": "Backend Developer",
       "department": "Marketing",
       "division": "Frontend",
       "amount": "???",
@@ -1805,6 +1930,41 @@
       "mobile": "1213",
       "username": "???",
       "address": "gfhcfgg, ghh",
+      "links": {
+        "facebook": "",
+        "linkedin": "",
+        "twitter": ""
+      }
+    },
+    {
+      "id": "HI7sRm8",
+      "email": "123",
+      "password": "123",
+      "name": "123",
+      "surname": "123",
+      "role": "admin",
+      "startDate": "2022-07-27",
+      "image": "https://zahnarzt-hendrich.de/wp-content/uploads/zahnarzt-hendric_er1_praxisteam.jpg",
+      "projects": [
+        {
+          "id": "3fdffs",
+          "name": "Blackchain",
+          "role": "manager"
+        }
+      ],
+      "reportsTo": "2",
+      "company": "4ire",
+      "position": "Junior",
+      "typeOfWork": "???",
+      "department": "Tech",
+      "division": "FullStack",
+      "amount": "???",
+      "team": "???",
+      "birth": "2022-07-14",
+      "gender": "Man",
+      "mobile": "123",
+      "username": "???",
+      "address": "Daşkəsən, Azerbaijan",
       "links": {
         "facebook": "",
         "linkedin": "",

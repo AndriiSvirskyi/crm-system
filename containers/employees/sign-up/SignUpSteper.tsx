@@ -5,6 +5,11 @@ import StepNavigation from "./StepNavigation";
 import EmployeeInfoStep from "./EmployeeInfoStep";
 import LocationInfo from "./LocationInfo";
 import JobInfo from "./JobInfo";
+import styled from "styled-components";
+
+const SignUpContainer = styled.div`
+  height: 393px;
+`;
 
 type NewEmployeeProps = {
   email: string;
@@ -87,7 +92,7 @@ export default function SignUpSteper({ closeModal, users, successCreateUser }) {
 
   return (
     <Modal close={closeModal}>
-      <div>
+      <SignUpContainer>
         <StepNavigation
           goToStep={goToStep}
           labelArray={labelArray}
@@ -116,7 +121,7 @@ export default function SignUpSteper({ closeModal, users, successCreateUser }) {
             closeModal={closeModal}
           />
         )}
-      </div>
+      </SignUpContainer>
     </Modal>
   );
 }

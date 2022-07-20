@@ -25,7 +25,7 @@ export default function Tabs({ user }) {
     personal: <Personal user={user} />,
     job: <JobTab user={user} />,
     "pdp time": <PDPTime />,
-    "time off": <TimeOffTab user={user} />,
+    "time off": user.timeOff ? <TimeOffTab user={user} /> : <div>No time off information</div>,
     additional: <p>Five</p>,
   };
   return (

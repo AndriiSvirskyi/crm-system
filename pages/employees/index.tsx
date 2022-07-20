@@ -19,7 +19,7 @@ export default function Employee() {
   const [activeTabRender, setActiveTabRender] = useState("block");
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const employeesPerPage = 12;
+  const employeesPerPage = activeTabRender === "block" ? 12 : 9;
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
   const currentEmployees = filteredEmployees.slice(
@@ -56,6 +56,7 @@ export default function Employee() {
   useEffect(() => {
     getEmployees();
     setUserRole(JSON.parse(currentUser).role);
+    console.log(JSON.parse(currentUser).role)
   }, []);
 
   return (
@@ -77,14 +78,14 @@ export default function Employee() {
             {activeTabRender === "table" && (
               <TableCardEmployees filteredEmployees={currentEmployees} />
             )}
+            <Pagination
+              employeesPerPage={employeesPerPage}
+              totalEmployees={filteredEmployees.length}
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </>
         )}
-        <Pagination
-          employeesPerPage={employeesPerPage}
-          totalEmployees={filteredEmployees.length}
-          paginate={paginate}
-          currentPage={currentPage}
-        />
       </UserWindow>
       {userRole === "admin" && (
         <>

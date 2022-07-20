@@ -42,6 +42,7 @@ type DropDownProps = {
   list: any;
   placeholder: string;
   error?: any;
+  value?:string;
 };
 
 export default function InputSelect({
@@ -49,6 +50,7 @@ export default function InputSelect({
   list,
   placeholder,
   error,
+  value
 }: DropDownProps) {
   const [isDropBox, setDropBox] = useState(false);
   const [valueInput, setValueInput] = useState("");
@@ -94,7 +96,7 @@ export default function InputSelect({
         height="40px"
         width="100%"
         error={error}
-        value={valueInput}
+        value={valueInput || value}
         onChange={(e) => {
           callback("");
           setDropBox(true);

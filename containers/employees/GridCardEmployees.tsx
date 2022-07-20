@@ -22,6 +22,10 @@ const GridMarkup = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
   }
+  @media (max-height: 800px) {
+    height: 400px;
+
+  }
 `;
 const GridUserCard = styled.div`
   display: flex;
