@@ -1,6 +1,10 @@
 export const projectPositions = {
   manager: "manager",
-  user: "developer",
+  developer: "developer",
   designer: "designer",
   qa: "QA",
+};
+export const phasesPositions = {
+  manager: "manager",
+  analyst: "business-analyst",
 };

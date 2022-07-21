@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { AiFillCloseCircle } from "react-icons/ai";
 
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -10,10 +10,10 @@ const ModalContainer = styled.div`
   z-index: 2;
   display: flex;
   align-items: center;
-
   justify-content: center;
   text-align: center;
   background: rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
 `;
 const ModalBody = styled.div`
   position: relative;

@@ -8,13 +8,12 @@ import RatingBar from "./RatingBar";
 
 export default function Health() {
   const project = useRecoilValue(projectState);
-  console.log(project);
   return (
     <>
       <Flex margin='0' justify='space-between' width='100%'>
         <div>
           <StyledH2>RATING</StyledH2>
-          <RatingBar />
+          {project?.rating && <RatingBar />}
         </div>
         <StyledImage>
           <img src='https://www.wordstream.com/wp-content/uploads/2021/05/best-words-and-phrases-for-marketing-intro.png' />

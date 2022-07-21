@@ -8,7 +8,7 @@ import { Flex } from "styled-components/Flex";
 import { Form } from "styled-components/Form";
 import { Label } from "styled-components/Label";
 
-export default function ProjectAddForm({
+export default function ProjectAddUserForm({
   name,
   setName,
   onSubmit,

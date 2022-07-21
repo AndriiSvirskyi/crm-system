@@ -93,12 +93,12 @@ export default function Stages() {
             <StyledTeam>
               <StyledTeamWrapper page={page}>{renderTeam("presale")}</StyledTeamWrapper>
             </StyledTeam>{" "}
-            {maxPage1 !== 1 && page !== 1 && (
+            {maxPage1 > 1 && page !== 1 && (
               <StyledArrowUp onClick={() => setPage((prevState) => --prevState)}>
                 <AiOutlineArrowUp />
               </StyledArrowUp>
             )}
-            {page !== maxPage1 && (
+            {page !== maxPage1 && maxPage1 > 1 && (
               <StyledArrowDown onClick={() => setPage((prevState) => ++prevState)}>
                 <AiOutlineArrowDown />
               </StyledArrowDown>
@@ -115,12 +115,12 @@ export default function Stages() {
             <StyledTeam>
               <StyledTeamWrapper page={page}>{renderTeam("discovery")}</StyledTeamWrapper>
             </StyledTeam>
-            {maxPage2 !== 1 && page !== 1 && (
+            {maxPage2 > 1 && page !== 1 && (
               <StyledArrowUp onClick={() => setPage((prevState) => --prevState)}>
                 <AiOutlineArrowUp />
               </StyledArrowUp>
             )}
-            {page !== maxPage2 && (
+            {page !== maxPage2 && maxPage2 > 1 && (
               <StyledArrowDown onClick={() => setPage((prevState) => ++prevState)}>
                 <AiOutlineArrowDown />
               </StyledArrowDown>
@@ -137,12 +137,12 @@ export default function Stages() {
             <StyledTeam>
               <StyledTeamWrapper page={page}> {renderTeam("delivery")}</StyledTeamWrapper>
             </StyledTeam>
-            {maxPage3 !== 1 && page !== 1 && (
+            {maxPage3 > 1 && page !== 1 && (
               <StyledArrowUp onClick={() => setPage((prevState) => --prevState)}>
                 <AiOutlineArrowUp />
               </StyledArrowUp>
             )}
-            {page !== maxPage3 && (
+            {page !== maxPage3 && maxPage3 > 1 && (
               <StyledArrowDown onClick={() => setPage((prevState) => ++prevState)}>
                 <AiOutlineArrowDown />
               </StyledArrowDown>

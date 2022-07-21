@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import Modal from "Components/Modal";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { projectState, usersState } from "state/atoms";
-import ProjectAddForm from "./ProjectAddForm";
+import ProjectAddForm from "./ProjectAddUserForm";
 import { SnackbarContext } from "providers/useSnackbar";
 
 const TableCard = styled.div`

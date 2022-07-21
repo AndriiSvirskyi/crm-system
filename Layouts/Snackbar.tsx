@@ -36,7 +36,7 @@ const StylesSnackBar = styled.div`
   position: fixed;
   display: flex;
   justify-content: space-around;
-  z-index: 1;
+  z-index: 3;
   background: ${(props: { type: string }) => backgrounds[props.type]};
   font-size: 1rem;
   animation: ${MovementSnackBar};
@@ -44,8 +44,8 @@ const StylesSnackBar = styled.div`
   animation-fill-mode: forwards;
   span {
     font-size: 16px;
-    margin: 4px 0  0 16px;
-    text-align: center ;
+    margin: 4px 0 0 16px;
+    text-align: center;
   }
 `;
 
