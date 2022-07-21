@@ -34,11 +34,9 @@ const Error = styled.div`
 const StyledInput = styled.input<StyledInputProps>`
   outline: ${({ outline }) => outline || "none"};
   height: ${({ height }) => height || "auto"};
-  width: ${({ width, type }) =>
-    type === "date" ? "160px" : `calc(${width} - 25px)` || "auto"};
+  width: ${({ width, type }) => (type === "date" ? "160px" : `calc(${width} - 25px)` || "auto")};
   background: ${({ background }) => background || "#d0d0d0"};
-  border: ${({ error }) =>
-    error ? "1px solid #fe5959c9" : "1px solid transparent"};
+  border: ${({ error }) => (error ? "1px solid #fe5959c9" : "1px solid transparent")};
   border-radius: 8px;
   padding: 0 0 0 25px;
   font-size: 16px;
@@ -88,8 +86,8 @@ export const Input = ({
   id,
   float,
   step,
-  required,
   disabled,
+  ...props
 }: InputProps) => {
   return (
     <InputWrap width={width} margin={margin}>
@@ -110,6 +108,7 @@ export const Input = ({
         value={value}
         float={float}
         disabled={disabled}
+        {...props}
       />
       {error && <Error>{error}</Error>}
     </InputWrap>

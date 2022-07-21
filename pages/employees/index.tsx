@@ -22,15 +22,11 @@ export default function Employee() {
   const employeesPerPage = activeTabRender === "block" ? 12 : 9;
   const indexOfLastEmployee = currentPage * employeesPerPage;
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
-  const currentEmployees = filteredEmployees.slice(
-    indexOfFirstEmployee,
-    indexOfLastEmployee
-  );
+  const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   // pagination
   const [showModalSignUp, setShowModalSignUp] = useState(false);
-  const currentUser =
-    typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const currentUser = typeof window !== "undefined" ? localStorage.getItem("user") : null;
   const [userRole, setUserRole] = useState();
   const setUsersToRecoil = useSetRecoilState(usersState);
   const users = useRecoilValue(usersState);
@@ -56,7 +52,6 @@ export default function Employee() {
   useEffect(() => {
     getEmployees();
     setUserRole(JSON.parse(currentUser).role);
-    console.log(JSON.parse(currentUser).role)
   }, []);
 
   return (
@@ -72,12 +67,8 @@ export default function Employee() {
           <Loader />
         ) : (
           <>
-            {activeTabRender === "block" && (
-              <GridCardEmployees filteredEmployees={currentEmployees} />
-            )}
-            {activeTabRender === "table" && (
-              <TableCardEmployees filteredEmployees={currentEmployees} />
-            )}
+            {activeTabRender === "block" && <GridCardEmployees filteredEmployees={currentEmployees} />}
+            {activeTabRender === "table" && <TableCardEmployees filteredEmployees={currentEmployees} />}
             <Pagination
               employeesPerPage={employeesPerPage}
               totalEmployees={filteredEmployees.length}
@@ -90,11 +81,11 @@ export default function Employee() {
       {userRole === "admin" && (
         <>
           <Button
-            position="fixed"
-            right="20px"
-            bottom="20px"
-            width="60px"
-            height="50px"
+            position='fixed'
+            right='20px'
+            bottom='20px'
+            width='60px'
+            height='50px'
             onClick={() => {
               setShowModalSignUp(!showModalSignUp);
             }}

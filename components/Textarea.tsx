@@ -15,12 +15,6 @@ type TextareaProps = {
   placeholder?: string;
 };
 
-export const Textarea = ({ value, onChange, placeholder }: TextareaProps) => {
-  return (
-    <TextareaContainer
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-    />
-  );
+export const Textarea = ({ value, onChange, placeholder, ...props }: TextareaProps) => {
+  return <TextareaContainer value={value} onChange={onChange} placeholder={placeholder} {...props} />;
 };

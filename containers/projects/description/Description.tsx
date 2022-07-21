@@ -6,17 +6,25 @@ import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { projectState } from "state/atoms";
 import gearIcon from "../../../resources/images/gearIcon.png";
-import { stackIcons } from "constants/projectStackIcons";
+import { stackIcons } from "constants/projectStack";
 import DeadLine from "./DeadLine";
+import useUserRole from "hooks/useUserRole";
+import { Button } from "Components/Button";
+import router from "next/router";
 
 export const Description = () => {
   const project = useRecoilValue(projectState);
+  const userRole = useUserRole();
   const stack = project?.description?.stack;
   const rating = project?.rating;
   const findAverage = (votes, voted) => votes && voted && votes.reduce((prev, curr) => prev + curr) / voted;
   const fullAvarage =
     rating &&
     rating.map((item) => findAverage(item.votes, item.voted)).reduce((prev, curr) => prev + curr) / rating.length;
+  const handleEdit = (e) => {
+    e.preventDefault();
+    router.push(`/projects/${project.id}/edit`);
+  };
   return (
     <Flex margin='0' justify='space-between' width='100%'>
       <Flex direction='column'>
@@ -27,13 +35,23 @@ export const Description = () => {
         <DeadLine />
       </Flex>
       <Flex direction='column'>
+        {userRole === "admin" && <StyledBtn onClick={handleEdit}>Edit</StyledBtn>}
         <StyledStatus status={project?.description?.status} health={(fullAvarage / 5 / 10) * 1100}>
           <span>status</span> <div></div>
-          <span>health</span> <div></div>
+          {rating ? (
+            <>
+              <span>health</span> <div></div>
+            </>
+          ) : (
+            <>
+              <span></span>
+              <div></div>
+            </>
+          )}
         </StyledStatus>
         <StyledImg>
           {project?.description?.img ? (
-            <Image src={project?.description?.img} alt='project logo' />
+            <img src={project?.description?.img} alt='project logo' width='225px' />
           ) : (
             <StyledDefaultImg length={project?.name?.length}>{project?.name}</StyledDefaultImg>
           )}
@@ -141,4 +159,10 @@ const StyledStatus = styled.div<{ status: string; health: number }>`
   span + div {
     margin-left: -17px;
   }
+`;
+const StyledBtn = styled(Button)`
+  width: fit-content;
+  margin-left: 180px;
+  margin-top: 20px;
+  padding: 5px 10px;
 `;

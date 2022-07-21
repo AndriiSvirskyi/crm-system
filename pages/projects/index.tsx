@@ -9,6 +9,8 @@ import { UserBlockItem, UserText, UserTitle, UserWindow } from "styled-component
 import router from "next/router";
 import Loader from "styled-components/Loader";
 import { ImageContainer } from "styled-components/ImageContainer";
+import { Button } from "Components/Button";
+import useFetchAndSetUsers from "hooks/useFetchAndSetUsers";
 
 type projectsProps = {
   [key: string]: {
@@ -32,26 +34,12 @@ export const Anchor = styled.span`
 `;
 
 const Projects = () => {
-  const setUsersToRecoil = useSetRecoilState(usersState);
-  const users = useRecoilValue(usersState);
+  const users = useFetchAndSetUsers();
   const [searchProject, setSearchProject] = useState("");
-
-  useEffect(() => {
-    if (!users) {
-      const response = fetch(`http://localhost:4200/users`);
-      response
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          setUsersToRecoil(res);
-        });
-    }
-  }, []);
 
   const projects: projectsProps = users
     ? users.reduce((acc, cur) => {
-        for (let i = 0; i < cur.projects.length; i++) {
+        for (let i = 0; i < cur.projects?.length; i++) {
           if (acc[cur.projects[i].name]) {
             acc[cur.projects[i].name].members.push(cur.name + " " + cur.surname);
           } else {
@@ -79,6 +67,14 @@ const Projects = () => {
             onChange={(e) => setSearchProject(e.target.value)}
           />
         </Flex>
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            router.push(`/projects/add`);
+          }}
+        >
+          Add new project
+        </Button>
         {!users ? (
           <Loader />
         ) : (
